@@ -1,0 +1,174 @@
+<!-- BEGIN SIDEBAR -->
+<div class="page-sidebar nav-collapse collapse">
+	<!-- BEGIN SIDEBAR MENU -->        	
+	<ul>
+		<li >
+			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+            <span class="nav-text">Navigation</span>
+			<div class="sidebar-toggler hidden-phone"></div>
+			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+		</li>
+		<li>
+		</li>
+		<li class="start <%=controller.controller_name == "dashboard" ? 'active' : '' %>">
+			<a href="/admin">
+			<i class="icon-home"></i> 
+			<span class="title">Dashboard</span>
+			<span class="selected"></span>
+			</a>
+		</li>
+		<li class="has-sub ">
+			<a href="javascript:;">
+			<i class="icon-user"></i> 
+			<span class="title">Users</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub">
+				<li><a href="/admin/admins">Administrators</a></li>
+				<li><a href="/admin/customers">Customers</a></li>
+				<li><a href="/admin/salers">Designer Salers</a></li>
+			</ul>
+		</li>
+
+
+		<li class="active has-sub"><%#=  link_to site_name, :root %></li>
+		<li class="has-sub ">
+		  <a href="javascript:;">
+			<i class="icon-align-justify"></i> 
+			<span class="title">Orders</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub">
+				<li><%= link_to 'Orders', admin_history_orders_path %></li>
+				<li><%= link_to 'Create Order', admin_shopping_carts_path %></li>
+				<li><%= link_to 'Old Orders', admin_history_orders_path %></li>
+				<li><%= link_to 'Shipments', admin_fulfillment_shipments_path %></li>
+			</ul> 
+		</li>
+
+		<li class="has-sub">
+		  <a href="javascript:;">
+			<i class="icon-barcode"></i> 
+			<span class="title">Merchandise</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub">
+			 	<li><%= link_to 'Merchandise', admin_merchandise_products_path %></li>
+			 	<li><%= link_to 'Products', admin_merchandise_products_path %></li>
+			    <li><%= link_to 'Properties', admin_merchandise_properties_path %></li>
+			    <li><%= link_to 'Product Types', admin_merchandise_product_types_path %></li>
+			    <li><%= link_to 'Prototypes', admin_merchandise_prototypes_path %></li>
+			    <li><%= link_to 'Image Groups', admin_merchandise_image_groups_path %></li>
+			    <li><%= link_to 'Brands', admin_merchandise_brands_path %></li>
+			</ul> 
+		</li>
+
+		<li class="has-sub">
+		  <a href="javascript:;">
+			<i class="icon-inbox"></i> 
+			<span class="title">Inventory</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub">
+				<li><%= link_to "Inventory", admin_inventory_overviews_path %></li>
+			 	<li><%= link_to 'Overviews', admin_inventory_overviews_path %></li>
+ 			    <li><%= link_to 'Suppliers', admin_inventory_suppliers_path %></li>
+ 			    <li><%= link_to 'Receive Purchase Order', admin_inventory_receivings_path %></li>
+ 			    <li><%= link_to 'Purchase Orders', admin_inventory_purchase_orders_path %></li>
+ 			    <li><%= link_to 'Adjustments', admin_inventory_adjustments_path %></li>
+			</ul> 
+		</li>
+
+		<li class="has-sub">
+		  <a href="javascript:;">
+			<i class="icon-user"></i> 
+			<span class="title">Users</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub">
+				<li><%= link_to "Users", admin_users_path %></li>
+				<li><%= link_to 'Users',      admin_users_path %></li>
+		    	<li><%= link_to 'Referrals',  admin_user_datas_referrals_path %></li>
+			</ul> 
+		</li>
+		<% if current_user.super_admin? %>
+			<li class="has-sub">
+			  <a href="javascript:;">
+				<i class="icon-asterisk"></i> 
+				<span class="title">Configuration</span>
+				<span class="arrow "></span>
+				</a>
+				<ul class="sub">
+					<li><%= link_to "Config", admin_config_accounts_path %></li>
+					<li><%= link_to 'Accounts',           admin_config_accounts_path %></li>
+			      	<li><%= link_to 'Countries',          admin_config_countries_path %></li>
+			      	<li><%= link_to 'Shipping Zones',     admin_config_shipping_zones_path %></li>
+			      	<li><%= link_to 'Shipping Methods',   admin_config_shipping_methods_path %></li>
+			      	<li><%= link_to 'Shipping Rates',     admin_config_shipping_rates_path %></li>
+			      	<li><%= link_to 'Tax Rates',          admin_config_tax_rates_path %></li>
+			      	<li><%= link_to 'Shipping Categories',  admin_config_shipping_categories_path %></li>
+				</ul> 
+			</li>
+		<% end %>
+
+		<li class="has-sub">
+		  <a href="javascript:;">
+			<i class="icon-user"></i> 
+			<span class="title">Coupons/Deals</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub">
+				<li><%= link_to "Coupons/Deals", admin_generic_coupons_path %></li>
+				<li><%= link_to 'Coupons', admin_generic_coupons_path %></li>
+		    	<li><%= link_to 'Deals', admin_generic_deals_path %></li>
+		    	<li><%= link_to 'Sales', admin_generic_sales_path %></li>
+			</ul> 
+		</li>
+		
+		<li class="has-sub">
+		  <a href="javascript:;">
+			<i class="icon-road"></i> 
+			<span class="title">Fulfillment</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub">
+				<li> <%= link_to "Fulfillment", admin_fulfillment_orders_path %></li>
+				<li><%= link_to 'Invoices', admin_document_invoices_path %></li>
+		    	<li><%= link_to 'Orders', admin_fulfillment_orders_path %></li>
+		    	<li><%= link_to 'Shipments', admin_fulfillment_shipments_path %></li>
+			</ul> 
+		</li>
+		
+		<li class="has-sub">
+		  <a href="javascript:;">
+			<i class="icon-signal"></i> 
+			<span class="title">Reports</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub">
+				<li><%= link_to "Reports", admin_reports_overview_path %></li>
+				<li><%= link_to 'Graphs', admin_reports_graphs_path %></li>
+		    	<li><%= link_to 'Help', admin_help_path %></li>
+			</ul> 
+		</li>
+		
+		<% unless recent_admin_users.empty? %>
+			<li class="has-sub">
+			  <a href="javascript:;">
+				<i class="icon-user"></i> 
+				<span class="title">Recent</span>
+				<span class="arrow "></span>
+				</a>
+				<ul class="sub">
+					<% recent_admin_users.each do |recent_user_email, recent_user_id| %>
+		      			<li><%= link_to recent_user_email, admin_user_path(recent_user_id) %></li>
+		      		<% end %>
+				</ul> 
+			</li>
+		  
+		<% end %>
+
+	</ul>
+	<!-- END SIDEBAR MENU -->
+</div>
+<!-- END SIDEBAR -->

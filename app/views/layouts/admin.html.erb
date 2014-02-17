@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+	<meta charset="utf-8" />
+	<title>Admin- MadDot</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<%= stylesheet_link_tag "admin", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+	<link rel="shortcut icon" href="favicon.ico" />
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="fixed-top">
+	<!-- BEGIN HEADER -->
+	<div class="header navbar navbar-inverse navbar-fixed-top">
+		<!-- BEGIN TOP NAVIGATION BAR -->
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<!-- BEGIN LOGO -->
+				<a class="brand" href="index.html">
+				Logo
+				</a>
+				<!-- END LOGO -->
+				<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+				<a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+				<img src="/assets/admin/sidebar-toggler.jpg" alt="" />
+				</a>          
+				<!-- END RESPONSIVE MENU TOGGLER -->				
+				<!-- BEGIN TOP NAVIGATION MENU -->					
+				<ul class="nav pull-right">
+                	<li><div class="super-admin-box">
+                    	<div class="photo-icon">&nbsp;</div>
+                        <div class="photo-name">
+                        <%#= current_user%>
+                        <span><%= current_user.name %></span>
+                        </div>
+                    </div>
+                    </li>
+                    <span>
+                      <%= link_to 'Logout', logout_path, :id => 'admin-logout-button', method: :delete ,:class=>"logout-icon"%>
+                  	</span>
+                    </li>					
+				</ul>
+				<!-- END TOP NAVIGATION MENU -->	
+			</div>
+		</div>
+		<!-- END TOP NAVIGATION BAR -->
+	</div>
+	<!-- END HEADER -->
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container row-fluid">
+		<%=render :partial => "/shared/admin_menu"%>
+		<!-- BEGIN PAGE -->
+		<div class="page-content">
+      <div class='row'>
+        <% if content_for?(:sidemenu) %>
+          <div class="admin_main_content nine large-9 columns ">
+            <%= yield %>
+          </div>
+          <div class="three  large-3 columns sidebar" >
+            <%= yield :sidemenu %>
+          </div>
+        <% else %>
+          <div class='admin_main_content'>
+            <%= yield %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+		<!-- END PAGE -->
+	</div>
+	<!-- END CONTAINER -->
+	<!-- BEGIN FOOTER -->
+	<div class="footer">
+		2013 &copy; company name.
+	</div>
+	<!-- END FOOTER -->
+	<!-- BEGIN JAVASCRIPTS -->
+	<!-- Load javascripts at bottom, this will reduce page load time -->
+<!-- 	// <script src="assets/admin/jquery-1.8.3.min.js"></script>	 -->
+	<!--[if lt IE 9]>
+	<script src="assets/admin/excanvas.js"></script>
+	<script src="assets/admin/respond.js"></script>	
+	<![endif]-->	
+	<!-- <script src="assets/admin/breakpoints.js"></script>		
+	<script src="assets/admin-ui/jquery-ui-1.10.1.custom.min.js"></script>	
+	<script src="assets/admin-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="assets/admin/js/bootstrap.min.js"></script>
+	<script src="assets/admin/jquery.blockui.js"></script>	
+	<script src="assets/admin/jquery.cookie.js"></script>
+	<script src="assets/admin/jqvmap/jquery.vmap.js" type="text/javascript"></script>	
+	<script src="assets/admin/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
+	<script src="assets/admin/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
+	<script src="assets/admin/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
+	<script src="assets/admin/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
+	<script src="assets/admin/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
+	<script src="assets/admin/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
+    <script type="text/javascript" src="assets/admin/jquery.uniform.min.js"></script>
+	<script src="assets/admin/app.js"></script>				-->	
+	<script>
+		jQuery(document).ready(function() {		
+			App.setPage("/");  // set current page
+			App.init(); // init the rest of plugins and elements
+
+			$(document).ready(function() {
+
+			  // setInterval(function(){gettime();}, 1);
+			  $('.updatevals').click(function(){
+			        var allVals = [];
+			        $('.table :checked').each(function() {
+			          if ($(this).val()!= "true") {
+			            allVals.push($(this).val());
+			          };
+			        });
+			        if (allVals.length > 0)
+			        {
+			          if ( $(this).attr("id")=="Active" || $(this).attr("id")=="InActive" || $(this).attr("id")=="Pending" || $(this).attr("id")=="Approve" || $(this).attr("id")=="DisApprove") {
+			            method='put'
+			            url='<%= "/"+params[:controller]+"/update" %>'
+			            confirms = true
+			          } else{
+			            method='delete'
+			            url='<%= "/"+params[:controller]+"/destroy" %>'
+			            if(confirm('Are you sure you want to delete?'))
+			              confirms = true
+			            else
+			              confirms = false
+			          };
+			          if(confirms)
+			          {
+			            $.ajax({
+			                url : url,
+			                dataType: 'script',
+			                method : method,
+			                data : {
+			                  id : method,
+			                  values : allVals,
+			                  status : $(this).text()
+			                }
+			            })
+			            $('.table input:checkbox').each(function() {
+			                this.checked = false;
+			            });
+			          }
+			        }
+			        else{
+			          $("#flash").stop();
+			          $("#flash").css("display","block");
+			          // $("#flash").html("<div class='message_error' style='z-index:1000px'>Please Select Atleast One </div>")
+			          $('#flash').fadeOut(5000);
+			           alert("Please Select Atleast One")
+			        }
+			  });
+			  $('th:first input:checkbox').click(function(e) {
+			   var table = $(e.target).closest('table');
+			   $('td input:checkbox', table).each(function(){
+			       if (e.target.checked) {this.checked=true} else{this.checked=false};
+			     });
+			  });
+
+			});
+
+		});
+	</script>
+	<!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>
