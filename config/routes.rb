@@ -1,7 +1,19 @@
 Hadean::Application.routes.draw do
 
+  # New Routes
+  mount Ckeditor::Engine => '/ckeditor'
+  resources :blogs do 
+    resources :comments 
+  end
+
+
   resources :image_groups
   # mount Resque::Server.new, at: "/resque"
+
+  
+  match 'auth/:provider/callback', to: 'user_sessions#create', via: [:get, :post]
+  match 'auth/failure', to: redirect('/'), via: [:get, :post]
+  match 'signout', to: 'user_sessions#destroy', as: 'signout', via: [:get, :post]
 
   namespace(:admin){ namespace(:customer_service){ resources :comments } }
 
@@ -74,6 +86,12 @@ Hadean::Application.routes.draw do
       end
     end
     resources :users
+    
+    #New Admin changes
+    resources :static_pages
+    resources :blogs
+    resources :commissions
+
     namespace :user_datas do
 
       resources :referrals do
@@ -118,7 +136,7 @@ Hadean::Application.routes.draw do
         member do
           put :create_shipment
         end
-        resources  :comments
+        #resources  :comments
       end
 
       namespace :partial do
@@ -230,5 +248,12 @@ Hadean::Application.routes.draw do
       resources :invoices
     end
   end
+
+  # Static Pages
+  get "about-us" ,:to=>"welcome#static_page" ,:code => "about-us"
+  get "contact-us" ,:to=>"welcome#static_page" ,:code => "contact-us"
+  get "privacy-policy" ,:to=>"welcome#static_page" ,:code => "privacy"
+  get "terms-conditions" ,:to=>"welcome#static_page" ,:code => "terms"
+  get "help-support" ,:to=>"welcome#static_page" ,:code => "help"
 
 end

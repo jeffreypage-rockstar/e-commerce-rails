@@ -1,7 +1,7 @@
 class Admin::BaseController < ApplicationController
   helper_method :recent_admin_users
   layout 'admin'
-
+  include ApplicationHelper
   before_filter :verify_admin
 
   def current_ability
@@ -31,11 +31,15 @@ class Admin::BaseController < ApplicationController
   end
 
   def verify_admin
-    redirect_to root_url if !current_user || !current_user.admin?
+    if (!current_user) ||(!current_user.admin? && !current_user.designer_saler?)  
+      redirect_to root_url 
+    end
   end
 
   def verify_super_admin
     if current_user && current_user.admin? && !current_user.super_admin?
+      redirect_to admin_users_url
+    elsif current_user && current_user.designer_saler?
       redirect_to admin_users_url
     elsif !current_user || !current_user.admin?
       redirect_to root_url

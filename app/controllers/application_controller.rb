@@ -41,6 +41,8 @@ class ApplicationController < ActionController::Base
 
   private
 
+
+
   def customer_confirmation_page_view
     false
   end
@@ -137,8 +139,12 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    return @current_user if defined?(@current_user)
-    @current_user = current_user_session && current_user_session.record
+    if session[:user_id]
+      @current_user = User.find(session[:user_id])
+    else  
+      return @current_user if defined?(@current_user)
+      @current_user = current_user_session && current_user_session.record
+    end
   end
 
   def current_user_id
@@ -172,4 +178,15 @@ class ApplicationController < ActionController::Base
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
   end
+
+
+  # def current_user
+  #   if @current_user
+  #     @current_user = current_user
+  #   elsif  session[:user_id]
+  #     @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  #   end
+  # end
+  # helper_method :current_user
+
 end

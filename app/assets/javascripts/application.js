@@ -1,5 +1,3 @@
-
-
 //= require admin/jquery-1.8.3.min
 //= require jquery_ujs
 //= require admin/breakpoints
@@ -18,6 +16,39 @@
 //= require admin/jquery.uniform.min
 //= require admin/app
 //= require foundation
+//= require ckeditor/init
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+
+jQuery(function() {
+  $('body').prepend('<div id="fb-root"></div>');
+  return $.ajax({
+    url: "" + window.location.protocol + "//connect.facebook.net/en_US/all.js",
+    dataType: 'script',
+    cache: true
+  });
+});
+window.fbAsyncInit = function() {
+  FB.init({
+    appId: 'YOUR-APP-ID',
+    cookie: true
+  });
+  $('#sign_in').click(function(e) {
+    e.preventDefault();
+    return FB.login(function(response) {
+      if (response.authResponse) {
+        return window.location = '/auth/facebook/callback';
+      }
+    });
+  });
+  return $('#sign_out').click(function(e) {
+    FB.getLoginStatus(function(response) {
+      if (response.authResponse) {
+        return FB.logout();
+      }
+    });
+    return true;
+  });
+};

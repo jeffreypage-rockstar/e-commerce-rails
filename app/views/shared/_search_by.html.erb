@@ -1,0 +1,15 @@
+
+<div class="srearch-option pull-right">
+	<%=form_for '', :url => {:action => @action} ,:method=> "get" do -%>
+	<div class="select-div">
+   		<%=text_field_tag "f[#{@columns[0][1].split('@')[0]}]",params[:keyword],:class => 'm-wrap',:id=>"keyword" %>
+    </div>
+	<div class="input-append">
+		<%=select_tag 'option', options_for_select(@columns,:selected=>params[:option]),:onchange=>"filters_add(this.value)" ,:style=>"height:34px;"%>
+   		<button type="button" class="btn blue"  onclick="this.form.submit();"><i class='icon-search'></i></button>
+   	</div>
+	<%end%>
+</div>
+<style type="text/css">
+	.select-div{width:225px;}
+</style>

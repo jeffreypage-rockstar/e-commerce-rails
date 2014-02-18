@@ -14,4 +14,10 @@ class WelcomeController < ApplicationController
       end
     end
   end
+
+  def static_page
+    @static_page = StaticPage.find_by_code(params[:code])
+  end
+
+
 end

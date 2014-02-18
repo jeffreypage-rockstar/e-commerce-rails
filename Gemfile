@@ -55,6 +55,7 @@ gem 'state_machine', '~> 1.2.0'
 gem 'will_paginate', '~> 3.0.4'
 gem 'zurb-foundation', '~> 4.3.2'
 
+
 group :production do
   gem 'mysql2', '~> 0.3.12'
   gem 'pg'
@@ -93,3 +94,6 @@ group :test do
   gem "faker"
 
 end
+gem 'ckeditor'
+gem 'omniauth'
+gem 'omniauth-facebook', '1.4.0'

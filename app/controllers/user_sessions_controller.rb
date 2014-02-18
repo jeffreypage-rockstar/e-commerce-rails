@@ -5,30 +5,42 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    @user_session = UserSession.new(user_params)
-    if @user_session.save
-      cookies[:hadean_uid] = @user_session.record.access_token
-      session[:authenticated_at] = Time.now
-      cookies[:insecure] = false
-      ## if there is a cart make sure the user_id is correct
-      set_user_to_cart_items
-      flash[:notice] = I18n.t('login_successful')
-      if @user_session.record.admin?
-        redirect_back_or_default admin_users_url
+    if env["omniauth.auth"]
+      user = User.from_omniauth(env["omniauth.auth"])
+      session[:user_id] = user.id
+      redirect_to root_url
+      current_user = user.id
+    else  
+      @user_session = UserSession.new(user_params)
+      if @user_session.save
+        cookies[:hadean_uid] = @user_session.record.access_token
+        session[:authenticated_at] = Time.now
+        cookies[:insecure] = false
+        ## if there is a cart make sure the user_id is correct
+        set_user_to_cart_items
+        flash[:notice] = I18n.t('login_successful')
+        if @user_session.record.admin?
+          redirect_back_or_default admin_users_url
+        else
+          redirect_back_or_default root_url
+        end
       else
-        redirect_back_or_default root_url
+        @user = User.new(user_params)
+        redirect_to login_url, :alert => I18n.t('login_failure')
       end
-    else
-      @user = User.new(user_params)
-      redirect_to login_url, :alert => I18n.t('login_failure')
     end
   end
 
   def destroy
-    current_user_session.destroy
-    reset_session
-    cookies.delete(:hadean_uid)
+    if session[:user_id]
+      reset_session
+    else  
+      current_user_session.destroy
+      reset_session
+      cookies.delete(:hadean_uid)
+    end
     redirect_to login_url, :notice => I18n.t('logout_successful')
+
   end
 
   private

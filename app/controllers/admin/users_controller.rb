@@ -3,8 +3,16 @@ class Admin::UsersController < Admin::BaseController
 
   def index
     authorize! :view_users, current_user
-    @users = User.admin_grid(params).order(sort_column + " " + sort_direction).
+    if params[:type]
+    @role = Role.find_by_name(params[:type])
+#    Client.joins('LEFT OUTER JOIN addresses ON addresses.client_id = clients.id')
+    
+    @users =  @role.users.admin_grid(params).order(sort_column + " " + sort_direction).
                                     paginate(:page => pagination_page, :per_page => pagination_rows)
+    else
+      @users =  User.admin_grid(params).order(sort_column + " " + sort_direction).
+                                      paginate(:page => pagination_page, :per_page => pagination_rows)
+    end                                    
   end
 
   def show

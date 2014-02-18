@@ -6,7 +6,7 @@ class Admin::OverviewsController < ApplicationController
     #  The index action should
     if u = User.first
       redirect_to root_url and return if !current_user
-      redirect_to root_url unless current_user.admin?
+      redirect_to root_url unless (current_user.admin? || current_user.designer_saler?)
 
     elsif Role.first
       ##  This means we don't have any users

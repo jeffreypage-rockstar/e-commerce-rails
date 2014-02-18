@@ -1,0 +1,113 @@
+
+<div class="alpha-number">
+
+		<%for i in 65..90 %>
+			<% char = i.chr;
+			if((params[:alpha_search]=='Yes' && params[:keyword]==char) || (!@nodes.nil? && ( @nodes.include?(char) || @nodes.include?(char.downcase) ) ))
+				class_name='active';
+			else
+				class_name='inactive';
+			end
+			%>
+			    <% if class_name == "inactive"%>
+		         <%=link_to char ,'javascript:void(0)'%>
+		        <% else %>
+		         <%=link_to char , {:action => @action , :keyword => char , :char_field => @columns[0][1].split('@')[0] , :alpha_search => 'Yes'},:class=>"active"%>        
+         <% end %>
+      	<%end%>
+      	<%=link_to "All" , {:action => @action },:class=>"active"%>        
+</div>
+    <!-- <a href="#">A</a><a href="#">B</a><a href="#">C</a><a href="#">D</a><a href="#">E</a><a href="#">F</a><a href="#">G</a><a href="#">H</a><a href="#">I</a><a href="#">J</a><a href="#">K</a><a href="#">L</a><a href="#">M</a><a href="#">N</a><a href="#">O</a> <a href="#">P</a> <a href="#">Q</a> <a href="#">R</a> <a href="#">S</a> <a href="#">T</a> <a href="#">U</a> <a href="#">V</a><a href="#">W</a> <a href="#">X</a><a href="#">Y</a>  <a href="#">Z</a>    <a href="#" class="all">ALL</a></div> -->
+                                
+
+
+<script type="text/javascript">
+
+	 window.onload = function() {
+	 	 <%- if params.has_key?('option') -%>
+	 	 	var selected_value = <%= params[:option].to_json.html_safe %>;
+	 	 	var selected_data = <%= params[:f][params[:option].split('@')[0]].to_json.html_safe %>;
+	 	 	filters_add(selected_value);
+	 	 	var data = selected_value.split('@');
+	 	 	if (data[1]=='list') {
+	 	 		selected_index(selected_data)
+	 	 	}
+	 	 	else if(data[1]=='date') {
+	 	 		document.getElementById('from').value = selected_data['from'];
+	 	 		document.getElementById('to').value = selected_data['to'];
+	 	 	}
+	 	 	else{
+	 	 		document.getElementById('keyword').value = selected_data;
+	 	 	};
+	 	 <%- end -%>
+	 }
+
+	function filters_add(obj) {
+		var data = obj.split('@') ;
+		var keyword = data[0];
+		
+		if (data[1]=="list") {
+			$('#keyword').remove();
+			$('.select-div').html('<select id="keyword" name="f['+keyword+']" style="width:98%;margin-right:5px"></select>');
+			if (keyword=="state") {
+				var elements = <%= @statuses.to_json.html_safe -%>;
+			}
+			else if(keyword=="country_id"){
+				var elements = <%= @countries.to_json.html_safe -%>;
+			}
+			else if(keyword=="company_id")
+				var elements = <%= @companies.to_json.html_safe -%>;
+			else if(keyword=="state_id")
+				var elements = <%= @states.to_json.html_safe -%>;
+			else if(keyword=="city_id")
+				var elements = <%= @cities.to_json.html_safe -%>;
+			else{
+				var elements = [['','']];
+			};
+			for (var i = 0; i < elements.length; i++) {
+				$('#keyword').append($('<option>', {
+			        value: elements[i][1],
+			        text : elements[i][0]
+			    }));
+			};
+		}
+		else if(data[1]=="date"){
+			$('#keyword').remove();
+			$('.select-div').html('<span id="keyword"><input type="text" class="m-wrap" id="from" placeholder="From" name="f['+keyword+'][from]" style="float:left;width:43%" /><input class="m-wrap" style="float:left;width:43%" type="text"  placeholder="To" id="to" name="f['+keyword+'][to]" />&nbsp;<span>');
+	      	$(function() {
+	          $( "#from" ).datepicker({
+	            // defaultDate: "+1w",
+	            changeMonth: true,
+	            dateFormat: 'yy-mm-dd',
+	            numberOfMonths: 2,
+	            onClose: function( selectedDate ) {
+	              $( "#to" ).datepicker( "option", "minDate", selectedDate );
+	            }
+	          });
+	          $( "#to" ).datepicker({
+	            // defaultDate: "+1w",
+	            changeMonth: true,
+	            dateFormat: 'yy-mm-dd',
+	            numberOfMonths: 2,
+	            onClose: function( selectedDate ) {
+	              $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+	            }
+	          });
+	        });
+		}
+		else{
+			$('#keyword').remove();
+			$('.select-div').html('<input class="m-wrap" id="keyword" name="f['+keyword+']" type="text" >');
+		};
+	}
+	function selected_index(obj) {
+	  var selObj = document.getElementById('keyword');
+      var selval;
+        for (var i = 0; i < selObj.length; i++) {
+           selval = selObj.options[i].value;
+           if(selval==obj)
+                selObj.options[i].selected=true
+        };
+	}
+
+</script>

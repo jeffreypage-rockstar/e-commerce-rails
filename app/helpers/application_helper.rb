@@ -47,4 +47,31 @@ EXAMPLE USAGE!!
       end
     end
   end
+
+  def filter_helper(params)
+    keyword = []
+    if params[:f]
+        fields = params[:option].split('@')
+        if fields[1]=="list"
+           keyword = [" #{fields[0]} = ?", params[:f][fields[0]]]
+        elsif fields[1]=="integer"
+           if !params[:f][fields[0]].blank?
+            keyword = [" #{fields[0]} = ?", params[:f][fields[0]].to_i]
+           end
+        elsif fields[1]=="date"
+          if (params[:f].has_key?(fields[0]) and params[:f][fields[0]].has_key?('from') and !params[:f][fields[0]][:from].blank?)
+            @from = params[:f][fields[0]][:from] if (params[:f].has_key?(fields[0]) and params[:f][fields[0]].has_key?('from'))
+            @to = params[:f][fields[0]][:to] if (params[:f].has_key?(fields[0]) and params[:f][fields[0]].has_key?('to')and !params[:f][fields[0]][:to].blank?)
+            @to ||= @from
+            keyword = [" DATE(#{fields[0]}) >= ? AND DATE(#{fields[0]}) <= ? ", @from.to_date,@to.to_date]
+          end
+        else
+          keyword = [" #{fields[0]} LIKE ?", "%#{params[:f][fields[0]]}%"]
+        end
+      end
+      if params[:alpha_search] == 'Yes'
+          keyword = [" #{params[:char_field]} LIKE ?", "#{params[:keyword]}%"]
+      end
+      return keyword
+  end
 end

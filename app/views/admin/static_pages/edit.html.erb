@@ -1,0 +1,45 @@
+
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div id="portlet-config" class="modal hide">
+				<div class="modal-header">
+					<button data-dismiss="modal" class="close" type="button"></button>
+					<h3>Widget Settings</h3>
+				</div>
+				<div class="modal-body">
+					<p>Here will be a configuration form</p>
+				</div>
+			</div>
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE CONTAINER-->
+			<div class="container-fluid">
+				<!-- BEGIN PAGE HEADER-->
+				<div class="row-fluid">
+					<div class="span12">
+						<!-- BEGIN PAGE TITLE & BREADCRUMB-->			
+						<h3 class="page-title innerpage-title">
+                        <button class="btn blue pull-right" id="sample_editable_1_new" onclick="window.location.href='/admin/static_pages'">Back to Listing</button>
+                        Edit Static page
+						</h3>                        
+						
+					</div>
+				</div>
+				<!-- END PAGE HEADER-->
+				<div class="row-fluid">
+					<div class="span12">
+						<!-- BEGIN EXAMPLE TABLE PORTLET-->
+                        
+						<div class="portlet-body form edit-form">
+	                        <!-- BEGIN FORM-->
+	                        <%=form_for @static_page,:url=> admin_static_page_url(@static_page),:html=>{:class=>"form-horizontal"} do |f|%>
+
+	                          <%=render :partial => "form",:locals=>{:f=>f}%>
+
+	                        <%end%>
+	                        <!-- END FORM-->
+                     	</div>
+						<!-- END EXAMPLE TABLE PORTLET-->
+					</div>
+				</div>
+			</div>
+			<!-- END PAGE CONTAINER-->		
+		

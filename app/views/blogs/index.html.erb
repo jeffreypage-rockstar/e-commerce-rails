@@ -1,0 +1,7 @@
+
+<%@blogs.each do |blog|%>
+	<div style="padding:20px">
+		<%=blog.created_at%> >> <%=link_to blog.title,blog_path(blog)%> 
+		<br/>
+	</div>
+<%end%>

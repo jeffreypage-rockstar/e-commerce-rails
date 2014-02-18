@@ -1,3 +1,4 @@
+
 # == USERS DOCUMENTATION
 #
 # The users table represents...  USERS!!!
@@ -56,6 +57,7 @@ class User < ActiveRecord::Base
 
   has_many    :users_newsletters
   has_many    :newsletters, through: :users_newsletters
+  has_many    :commissions
 
   has_many  :referrals, class_name: 'Referral', foreign_key: 'referring_user_id' # people you have tried to referred
   has_one   :referree,  class_name: 'Referral', foreign_key: 'referral_user_id' # person who referred you
@@ -159,6 +161,10 @@ class User < ActiveRecord::Base
   # @return [ Boolean ]
   def admin?
     role?(:administrator) || role?(:super_administrator)
+  end
+
+  def designer_saler?
+    role?(:designer_saler)
   end
 
   # returns true or false if the user is a super admin or not
@@ -265,6 +271,20 @@ class User < ActiveRecord::Base
     includes(:roles).first_name_filter(params[:first_name]).
                      last_name_filter(params[:last_name]).
                      email_filter(params[:email])
+  end
+
+  def self.from_omniauth(auth)
+    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+      user.email = auth.info.email
+      user.first_name = auth.info.first_name
+      user.last_name = auth.info.last_name
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.name = auth.info.name
+      user.oauth_token = auth.credentials.token
+      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      user.save
+    end
   end
 
   private
