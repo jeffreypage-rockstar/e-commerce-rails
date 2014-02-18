@@ -55,19 +55,22 @@
 
   </div>
 
-
-  <%= form_for @comment, :url => blog_comments_path(@blog),:html=>{:id=>"new_blog_comments"} do |f| %>
-      <%= f.error_messages %>
-      <ul>
-        <li class="field">
-          <%= f.label :note %>
-          <%= f.text_area :note %>
-          <%=f.hidden_field :created_by,:value=>current_user.id%>
-          <%=f.hidden_field :user_id,:value=>@blog.user_id%>
-        </li>
-      </ul>
-      <%= f.submit 'Create' , :class => 'button' %>
-    <% end %>
+  <%if current_user%>
+    <%= form_for @comment, :url => blog_comments_path(@blog),:html=>{:id=>"new_blog_comments"} do |f| %>
+        <%= f.error_messages %>
+        <ul>
+          <li class="field">
+            <%= f.label :note %>
+            <%= f.text_area :note %>
+            <%=f.hidden_field :created_by,:value=>current_user.id%>
+            <%=f.hidden_field :user_id,:value=>@blog.user_id%>
+          </li>
+        </ul>
+        <%= f.submit 'Create' , :class => 'button' %>
+      <% end %>
+  <%else%>
+    <%=link_to "Login to Commnet","/login"%>
+  <%end%>
 
     <script>
       // 2. This code loads the IFrame Player API code asynchronously.

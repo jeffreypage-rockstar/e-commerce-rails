@@ -134,9 +134,10 @@ ReferralProgram::PROGRAMS.each do |referral_program_attributes|
   end
 end
 
-
+StaticPage.destroy_all
 StaticPage.new(:eng_title=>"Adbout Us",:code=>"about-us").save
 StaticPage.new(:eng_title=>"Help & Support",:code=>"help").save
 StaticPage.new(:eng_title=>"Contact Us",:code=>"contact-us").save
 StaticPage.new(:eng_title=>"Privacy Policy",:code=>"privacy").save
 StaticPage.new(:eng_title=>"Terms & Conditions",:code=>"terms").save
+Role.new(:name=>"designer_saler").save
