@@ -1,7 +1,13 @@
 class BlogsController < ApplicationController
 
 	def index
-		@blogs = Blog.all.active
+		
+		@blog_categories = BlogCategory.active
+		if params[:blog_category_id]
+			@blogs = Blog.includes(:blog_categories).active.where(["blog_category_id = ?",params[:blog_category_id]])
+		else
+			@blogs = Blog.includes(:blog_categories).active
+		end
 	end
 
 	def show

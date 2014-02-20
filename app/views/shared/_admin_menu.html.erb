@@ -1,4 +1,3 @@
-BEGIN SIDEBAR -->
 <div class="page-sidebar nav-collapse collapse">
 	<!-- BEGIN SIDEBAR MENU -->        	
 	<ul>
@@ -7,8 +6,6 @@ BEGIN SIDEBAR -->
             <span class="nav-text">Navigation</span>
 			<div class="sidebar-toggler hidden-phone"></div>
 			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-		</li>
-		<li>
 		</li>
 		<li class="start <%=controller.controller_name == "dashboard" ? 'active' : '' %>">
 			<a href="/admin">
@@ -26,7 +23,7 @@ BEGIN SIDEBAR -->
 				</a>
 				<ul class="sub">
 					<li><a href="/admin/users?type=super_administrator">Administrators</a></li>
-					<li><a href="/admin/users?type=designer_saler">Designer Salers</a></li>
+					<li><a href="/admin/users?type=designer">Designer Salers</a></li>
 					<li><%= link_to 'Commission', admin_commissions_path %></li>
 					<li><a href="/admin/users">All</a></li>
 				</ul>
@@ -58,9 +55,9 @@ BEGIN SIDEBAR -->
 			</a>
 			<ul class="sub">
 			 	
-			    <li><%= link_to 'Properties', admin_merchandise_properties_path %></li>
-			    <li><%= link_to 'Product Types', admin_merchandise_product_types_path %></li>
-			    <li><%= link_to 'Prototypes', admin_merchandise_prototypes_path %></li>
+			    <li><%= link_to 'Product Categories', admin_merchandise_product_types_path %></li>
+			    <li><%= link_to 'Variants', admin_merchandise_properties_path %></li>
+			    <li><%= link_to 'Variant Groups', admin_merchandise_prototypes_path %></li>
 			    <li><%= link_to 'Image Groups', admin_merchandise_image_groups_path %></li>
 			    <li><%= link_to 'Brands', admin_merchandise_brands_path %></li>
 			 	<li><%= link_to 'Products', admin_merchandise_products_path %></li>
@@ -151,8 +148,12 @@ BEGIN SIDEBAR -->
 			<span class="arrow "></span>
 			</a>
 			<ul class="sub">
-				<li> <%= link_to "Static Pages", admin_static_pages_path %></li>
-				<li> <%= link_to "Blogs", admin_blogs_path %></li>
+				<% if current_user.super_admin? %>
+					<li> <%= link_to "Static Pages", admin_static_pages_path %></li>
+				<%else%>
+					<li> <%= link_to "Blog Categories", admin_blog_categories_path %></li>
+					<li> <%= link_to "Blogs", admin_blogs_path %></li>
+				<%end%>
 				<!-- <li><%#= link_to 'Invoices', admin_document_invoices_path %></li>
 		    	<li><%#= link_to 'Orders', admin_fulfillment_orders_path %></li>
 		    	<li><%#= link_to 'Shipments', admin_fulfillment_shipments_path %></li> -->
@@ -191,4 +192,3 @@ BEGIN SIDEBAR -->
 	</ul>
 	<!-- END SIDEBAR MENU -->
 </div>
-<!-- END SIDEBAR

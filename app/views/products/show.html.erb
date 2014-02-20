@@ -40,7 +40,7 @@
             </ul>
           <% else %>
             <ul id="pikame" class="jcarousel-skin-pika">
-              <% @product.images.each do |image|%>
+              <% @product.variants[0].image_group.images.each do |image|%>
                 <li>
                   <a><%= image_tag(image.photo.url(:large)) %></a>
                 </li>
@@ -71,9 +71,9 @@
                     <hr/>
                     <%= form_for  @cart_item,
                                   :url  => shopping_cart_items_path(@cart_item),
-                                  :html => { :id => 'new_cart_item', :class => 'custom' } do |f| %>
+                                  :html => { :id => 'new_cart_item', :class => '' } do |f| %>
                         <%= f.hidden_field :variant_id %>
-                        <div class='four'>
+                        <div class=''>
                         Quantity:
                         <%= f.select :quantity, [1,2,3,4], {:include_blank => false}, {:class => ' '} %>
                         </div>

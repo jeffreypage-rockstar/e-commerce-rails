@@ -26,6 +26,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.active.find(params[:id])
+    # debugger
     form_info
     @cart_item.variant_id = @product.active_variants.first.try(:id)
   end

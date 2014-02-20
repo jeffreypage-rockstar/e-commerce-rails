@@ -1,6 +1,6 @@
 class Admin::StaticPagesController < Admin::BaseController
   def index
-  		#authorize! :static_pages, current_user
+  		authorize! :static_pages, current_user
 	  	if params[:state] == "1"
 	      @state = 0;
 	      sort = "ASC"

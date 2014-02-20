@@ -8,15 +8,6 @@ class Ability
 
     if user.super_admin?
       can :manage, :all
-    elsif user.designer_saler?
-      can :manage, :all
-      can :manage , Product
-      can :manage , Prototype
-      can :manage , Property
-      can :manage , ProductType
-      can :manage , ImageGroup
-      can :manage , Brand
-      can :manage , Blog
     else
       can :read, Order, :user_id => user.id
       can :manage, Order do |action, order|

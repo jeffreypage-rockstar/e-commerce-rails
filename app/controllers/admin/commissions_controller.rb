@@ -1,8 +1,8 @@
 class Admin::CommissionsController < Admin::BaseController
-  before_filter :get_designer_salers
-  def get_designer_salers
-    @role = Role.find_by_name('designer_saler')
-    @designer_salers = @role.users.map { |e| [e.name,e.id]  }
+  before_filter :get_designers
+  def get_designers
+    @role = Role.find_by_name('designer')
+    @designers = @role.users.map { |e| [e.name,e.id]  }
   end
   
   def index

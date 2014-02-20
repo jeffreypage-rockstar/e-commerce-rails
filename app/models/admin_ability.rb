@@ -10,6 +10,18 @@ class AdminAbility
 
     if user.super_admin?
       can :manage, :all
+    elsif user.designer?
+      can :manage, :all
+
+      can :manage , Product
+      can :manage , Prototype
+      can :manage , Property
+      can :manage , ProductType
+      can :manage , ImageGroup
+      can :manage , Brand
+      can :manage , Blog
+      can :manage , BlogCategory
+      can :manage , Image
     elsif user.admin?
       #can :manage, :all
       can :read, :all

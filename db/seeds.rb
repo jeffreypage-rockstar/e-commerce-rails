@@ -140,6 +140,6 @@ StaticPage.new(:eng_title=>"Help & Support",:code=>"help").save
 StaticPage.new(:eng_title=>"Contact Us",:code=>"contact-us").save
 StaticPage.new(:eng_title=>"Privacy Policy",:code=>"privacy").save
 StaticPage.new(:eng_title=>"Terms & Conditions",:code=>"terms").save
-r = Role.find_by_name("designer_saler")
+r = Role.find_by_name("designer")
 r.delete if r
-Role.new(:name=>"designer_saler").save
+Role.new(:name=>"designer").save
