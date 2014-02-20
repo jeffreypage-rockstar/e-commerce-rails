@@ -52,4 +52,15 @@ jQuery(function() {
       return true;
     });
   };
+
+  $('th:first input:checkbox').click(function(e) {
+        var table = $(e.target).closest('table');
+        console.log(table);
+        $('td input:checkbox', table).each(function(){
+            if (e.target.checked) {this.checked=true;console.log(this)} else{this.checked=false};
+        });
+        $('td .checker span').each(function(){
+            if (e.target.checked) {$(this).addClass('checked');} else{$(this).removeClass('checked');};
+        });
+    });
 });
