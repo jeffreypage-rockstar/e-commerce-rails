@@ -32,7 +32,7 @@ jQuery(function() {
 
   window.fbAsyncInit = function() {
     FB.init({
-      appId: 'YOUR-APP-ID',
+      appId: '',
       cookie: true
     });
     $('#sign_in').click(function(e) {

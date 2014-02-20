@@ -4,9 +4,9 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<!-- BEGIN PAGE TITLE & BREADCRUMB-->			
-				<h3 class="page-title innerpage-title">
+				<h3 class="page-name innerpage-name">
                 <button class="btn blue pull-right" id="sample_editable_1_new" onclick="window.location.href='/<%=params[:controller]%>'">Back to Listing</button>
-                New Blog
+                Edit Blog Category
 				</h3>                        
 			</div>
 		</div>
@@ -16,14 +16,12 @@
 				<!-- BEGIN EXAMPLE TABLE PORTLET-->
                 <div class="portlet-body">
                 	<%=render :partial => "/shared/flash_notice"%>
-                	<%= error_messages_for 'blog' %>
 				</div>
                 <div class="portlet-body form edit-form">
                 <!-- BEGIN FORM-->
-                 <%=form_for @blog,:url=> admin_blogs_path ,:html=>{:class=>"form-horizontal"} do |f|%>
-                  <%=render :partial => "form",:locals=>{:f=>f}%>
-
-                <%end%>
+                <%=form_for @blog_category,:url=> admin_blog_category_url(@blog_category),:html=>{:class=>"form-horizontal"} do |f|%>
+			      <%=render :partial => "form",:locals=>{:f=>f}%>
+			    <%end%>
                 <!-- END FORM-->
              </div>
 				<!-- END EXAMPLE TABLE PORTLET-->

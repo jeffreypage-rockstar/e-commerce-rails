@@ -6,6 +6,12 @@
     </div>
 </div>
 <div class="control-group">
+  <label class="control-label">Status </label>
+    <div class="controls">
+       <%= f.select :blog_category_id,BlogCategory.active.map { |e| [e.name,e.id]  } ,:selected =>@blog.blog_category_id %>
+    </div>
+</div>
+<div class="control-group">
     <label class="control-label">Description</label>
     <div class="controls">
      <%= f.cktext_area :description, :class => 'someclass', :ckeditor => {:language => 'eng'} %>

@@ -89,6 +89,7 @@ Hadean::Application.routes.draw do
     
     #New Admin changes
     resources :static_pages
+    resources :blog_categories
     resources :blogs
     resources :commissions
 

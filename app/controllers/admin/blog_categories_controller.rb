@@ -1,13 +1,12 @@
-class Admin::BlogsController < Admin::BaseController
+class Admin::BlogCategoriesController < Admin::BaseController
  	  before_filter :filter_queries , :only=>[:index]
-	  load_and_authorize_resource
+	  
 	  def filter_queries    
-	    @statuses = Blog::STATES.map{|k,v| [v,k]}
+	    @statuses = BlogCategory::STATES.map{|k,v| [v,k]}
 	  end
 
 	  def index
-	  	#authorize! :blog, current_user
-	  	#render :text => (can? :manage, Blog) and return false
+	  	# authorize! :blog_categories, current_user
 	  	if params[:state] == "1"
 	      @state = 0;
 	      sort = "ASC"
@@ -15,7 +14,7 @@ class Admin::BlogsController < Admin::BaseController
 	      @state = 1;
 	      sort = "DESC"
 	    end
-	    scope = Blog.visible
+	    scope = BlogCategory.visible
 	    if params[:sorton]
 	      field = params[:sorton]
 	    else
@@ -25,22 +24,22 @@ class Admin::BlogsController < Admin::BaseController
 	    keyword = filter_helper(params)
 
 	    order_by = "#{field} #{sort}"
-	    @blogs = scope.paginate(:conditions => keyword, :order => order_by,:per_page=>pagination_rows,:page=>params[:page])
+	    @blog_categories = scope.paginate(:conditions => keyword, :order => order_by,:per_page=>pagination_rows,:page=>params[:page])
 	    @action = "index"
-	    @columns = [["Blog","title@string"],["State","state@list"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
-	    @nodes = scope.select("title").map{|x| x.title[0] if x.title}.uniq
+	    @columns = [["BlogCategory","name@string"],["State","state@list"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
+	    @nodes = scope.select("name").map{|x| x.name[0] if x.name}.uniq
 	  end
 
 	  def new
-	  	@blog = Blog.new
+	  	@blog_category = BlogCategory.new
 	  end
 
 	  def create
-  		@blog = Blog.new(user_params)
+  		@blog_category = BlogCategory.new(user_params)
   		respond_to do |format|
-		    if @blog.save
-		      format.html  { redirect_to(admin_blogs_path,
-		                    :notice => 'blog was successfully created.') }
+		    if @blog_category.save
+		      format.html  { redirect_to(admin_blog_categories_path,
+		                    :notice => 'blog_category was successfully created.') }
 		    else
 		      format.html  { render :action => "new" }
 		    end
@@ -48,7 +47,7 @@ class Admin::BlogsController < Admin::BaseController
 	  end
 
 	  def edit
-	  	@blog = Blog.find(params[:id])
+	  	@blog_category = BlogCategory.find(params[:id])
 
 	  end
 
@@ -57,8 +56,8 @@ class Admin::BlogsController < Admin::BaseController
 	    if params[:values]
 	      (params[:status].casecmp(" Active")) == 0 ? status = 1 : status = 0
 	      params[:values].each do |ele|
-	          @blog = Blog.find(ele.to_i)
-	          unless @blog.update_attribute(:status, status )
+	          @blog_category = BlogCategory.find(ele.to_i)
+	          unless @blog_category.update_attribute(:status, status )
 	            err =1
 	          end
 	      end
@@ -68,11 +67,11 @@ class Admin::BlogsController < Admin::BaseController
 	        flash[:notice] = (params[:status].casecmp(" Active")) == 0 ? 'Activated Successfully' : 'In-activated Successfully'
 	      end
 	    else
-	    	@blog = Blog.find(params[:id])
+	    	@blog_category = BlogCategory.find(params[:id])
 	  	  respond_to do |format|
-	  	    if @blog.update_attributes(user_params)
-	  	      format.html  { redirect_to(admin_blogs_path,
-	  	                    :notice => 'blog was successfully updated.') }
+	  	    if @blog_category.update_attributes(user_params)
+	  	      format.html  { redirect_to(admin_blog_categories_path,
+	  	                    :notice => 'blog_category was successfully updated.') }
 	  	    else
 	  	      format.html  { render :action => "edit" }
 	  	    end
@@ -84,8 +83,8 @@ class Admin::BlogsController < Admin::BaseController
 	    if params[:values]
 	      msg = 0
 	      params[:values].each do |ele|
-	          @blog = Blog.find(ele.to_i)
-	          unless @blog.destroy
+	          @blog_category = BlogCategory.find(ele.to_i)
+	          unless @blog_category.destroy
 	            msg = 1
 	          end
 	      end
@@ -95,10 +94,10 @@ class Admin::BlogsController < Admin::BaseController
 	        flash[:notice]="Data Deleted Successfully"
 	      end
 	    else
-	  	  @blog = Blog.find(params[:id])
-	  	  @blog.destroy
+	  	  @blog_category = BlogCategory.find(params[:id])
+	  	  @blog_category.destroy
 	  	  respond_to do |format|
-	  	    format.html { redirect_to admin_blogs_path }
+	  	    format.html { redirect_to admin_blog_categories_path }
 	  	  end
 	    end
 	  end
@@ -106,6 +105,6 @@ class Admin::BlogsController < Admin::BaseController
    	private
 
   	def user_params
-    	params.require(:blog).permit!#(:title, :description, :state,:video_url,:user_id)
+    	params.require(:blog_category).permit!#(:name, :description, :state,:video_url,:user_id)
   	end
 end

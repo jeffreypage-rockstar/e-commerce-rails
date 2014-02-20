@@ -6,6 +6,7 @@ class Blog < ActiveRecord::Base
                     as:        :imageable,
                     dependent: :destroy
 
+    belongs_to :blog_category
     accepts_nested_attributes_for :images,             reject_if: proc { |t| (t['photo'].nil? && t['photo_from_link'].blank?) }, allow_destroy: true
 
 	ACTIVE    = 1

@@ -163,8 +163,8 @@ class User < ActiveRecord::Base
     role?(:administrator) || role?(:super_administrator)
   end
 
-  def designer_saler?
-    role?(:designer_saler)
+  def designer?
+    role?(:designer)
   end
 
   # returns true or false if the user is a super admin or not

@@ -4995,3 +4995,5 @@ color: #000;
 margin: 10px 0px 15px 0px;
 font-weight: 400 !important;
 font-family: 'Open Sans';}
+
+.ui-datepicker-div{width:7em !important;}

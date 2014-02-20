@@ -1,7 +1,13 @@
-
+<div>Blog Categories</div>
+<ul> 
+<%@blog_categories.each do |bc|%>
+	<li><%=link_to bc.name,blogs_path(:blog_category_id=>bc.id)%></li>
+<%end%>
+	<li><%=link_to "All",blogs_path%></li>
+</ul>
 <%@blogs.each do |blog|%>
 	<div style="padding:20px">
-		<%=blog.created_at%> >> <%=link_to blog.title,blog_path(blog)%> 
+		<%=blog.blog_category.name%> >> <%=blog.created_at%> >> <%=link_to blog.title,blog_path(blog)%> 
 		<br/>
 	</div>
 <%end%>

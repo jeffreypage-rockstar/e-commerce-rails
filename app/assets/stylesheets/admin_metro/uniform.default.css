@@ -539,7 +539,7 @@ div.checker {
 
 div.checker span {
   display: -moz-inline-box;
-  display: inline-block;
+  /*display: inline-block;*/
   text-align: center;
 }
 
