@@ -3,8 +3,12 @@
 class Admin::Merchandise::ImageGroupsController < Admin::BaseController
   helper_method :sort_column, :sort_direction, :products
   def index
-    @image_groups = ImageGroup.order(sort_column + " " + sort_direction).
+    keyword = filter_helper(params)
+    @image_groups = ImageGroup.order(sort_column + " " + sort_direction).where(keyword).
                                      paginate(:page => pagination_page, :per_page => pagination_rows)
+    @action = "index"
+    @columns = [["Name","name@string"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
+    @nodes = ImageGroup.all.select("name").map{|x| x.name[0] if x.name}.uniq                                                                                  
   end
 
   def show

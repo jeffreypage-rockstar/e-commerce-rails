@@ -2,8 +2,12 @@ class Admin::Merchandise::ProductTypesController < Admin::BaseController
   helper_method :sort_column, :sort_direction
   respond_to :html, :json
   def index
-    @product_types = ProductType.admin_grid(params).order(sort_column + " " + sort_direction).
+    keyword = filter_helper(params)
+    @product_types = ProductType.admin_grid(params).order(sort_column + " " + sort_direction).where(keyword).
                                               paginate(:page => pagination_page, :per_page => pagination_rows)
+    @action = "index"
+    @columns = [["Name","name@string"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
+    @nodes = ProductType.select("name").map{|x| x.name[0] if x.name}.uniq
   end
 
   def show

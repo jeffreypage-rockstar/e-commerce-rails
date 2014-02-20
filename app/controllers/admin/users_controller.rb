@@ -4,14 +4,22 @@ class Admin::UsersController < Admin::BaseController
   def index
     authorize! :view_users, current_user
     if params[:type]
-    @role = Role.find_by_name(params[:type])
-#    Client.joins('LEFT OUTER JOIN addresses ON addresses.client_id = clients.id')
-    
-    @users =  @role.users.admin_grid(params).order(sort_column + " " + sort_direction).
-                                    paginate(:page => pagination_page, :per_page => pagination_rows)
+      @role = Role.find_by_name(params[:type])
+      keyword = filter_helper(params)
+      # order_by = "#{field} #{sort}"
+      # render :json => params[:type] and return false
+      @users = @role.users.admin_grid(params).order(sort_column + " " + sort_direction).where(keyword).
+                                                 paginate(:page => pagination_page, :per_page => pagination_rows)
+      @action = "index"
+      @columns = [["Name","first_name@string"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
+      @nodes = @role.users.select("first_name").map{|x| x.first_name[0] if x.first_name}.uniq
     else
-      @users =  User.admin_grid(params).order(sort_column + " " + sort_direction).
+      keyword = filter_helper(params)
+      @users =  User.admin_grid(params).order(sort_column + " " + sort_direction).where(keyword).
                                       paginate(:page => pagination_page, :per_page => pagination_rows)
+                                      @action = "index"
+      @columns = [["Name","first_name@string"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
+      @nodes = @users.select("first_name").map{|x| x.first_name[0] if x.first_name}.uniq
     end                                    
   end
 

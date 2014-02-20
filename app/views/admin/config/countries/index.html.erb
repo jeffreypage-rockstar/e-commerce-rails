@@ -9,6 +9,10 @@
   <%= link_to "Activate", [:admin, :config, @countries.first], method: :put, id: "activate-link", style: "display:none;" %>
 </p>
 <div id="admin_country_grid_wrapper" class='pretty_table'>
+  <div class="admin_products">
+    <%=render :partial=>"/shared/filters"%>
+  </div> 
+
   <table class="table table-striped table-hover table-bordered table-hd" >
     <tr class='odd'>
         <th  class='column1_header'><%= sortable 'name', 'Name' %></th>

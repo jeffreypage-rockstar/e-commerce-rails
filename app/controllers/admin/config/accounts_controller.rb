@@ -1,7 +1,12 @@
 class Admin::Config::AccountsController < Admin::Config::BaseController
   # GET /accounts
   def index
-    @accounts = Account.all
+    keyword = filter_helper(params)
+    @accounts = Account.where(keyword)
+    @action = "index"
+    @columns = [["Name","name@string"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
+    @nodes = Account.all.select("name").map{|x| x.name[0] if x.name}.uniq                                             
+
   end
 
   # GET /accounts/1

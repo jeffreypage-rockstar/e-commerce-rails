@@ -12,7 +12,7 @@
 			    <% if class_name == "inactive"%>
 		         <%=link_to char ,'javascript:void(0)'%>
 		        <% else %>
-		         <%=link_to char , {:action => @action , :keyword => char , :char_field => @columns[0][1].split('@')[0] , :alpha_search => 'Yes'},:class=>"active"%>        
+		         <%=link_to char , {:action => @action , :keyword => char , :char_field => @columns[0][1].split('@')[0] , :alpha_search => 'Yes',:type=>params[:type]},:class=>"active"%>        
          <% end %>
       	<%end%>
       	<%=link_to "All" , {:action => @action },:class=>"active"%>        

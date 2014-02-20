@@ -1,9 +1,13 @@
 class Admin::Inventory::ReceivingsController < Admin::BaseController
   helper_method :sort_column, :sort_direction
   def index
+    keyword = filter_helper(params)
     # by default find all POs that are not received
-    @purchase_orders = PurchaseOrder.receiving_admin_grid(params).order(sort_column + " " + sort_direction).
+    @purchase_orders = PurchaseOrder.receiving_admin_grid(params).where(keyword).order(sort_column + " " + sort_direction).
                                                         paginate(:page => pagination_page, :per_page => pagination_rows)
+    @action = "index"
+    @columns = [["Name","supplier.name@string"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
+    @nodes = PurchaseOrder.all.map{|x| x.supplier.name[0] if x.supplier.name}.uniq                                                                                                                                                                                        
   end
 
   def edit
