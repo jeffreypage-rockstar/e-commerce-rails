@@ -5,8 +5,29 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
 
   def index
     params[:page] ||= 1
-    @products = Product.admin_grid(params).order(sort_column + " " + sort_direction).
+
+    if params[:state] == "1"
+      @state = 0;
+      sort = "ASC"
+    else
+      @state = 1;
+      sort = "DESC"
+    end
+    scope = StaticPage.visible
+    if params[:sorton]
+      field = params[:sorton]
+    else
+      field = 'created_at'
+    end
+    
+    keyword = filter_helper(params)
+
+    order_by = "#{field} #{sort}"
+    @products = Product.admin_grid(params).order(sort_column + " " + sort_direction).where(keyword).
                                               paginate(:page => pagination_page, :per_page => pagination_rows)
+    @action = "index"
+    @columns = [["Name","name@string"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
+    @nodes = Product.all.select("name").map{|x| x.name[0] if x.name}.uniq                                              
   end
 
   def show

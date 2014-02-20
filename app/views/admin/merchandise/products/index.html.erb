@@ -28,8 +28,12 @@
   <%= link_to "New Product", new_admin_merchandise_product_path, :class => "button", :id => "new_product_button" %>
   <%= link_to "New Product Wizard", admin_merchandise_wizards_brands_path, :class => "button", :id => "new_product_wizard_button" %>
 </div>
-<div class="admin_products">
-  <table>
+<div class="row-fluid table-top-cont">
+  <div class="admin_products">
+    <%=render :partial=>"/shared/filters"%>
+      
+  </div>  
+  <table class="table table-striped table-hover table-bordered table-hd" >
     <thead>
     <tr class='odd'>
         <th class='column1_header'><%= sortable "name" %></th>

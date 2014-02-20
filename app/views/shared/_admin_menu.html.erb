@@ -1,4 +1,4 @@
-<!-- BEGIN SIDEBAR -->
+BEGIN SIDEBAR -->
 <div class="page-sidebar nav-collapse collapse">
 	<!-- BEGIN SIDEBAR MENU -->        	
 	<ul>
@@ -34,7 +34,7 @@
 		<%end%>
 
 		<% if current_user.super_admin? %>
-			<!-- <li class="active has-sub"><%#=  link_to site_name, :root %></li>
+			<li class="active has-sub"><%#=  link_to site_name, :root %></li>
 			<li class="has-sub ">
 			  <a href="javascript:;">
 				<i class="icon-align-justify"></i> 
@@ -42,12 +42,12 @@
 				<span class="arrow "></span>
 				</a>
 				<ul class="sub">
-					<li><%#= link_to 'Orders', admin_history_orders_path %></li>
-					<li><%#= link_to 'Create Order', admin_shopping_carts_path %></li>
-					<li><%#= link_to 'Old Orders', admin_history_orders_path %></li>
-					<li><%#= link_to 'Shipments', admin_fulfillment_shipments_path %></li>
+					<li><%= link_to 'Orders', admin_history_orders_path %></li>
+					<li><%= link_to 'Create Order', admin_shopping_carts_path %></li>
+					<li><%= link_to 'Old Orders', admin_history_orders_path %></li>
+					<li><%= link_to 'Shipments', admin_fulfillment_shipments_path %></li>
 				</ul> 
-			</li> -->
+			</li>
 		<%end%>
 
 		<li class="has-sub">
@@ -57,34 +57,34 @@
 			<span class="arrow "></span>
 			</a>
 			<ul class="sub">
-			 	<!-- <li><%#= link_to 'Merchandise', admin_merchandise_products_path %></li> -->
-			 	<!-- <li><%#= link_to 'Products', admin_merchandise_products_path %></li> -->
+			 	
 			    <li><%= link_to 'Properties', admin_merchandise_properties_path %></li>
 			    <li><%= link_to 'Product Types', admin_merchandise_product_types_path %></li>
 			    <li><%= link_to 'Prototypes', admin_merchandise_prototypes_path %></li>
 			    <li><%= link_to 'Image Groups', admin_merchandise_image_groups_path %></li>
 			    <li><%= link_to 'Brands', admin_merchandise_brands_path %></li>
+			 	<li><%= link_to 'Products', admin_merchandise_products_path %></li>
 			    
 			</ul> 
 		</li>
 
-		<!-- <li class="has-sub">
+		<li class="has-sub">
 		  <a href="javascript:;">
 			<i class="icon-inbox"></i> 
 			<span class="title">Inventory</span>
 			<span class="arrow "></span>
 			</a>
 			<ul class="sub">
-				<li><%#= link_to "Inventory", admin_inventory_overviews_path %></li>
-			 	<li><%#= link_to 'Overviews', admin_inventory_overviews_path %></li>
- 			    <li><%#= link_to 'Suppliers', admin_inventory_suppliers_path %></li>
- 			    <li><%#= link_to 'Receive Purchase Order', admin_inventory_receivings_path %></li>
- 			    <li><%#= link_to 'Purchase Orders', admin_inventory_purchase_orders_path %></li>
- 			    <li><%#= link_to 'Adjustments', admin_inventory_adjustments_path %></li>
+				<li><%= link_to "Inventory", admin_inventory_overviews_path %></li>
+			 	<li><%= link_to 'Overviews', admin_inventory_overviews_path %></li>
+ 			    <li><%= link_to 'Suppliers', admin_inventory_suppliers_path %></li>
+ 			    <li><%= link_to 'Receive Purchase Order', admin_inventory_receivings_path %></li>
+ 			    <li><%= link_to 'Purchase Orders', admin_inventory_purchase_orders_path %></li>
+ 			    <li><%= link_to 'Adjustments', admin_inventory_adjustments_path %></li>
 			</ul> 
 		</li> 
 
-		<li class="has-sub">
+		<!-- <li class="has-sub">
 		  <a href="javascript:;">
 			<i class="icon-user"></i> 
 			<span class="title">Users</span>
@@ -97,23 +97,23 @@
 			</ul> 
 		</li>-->
 		<% if current_user.super_admin? %>
-			<!-- <li class="has-sub">
+			 <li class="has-sub">
 			  <a href="javascript:;">
 				<i class="icon-asterisk"></i> 
 				<span class="title">Configuration</span>
 				<span class="arrow "></span>
 				</a>
 				<ul class="sub">
-					<li><%#= link_to "Config", admin_config_accounts_path %></li>
-					<li><%#= link_to 'Accounts',           admin_config_accounts_path %></li>
-			      	<li><%#= link_to 'Countries',          admin_config_countries_path %></li>
-			      	<li><%#= link_to 'Shipping Zones',     admin_config_shipping_zones_path %></li>
-			      	<li><%#= link_to 'Shipping Methods',   admin_config_shipping_methods_path %></li>
-			      	<li><%#= link_to 'Shipping Rates',     admin_config_shipping_rates_path %></li>
-			      	<li><%#= link_to 'Tax Rates',          admin_config_tax_rates_path %></li>
-			      	<li><%#	= link_to 'Shipping Categories',  admin_config_shipping_categories_path %></li>
+					<li><%= link_to "Config", admin_config_accounts_path %></li>
+					<li><%= link_to 'Accounts',           admin_config_accounts_path %></li>
+			      	<li><%= link_to 'Countries',          admin_config_countries_path %></li>
+			      	<li><%= link_to 'Shipping Zones',     admin_config_shipping_zones_path %></li>
+			      	<li><%= link_to 'Shipping Methods',   admin_config_shipping_methods_path %></li>
+			      	<li><%= link_to 'Shipping Rates',     admin_config_shipping_rates_path %></li>
+			      	<li><%= link_to 'Tax Rates',          admin_config_tax_rates_path %></li>
+			      	<li><%= link_to 'Shipping Categories',  admin_config_shipping_categories_path %></li>
 				</ul> 
-			</li> -->
+			</li>
 		<% end %>
 
 		<!-- <li class="has-sub">
@@ -191,4 +191,4 @@
 	</ul>
 	<!-- END SIDEBAR MENU -->
 </div>
-<!-- END SIDEBAR -->
+<!-- END SIDEBAR
