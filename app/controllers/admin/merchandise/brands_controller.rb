@@ -2,7 +2,10 @@ class Admin::Merchandise::BrandsController < Admin::BaseController
   def index
     keyword = filter_helper(params)
     @brands = Brand.where(keyword).paginate(:page => pagination_page, :per_page => pagination_rows)
-       @action = "index"
+    if current_user.designer?
+      @brands = @brands.where(["user_id =?",current_user.id])
+    end
+    @action = "index"
     @columns = [["Name","name@string"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
     @nodes = Brand.all.select("name").map{|x| x.name[0] if x.name}.uniq                                                                                  
   end
@@ -54,7 +57,7 @@ class Admin::Merchandise::BrandsController < Admin::BaseController
   private
 
   def allowed_params
-    params.require(:brand).permit(:name)
+    params.require(:brand).permit(:name,:user_id)
   end
 
 end

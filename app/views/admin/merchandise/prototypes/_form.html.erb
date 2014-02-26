@@ -1,7 +1,9 @@
 <fieldset>
   <label>Name</label>
   <%= form.text_field :name %>
-
+  <%if current_user%>
+  	<%=form.hidden_field :user_id ,:value=> current_user.id%>
+  <%end%>
   <label>Active</label>
   <%= form.check_box :active %>
 </fieldset>

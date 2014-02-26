@@ -6,6 +6,9 @@ class Admin::Merchandise::ImageGroupsController < Admin::BaseController
     keyword = filter_helper(params)
     @image_groups = ImageGroup.order(sort_column + " " + sort_direction).where(keyword).
                                      paginate(:page => pagination_page, :per_page => pagination_rows)
+    if current_user.designer?
+      @image_groups = @image_groups.where(["user_id =?",current_user.id])
+    end                                       
     @action = "index"
     @columns = [["Name","name@string"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
     @nodes = ImageGroup.all.select("name").map{|x| x.name[0] if x.name}.uniq                                                                                  
@@ -48,7 +51,11 @@ class Admin::Merchandise::ImageGroupsController < Admin::BaseController
     end
 
     def products
-      @products ||= Product.all.map{|p|[p.name, p.id]}
+      if current_user.designer?
+        @products ||= Product.where(["user_id =?",current_user.id]).map{|p|[p.name, p.id]}
+      else
+        @products ||= Product.all.map{|p|[p.name, p.id]}
+      end 
     end
 
     def sort_column

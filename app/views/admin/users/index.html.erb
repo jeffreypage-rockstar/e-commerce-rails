@@ -34,7 +34,8 @@
   <table class="table table-striped table-hover table-bordered table-hd" >
     <thead>
     <tr class='odd'>
-      <th  class='column1_header'><%= sortable "first_name" %></th>
+      <th  class='column1_header'>Image</th>
+      <th><%= sortable "first_name" %></th>
       <th><%= sortable "last_name" %></th>
       <th><%= sortable "email" %></th>
       <th>Status</th>
@@ -42,6 +43,12 @@
     </thead>
     <% @users.each do |user| %>
       <tr class='<%= cycle("odd", "")%>'>
+        <td><%if user.images.present?%>
+            <%= image_tag user.images[0].photo.url(:small),:style=>"height:45px"%>
+          <%else%>
+            N/A
+          <%end%>
+        </td>
         <td><%= link_to user.first_name, admin_user_path(user) %></td>
         <td><%= user.last_name %></td>
         <td><%= user.email %></td>

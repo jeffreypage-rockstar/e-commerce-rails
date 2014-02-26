@@ -3,8 +3,13 @@ class WelcomeController < ApplicationController
   layout 'welcome'
 
   def index
+    type = params[:option].present? ? params[:option] : ""
     @featured_product = Product.featured
     @best_selling_products = Product.limit(5)
+    if type == "brand"
+      @brands = Brand.all
+    elsif type == "style"
+    end
     @other_products  ## search 2 or 3 categories (maybe based on the user)
     unless @featured_product
       if current_user && current_user.admin?
@@ -13,6 +18,8 @@ class WelcomeController < ApplicationController
         redirect_to login_url
       end
     end
+      
+
   end
 
   def static_page

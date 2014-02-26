@@ -16,6 +16,9 @@
 <div class='clear'></div>
   <div class='span-3'>
     <%= form.label :name %>
+    <%if current_user%>
+      <%=form.hidden_field :user_id ,:value=> current_user.id%>
+    <%end%>
   </div>
   <div class='span-6 last'>
     <%= form.text_field :name %>
@@ -55,9 +58,29 @@
 
 <div class='clear'></div>
   <div class='span-3'>
-    <%= form.label :product_type %>
+    <%= form.label :condition_of_product %>
   </div>
   <div class='span-6 last'>
+    <%= form.select :condition_of_product,
+                    options_for_select(Product::CONDITION_OF_PRODUCT),
+                    { :include_blank => true } %>
+  </div>
+
+<div class='clear'><br/></div>
+  <div class='span-3'>
+    <%= form.label :gender %>
+  </div>
+  <div class='span-6 '>
+    <%= form.select :gender,
+                    options_for_select(Product::GENDER),
+                    { :include_blank => true } %>
+  </div>
+
+<div class='clear'><br/></div>
+  <div class='span-3'>
+    <%= form.label :product_type %>
+  </div>
+  <div class='span-6 '>
     <%#= form.select :product_type_id, @select_product_types %>
     <%= form.select :product_type_id,
                     nested_set_options(ProductType, ProductType.new) {|i| "#{'-' * i.level} #{i.name}" },
@@ -85,33 +108,35 @@
 </fieldset>
 
 
+<div style="padding-left:25px">
+  <fieldset id="admin-product-properties" class='seven large-7 column last' >
+    <legend>Properties</legend>
 
-<fieldset id="admin-product-properties" class='seven large-7 column last'>
-  <legend>Properties</legend>
+    <div id='select-product-prototype'>
+      <% select_prototypes = [] << Prototype.new %>
+      Variant Groups: <%= form.select :prototype_id,
+                                @prototypes,
+                                { :include_blank => true },{'data-product_id' => @product.id} %>
+    </div>
 
-  <div id='select-product-prototype'>
-    <% select_prototypes = [] << Prototype.new %>
-    Prototype: <%= form.select :prototype_id,
-                              @prototypes,
-                              { :include_blank => true },{'data-product_id' => @product.id} %>
-  </div>
+    <div id="product_properties" class=' '>
+      <% @all_properties.each do |property| %>
+        <div  id='property_<%= property.id %>'
+              class="property_form "
+              <%= "style=display:none;" if @product.id && !@product.properties.detect {|p| p.id == property.id} %>>
+          <%= form.fields_for :product_properties,
+                              property.product_properties.find_or_initialize_by(product_id: @product.id) do |product_property_form|%>
+            <div class='six'>
+              <%= property.identifing_name %>:
 
-  <div id="product_properties" class=' '>
-    <% @all_properties.each do |property| %>
-      <div  id='property_<%= property.id %>'
-            class="property_form "
-            <%= "style=display:none;" if @product.id && !@product.properties.detect {|p| p.id == property.id} %>>
-        <%= form.fields_for :product_properties,
-                            property.product_properties.find_or_initialize_by(product_id: @product.id) do |product_property_form|%>
-          <div class='six'>
-            <%= property.identifing_name %>:
+              <%= product_property_form.hidden_field  :property_id %>
+              <%= product_property_form.text_field    :description %><br/>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
 
-            <%= product_property_form.hidden_field  :property_id %>
-            <%= product_property_form.text_field    :description %><br/>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-
-</fieldset>
+  </fieldset>
+</div>
+<div class='clear'></div>

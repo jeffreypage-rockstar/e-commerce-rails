@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
     else
       @products = products
     end
+    @product_types = ProductType.all
   end
 
   def create

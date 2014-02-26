@@ -16,6 +16,9 @@
   <%= stylesheet_link_tag "foundation_and_overrides.css" %>
   <%= stylesheet_link_tag 'site/app.css' %>
   <%= javascript_include_tag 'vendor/custom.modernizr' %>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  
 
     <!--[if lt IE 8]
   <%= stylesheet_link_tag 'ie.css', :media => 'screen, projection'%>
@@ -76,9 +79,9 @@
     </div>  
     <div id='content_wrapper' class='row <%= "myaccount" if myaccount_tab %> '>
       <%  if myaccount_tab %>
-        <h1 style='text-align:center;'><%= site_name %></h1>
+        <!-- <h1 style='text-align:center;'><%= site_name %></h1>
         <hr class="first_double_hr">
-        <hr class="second_double_hr">
+        <hr class="second_double_hr"> -->
         <%#= render :partial => '/shared/myaccount_subheader' %>
       <% end %>
       <%= yield %>

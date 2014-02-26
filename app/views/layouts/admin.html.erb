@@ -23,7 +23,7 @@
 		<div class="navbar-inner">
 			<div class="container-fluid">
 				<!-- BEGIN LOGO -->
-				<a class="brand" href="index.html">
+				<a class="brand" href="/admin">
 				Logo
 				</a>
 				<!-- END LOGO -->
@@ -35,10 +35,17 @@
 				<!-- BEGIN TOP NAVIGATION MENU -->					
 				<ul class="nav pull-right">
                 	<li><div class="super-admin-box">
-                    	<div class="photo-icon">&nbsp;</div>
+                    	<div class="photo-icon"><%images = current_user.images%>
+      						<%@image = images.present? ? images[0] : current_user.images.new%>
+      						<%if @image.new_record?%>
+      						&nbsp;
+      						<%else%>
+      							<%=image_tag @image.photo.url(:small),:style=> "height:30px"%>
+      						<%end%>
+      					</div>
                         <div class="photo-name">
-                        <%#= current_user%>
-                        <span><%= current_user.name %></span>
+	                        <%= current_user.name%><br/>
+	                        <span><%=link_to "Edit Profile" ,edit_myaccount_overview_path%></span>
                         </div>
                     </div>
                     </li>
@@ -81,7 +88,17 @@
 		2013 &copy; company name.
 	</div>
 	<script>
-		jQuery(document).ready(function() {		
+		$(document).ready(function() {		
+
+			  $('th:first input:checkbox').click(function(e) {
+			      var table = $(e.target).closest('table');
+			      $('td input:checkbox', table).each(function(){
+			          if (e.target.checked) {this.checked=true;} else{this.checked=false};
+			      });
+			      $('td .checker span').each(function(){
+			          if (e.target.checked) {$(this).addClass('checked');} else{$(this).removeClass('checked');};
+			      });
+			  });
 			App.setPage("/");  // set current page
 			App.init(); // init the rest of plugins and elements
 

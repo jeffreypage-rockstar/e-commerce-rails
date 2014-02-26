@@ -40,8 +40,8 @@
 				</a>
 				<ul class="sub">
 					<li><%= link_to 'Orders', admin_history_orders_path %></li>
-					<li><%= link_to 'Create Order', admin_shopping_carts_path %></li>
-					<li><%= link_to 'Old Orders', admin_history_orders_path %></li>
+					<!-- <li><%#= link_to 'Create Order', admin_shopping_carts_path %></li> -->
+					<!-- <li><%#= link_to 'Old Orders', admin_history_orders_path %></li> -->
 					<li><%= link_to 'Shipments', admin_fulfillment_shipments_path %></li>
 				</ul> 
 			</li>
@@ -58,30 +58,29 @@
 			    <li><%= link_to 'Product Categories', admin_merchandise_product_types_path %></li>
 			    <li><%= link_to 'Variants', admin_merchandise_properties_path %></li>
 			    <li><%= link_to 'Variant Groups', admin_merchandise_prototypes_path %></li>
-			    <li><%= link_to 'Image Groups', admin_merchandise_image_groups_path %></li>
 			    <li><%= link_to 'Brands', admin_merchandise_brands_path %></li>
 			 	<li><%= link_to 'Products', admin_merchandise_products_path %></li>
-			    
+			    <li><%= link_to 'Image Groups', admin_merchandise_image_groups_path %></li>
+				<li><%= link_to "Inventory", admin_inventory_overviews_path %></li>
 			</ul> 
 		</li>
 
-		<li class="has-sub">
+		<!--<li class="has-sub">
 		  <a href="javascript:;">
 			<i class="icon-inbox"></i> 
 			<span class="title">Inventory</span>
 			<span class="arrow "></span>
 			</a>
 			<ul class="sub">
-				<li><%= link_to "Inventory", admin_inventory_overviews_path %></li>
-			 	<li><%= link_to 'Overviews', admin_inventory_overviews_path %></li>
- 			    <li><%= link_to 'Suppliers', admin_inventory_suppliers_path %></li>
- 			    <li><%= link_to 'Receive Purchase Order', admin_inventory_receivings_path %></li>
- 			    <li><%= link_to 'Purchase Orders', admin_inventory_purchase_orders_path %></li>
- 			    <li><%= link_to 'Adjustments', admin_inventory_adjustments_path %></li>
+			 	<li><%#= link_to 'Overviews', admin_inventory_overviews_path %></li>
+ 			    <li><%#= link_to 'Suppliers', admin_inventory_suppliers_path %></li>
+ 			    <li><%#= link_to 'Receive Purchase Order', admin_inventory_receivings_path %></li>
+ 			    <li><%#= link_to 'Purchase Orders', admin_inventory_purchase_orders_path %></li>
+ 			    <li><%#= link_to 'Adjustments', admin_inventory_adjustments_path %></li>
 			</ul> 
 		</li> 
 
-		<!-- <li class="has-sub">
+		 <li class="has-sub">
 		  <a href="javascript:;">
 			<i class="icon-user"></i> 
 			<span class="title">Users</span>
@@ -150,7 +149,8 @@
 			<ul class="sub">
 				<% if current_user.super_admin? %>
 					<li> <%= link_to "Static Pages", admin_static_pages_path %></li>
-				<%else%>
+				<%end%>
+				<%if current_user.super_admin? || current_user.designer? || current_user.admin?%>
 					<li> <%= link_to "Blog Categories", admin_blog_categories_path %></li>
 					<li> <%= link_to "Blogs", admin_blogs_path %></li>
 				<%end%>

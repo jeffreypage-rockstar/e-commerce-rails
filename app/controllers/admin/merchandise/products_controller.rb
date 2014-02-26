@@ -25,6 +25,9 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     order_by = "#{field} #{sort}"
     @products = Product.admin_grid(params).order(sort_column + " " + sort_direction).where(keyword).
                                               paginate(:page => pagination_page, :per_page => pagination_rows)
+    if current_user.designer?
+      @products = @products.where(["user_id =?",current_user.id])
+    end
     @action = "index"
     @columns = [["Name","name@string"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
     @nodes = Product.all.select("name").map{|x| x.name[0] if x.name}.uniq                                              
@@ -119,7 +122,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   private
 
     def allowed_params
-      params.require(:product).permit(:name, :description, :product_keywords, :set_keywords, :product_type_id,
+      params.require(:product).permit(:name,:user_id, :description, :product_keywords, :set_keywords, :product_type_id,
                                       :prototype_id, :shipping_category_id, :permalink, :available_at, :deleted_at,
                                       :meta_keywords, :meta_description, :featured, :description_markup, :brand_id,
                                       product_properties_attributes: [:product_id, :property_id, :position, :description])

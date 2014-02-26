@@ -1,4 +1,6 @@
 //= require admin/jquery-1.8.3.min
+//= require new_sliders/carouFredSel
+//= require new_sliders/jquery.bxslider
 //= require jquery_ujs
 //= require admin/breakpoints
 //= require admin/jquery-ui-1.10.1.custom.min
@@ -17,12 +19,31 @@
 //= require admin/app
 //= require foundation
 //= require ckeditor/init
+
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+$(function(){ 
+  $(document).foundation();
+  $('.slider1').bxSlider({
+      slideWidth: 300,
+      minSlides: 2,
+      maxSlides: 3,
+      slideMargin: 10
+    });
+  $("#product_prototype_id").click (function(){
+     jQuery.ajax( {
+           type : "GET",
+           url : '/admin/merchandise/products'+'/'+$("#product_prototype_id option:selected").first().val()+"/add_properties",
+           data : { product_id : $(this).attr('data-product_id') },
+           complete : function(json) {
+             // open dialog with html
+             Hadean.AdminMerchandiseProductForm.refreshProductForm(json);
+            // STOP  WAIT INDICATOR...
+           },
+           dataType : 'json'
+        });
+  });
 
-
-jQuery(function() {
   $('body').prepend('<div id="fb-root"></div>');
   return $.ajax({
     url: "" + window.location.protocol + "//connect.facebook.net/en_US/all.js",
@@ -53,14 +74,6 @@ jQuery(function() {
     });
   };
 
-  $('th:first input:checkbox').click(function(e) {
-        var table = $(e.target).closest('table');
-        console.log(table);
-        $('td input:checkbox', table).each(function(){
-            if (e.target.checked) {this.checked=true;console.log(this)} else{this.checked=false};
-        });
-        $('td .checker span').each(function(){
-            if (e.target.checked) {$(this).addClass('checked');} else{$(this).removeClass('checked');};
-        });
-    });
+  
+
 });

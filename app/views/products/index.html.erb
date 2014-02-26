@@ -1,52 +1,238 @@
-
+<%if params[:zoom_in] == "yes"%>
+  <%=@zoom_size = 5%>
+<%else%>
+  <%=@zoom_size = 3%>
+<%end%>
 <% content_for :head do -%>
   <%= stylesheet_link_tag 'products_page.css' %>
 <% end %>
-
-<div id='featured_item' class='nine columns'>
-
-  <div id='interesting_items' >
-    <ul id='interesting_items-list'>
+<%=link_to "ZoomIn" ,products_path(:zoom_in=>"yes")%>
+<%=link_to "ZoomOut" ,products_path()%>
+<div id="wrapper">
+  <div id="inner">
+    <div id="carousel">
       <% @products.each_with_index do |product, i| %>
-        <li id='interesting_product_<%= i %>' class=''>
-          <div class='interesting_items-image'>
-
-            <%= link_to product_path(product), title: product.name do %>
-
-              <div class='no-hover-show'>
-                <% if product.hero_variant.try(:low_stock?) %>
-                  <%= image_tag("ribbons/#{product.hero_variant.stock_status}.png",
-                                :width => 63, :height => 62,
-                                :class => 'upper_left_overlay' ) %>
-                <% end %>
-                <div class='hover-details unfade'>
-                  <p class='bottom-hover-details'>
-                    <%= number_to_currency product.price_range.first %>
-                    <% if product.price_range? %>
-                        to
-                        <%= number_to_currency product.price_range.last %>
-                    <% end %>
-                  </p>
-                </div>
+           <%= link_to product_path(product), title: product.name do %>
+              <div class="<%=product.product_type.name%>" id="<%=product.product_type.name%>">
+                <%= link_to image_tag(product.featured_image(:large)), product_path(product), title: product.name, class:  'clearfix' %><br/>
+                <em><%=product.name%></em>
               </div>
-              <%= link_to image_tag(product.featured_image(:medium)), product_path(product), title: product.name, class:  'clearfix' %>
             <% end %>
-          </div>
-
-          <div class='interesting_items-details'><%= product.name %><br/>
-
-          </div>
-        </li>
-      <% end %>
-    </ul>
-    <div class='clearfix'></div>
+      <%end%>
+      <% @products.each_with_index do |product, i| %>
+           <%= link_to product_path(product), title: product.name do %>
+              <div class="<%=product.product_type.name%>" id="<%=product.product_type.name%>">
+                <%= link_to image_tag(product.featured_image(:large)), product_path(product), title: product.name, class:  'clearfix' %><br/>
+                <em><%=product.name%></em>
+              </div>
+            <% end %>
+      <%end%>
+    </div>
+    <div id="pager">
+      <strong>Choose a category:</strong> &nbsp;
+      <%@product_types.each do |pt|%>
+        <a href="#<%=pt.name%>"><%=pt.name%></a> &bull;
+      <%end%>
+    </div>
+    <a href="#" id="prev"></a>
+    <a href="#" id="next"></a>
   </div>
-
-
 </div>
 
-<div id='right_side_panel' class='three columns last'>
-  <div id='right_side_panel_promo' class=''>
-    Join our web site and get additional Savings....  <%= image_tag "logos/#{Image::MAIN_LOGO}.png", :alt => 'hadean image.'%>
-  </div>
-</div>
+
+
+
+<script type="text/javascript">
+  $(function() {
+    var _visible = <%=@zoom_size%>;
+    var $pagers = $('#pager a');
+    var _onBefore = function() {
+      $(this).find('img').stop().fadeTo( 300, 1 );
+      $pagers.removeClass( 'selected' );
+    };
+
+    $('#carousel').carouFredSel({
+      items: _visible,
+      width: '100%',
+      auto: false,
+      scroll: {
+        duration: 750
+      },
+      prev: {
+        button: '#prev',
+        items: 2,
+        onBefore: _onBefore
+      },
+      next: {
+        button: '#next',
+        items: 2,
+        onBefore: _onBefore
+      },
+    });
+
+    $pagers.click(function( e ) {
+      e.preventDefault();
+      
+      var group = $(this).attr( 'href' ).slice( 1 );
+      var slides = $('#carousel div.' + group);
+      var deviation = Math.floor( ( _visible - slides.length ) / 2 );
+      if ( deviation < 0 ) {
+        deviation = 0;
+      }
+
+      $('#carousel').trigger( 'slideTo', [ $('#' + group), -deviation ] );
+      $('#carousel div img').stop().fadeTo( 300, 0.3 );
+      slides.find('img').stop().fadeTo( 300, 1 );
+
+      $(this).addClass( 'selected' );
+    });
+  });
+</script>
+<%if params[:zoom_in] == "yes"%>
+<style type="text/css">
+    
+   #wrapper {
+        
+        width: 100%;
+        height: 55%;
+        min-height: 275px;
+        margin: -150px 0 0 0;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+      #inner {
+        width: 100%;
+        height: 300px;
+        margin-top: -75px;
+        position: relative;
+        overflow: hidden;
+      }
+      #carousel div {
+        border: 1px solid #999;
+        background: #fff;
+        width: 140px;
+        height: 230px;
+        float: left;
+        padding: 10px;
+        margin: 0 5px;
+      }
+      #pager {
+        text-align: center;
+        margin-top: 20px;
+        color: #666;
+      }
+      #pager a {
+        color: #666;
+        text-decoration: none;
+        display: inline-block;
+        padding: 5px 10px;
+      }
+      #pager a:hover {
+        color: #333;
+      }
+      #pager a.selected {
+        background-color: #333;
+        color: #ccc;
+      }
+      #prev, #next {
+        display: block;
+        width: 50px;
+        height: 80px;
+        margin-top: -40px;
+        position: absolute;
+        top: 50%;
+        z-index: 2;
+      }
+      #prev {
+        background: url( /assets/ui-prev.png ) no-repeat;
+        left: 50%;
+        margin-left: -520px;
+      }
+      #next {
+        background: url( /assets/ui-next.png ) no-repeat;
+        right: 50%;
+        margin-right: -520px;
+      }
+      #copy {
+        text-align: center;
+        width: 100%;
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+      }
+      #copy, #copy a {
+        color: #999;
+      }
+      
+    
+  </style>
+<%else%>
+  <style type="text/css">
+    
+    #wrapper {
+      
+      width: 100%;
+      height: 55%;
+      min-height: 275px;
+      margin: -75px 0 0 0;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+    #inner {
+      width: 100%;
+      height: 400px;
+      margin-top: -150px;
+      position: relative;
+      overflow: hidden;
+    }
+    #carousel div {
+      border: 1px solid #999;
+      background: #fff;
+      width: 280px;
+      height: 300px;
+      float: left;
+      padding: 10px;
+      margin: 0 5px;
+    }
+    #pager {
+      text-align: center;
+      margin-top: 20px;
+      color: #666;
+    }
+    #pager a {
+      color: #666;
+      text-decoration: none;
+      display: inline-block;
+      padding: 5px 10px;
+    }
+    #pager a:hover {
+      color: #333;
+    }
+    #pager a.selected {
+      background-color: #333;
+      color: #ccc;
+    }
+    #prev, #next {
+      display: block;
+      width: 50px;
+      height: 80px;
+      margin-top: -40px;
+      position: absolute;
+      top: 50%;
+      z-index: 2;
+    }
+    #prev {
+      background: url( /assets/ui-prev.png ) no-repeat;
+      left: 50%;
+      margin-left: -520px;
+    }
+    #next {
+      background: url( /assets/ui-next.png ) no-repeat;
+      right: 50%;
+      margin-right: -520px;
+    }
+    
+  </style>
+  <%end%>

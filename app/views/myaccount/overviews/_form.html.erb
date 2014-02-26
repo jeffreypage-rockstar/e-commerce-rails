@@ -13,7 +13,30 @@
           <%= f.label :email %>
           <%= f.text_field :email %>
         </li>
+        <li>
+          <%= f.label :bday %>
+          <%= f.text_field :bday %>
+        </li>
 
+        <li>
+          <%= f.label :phone %>
+          <%= f.text_field :phone %>
+        </li>
+
+        <li>
+          <%= f.label :about_me %>
+          <%= f.text_area :about_me ,:rows=> 3%>
+        </li>
+        <li>
+          <%= f.fields_for :images, @image do |image_form|%>
+            <label>Photo</label>
+            <% if !image_form.object.new_record? %>
+              <%= image_tag image_form.object.photo.url(:small) %>
+            <% end %>
+            <%= image_form.file_field   :photo %>
+          <% end %>
+        
+        </li>
      </ul>
   </fieldset>
 </div>
