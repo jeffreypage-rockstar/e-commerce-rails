@@ -16,12 +16,16 @@
 <% end %>
 
 <div class='admin_title_header'>
-  <h3 class="page-title">Prototypes</h3>
-  <%= link_to "New Prototype", new_admin_merchandise_prototype_path, :class  => "button"%>
+  <h3 class="page-title">Variant Groups</h3>
+  <%= link_to "New Variant Group", new_admin_merchandise_prototype_path, :class  => "button"%>
 </div>
 
 <div class="admin_prototypes">
-  <table>
+  <div class="admin_users">
+    <%=render :partial=>"/shared/filters"%>
+  </div>
+
+  <table class="table table-striped table-hover table-bordered table-hd" >
     <thead>
     <tr class='odd'>
       <th class='column1_header'><%= sortable "name" %></th>

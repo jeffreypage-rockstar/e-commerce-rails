@@ -1,7 +1,15 @@
 class UserSessionsController < ApplicationController
   def new
-    @user_session = UserSession.new
-    @user = User.new
+    unless current_user
+      @user_session = UserSession.new
+      @user = User.new
+    else
+      if current_user.admin? || current_user.designer?
+        redirect_back_or_default admin_url
+      else
+        redirect_back_or_default root_url
+      end 
+    end
   end
 
   def create
@@ -20,8 +28,8 @@ class UserSessionsController < ApplicationController
         ## if there is a cart make sure the user_id is correct
         set_user_to_cart_items
         flash[:notice] = I18n.t('login_successful')
-        if @user_session.record.admin?
-          redirect_back_or_default admin_users_url
+        if @user_session.record.admin? || @user_session.record.designer?
+          redirect_back_or_default admin_url
         else
           redirect_back_or_default root_url
         end

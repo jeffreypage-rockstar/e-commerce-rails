@@ -18,12 +18,16 @@
 <% end %>
 
 <div class="admin_title_header">
+
   <h3 class="page-title">Suppliers</h3>
   <%= link_to "New Supplier", new_admin_inventory_supplier_path, :class => "button" %>
 </div>
 
 <div class="admin_suppliers">
-  <table>
+  <div class="admin_users">
+    <%=render :partial=>"/shared/filters"%>
+  </div>
+  <table class="table table-striped table-hover table-bordered table-hd" >
     <thead>
     <tr class='odd'>
       <th class='column1_header'><%= sortable "name", "Name" %></th>

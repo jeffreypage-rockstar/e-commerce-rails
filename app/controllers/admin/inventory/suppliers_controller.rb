@@ -3,8 +3,11 @@ class Admin::Inventory::SuppliersController < Admin::BaseController
   respond_to :json, :html
 
   def index
-    @suppliers = Supplier.admin_grid(params).order(sort_column + " " + sort_direction).
-                                              paginate(:page => pagination_page, :per_page => pagination_rows)
+    keyword = filter_helper(params)
+    @suppliers = Supplier.admin_grid(params).where(keyword).order(sort_column + " " + sort_direction).paginate(:page => pagination_page, :per_page => pagination_rows)
+    @action = "index"
+    @columns = [["Name","name@string"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
+    @nodes = Supplier.all.select("name").map{|x| x.name[0] if x.name}.uniq                                                                                                                                
   end
 
   def new

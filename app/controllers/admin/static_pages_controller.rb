@@ -1,6 +1,6 @@
 class Admin::StaticPagesController < Admin::BaseController
   def index
-  		#authorize! :static_pages, current_user
+  		authorize! :static_pages, current_user
 	  	if params[:state] == "1"
 	      @state = 0;
 	      sort = "ASC"
@@ -18,7 +18,7 @@ class Admin::StaticPagesController < Admin::BaseController
 	    keyword = filter_helper(params)
 
 	    order_by = "#{field} #{sort}"
-	    @static_pages = scope.paginate(:conditions => keyword, :order => order_by,:per_page=>10,:page=>params[:page])
+	    @static_pages = scope.paginate(:conditions => keyword, :order => order_by,:per_page=>pagination_rows,:page=>params[:page])
 	    @action = "index"
 	    @columns = [["StaticPage","eng_title@string"],["Status","state@list"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
 	    @nodes = scope.select("eng_title").map{|x| x.eng_title[0] if x.eng_title}.uniq

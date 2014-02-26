@@ -4879,7 +4879,7 @@ a:hover.logout-icon {text-decoration:underline;}
 .select-div {float:left; width:200px; margin-right:10px;}
 .select-div select {width:100%; height:34px; border:1px solid #e5e5e5;}
 .dataTables_paginate {float:right; margin:0;}
-.alpha-number {float:left; margin-top:6px;}
+.alpha-number {float:left; margin-top:6px;margin-bottom:10px;}
 .alpha-number a {color:#a1a1a1; font-size:14px; margin-right:9px;}
 .alpha-number a.active {color:#178fff; font-size:14px; margin-right:9px;}
 .alpha-number a:hover{color:#178fff;}
@@ -4940,51 +4940,51 @@ label.showing-records {cursor:default; float:right; margin-right:10px; margin-to
 .dashboard-stat .details .number {font-size:25px;}
 .site-map-page .span3:last-child {margin-left:0px;}
 
-.digg_pagination {
+.pagination {
   background: white;
   cursor: default;
   /* self-clearing method: */ }
-  .digg_pagination a, .digg_pagination span, .digg_pagination em {
+  .pagination a, .pagination span, .pagination em {
     padding: 0.2em 0.5em;
     display: block;
     float: left;
     margin-right: 1px; }
-  .digg_pagination .disabled {
+  .pagination .disabled {
     color: #999999;
     border: 1px solid #dddddd; }
-  .digg_pagination .current {
+  .pagination .current {
     font-style: normal;
     font-weight: bold;
     background: #178fff;
     color: white;
     border: 1px solid #178fff; }
-  .digg_pagination a {
+  .pagination a {
     text-decoration: none;
     color: #105cb6;
     border: 1px solid #9aafe5; }
-    .digg_pagination a:hover, .digg_pagination a:focus {
+    .pagination a:hover, .pagination a:focus {
       color: #000033;
       border-color: #000033; }
-  .digg_pagination .page_info {
+  .pagination .page_info {
     /*background: #2e6ab1;*/
     color: #178fff;
     padding: 0.4em 0.6em;
     width: 22em;
     margin-bottom: 0.3em;
     /*text-align: center;*/ }
-    .digg_pagination .page_info b {
+    .pagination .page_info b {
       color: #000033;
       /*background: #6aa6ed;*/
       padding: 0.1em 0.25em; }
-  .digg_pagination:after {
+  .pagination:after {
     content: ".";
     display: block;
     height: 0;
     clear: both;
     visibility: hidden; }
-  * html .digg_pagination {
+  * html .pagination {
     height: 1%; }
-  *:first-child + html .digg_pagination {
+  *:first-child + html .pagination {
     overflow: hidden; }
 fieldset{border:0px !important;}
 fieldset legend{padding: 0px;
@@ -4995,3 +4995,5 @@ color: #000;
 margin: 10px 0px 15px 0px;
 font-weight: 400 !important;
 font-family: 'Open Sans';}
+
+.ui-datepicker-div{width:7em !important;}

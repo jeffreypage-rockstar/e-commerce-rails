@@ -27,7 +27,11 @@
 
 
 <div class="admin_users">
-  <table>
+   <div class="admin_users">
+    <%=render :partial=>"/shared/filters"%>
+  </div> 
+
+  <table class="table table-striped table-hover table-bordered table-hd" >
     <thead>
     <tr class='odd'>
       <th  class='column1_header'><%= sortable "first_name" %></th>

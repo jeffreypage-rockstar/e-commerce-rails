@@ -1,12 +1,13 @@
 class Admin::BlogsController < Admin::BaseController
  	  before_filter :filter_queries , :only=>[:index]
-	  
+	  load_and_authorize_resource
 	  def filter_queries    
 	    @statuses = Blog::STATES.map{|k,v| [v,k]}
 	  end
 
 	  def index
-	  	# authorize! :blogs, current_user
+	  	#authorize! :blog, current_user
+	  	#render :text => (can? :manage, Blog) and return false
 	  	if params[:state] == "1"
 	      @state = 0;
 	      sort = "ASC"
@@ -24,7 +25,7 @@ class Admin::BlogsController < Admin::BaseController
 	    keyword = filter_helper(params)
 
 	    order_by = "#{field} #{sort}"
-	    @blogs = scope.paginate(:conditions => keyword, :order => order_by,:per_page=>10,:page=>params[:page])
+	    @blogs = scope.paginate(:conditions => keyword, :order => order_by,:per_page=>pagination_rows,:page=>params[:page])
 	    @action = "index"
 	    @columns = [["Blog","title@string"],["State","state@list"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
 	    @nodes = scope.select("title").map{|x| x.title[0] if x.title}.uniq

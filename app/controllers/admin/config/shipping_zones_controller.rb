@@ -1,7 +1,11 @@
 class Admin::Config::ShippingZonesController < Admin::Config::BaseController
   # GET /admin/config/shipping_zones
   def index
-    @shipping_zones = ShippingZone.all
+    keyword = filter_helper(params)
+    @shipping_zones = ShippingZone.where(keyword)
+    @action = "index"
+    @columns = [["Name","name@string"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
+    @nodes = ShippingZone.select("name").map{|x| x.name[0] if x.name}.uniq
   end
 
   # GET /admin/config/shipping_zones/1

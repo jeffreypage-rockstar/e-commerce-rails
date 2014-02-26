@@ -51,7 +51,7 @@
     <p>No variants created yet. <%= link_to 'Create some variants?', edit_admin_merchandise_multi_product_variant_path(@product) %></p>
   <% else %>
     <p><%= link_to 'Edit Variants', edit_admin_merchandise_multi_product_variant_path(@product) %></p>
-    <table>
+    <table class="table table-striped table-hover table-bordered table-hd" >
         <tr>
           <th>SKU</th>
           <th>Price</th>

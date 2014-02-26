@@ -1,6 +1,10 @@
 class Admin::Merchandise::BrandsController < Admin::BaseController
   def index
-    @brands = Brand.all
+    keyword = filter_helper(params)
+    @brands = Brand.where(keyword).paginate(:page => pagination_page, :per_page => pagination_rows)
+       @action = "index"
+    @columns = [["Name","name@string"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
+    @nodes = Brand.all.select("name").map{|x| x.name[0] if x.name}.uniq                                                                                  
   end
 
   def show

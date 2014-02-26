@@ -1,0 +1,21 @@
+<div class="control-group">
+    <label class="control-label">Title </label>
+    <div class="controls">
+       <%=f.text_field :name ,:class=>"span5 m-wrap"%>
+       <!-- <div class="pull-right"> Required Fields </div> -->
+    </div>
+</div>
+
+<div class="control-group">
+  <label class="control-label">Status </label>
+    <div class="controls">
+       <%= f.select :state,BlogCategory::STATES.map{|k,v| [v,k]} ,:selected =>f.object.new_record? ? 1 : @blog_category.state ? 1 : 0 %>
+      
+       
+    </div>
+</div>
+<div class="form-actions">
+  <%=f.submit "Save",:class=> "btn blue"%>
+  <button type="button" class="btn" onclick="this.form.reset();">Reset</button>
+  <button type="button" class="btn" onclick="window.location.href='/admin/blog_categories'">Cancel</button>
+</div>

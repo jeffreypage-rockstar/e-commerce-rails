@@ -2,7 +2,10 @@
 
 <div class="admin_inventory_overviews">
   <% @products.each do |product| %>
-    <table>
+    <div class="admin_users">
+      <%=render :partial=>"/shared/filters"%>
+    </div>
+    <table class="table table-striped table-hover table-bordered table-hd" >
       <thead>
         <tr  class='odd'>
           <th colspan='3' class='column1_header' >

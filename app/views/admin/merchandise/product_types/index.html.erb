@@ -18,12 +18,17 @@
 <% end %>
 
 <div class='admin_title_header'>
-  <h3 class="page-title">Product Types</h3>
-  <%= link_to "New Type", new_admin_merchandise_product_type_path, class: "button" %>
+  <h3 class="page-title">Product Categories</h3>
+  <%= link_to "New Product Category", new_admin_merchandise_product_type_path, class: "button" %>
 </div>
 
 <div class="admin_product_types">
-  <table>
+  <div class="admin_users">
+    <%=render :partial=>"/shared/filters"%>
+  </div>
+  
+
+  <table class="table table-striped table-hover table-bordered table-hd" >
     <thead>
     <tr class='odd'>
       <th class='column1_header' ><%= sortable "name" %></th>

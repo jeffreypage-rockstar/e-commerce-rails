@@ -4,7 +4,10 @@ class Admin::Inventory::AdjustmentsController < Admin::BaseController
   end
 
   def index
-    @products = Product.paginate(:page => pagination_page, :per_page => pagination_rows)
+    keyword = filter_helper(params)
+    @products = Product.where(keyword).paginate(:page => pagination_page, :per_page => pagination_rows)
+    @columns = [["Name","name@string"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
+    @nodes = Product.all.select("name").map{|x| x.name[0] if x.name}.uniq
   end
 
   def edit

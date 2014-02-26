@@ -3,7 +3,7 @@ class Admin::BaseController < ApplicationController
   layout 'admin'
   include ApplicationHelper
   before_filter :verify_admin
-
+  # load_and_authorize_resource
   def current_ability
     @current_ability ||= AdminAbility.new(current_user)
   end
@@ -31,7 +31,7 @@ class Admin::BaseController < ApplicationController
   end
 
   def verify_admin
-    if (!current_user) ||(!current_user.admin? && !current_user.designer_saler?)  
+    if (!current_user) || (!current_user.admin? && !current_user.designer?)  
       redirect_to root_url 
     end
   end
@@ -39,7 +39,7 @@ class Admin::BaseController < ApplicationController
   def verify_super_admin
     if current_user && current_user.admin? && !current_user.super_admin?
       redirect_to admin_users_url
-    elsif current_user && current_user.designer_saler?
+    elsif current_user && current_user.designer?
       redirect_to admin_users_url
     elsif !current_user || !current_user.admin?
       redirect_to root_url
