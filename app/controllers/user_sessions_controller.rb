@@ -5,6 +5,7 @@ class UserSessionsController < ApplicationController
   end
 
   def create
+    render :text =>env["omniauth.auth"].inspect and return false
     if env["omniauth.auth"]
       user = User.from_omniauth(env["omniauth.auth"])
       session[:user_id] = user.id
