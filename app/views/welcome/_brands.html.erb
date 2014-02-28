@@ -68,11 +68,13 @@
 
  <div class="slider1" width="1000px">
   	<div class="slide" >
- 		<%@designers.each do |d|%>
-	 		<div style="float:left">
-	 			
-	  			<img src="/assets/example/1.jpg"  style="width:550px">
-	  		</div>
+ 		<%@designers.each_with_index do |d,index|%>
+ 			<%if d.images.present?%>
+ 				<div style="float:left">
+		 			<%=image_tag (d.images[0].photo.url(:original))%>
+		  			<!-- <img src="/assets/example/1.jpg"  style="width:550px"> -->
+		  		</div>
+	  		<%end%>
  		<%end%>
   		<!-- <div style="float:left">
  			<img src="/assets/example/2.jpg" style="width:540px"><br/>
