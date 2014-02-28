@@ -79,3 +79,60 @@ header, section, footer  {width:100%; float:left;}
 .prd-img-detail span {display:block;}
 
 /* OVER */
+
+/*28 feb 2014 */
+.prd-list-img {float:left; margin:0 45px 28px 0;}
+
+/*---------Profile page css Start here-------*/
+h1 { margin-bottom:25px; font-size:70px; line-height:70px; color:#000; font-family:Arial, Helvetica, sans-serif;}
+h2 { margin-bottom:25px; font-size:40px; line-height:40px; color:#000; font-family:Arial, Helvetica, sans-serif;}
+.midd-inner-cont {float:left; width:100%; padding:83px 0 0 0;}
+.profile-inner { padding:0 185px; background:url(/assets/main//profile-page-bg.gif) no-repeat 0 0; width:1270px; height:600px;}
+.profile-left { float:left; width:418px;} 
+.profile-right { margin-top:60px; float:right; width:640px;}
+.profile-inner p { margin-bottom:25px; font-size:21px; line-height:30px; color:#505155;}
+.profile-list-main { float:left; width:100%;}
+.profile-list { margin:0 20px 0 0; padding:0; float:left; width:130px;}
+/*---------Profile page css End here-------*/
+
+/*---------Profile Detail Page CSS Sarts Here----------*/
+.profile-detail {float:left; width:1440px;}
+.profile-detail-left {float:left; width:592px;}
+.profile-img-listing {float:left; width:130px; margin-right:10px;}
+.profile-img-listing ul {margin:0; padding:0;}
+.profile-img-listing ul li {margin:0 0 12px 0; padding:0; list-style:none; float:left;}
+a.more-photo {background:#4abecd; height:42px; width:70px; padding:10px 10px 0 10px; font-size:15px; color:#fff; text-decoration:none; text-align:center; font-family:Arial, Helvetica, sans-serif; display:block; float:left;}
+a:hover.more-photo {background:#38abba;}
+.listing-big-img {float:left;}
+.profile-detail-right {float:right; width:755px; padding:173px 0 0 0;}
+.prf-detail-title {border-bottom:1px solid #adadad; padding:0 0 20px 0; float:left; width:100%; margin-bottom:20px;}
+.prf-small-img {float:left;}
+.prf-titledetail {float:left; margin:0 0 0 28px; font-size:33px; font-family:Arial, Helvetica, sans-serif; text-transform:uppercase; color:#3e3a39;}
+.rating-div-prf {float:right; width:160px;}
+.rating-div-prf img {margin-left:15px;}
+.prf-detail-desc {float:left; width:100%;}
+.cat-box-left {float:left; width:50px; text-align:end;}
+a.new-cat {background:url(/assets/main//new-cat-bg.png) no-repeat; width:38px; height:13px; line-height:13px; text-align:center; font-size:10px; font-family:Arial, Helvetica, sans-serif; text-decoration:none; display:inline-block; color:#fff; margin:0 0 8px 0;}
+.prf-desc-cont {float:right; width:600px; font-size:13px;}
+.price-right {float:right; font-size:39px; color:#3e3a39; text-transform:uppercase; font-family:Arial, Helvetica, sans-serif;}
+.price-right span {font-size:8px;}
+.prf-detail-option {float:right; margin:85px 20px 0 0;}
+.prf-detail-option ul {margin:0; padding:0;}
+.prf-detail-option ul li {margin:0 32px 0 0; padding:0; list-style:none; float:left;}
+.prf-detail-option ul li a.love-icon {background:url(/assets/main//love-icon.png) no-repeat; width:60px; height:60px; display:inline-block; text-decoration:none;}
+.prf-detail-option ul li a:hover.love-icon {background:url(/assets/main//love-icon-h.png) no-repeat; width:60px; height:60px; display:inline-block;}
+
+.prf-detail-option ul li a.chose-color-icon {background:url(/assets/main//blue-icon-circle.png) no-repeat; width:60px; height:45px; display:inline-block; text-decoration:none; font-size:14px; color:#fff; font-family:Arial, Helvetica, sans-serif; padding:15px 0 0 0; text-align:
+center;}
+.prf-detail-option ul li a:hover.chose-color-icon {background:url(/assets/main//blue-icon-circle-h.png) no-repeat; width:60px; height:45px; display:inline-block; padding:15px 0 0 0;}
+
+.prf-detail-option ul li a.chose-color-icon {background:url(/assets/main//blue-icon-circle.png) no-repeat; width:60px; height:45px; display:inline-block; text-decoration:none; font-size:14px; color:#fff; font-family:Arial, Helvetica, sans-serif; padding:15px 0 0 0; text-align:
+center;}
+.prf-detail-option ul li a:hover.chose-color-icon {background:url(/assets/main//blue-icon-circle-h.png) no-repeat; width:60px; height:45px; display:inline-block; padding:15px 0 0 0;}
+
+.prf-detail-option ul li a.bulb-icon {background:url(/assets/main//bulb-icon.png) no-repeat; width:60px; height:60px; display:inline-block; text-decoration:none;}
+.prf-detail-option ul li a:hover.bulb-icon {background:url(/assets/main//bulb-icon-h.png) no-repeat; width:60px; height:60px; display:inline-block;}
+
+.prf-detail-option ul li a.shopping-icon {background:url(/assets/main//shopping-icon.png) no-repeat; width:60px; height:60px; display:inline-block; text-decoration:none;}
+.prf-detail-option ul li a:hover.shopping-icon {background:url(/assets/main//shopping-icon-h.png) no-repeat; width:60px; height:60px; display:inline-block;}
+/* OVER 28 2 2014*/
