@@ -68,21 +68,35 @@
 
  <div class="slider1" width="1000px">
   	<div class="slide" >
- 		<%@designers.each_with_index do |d,index|%>
- 			<%if d.images.present?%>
- 				<div style="float:left">
-		 			<%=image_tag (d.images[0].photo.url(:original))%>
-		  			<!-- <img src="/assets/example/1.jpg"  style="width:550px"> -->
-		  		</div>
-	  		<%end%>
- 		<%end%>
-  		<!-- <div style="float:left">
- 			<img src="/assets/example/2.jpg" style="width:540px"><br/>
- 			<img src="/assets/example/3.jpg"  style="width:540px">
+ 		<%#@designers.each_with_index do |d,index|%>
+ 			<%#if d.images.present?%>
+
+ 				<!-- <div style="float:left">
+		 			<%#d.images[0].image_width%><%#d.images[0].image_height%>
+		 			<%#=image_tag (d.images[0].photo.url(:original))%>
+		  			<img src="/assets/example/1.jpg"  style="width:550px">
+		  		</div> -->
+	  		<%#end%>
+ 		<%#end%>
+ 		<div style="float:left">
+ 			<%if @designers[0].present?%>
+ 				<img src="<%=@designers[0].images.present? ?  @designers[0].images[0].photo.url(:original) : '/assets/example/1.jpg'%>"  style="width:550px">
+ 			<%end%>
+  		</div>		
+  		<div style="float:left">
+  			<%if @designers[1].present?%>
+ 				<img src="<%=@designers[1].images.present? ?  @designers[1].images[0].photo.url(:original) : '/assets/example/2.jpg'%>"  style="width:550px">
+ 			<%end%>
+ 			<%if @designers[2].present?%>
+ 				<img src="<%=@designers[2].images.present? ?  @designers[2].images[0].photo.url(:original) : '/assets/example/3.jpg'%>"  style="width:550px">
+ 			<%end%>
+ 			<!-- <img src="/assets/example/2.jpg" style="width:540px"><br/>
+ 			<img src="/assets/example/3.jpg"  style="width:540px"> -->
  		</div>
   		<div style="float:left">
-  			<img src="/assets/example/4.jpg"  style="width:540px"><br/>
-  		</div> -->
+  			
+ 			<img src="/assets/example/4.jpg"  style="width:540px"><br/>
+  		</div>
   	</div>
   	<div class="slide" >
   		<div style="float:left">
