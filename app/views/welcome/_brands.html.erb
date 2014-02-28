@@ -5,15 +5,142 @@
 <%end%>
 
 
-<div class="slider1" width="1000px">
-  <div class="slide"><img src="/assets/example/1.jpg" width="300" ><img src="/assets/example/4.jpg" width="300"></div>
-  <div class="slide"><img src="/assets/example/2.jpg" width="300" ></div>
-  <div class="slide"><img src="/assets/example/4.jpg" width="300"><img src="/assets/example/8.jpg" width="300"></div>
-  <div class="slide"><img src="/assets/example/6.jpg" width="300" ></div>
-  <div class="slide"><img src="/assets/example/1.jpg" width="300"><img src="/assets/example/4.jpg"width="300" ></div>
-  <div class="slide"><img src="/assets/example/2.jpg" width="300" ></div>
-  <div class="slide"><img src="/assets/example/4.jpg" width="300"><img src="/assets/example/8.jpg" width="300"></div>
-  <div class="slide"><img src="/assets/example/6.jpg" width="300" ></div>
-  
-</div>
+<!-- <div class="slider1" >
+	<div class="slide" >
+		<div style="float:left">
+ 			<div 	 >
+ 				<a><img src="/assets/example/1.jpg" style="width:520px;height:500px">
+ 					<!-- <div class="textWrapper1"><h4></h4><h2>EMILIO<br>PUCCI</h2><p>SHOP NOW</p></div> 
+ 				</a>
+ 			</div>
+ 			<div>
+ 				<a><img src="/assets/example/4.jpg" style="width:520px;height:500px"><img src="">
+ 					<!-- <div class="textWrapper1"><h4></h4><h2>EMILIO<br>PUCCI</h2><p>SHOP NOW</p></div> 
+ 				</a>
+ 			</div>
+    </div>
+    <div style="float:left">
+ 			<div   style="background: url() no-repeat;height:500px">
+ 				<a><img src="/assets/example/2.jpg" style="width:550px;height:1000px">
+ 					<!-- <div class="textWrapper2"><h4></h4><h2>EMILIO<br>PUCCI</h2><p>SHOP NOW</p></div> 
+ 				</a>
+ 			</div>
+  	</div>
+		<div style="float:left">
+ 			<div  style="background: url() no-repeat;">
+ 				<a><img src="/assets/example/4.jpg" style="width:540px;height:500px"> 
+ 					<!-- <div class="textWrapper3"><h4></h4><h2>EMILIO<br>PUCCI</h2><p>SHOP NOW</p></div> 
+ 				</a>
+ 			</div>
+ 			<div style="background: url() no-repeat;height:500px">
+ 				<a><img src="/assets/example/8.jpg" style="width:540px;height:500px">
+ 					<!-- <div class="textWrapper3"><h4></h4><h2>EMILIO<br>PUCCI</h2><p>SHOP NOW</p></div> 
+ 				</a>
+ 			</div>
+	  </div>
+  </div>
+	<div class="slide" >
+		<div style="float:left">
+  		<div   style="background: url() no-repeat;">
+				<a><img src="/assets/example/9.jpg" style="width:1640px;height:1000px">
+					<!-- <div class="textWrapper2"><h4></h4><h2>EMILIO<br>PUCCI</h2><p>SHOP NOW</p></div> -
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="slide" >
+		<div style="float:left">
+ 			<div  style="background: url() no-repeat;">
+ 				<a><img src="/assets/example/f.jpg" style="width:820px;height:500px">
+ 					<!-- <div class="textWrapper1"><h4></h4><h2>EMILIO<br>PUCCI</h2><p>SHOP NOW</p></div> 
+ 				</a>
+ 			</div>
+    </div>
+    <div style="float:left">
+ 			<div   style="background: url() no-repeat;">
+ 				<a><img src="/assets/example/m.jpg" style="width:820px;height:500px">
+ 					<!-- <div class="textWrapper2"><h4></h4><h2>EMILIO<br>PUCCI</h2><p>SHOP NOW</p></div>
+ 				</a>
+ 			</div>
+	  </div>
+  </div>
+</div> -->
 
+ <div class="slider1" width="1000px">
+  	<div class="slide" >
+ 		<%@designers.each do |d|%>
+	 		<div style="float:left">
+	 			
+	  			<img src="/assets/example/1.jpg"  style="width:550px">
+	  		</div>
+ 		<%end%>
+  		<!-- <div style="float:left">
+ 			<img src="/assets/example/2.jpg" style="width:540px"><br/>
+ 			<img src="/assets/example/3.jpg"  style="width:540px">
+ 		</div>
+  		<div style="float:left">
+  			<img src="/assets/example/4.jpg"  style="width:540px"><br/>
+  		</div> -->
+  	</div>
+  	<div class="slide" >
+  		<div style="float:left">
+  			<img src="/assets/example/image-big.jpg" style="width:1640px">
+  		</div>	
+  	</div>
+  	<div class="slide" >
+  		<div style="float:left">
+  			<a href="/products?gender=famale"><img src="/assets/example/img-med2.jpg" style="width:820px"></a>
+  		</div>	
+  		<div style="float:left">
+  			<a href="/products?gender=male"><img src="/assets/example/img-med.jpg" style="width:820px"></a>
+  		</div>	
+  	</div>
+</div> 		
+
+<style type="text/css">
+.slide a:hover{font-style: underlined;}
+/*.slide_image{height:500px;width:500px;}
+.slide_image_mid{height:500px;width:1500px;}
+.slide_image_full{height:500px;width:750px;}*/
+/* DIRECTION CONTROLS (NEXT / PREV) */
+.textWrapper1 {
+position: relative;color:white;float: right;}
+.textWrapper2 {
+position: relative;color:white;float: right;top:400px;}
+.textWrapper3 {
+position: relative;color:white;float: left;}
+.textWrapper1 h2,.textWrapper3 h2,.textWrapper2 h2 {
+;color:white;font-size: 12px;}
+
+.bx-wrapper .bx-prev {
+	left: 0px;
+	background-color : rgba(255, 255, 255, 0.7);
+	/*background: url(images/controls.png) no-repeat 0 -32px;*/
+}
+
+.bx-wrapper .bx-next {
+	right: 0px;
+	background-color : rgba(255, 255, 255, 0.7);
+	/*background: url(images/controls.png) no-repeat 0 -32px;*/
+}
+
+.bx-wrapper .bx-prev:hover {
+	background-position: 0 0;
+}
+
+.bx-wrapper .bx-next:hover {
+	background-position: -43px 0;
+}
+
+.bx-wrapper .bx-controls-direction a {
+	position: absolute;
+	top: 3%;
+	margin-top: -16px;
+	outline: 0;
+	width: 10%;
+	height: 102%;
+	text-indent: -9999px;
+	z-index: 9999;
+}
+	
+</style>

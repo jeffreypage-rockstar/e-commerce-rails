@@ -1,238 +1,105 @@
 <%if params[:zoom_in] == "yes"%>
-  <%=@zoom_size = 5%>
+  <%@zoom_div = "products_smallimage_slider"%>
+  <%@zoom_size= 100%>
 <%else%>
-  <%=@zoom_size = 3%>
+  <%@zoom_div = "products_bigimage_slider"%>
+  <%@zoom_size= 200%>
 <%end%>
 <% content_for :head do -%>
   <%= stylesheet_link_tag 'products_page.css' %>
 <% end %>
-<%=link_to "ZoomIn" ,products_path(:zoom_in=>"yes")%>
-<%=link_to "ZoomOut" ,products_path()%>
-<div id="wrapper">
-  <div id="inner">
-    <div id="carousel">
-      <% @products.each_with_index do |product, i| %>
-           <%= link_to product_path(product), title: product.name do %>
-              <div class="<%=product.product_type.name%>" id="<%=product.product_type.name%>">
-                <%= link_to image_tag(product.featured_image(:large)), product_path(product), title: product.name, class:  'clearfix' %><br/>
-                <em><%=product.name%></em>
-              </div>
-            <% end %>
-      <%end%>
-      <% @products.each_with_index do |product, i| %>
-           <%= link_to product_path(product), title: product.name do %>
-              <div class="<%=product.product_type.name%>" id="<%=product.product_type.name%>">
-                <%= link_to image_tag(product.featured_image(:large)), product_path(product), title: product.name, class:  'clearfix' %><br/>
-                <em><%=product.name%></em>
-              </div>
-            <% end %>
-      <%end%>
+
+
+<!-- <div class="float-div">
+  <div class="top-brand-shadow">
+    <div class="prd-list-icon"> <a href="#" class="thumb-img prd-list-icon-sprite">&nbsp;</a> <a href="#" class="thumb-list prd-list-icon-sprite">&nbsp;</a> </div>
+    <div class="prd-last-right"> <a href="#">Brand</a><span>/</span> <a href="#">Mona Mona</a><span>/</span> <a href="#">Shop</a> <a href="#"><img src="/assets/main/arrow-prd.gif" alt="" /></a> </div>
+  </div>
+  <div class="prd-listing-img">
+    <div class="prd-listing-box">
+      <div class="prd-listing-img"> <a href="#"><img src="/assets/main/prd1.jpg" alt="" /></a> </div>
+      <div class="prd-img-detail"> Lorem Ipsum is simply dummy <span>1000</span> </div>
     </div>
-    <div id="pager">
-      <strong>Choose a category:</strong> &nbsp;
-      <%@product_types.each do |pt|%>
-        <a href="#<%=pt.name%>"><%=pt.name%></a> &bull;
-      <%end%>
+    <div class="prd-listing-box">
+      <div class="prd-listing-img"> <a href="#"><img src="/assets/main/prd1.jpg" alt="" /></a> </div>
+      <div class="prd-img-detail"> Lorem Ipsum is simply dummy <span>1000</span> </div>
     </div>
-    <a href="#" id="prev"></a>
-    <a href="#" id="next"></a>
+    <div class="prd-listing-box">
+      <div class="prd-listing-img"> <a href="#"><img src="/assets/main/prd1.jpg" alt="" /></a> </div>
+      <div class="prd-img-detail"> Lorem Ipsum is simply dummy <span>1000</span> </div>
+    </div>
+    <div class="prd-listing-box">
+      <div class="prd-listing-img"> <a href="#"><img src="/assets/main/prd1.jpg" alt="" /></a> </div>
+      <div class="prd-img-detail"> Lorem Ipsum is simply dummy <span>1000</span> </div>
+    </div>
+    <div class="prd-listing-box">
+      <div class="prd-listing-img"> <a href="#"><img src="/assets/main/prd1.jpg" alt="" /></a> </div>
+      <div class="prd-img-detail"> Lorem Ipsum is simply dummy <span>1000</span> </div>
+    </div>
   </div>
 </div>
-
-
-
-
-<script type="text/javascript">
-  $(function() {
-    var _visible = <%=@zoom_size%>;
-    var $pagers = $('#pager a');
-    var _onBefore = function() {
-      $(this).find('img').stop().fadeTo( 300, 1 );
-      $pagers.removeClass( 'selected' );
-    };
-
-    $('#carousel').carouFredSel({
-      items: _visible,
-      width: '100%',
-      auto: false,
-      scroll: {
-        duration: 750
-      },
-      prev: {
-        button: '#prev',
-        items: 2,
-        onBefore: _onBefore
-      },
-      next: {
-        button: '#next',
-        items: 2,
-        onBefore: _onBefore
-      },
-    });
-
-    $pagers.click(function( e ) {
-      e.preventDefault();
-      
-      var group = $(this).attr( 'href' ).slice( 1 );
-      var slides = $('#carousel div.' + group);
-      var deviation = Math.floor( ( _visible - slides.length ) / 2 );
-      if ( deviation < 0 ) {
-        deviation = 0;
-      }
-
-      $('#carousel').trigger( 'slideTo', [ $('#' + group), -deviation ] );
-      $('#carousel div img').stop().fadeTo( 300, 0.3 );
-      slides.find('img').stop().fadeTo( 300, 1 );
-
-      $(this).addClass( 'selected' );
-    });
-  });
-</script>
-<%if params[:zoom_in] == "yes"%>
+ --><div class="float-div">
+  <div class="top-brand-shadow">
+    <div class="prd-list-icon"> 
+      <%=link_to "" ,products_path,class: "thumb-img prd-list-icon-sprite"%>
+      <%=link_to "" ,products_path(:zoom_in=>"yes"),class: "thumb-list prd-list-icon-sprite"%>
+     </div>
+    <div class="prd-last-right"> <a href="#">Brand</a><span>/</span> <a href="#">Mona Mona</a><span>/</span> <a href="#">Shop</a> <a href="#"><img src="/assets/main/arrow-prd.gif" alt="" /></a> </div>
+  </div>
+  <div class="prd-listing-img">
+    <div class="<%=@zoom_div%>" width="1000px">
+      <% @products.each_with_index do |product, i| %>
+           <%= link_to product_path(product), title: product.name do %>
+              <div class="prd-listing-box">
+                <div class="prd-listing-img"><a href="#"><img src="/assets/main/prd1.jpg" alt="" /></a><%#= link_to image_tag(product.featured_image(:large),:style=> "width:#{@zoom_size}px"), product_path(product), title: product.name  %> </div>
+                <div class="prd-img-detail"> <%=product.name%> <span>1000</span> </div>
+              </div>
+            <% end %>
+      <%end%>
+    </div>   
+  </div>
+</div>
 <style type="text/css">
-    
-   #wrapper {
-        
-        width: 100%;
-        height: 55%;
-        min-height: 275px;
-        margin: -150px 0 0 0;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-      }
-      #inner {
-        width: 100%;
-        height: 300px;
-        margin-top: -75px;
-        position: relative;
-        overflow: hidden;
-      }
-      #carousel div {
-        border: 1px solid #999;
-        background: #fff;
-        width: 140px;
-        height: 230px;
-        float: left;
-        padding: 10px;
-        margin: 0 5px;
-      }
-      #pager {
-        text-align: center;
-        margin-top: 20px;
-        color: #666;
-      }
-      #pager a {
-        color: #666;
-        text-decoration: none;
-        display: inline-block;
-        padding: 5px 10px;
-      }
-      #pager a:hover {
-        color: #333;
-      }
-      #pager a.selected {
-        background-color: #333;
-        color: #ccc;
-      }
-      #prev, #next {
-        display: block;
-        width: 50px;
-        height: 80px;
-        margin-top: -40px;
-        position: absolute;
-        top: 50%;
-        z-index: 2;
-      }
-      #prev {
-        background: url( /assets/ui-prev.png ) no-repeat;
-        left: 50%;
-        margin-left: -520px;
-      }
-      #next {
-        background: url( /assets/ui-next.png ) no-repeat;
-        right: 50%;
-        margin-right: -520px;
-      }
-      #copy {
-        text-align: center;
-        width: 100%;
-        position: absolute;
-        bottom: 10px;
-        left: 0;
-      }
-      #copy, #copy a {
-        color: #999;
-      }
-      
-    
-  </style>
-<%else%>
-  <style type="text/css">
-    
-    #wrapper {
-      
-      width: 100%;
-      height: 55%;
-      min-height: 275px;
-      margin: -75px 0 0 0;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-    }
-    #inner {
-      width: 100%;
-      height: 400px;
-      margin-top: -150px;
-      position: relative;
-      overflow: hidden;
-    }
-    #carousel div {
-      border: 1px solid #999;
-      background: #fff;
-      width: 280px;
-      height: 300px;
-      float: left;
-      padding: 10px;
-      margin: 0 5px;
-    }
-    #pager {
-      text-align: center;
-      margin-top: 20px;
-      color: #666;
-    }
-    #pager a {
-      color: #666;
-      text-decoration: none;
-      display: inline-block;
-      padding: 5px 10px;
-    }
-    #pager a:hover {
-      color: #333;
-    }
-    #pager a.selected {
-      background-color: #333;
-      color: #ccc;
-    }
-    #prev, #next {
-      display: block;
-      width: 50px;
-      height: 80px;
-      margin-top: -40px;
-      position: absolute;
-      top: 50%;
-      z-index: 2;
-    }
-    #prev {
-      background: url( /assets/ui-prev.png ) no-repeat;
-      left: 50%;
-      margin-left: -520px;
-    }
-    #next {
-      background: url( /assets/ui-next.png ) no-repeat;
-      right: 50%;
-      margin-right: -520px;
-    }
-    
-  </style>
+  /* DIRECTION CONTROLS (NEXT / PREV) */
+.bx-wrapper .bx-controls-direction a {
+  position: absolute;
+  top: 50%;
+  margin-top: -16px;
+  outline: 0;
+ /* width: 32px;
+  height: 32px;*/
+  text-indent: -9999px;
+  z-index: 9999;
+}
+
+.bx-wrapper .bx-prev {
+  right: 0px;
+  width: 90px;
+  height:90px;
+  left: none !important;
+  background: url(/assets/main/next-arrow.gif  ) no-repeat;
+}
+
+.bx-wrapper .bx-next {
+  right: -90px;
+  width: 90px;
+  height:90px;
+  background: url(/assets/main/pre-arrow.gif) no-repeat ;
+}
+.prd-listing-box{
+  <%if params[:zoom_in] == "yes"%>
+  width:212px !important;
+  <%else%>
+  width:300px !important;
   <%end%>
+
+}
+.bx-viewport{
+  width:1540px !important;
+  
+}
+</style>
+
+
+
+

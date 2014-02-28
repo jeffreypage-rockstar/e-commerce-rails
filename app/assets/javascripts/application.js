@@ -24,11 +24,27 @@
 
 $(function(){ 
   $(document).foundation();
+  
+  $('.my-img').click(function(){
+    $('.my-img a').slideToggle();
+  });
   $('.slider1').bxSlider({
-      slideWidth: 300,
-      minSlides: 2,
-      maxSlides: 3,
-      slideMargin: 10
+      slideWidth: 1640 ,
+      minSlides: 1,
+      maxSlides: 1,
+      slideMargin: 0
+    });
+  $('.products_bigimage_slider').bxSlider({
+      slideWidth: 1500,
+      minSlides: 5,
+      maxSlides: 10,
+      slideMargin: 0
+    });
+  $('.products_smallimage_slider').bxSlider({
+      slideWidth: 1500,
+      minSlides: 7,
+      maxSlides: 21,
+      slideMargin: 0
     });
   $("#product_prototype_id").click (function(){
      jQuery.ajax( {

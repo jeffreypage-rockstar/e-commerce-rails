@@ -1,27 +1,14 @@
 <%if params[:option] == "brand"%>
 	<%=render :partial => "/welcome/brands"%>
 <%else%>
-	<% content_for :head do -%>
-	  <%= stylesheet_link_tag 'home_page.css' %>
-	<% end %>
-
-
-	<div id='left_side_panel' class='span-6 last'>
-	&nbsp;
-	</div>
-
-	<div style="text-align:center;height:150px">
-		LOGO
-	</div>
-	<div style="text-align:center;height:150px">
-	 <%=link_to "Brand" , root_path(:option=>"brand")%> |
-	 <%=link_to "Style" , products_path(:option=>"style")%> |
-	 <%=link_to "Gender" , products_path(:option=>"gender")%> |
-	 <%=link_to "Hot" , products_path(:optino=>"hot")%> |
-	 <%=link_to "News" , products_path(:optino=>"hot")%> |
-	 <%=link_to "Blog" , blogs_path(:optino=>"hot")%> |
-	 <%=link_to "Show" , products_path(:optino=>"hot")%> 
-	</div>
-
+	<ul>	
+		<li class="tab1"><a href="<%=root_path(:option=>"brand")%>"><span>Brand</span></a></li>
+    <li><a href="<%=products_path(:option=>"style")%>"><span>Style</span></a></li>
+    <li><a href="<%=products_path(:option=>"gender")%>"><span>Gender</span></a></li>
+    <li><a href="<%=products_path(:option=>"hot")%>"><span>Hot</span></a></li>
+	  <li><a href="#"><span>News</span></a></li>
+    <li><a href="<%=blogs_path()%>"><span>Blog</span></a></li>
+    <li><a href="#"><span>Show</span></a></li>
+	</ul>
 <%end%>
 
