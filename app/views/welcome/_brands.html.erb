@@ -94,8 +94,10 @@
  			<img src="/assets/example/3.jpg"  style="width:540px"> -->
  		</div>
   		<div style="float:left">
-  			
- 			<img src="/assets/example/4.jpg"  style="width:540px"><br/>
+  			<%if @designers[3].present?%>
+ 				<img src="<%=@designers[3].images.present? ?  @designers[3].images[0].photo.url(:original) : '/assets/example/4.jpg'%>"  style="width:550px"><br/>
+ 			<%end%>
+ 			<!-- <img src="/assets/example/4.jpg"  style="width:540px"><br/> -->
   		</div>
   	</div>
   	<div class="slide" >
