@@ -26,7 +26,7 @@ class WelcomeController < ApplicationController
     @static_page = StaticPage.find_by_code(params[:code])
   end
 
-  def method_name
+  def welcome
     type = params[:option].present? ? params[:option] : ""
     @featured_product = Product.featured
     @best_selling_products = Product.limit(5)
@@ -37,10 +37,8 @@ class WelcomeController < ApplicationController
     @role = Role.find_by_name("designer")
     @designers = @role.users
     @other_products  ## search 2 or 3 categories (maybe based on the user)
-      
-    if type == ""
-      render :layout=>"home"
-    end
+    render :layout=>"home"
+    
   end
 
 
