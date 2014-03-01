@@ -21,6 +21,10 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
     order_by = "#{field} #{sort}"
     @properties = Property.admin_grid(params).order(sort_column + " " + sort_direction).where(keyword).
                                               paginate(:page => pagination_page, :per_page => pagination_rows)
+    if current_user.designer?
+      @properties = @properties.where(["user_id =?",current_user.id])
+    end                            
+
     @action = "index"
     @columns = [["Name","identifing_name@string"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
     @nodes = Property.all.select("identifing_name").map{|x| x.identifing_name[0] if x.identifing_name}.uniq                                             
@@ -64,7 +68,7 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
   private
 
   def allowed_params
-    params.require(:property).permit(:identifing_name, :display_name, :active)
+    params.require(:property).permit(:identifing_name, :display_name, :active,:user_id)
   end
 
   def sort_column

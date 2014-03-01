@@ -1,13 +1,14 @@
-<% content_for :head do -%>
-  <%= stylesheet_link_tag 'home_page.css' %>
-<% end %>
-
-
-<div id='left_side_panel' class='span-6 last'>
-&nbsp;
-</div>
-
-<div id='featured_item' class='span-18 last'>
-  <%#= image_tag 'home.png' %>
-</div>
+<%if params[:option] == "brand"%>
+	<%=render :partial => "/welcome/brands"%>
+<%else%>
+	<ul>	
+		<li class="tab1"><a href="<%=root_path(:option=>"brand")%>"><span>Brand</span></a></li>
+    <li><a href="<%=root_path(:option=>"style")%>"><span>Style</span></a></li>
+    <li><a href="<%=products_path(:option=>"gender")%>"><span>Gender</span></a></li>
+    <li><a href="<%=products_path(:option=>"hot")%>"><span>Hot</span></a></li>
+	  <li><a href="#"><span>News</span></a></li>
+    <li><a href="<%=blogs_path()%>"><span>Blog</span></a></li>
+    <li><a href="#"><span>Show</span></a></li>
+	</ul>
+<%end%>
 

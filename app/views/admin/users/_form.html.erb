@@ -8,13 +8,31 @@
 
       <label>Email Address</label>
       <%= form.text_field :email %>
+      <label>Phone</label>
+      <%= form.text_field :phone %>
+      
+      
+      <%#user_images = User.find(params[:id]).images if params[:id].present?%>
+      <%#@user_image = user_images.present? ? user_images[0] : User.find(params[:id]).images.new %>
+      
+      <%= form.fields_for :images, @user_image do |image_form|%>
+        <label>Photo</label>
+        <% if !image_form.object.new_record? %>
+          <%= image_tag image_form.object.photo.url(:small) %>
+        <% end %>
+        <%= image_form.file_field   :photo %>
+      <% end %>
+
 
     </div>
 
     <div class="six large-6 columns">
       <label>Last Name</label>
       <%= form.text_field :last_name %>
-
+      <label>Birth Date</label>
+      <%= form.text_field :bday %>
+      <label>Birth Date</label>
+      <%= form.text_area :about_me ,:rows=> 3%>
       <label>State</label>
       <%= form.select :state, @states %>
     </div>

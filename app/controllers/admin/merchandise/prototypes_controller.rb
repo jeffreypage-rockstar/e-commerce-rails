@@ -5,6 +5,9 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
     keyword = filter_helper(params)
     @prototypes = Prototype.admin_grid(params).order(sort_column + " " + sort_direction).where(keyword).
                                               paginate(:page => pagination_page, :per_page => pagination_rows)
+    if current_user.designer?
+      @prototypes = @prototypes.where(["user_id =?",current_user.id])
+    end   
     @action = "index"
     @columns = [["Name","name@string"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
     @nodes = Prototype.select("name").map{|x| x.name[0] if x.name}.uniq                                              
@@ -12,6 +15,9 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
 
   def new
     @all_properties = Property.all
+    if current_user.designer?
+      @all_properties = @all_properties.where(["user_id =?",current_user.id])
+    end 
     if @all_properties.empty?
       flash[:notice] = "You must create a property before you create a prototype."
       redirect_to new_admin_merchandise_property_path
@@ -23,11 +29,13 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
 
   def create
     @prototype = Prototype.new(allowed_params)
-
     if @prototype.save
       redirect_to :action => :index
     else
       @all_properties = Property.all
+      if current_user.designer?
+        @all_properties = @all_properties.where(["user_id =?",current_user.id])
+      end 
       flash[:error] = "The prototype property could not be saved"
       render :action => :new
     end
@@ -35,6 +43,9 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
 
   def edit
     @all_properties = Property.all
+    if current_user.designer?
+      @all_properties = @all_properties.where(["user_id =?",current_user.id])
+    end 
     @prototype = Prototype.includes(:properties).find(params[:id])
   end
 
@@ -45,6 +56,9 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
       redirect_to :action => :index
     else
       @all_properties = Property.all
+      if current_user.designer?
+        @all_properties = @all_properties.where(["user_id =?",current_user.id])
+      end 
       render :action => :edit
     end
   end
@@ -59,7 +73,7 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
   private
 
   def allowed_params
-    params.require(:prototype).permit( :name, :active, :property_ids => [] )
+    params.require(:prototype).permit(:user_id, :name, :active, :property_ids => [] )
   end
 
   def sort_column

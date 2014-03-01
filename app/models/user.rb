@@ -109,6 +109,11 @@ class User < ActiveRecord::Base
   has_many    :return_authorizations
   has_many    :authored_return_authorizations, class_name: 'ReturnAuthorization', foreign_key: 'author_id'
 
+  # Images 
+  has_many :images, -> {order(:position)},
+                    as:        :imageable,
+                    dependent: :destroy
+
   validates :first_name,  presence: true, if: :registered_user?,
                           format:   { with: CustomValidators::Names.name_validator },
                           length:   { maximum: 30 }
@@ -120,6 +125,7 @@ class User < ActiveRecord::Base
                           :format   => { :with => CustomValidators::Emails.email_validator },
                           :length => { :maximum => 255 }
 
+  accepts_nested_attributes_for :images,             reject_if: proc { |t| (t['photo'].nil? && t['photo_from_link'].blank?) }, allow_destroy: true
   accepts_nested_attributes_for :addresses, :user_roles
   accepts_nested_attributes_for :phones, :reject_if => lambda { |t| ( t['display_number'].gsub(/\D+/, '').blank?) }
   accepts_nested_attributes_for :customer_service_comments, :reject_if => proc { |attributes| attributes['note'].strip.blank? }

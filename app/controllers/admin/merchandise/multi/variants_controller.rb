@@ -14,7 +14,7 @@ class Admin::Merchandise::Multi::VariantsController < Admin::BaseController
       redirect_to admin_merchandise_product_url(@product)
     else
       form_info
-      render :action => :edit, :layout => 'admin_markup'
+      render :action => :edit
     end
   end
   private

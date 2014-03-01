@@ -1,0 +1,74 @@
+@font-face {
+    font-family: 'impactregular';
+    src: url('impact_0-webfont.eot');
+    src: url('impact_0-webfont.eot?#iefix') format('embedded-opentype'),
+         url('impact_0-webfont.woff') format('woff'),
+         url('impact_0-webfont.ttf') format('truetype'),
+         url('impact_0-webfont.svg#impactregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+body{margin:0px; padding:0px; background:#ebebeb; font-family: 'impactregular'; font-size:13px; color:#565656;}
+ul,li{list-style:none;}
+p,ul, ol,li,h1,h2,h3,h4,h5,h6{margin:0px; padding:0px; font-weight:normal;}
+a,img{border:none; text-decoration:none; color:#007f51;}
+a:hover{color:#565656; outline:none; text-decoration:none;}
+a:active{outline: none; outline:none; text-decoration:none;}
+a:focus{-moz-outline-style: none; outline:none;}
+p{margin:0 0 17px 0; line-height:20px;}
+
+/*common style*/
+.clear{clear:both;}
+.padder{padding:5px; clear:both; overflow:hidden;}
+.left{float:left !important;}
+.right{float:right !important;}
+.inline{display:inline-block;}
+.relative{position:relative;}
+.no-back{background:none !important;}
+.no-bordr{border:none !important;}
+.no-margn{margin:0px !important;}
+.no-pad{padding:0px !important;}
+.v-align{vertical-align:middle;}
+img {max-width:100%;}
+/*------------ commen css End here ------------*/
+
+#main-wrapper {margin:0 auto; width:100%;}
+header, section, footer  {width:100%; float:left;}
+.center-inner-cont {width:1640px; margin:0 auto;}
+.float-div {float:left; width:100%;}
+.bod-bg {background:url(../images/body-bg.gif) repeat-y top center;}
+.center-align {width:1690px; margin:0 auto;}
+.home-cont {width:100%; float:left; margin:150px 0 0 0; text-align:center;}
+.home-tab {width:1500px; margin:0 auto;}
+.home-tab ul {margin:0; padding:0;}
+.logo-index {float:left; margin:0 0 87px 0; width:100%; text-align:center;}
+.home-tab ul li {margin:0 60px 0 0; padding:0; list-style:none; float:left; width:151px; position:relative;}
+.home-tab ul li:last-child {margin-right:0px;}
+.home-tab ul li a {background:url(../images/circle-home-tab.gif) no-repeat; width:151px; height:259px; display:inline-block; text-decoration:none; color:#fff; text-transform:uppercase; font-size:30px;}
+.home-tab ul li a:hover {zoom:1.2;}
+.home-tab ul li a span {text-align:center; line-height:145px; letter-spacing:8px;}
+.copy-right {float:left; width:100%; text-align:center; font-size:14px; color:#8a8a8a; font-family:Arial, Helvetica, sans-serif; margin-top:100px;}
+.home-tab ul li .brad-big-tab {display:none;}
+.home-tab ul li:hover .brad-big-tab {display:block;}
+.brad-big-tab {background:url(../images/circle-home-tab-h.gif) no-repeat; width:227px; height:437px; position:absolute; left:-44px; top:56px; z-index:1;}
+.brad-big-tab span {display:inline-block; text-decoration:none; color:#fff; text-transform:uppercase; font-size:30px; line-height:227px;}
+
+.my-img {float:right;}
+.inner-page-logo {float:left; width:100%; text-align:center; padding-bottom:45px;}
+.top-brand-shadow {float:left; width:100%; background:url(../images/top-shadow-line.gif) no-repeat center bottom; height:38px;}
+.prd-list-icon {float:left; width:150px;}
+.prd-list-icon-sprite {background:url(../images/prd-list-icon.png) no-repeat;}
+.prd-list-icon a.thumb-img {background-position:0 0; width:28px; height:28px; display:inline-block; margin-right:14px;}
+.prd-list-icon a:hover.thumb-img {background-position:0 -29px;}
+
+.prd-list-icon a.thumb-list {background-position:-29px 0; width:28px; height:28px; display:inline-block;}
+.prd-list-icon a:hover.thumb-list {background-position:-29px -29px;}
+.prd-last-right {float:right; text-transform:uppercase; font-family:Arial, Helvetica, sans-serif;}
+.prd-last-right span {margin:0 8px 0 12px;}
+.prd-last-right a{color:#353535;}
+.prd-last-right a:hover{color:#5bbccd;}
+.prd-listing-img {float:left; width:100%; padding:83px 0 0 0;}
+.prd-listing-box {float:left; width:312px; margin-right:8px;}
+.prd-listing-img {float:left;}
+.prd-img-detail {float:left; width:100%; text-align:center; font-family:Arial, Helvetica, sans-serif; font-size:14px; margin-top:5px;}
+.prd-img-detail span {display:block;}

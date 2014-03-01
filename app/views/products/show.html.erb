@@ -40,12 +40,22 @@
             </ul>
           <% else %>
             <ul id="pikame" class="jcarousel-skin-pika">
-              <% @product.variants[0].image_group.images.each do |image|%>
+              <% @product.images.each do |image|%>
                 <li>
                   <a><%= image_tag(image.photo.url(:large)) %></a>
                 </li>
               <% end %>
             </ul>
+            <%@product.active_variants.each do |v|%>
+              <ul id="variant_images_a<%=v.id%>" class="jcarousel-skin-pika" style="display:none">
+                <% v.image_group.images.each do |image|%>
+                  <li>
+                    <a><%= image_tag(image.photo.url(:large)) %></a>
+                  </li>
+                <% end %>
+              </ul>
+            <%end%>
+            
           <% end %>
 
       </div>

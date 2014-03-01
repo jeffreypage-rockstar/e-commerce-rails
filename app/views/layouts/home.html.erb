@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>:: Mad Dot ::</title>
+	<link rel="stylesheet" type="text/css" href="/assets/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+	<%= javascript_include_tag 'vendor/custom.modernizr' %>
+  	<%= stylesheet_link_tag    "home", media: "all", "data-turbolinks-track" => true %>
+  	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  	<%= csrf_meta_tag %>
+</head>
+<body class="bod-bg">
+	<div id="main-container"> 
+		<div class="center-align">
+			<div class="home-cont">
+				<div class="logo-index"><a href="/"><img src="/assets/main/logo-index.gif" alt=""></a></div>
+				<div class="home-tab">
+          <%=yield%>
+      </div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

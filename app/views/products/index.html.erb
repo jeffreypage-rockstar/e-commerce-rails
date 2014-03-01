@@ -1,52 +1,105 @@
-
+<%if params[:zoom_in] == "yes"%>
+  <%@zoom_div = "products_smallimage_slider"%>
+  <%@zoom_size= 100%>
+<%else%>
+  <%@zoom_div = "products_bigimage_slider"%>
+  <%@zoom_size= 200%>
+<%end%>
 <% content_for :head do -%>
   <%= stylesheet_link_tag 'products_page.css' %>
 <% end %>
 
-<div id='featured_item' class='nine columns'>
 
-  <div id='interesting_items' >
-    <ul id='interesting_items-list'>
+<!-- <div class="float-div">
+  <div class="top-brand-shadow">
+    <div class="prd-list-icon"> <a href="#" class="thumb-img prd-list-icon-sprite">&nbsp;</a> <a href="#" class="thumb-list prd-list-icon-sprite">&nbsp;</a> </div>
+    <div class="prd-last-right"> <a href="#">Brand</a><span>/</span> <a href="#">Mona Mona</a><span>/</span> <a href="#">Shop</a> <a href="#"><img src="/assets/main/arrow-prd.gif" alt="" /></a> </div>
+  </div>
+  <div class="prd-listing-img">
+    <div class="prd-listing-box">
+      <div class="prd-listing-img"> <a href="#"><img src="/assets/main/prd1.jpg" alt="" /></a> </div>
+      <div class="prd-img-detail"> Lorem Ipsum is simply dummy <span>1000</span> </div>
+    </div>
+    <div class="prd-listing-box">
+      <div class="prd-listing-img"> <a href="#"><img src="/assets/main/prd1.jpg" alt="" /></a> </div>
+      <div class="prd-img-detail"> Lorem Ipsum is simply dummy <span>1000</span> </div>
+    </div>
+    <div class="prd-listing-box">
+      <div class="prd-listing-img"> <a href="#"><img src="/assets/main/prd1.jpg" alt="" /></a> </div>
+      <div class="prd-img-detail"> Lorem Ipsum is simply dummy <span>1000</span> </div>
+    </div>
+    <div class="prd-listing-box">
+      <div class="prd-listing-img"> <a href="#"><img src="/assets/main/prd1.jpg" alt="" /></a> </div>
+      <div class="prd-img-detail"> Lorem Ipsum is simply dummy <span>1000</span> </div>
+    </div>
+    <div class="prd-listing-box">
+      <div class="prd-listing-img"> <a href="#"><img src="/assets/main/prd1.jpg" alt="" /></a> </div>
+      <div class="prd-img-detail"> Lorem Ipsum is simply dummy <span>1000</span> </div>
+    </div>
+  </div>
+</div>
+ --><div class="float-div">
+  <div class="top-brand-shadow">
+    <div class="prd-list-icon"> 
+      <%=link_to "" ,products_path,class: "thumb-img prd-list-icon-sprite"%>
+      <%=link_to "" ,products_path(:zoom_in=>"yes"),class: "thumb-list prd-list-icon-sprite"%>
+     </div>
+    <div class="prd-last-right"> <a href="#">Brand</a><span>/</span> <a href="#">Mona Mona</a><span>/</span> <a href="#">Shop</a> <a href="#"><img src="/assets/main/arrow-prd.gif" alt="" /></a> </div>
+  </div>
+  <div class="prd-listing-img">
+    <div class="<%=@zoom_div%>" width="1000px">
       <% @products.each_with_index do |product, i| %>
-        <li id='interesting_product_<%= i %>' class=''>
-          <div class='interesting_items-image'>
-
-            <%= link_to product_path(product), title: product.name do %>
-
-              <div class='no-hover-show'>
-                <% if product.hero_variant.try(:low_stock?) %>
-                  <%= image_tag("ribbons/#{product.hero_variant.stock_status}.png",
-                                :width => 63, :height => 62,
-                                :class => 'upper_left_overlay' ) %>
-                <% end %>
-                <div class='hover-details unfade'>
-                  <p class='bottom-hover-details'>
-                    <%= number_to_currency product.price_range.first %>
-                    <% if product.price_range? %>
-                        to
-                        <%= number_to_currency product.price_range.last %>
-                    <% end %>
-                  </p>
-                </div>
+           <%= link_to product_path(product), title: product.name do %>
+              <div class="prd-listing-box">
+                <div class="prd-listing-img"><a href="#"><img src="/assets/main/prd1.jpg" alt="" /></a><%#= link_to image_tag(product.featured_image(:large),:style=> "width:#{@zoom_size}px"), product_path(product), title: product.name  %> </div>
+                <div class="prd-img-detail"> <%=product.name%> <span>1000</span> </div>
               </div>
-              <%= link_to image_tag(product.featured_image(:medium)), product_path(product), title: product.name, class:  'clearfix' %>
             <% end %>
-          </div>
-
-          <div class='interesting_items-details'><%= product.name %><br/>
-
-          </div>
-        </li>
-      <% end %>
-    </ul>
-    <div class='clearfix'></div>
-  </div>
-
-
-</div>
-
-<div id='right_side_panel' class='three columns last'>
-  <div id='right_side_panel_promo' class=''>
-    Join our web site and get additional Savings....  <%= image_tag "logos/#{Image::MAIN_LOGO}.png", :alt => 'hadean image.'%>
+      <%end%>
+    </div>   
   </div>
 </div>
+<style type="text/css">
+  /* DIRECTION CONTROLS (NEXT / PREV) */
+.bx-wrapper .bx-controls-direction a {
+  position: absolute;
+  top: 50%;
+  margin-top: -16px;
+  outline: 0;
+ /* width: 32px;
+  height: 32px;*/
+  text-indent: -9999px;
+  z-index: 9999;
+}
+
+.bx-wrapper .bx-prev {
+  right: 0px;
+  width: 90px;
+  height:90px;
+  left: none !important;
+  background: url(/assets/main/next-arrow.gif  ) no-repeat;
+}
+
+.bx-wrapper .bx-next {
+  right: -90px;
+  width: 90px;
+  height:90px;
+  background: url(/assets/main/pre-arrow.gif) no-repeat ;
+}
+.prd-listing-box{
+  <%if params[:zoom_in] == "yes"%>
+  width:212px !important;
+  <%else%>
+  width:300px !important;
+  <%end%>
+
+}
+.bx-viewport{
+  width:1540px !important;
+  
+}
+</style>
+
+
+
+

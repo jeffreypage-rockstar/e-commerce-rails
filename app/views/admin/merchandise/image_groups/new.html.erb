@@ -6,10 +6,17 @@
     <li class="field">
       <%= f.label :name %>
       <%= f.text_field :name %>
+      <%if current_user%>
+        <%=f.hidden_field :user_id ,:value=> current_user.id%>
+      <%end%>
     </li>
     <li class="field">
       <%= f.label :product_id %>
-      <%= f.select :product_id, products, :include_blank => true %>
+      <%if current_user%>
+        <%= f.select :product_id, products, :include_blank => true %>
+      <%else%>
+        <%= f.select :product_id, products, :include_blank => true %>
+      <%end%>
     </li>
   </ul>
 

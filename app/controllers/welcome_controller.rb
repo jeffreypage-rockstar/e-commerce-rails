@@ -1,10 +1,17 @@
 class WelcomeController < ApplicationController
 
-  layout 'welcome'
+  layout 'application'
 
   def index
+    type = params[:option].present? ? params[:option] : ""
     @featured_product = Product.featured
     @best_selling_products = Product.limit(5)
+    if type == "brand"
+      @brands = Brand.all
+    elsif type == "style"
+    end
+    @role = Role.find_by_name("designer")
+    @designers = @role.users
     @other_products  ## search 2 or 3 categories (maybe based on the user)
     unless @featured_product
       if current_user && current_user.admin?
@@ -12,6 +19,11 @@ class WelcomeController < ApplicationController
       else
         redirect_to login_url
       end
+    end
+
+      
+    if type == ""
+      render :layout=>"home"
     end
   end
 

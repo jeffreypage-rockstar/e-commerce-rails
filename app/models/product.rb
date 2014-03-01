@@ -51,6 +51,8 @@ class Product < ActiveRecord::Base
   has_many :active_variants, -> { where(deleted_at: nil) },
     class_name: 'Variant'
 
+  GENDER = {"Male"=>"Male","Female"=>"Female"}
+  CONDITION_OF_PRODUCT = {"New"=>"New","Old"=>"Old"}
 
   before_validation :sanitize_data
   before_validation :not_active_on_create!, on: :create

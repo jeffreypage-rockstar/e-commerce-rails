@@ -9,7 +9,7 @@
                             :html => {:class => ''}  do |form| %>
       <%#= render :partial => '/admin/merchandise/products/form', :locals => {:form => form}%>
       <%= render :partial => 'form', :locals => {:form => form } %>
-      <div class=" generic_submit_button">
+      <div class=" generic_submit_button" style="clear:both">
         <%= submit_tag "Create",
                         :class  => "button",
                         :id     => "create_product_button" %>

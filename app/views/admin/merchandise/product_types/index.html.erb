@@ -19,7 +19,9 @@
 
 <div class='admin_title_header'>
   <h3 class="page-title">Product Categories</h3>
-  <%= link_to "New Product Category", new_admin_merchandise_product_type_path, class: "button" %>
+  <%if current_user.admin? || current_user.role?("super_admin")%>
+    <%= link_to "New Product Category", new_admin_merchandise_product_type_path, class: "button" %>
+  <%end%>
 </div>
 
 <div class="admin_product_types">
@@ -36,7 +38,13 @@
     </thead>
     <% @product_types.each do |product_type| %>
       <tr class='<%= cycle("odd", "")%>'>
-        <td><%= link_to product_type.name, edit_admin_merchandise_product_type_path(product_type) %></td>
+        <td>
+          <%if current_user.admin? || current_user.role?("SuperAdmin")%>
+            <%= link_to product_type.name, edit_admin_merchandise_product_type_path(product_type) %>
+          <%else%>
+            <%=product_type.name %>          
+          <%end%>
+        </td>
       </tr>
     <% end %>
   </table>

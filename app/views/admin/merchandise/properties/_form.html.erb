@@ -4,4 +4,7 @@
 
   <label>Display Name</label>
   <%= form.text_field :display_name %>
+  <%if current_user%>
+  	<%=form.hidden_field :user_id ,:value=> current_user.id%>
+  <%end%>
 </fieldset>

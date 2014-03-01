@@ -1,5 +1,13 @@
 class Admin::UsersController < Admin::BaseController
   helper_method :sort_column, :sort_direction
+  before_filter :get_image
+
+  def get_image
+    if params[:id]
+      user_images = User.find(params[:id]).images
+      @user_image = user_images.present? ? user_images[0] : User.find(params[:id]).images.new
+    end
+  end
 
   def index
     authorize! :view_users, current_user
@@ -70,7 +78,7 @@ class Admin::UsersController < Admin::BaseController
   private
 
   def user_params
-    params.require(:user).permit(:password, :password_confirmation, :first_name, :last_name, :email, :state, :role_ids => [])
+    params.require(:user).permit!#(:password, :password_confirmation, :first_name, :last_name, :email, :state, :role_ids => [])
   end
 
   def form_info
