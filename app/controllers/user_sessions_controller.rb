@@ -13,6 +13,7 @@ class UserSessionsController < ApplicationController
   end
 
   def create
+    
     if env["omniauth.auth"]
       user = User.from_omniauth(env["omniauth.auth"])
       session[:user_id] = user.id
