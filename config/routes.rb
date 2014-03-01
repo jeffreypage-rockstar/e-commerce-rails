@@ -34,6 +34,7 @@ Hadean::Application.routes.draw do
   resources :wish_items,  only: [:index, :destroy]
 
   root :to => "welcome#welcome"
+  get "/welcome/index" =>"welcome#index"
 
   namespace :customer do
     resources :registrations,   only: [:index, :new, :create]

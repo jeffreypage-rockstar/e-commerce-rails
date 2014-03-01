@@ -85,17 +85,17 @@
   		</div>		
   		<div style="float:left">
   			<%if @designers[1].present?%>
- 				<img src="<%=@designers[1].images.present? ?  @designers[1].images[0].photo.url(:original) : '/assets/example/2.jpg'%>"  style="width:550px">
+ 				<img src="<%=@designers[1].images.present? ?  @designers[1].images[0].photo.url(:original) : '/assets/example/2.jpg'%>"  style="width:550px"><br/>
  			<%end%>
  			<%if @designers[2].present?%>
- 				<img src="<%=@designers[2].images.present? ?  @designers[2].images[0].photo.url(:original) : '/assets/example/3.jpg'%>"  style="width:550px">
+ 				<img src="<%=@designers[2].images.present? ?  @designers[2].images[0].photo.url(:original) : '/assets/example/3.jpg'%>"  style="width:550px"><br/>
  			<%end%>
- 			<!-- <img src="/assets/example/2.jpg" style="width:540px"><br/>
+ 			<!-- <img src="/assets/example/2.jpg" style="width:540px">
  			<img src="/assets/example/3.jpg"  style="width:540px"> -->
  		</div>
   		<div style="float:left">
   			<%if @designers[3].present?%>
- 				<img src="<%=@designers[3].images.present? ?  @designers[3].images[0].photo.url(:original) : '/assets/example/4.jpg'%>"  style="width:550px"><br/>
+ 				<img src="<%=@designers[3].images.present? ?  @designers[3].images[0].photo.url(:original) : '/assets/example/4.jpg'%>"  style="width:540px"><br/>
  			<%end%>
  			<!-- <img src="/assets/example/4.jpg"  style="width:540px"><br/> -->
   		</div>
