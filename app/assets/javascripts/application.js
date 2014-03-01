@@ -27,6 +27,7 @@ $(function(){
   
   $('.my-img').click(function(){
     $('.my-img a').slideToggle();
+    $('.login-div').slideToggle();
   });
   $('.slider1').bxSlider({
       slideWidth: 1640 ,

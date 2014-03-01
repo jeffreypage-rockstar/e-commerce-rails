@@ -23,6 +23,15 @@
         <div class="my-img" style="height:65px;width:190px"> &nbsp;
           <a href="#"><img src="/assets/main/my-img.gif" alt="" /></a>
         </div>
+          <div class="login-div" style="display:none;float:right">
+            <% unless current_user %>
+              <%= link_to 'Login',  login_path %>
+            <% else %>
+              <% if current_user.admin? %>
+                <%= link_to 'Admin', admin_users_path %>
+              <% end %>
+            <%end%>
+          </div>
         <div class="inner-page-logo"> 
           <a href="#"><img src="/assets/main/inner-logo-mad-logo.gif" alt="" /></a> 
         </div>
