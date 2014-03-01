@@ -33,7 +33,7 @@ Hadean::Application.routes.draw do
   resource  :unsubscribe, only: :show
   resources :wish_items,  only: [:index, :destroy]
 
-  root :to => "welcome#index"
+  root :to => "welcome#welcome"
 
   namespace :customer do
     resources :registrations,   only: [:index, :new, :create]
