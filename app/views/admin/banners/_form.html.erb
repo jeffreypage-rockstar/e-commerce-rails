@@ -1,0 +1,39 @@
+<% if @banner.errors.any? %>
+  <div id="error_explanation">
+    <h2 class="page-title"><%= pluralize(@banner.errors.count, "error") %> prohibited this banner from being saved:</h2>
+
+    <ul>
+    <% @banner.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<div class="control-group">
+    <label class="control-label">Title</label>
+    <div class="controls">
+       <%=f.text_field :title ,:class=>"span5 m-wrap"%>
+    </div>
+ </div>
+
+ <div class="control-group">
+    <label class="control-label">Banner</label>
+    <div class="controls">
+        <%if f.object.image.present?%><%=image_tag(f.object.image.url(:small))%><%end%>
+        <%= f.file_field   :image %>
+    </div>
+ </div>
+
+ <div class="control-group">
+    <label class="control-label">User Name</label>
+    <div class="controls">
+       <%= f.select :state,Banner::STATES.map{|k,v| [v,k]},:selected =>f.object.new_record? ? 1 : @banner.state ? 1 : 0 %>
+    </div>
+ </div>
+
+
+<div class="form-actions">
+  <%=f.submit "Save",:class=> "btn blue"%>
+  <button type="button" class="btn" onclick="this.form.reset();">Reset</button>
+  <button type="button" class="btn" onclick="window.location.href='/admin/banners'">Cancel</button>
+</div>

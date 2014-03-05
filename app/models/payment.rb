@@ -147,19 +147,21 @@ class Payment < ActiveRecord::Base
         result.action = action
           begin
             response          = yield GATEWAY
+            puts "process #{result.inspect} AND \nresponse : #{response.inspect}"
             result.success    = response.success?
             result.confirmation_id  = response.authorization
             result.message    = response.message
             result.params     = response.params
             result.test       = response.test?
           rescue ActiveMerchant::ActiveMerchantError => e
-            #puts e
+            puts " PROCESS_ERROR #{e}"
             result.success = false
             result.confirmation_id = nil
             result.message = e.message
             result.params = {}
             result.test = GATEWAY.test?
           end
+        puts "process #{result}"
         result
       end
   end

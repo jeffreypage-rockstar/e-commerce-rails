@@ -7,6 +7,16 @@
 <div id='product' class=''>
 
   <div class=' clearfix'>
+    <%if current_user%>
+      <%if @rock_product.present?%>
+        <%=link_to "Un Rock",rock_product_path(@product,:unrock=>true),:remote=>true%>
+      <%else%>
+        <%=link_to "Rock",rock_product_path(@product),:remote=>true%>
+      <%end%>
+
+    <%else%>
+      <%=link_to "Rock",login_path%>
+    <%end%>
     <% if @product.active_variants.empty? %>
       <div id='no-variant-available' class=' four large-4 last'>
         Sorry this product is not currently available.

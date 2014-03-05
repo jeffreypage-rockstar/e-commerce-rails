@@ -1,0 +1,17 @@
+<% if @related_product.errors.any? %>
+  <div id="error_explanation">
+    <h2 class="page-title"><%= pluralize(@related_product.errors.count, "error") %> prohibited this related_product from being saved:</h2>
+
+    <ul>
+    <% @related_product.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<label>Name</label>
+<%= f.select :related_product_id,@products.map{|k| [k.name,k.id]} ,:selected => @related_product.related_product_id %>
+
+<br/>
+<br/>

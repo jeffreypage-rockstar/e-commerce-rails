@@ -82,4 +82,11 @@ Hadean::Application.configure do
                               :default_style => :product,
                               :url => "/assets/products/:id/:style/:basename.:extension",
                               :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension" }
+
+  PAPERCLIP_STORAGE_OPTS_BANNER = {  :styles => {
+                                          :small    => '100x100>',
+                                          :large    => '600x600>' },
+                                          :default_style => :large,
+                                          :url => "/assets/banners/:id/:style/:basename.:extension",
+                                          :path => ":rails_root/public/assets/banners/:id/:style/:basename.:extension" }
 end

@@ -1,11 +1,13 @@
 Hadean::Application.routes.draw do
-
+  get "designers/index"
+  get "designers/show"
   # New Routes
   mount Ckeditor::Engine => '/ckeditor'
   resources :blogs do 
-    resources :comments 
+    resources :comments  
   end
-
+  get 'designer/:id' => "designers#show" ,as: :designer
+  get 'rock_product/:id' => "products#rock_product" ,as: :rock_product
 
   resources :image_groups
   # mount Resque::Server.new, at: "/resque"
@@ -93,6 +95,7 @@ Hadean::Application.routes.draw do
     resources :blog_categories
     resources :blogs
     resources :commissions
+    resources :banners
 
     namespace :user_datas do
 
@@ -241,6 +244,7 @@ Hadean::Application.routes.draw do
           put :activate
         end
         resources :variants
+        resources :related_products
       end
       namespace :products do
         resources :descriptions, only: [:edit, :update]

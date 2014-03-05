@@ -5,9 +5,9 @@ mailer:
   username: someLOGIN
   password: s0meth1ngs3cr3t
 paypal:
-  ip:         0.0.0.0
-  login:      id.email001-facilitator_api1.gmail.com
-  password:   1363073941
+  ip:         api.sandbox.paypal.com
+  login:      arpit.vaishnav@hiddnbrains.in
+  password:   hb@hbdev
   signature:  AAMExYLKmOlNxhQDK1kded.hhv2BA3m2Tco2hqHZVJVyvVE1-NmtmLIR
 authnet:
   login:      <%= ENV['AUTHNET_LOGIN'] %>

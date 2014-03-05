@@ -1,0 +1,14 @@
+<%= render :partial => '/admin/merchandise/sub_header'%>
+
+<h3 class="page-title">Editing Related product - <%= @related_product.name %></h1>
+
+<%= form_for(@related_product, :url => admin_merchandise_product_related_product_path(@related_product)) do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  
+  <%= f.submit 'Update', :class => 'button' %>
+<% end %>
+
+<p>
+  <%= link_to 'Show', admin_merchandise_product_related_product_path( @related_product ), :class => 'button' %>
+  <%= link_to 'View All', admin_merchandise_product_related_products_path, :class => 'button' %>
+</p>

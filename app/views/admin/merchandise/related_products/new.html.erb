@@ -1,0 +1,12 @@
+<%= render :partial => '/admin/merchandise/sub_header'%>
+
+<h3 class="page-title">New Related product</h3>
+
+<%= form_for(@related_product, :url => admin_merchandise_product_related_products_path(@product)) do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <%= f.submit 'Create', :class => 'button' %>
+<% end %>
+
+<p>
+  <%= link_to 'Back to List', admin_merchandise_product_related_products_path, :class => 'button' %>
+</p>

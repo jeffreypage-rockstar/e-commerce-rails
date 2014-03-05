@@ -27,9 +27,24 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.active.find(params[:id])
-    # debugger
+    if current_user
+      @rock_product = ProductRock.find_by_product_id_and_user_id(@product.id,current_user.id) if @product
+    end
     form_info
     @cart_item.variant_id = @product.active_variants.first.try(:id)
+  end
+
+  def rock_product
+    @product = Product.active.find(params[:id])
+    if current_user.present?
+      @rock_product = ProductRock.first_or_initialize(:user_id=> current_user.id,:product_id=>@product.id)
+      if params[:unrock]
+        @rock_product.destroy
+      else
+        @rock_product.save
+      end
+    end
+    render :text => "Done" and return false
   end
 
   private

@@ -149,6 +149,7 @@
 			<ul class="sub">
 				<% if current_user.super_admin? %>
 					<li> <%= link_to "Static Pages", admin_static_pages_path %></li>
+					<li> <%= link_to "Banners", admin_banners_path %></li>
 				<%end%>
 				<%if current_user.super_admin? || current_user.designer? || current_user.admin?%>
 					<li> <%= link_to "Blog Categories", admin_blog_categories_path %></li>

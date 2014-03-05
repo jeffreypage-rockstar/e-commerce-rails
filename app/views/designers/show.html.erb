@@ -1,0 +1,23 @@
+<div style="float:left">
+
+<%if @designer.images.present?%>
+	<%=image_tag @designer.images[0].photo.url(:large)%>
+<%end%>
+</div>
+<div style="float:left">
+	<%=@designer.title.present? ? @designer.title : ""%>
+	<br/>
+	<%=@designer.about_me.present? ? @designer.about_me : ""%>
+	<br/>
+	<%if @designer_products.present?%>
+		<%@designer_products.each do |product|%>
+			<%if product.images.present?%>
+				<div style="float:left">
+					<%=link_to image_tag(product.images[0].photo.url(:small)),product_path(product)%>
+					<br/>
+					<%= product.name%>
+				</div>
+			<%end%>
+		<%end%>
+	<%end%>
+</div>

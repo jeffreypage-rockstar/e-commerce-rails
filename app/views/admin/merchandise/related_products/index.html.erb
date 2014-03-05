@@ -1,0 +1,31 @@
+<%= render :partial => '/admin/merchandise/sub_header'%>
+
+<div class='admin_title_header'>
+  <h3 class="page-title">RelatedProducts</h3>
+  <%= link_to "New Related product", new_admin_merchandise_product_related_product_path, :class => 'button' %>
+</div>
+
+<div class="admin_related_products">
+  <div class="admin_users">
+    <%#=render :partial=>"/shared/filters"%>
+  </div>
+
+  <table class="table table-striped table-hover table-bordered table-hd" >
+    <thead>
+    <tr class='odd'>
+      <th class='column1_header'>Image</th>
+      <th class='column1_header'>Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <% for related_product in @related_products %>
+      <tr class='<%= cycle("odd", "")%>'>
+        <td><%= link_to related_product.product.images.present?  ? image_tag(related_product.product.images[0].photo.url(:small) ,:height=>100) : "N/A" %></td>
+        <td><%= link_to related_product.product.name%></td>
+        <td><%= link_to "Edit", edit_admin_merchandise_product_related_product_path(@product,related_product) %></td>
+        <td><%= link_to "Delete", admin_merchandise_product_related_product_path(@product,related_product), confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
