@@ -92,6 +92,7 @@ class Shopping::OrdersController < Shopping::BaseController
     @credit_card ||= ActiveMerchant::Billing::CreditCard.new()
     @order.credited_total
   end
+  
   def require_login
     if !current_user
       session[:return_to] = shopping_orders_url

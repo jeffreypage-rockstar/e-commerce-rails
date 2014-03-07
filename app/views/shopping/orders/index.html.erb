@@ -92,23 +92,23 @@
       <div class='row'>
         <div class="field six large-6 column">
           <%= label_tag 'First' %>
-           <%= text_field_tag(:first_name, @credit_card.first_name) %>
+           <%= text_field_tag(:first_name, @credit_card.first_name,:placeholder=>"Ryan") %>
         </div>
 
         <div class="field six large-6 column">
           <%= label_tag :last_name, 'Last' %>
-           <%= text_field_tag(:last_name, @credit_card.last_name) %>
+           <%= text_field_tag(:last_name, @credit_card.last_name,:placeholder=>"Bates") %>
         </div>
       </div>
       <div class='clear'></div>
       <div class='row'>
         <div class="field twelve large-8 column">
           <%= label_tag 'Number'%>
-           <%= text_field_tag(:number, @credit_card.number ,:class => ' disableAutoComplete', :autocomplete => "off") %>
+           <%= text_field_tag(:number, @credit_card.number ,:class => ' disableAutoComplete', :autocomplete => "on",:placeholder=>"4024007148673576") %>
         </div>
         <div class="field three large-3 column">
           <%= label_tag :verification_value, 'VCC'%>
-           <%= text_field_tag(:verification_value, @credit_card.verification_value ,:class => 'disableAutoComplete', :autocomplete => "off") %>
+           <%= text_field_tag(:verification_value, @credit_card.verification_value ,:class => 'disableAutoComplete', :autocomplete => "on",:placeholder=>"123") %>
         </div>
       </div>
       <div class='twelve large-12 clearfix custom'>
