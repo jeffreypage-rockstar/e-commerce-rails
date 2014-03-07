@@ -58,6 +58,7 @@ class User < ActiveRecord::Base
   has_many    :users_newsletters
   has_many    :newsletters, through: :users_newsletters
   has_many    :commissions
+  has_many    :products
 
   has_many  :referrals, class_name: 'Referral', foreign_key: 'referring_user_id' # people you have tried to referred
   has_one   :referree,  class_name: 'Referral', foreign_key: 'referral_user_id' # person who referred you

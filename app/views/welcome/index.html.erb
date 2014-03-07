@@ -1,5 +1,7 @@
 <%if params[:option] == "brand"%>
 	<%=render :partial => "/welcome/brands"%>
+<%elsif params[:option] == "style"%>
+	<%=render :partial => "/welcome/style"%>
 <%else%>
 	<ul>	
 		<li class="tab1"><a href="<%=root_path(:option=>"brand")%>"><span>Brand</span></a></li>

@@ -1,0 +1,7 @@
+<%@designers.each do |designer|%>
+	<div style="float:left">
+		<%=link_to designer.images.present? ? image_tag(designer.images[0].photo.url(:large)) : designer.name,designer_path(designer)%><br/>
+		<%=designer.name%>
+	</div>
+<%end%>
+<div style="clear:both"></div>

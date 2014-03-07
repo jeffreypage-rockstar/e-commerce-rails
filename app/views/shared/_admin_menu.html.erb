@@ -30,7 +30,7 @@
 			</li>
 		<%end%>
 
-		<% if current_user.super_admin? %>
+		<% if current_user.super_admin? || current_user.designer?%>
 			<li class="active has-sub"><%#=  link_to site_name, :root %></li>
 			<li class="has-sub ">
 			  <a href="javascript:;">
@@ -43,6 +43,9 @@
 					<!-- <li><%#= link_to 'Create Order', admin_shopping_carts_path %></li> -->
 					<!-- <li><%#= link_to 'Old Orders', admin_history_orders_path %></li> -->
 					<li><%= link_to 'Shipments', admin_fulfillment_shipments_path %></li>
+					<li><%= link_to 'Invoices', admin_document_invoices_path %></li>
+		    		<li><%= link_to 'Orders', admin_fulfillment_orders_path %></li>
+		    		
 				</ul> 
 			</li>
 		<%end%>
@@ -80,18 +83,7 @@
 			</ul> 
 		</li> 
 
-		 <li class="has-sub">
-		  <a href="javascript:;">
-			<i class="icon-user"></i> 
-			<span class="title">Users</span>
-			<span class="arrow "></span>
-			</a>
-			<ul class="sub">
-				<li><%#= link_to "Users", admin_users_path %></li>
-				<li><%#= link_to 'Users',      admin_users_path %></li>
-		    	<li><%#= link_to 'Referrals',  admin_user_datas_referrals_path %></li>
-			</ul> 
-		</li>-->
+		-->
 		<% if current_user.super_admin? %>
 			 <li class="has-sub">
 			  <a href="javascript:;">
@@ -149,6 +141,7 @@
 			<ul class="sub">
 				<% if current_user.super_admin? %>
 					<li> <%= link_to "Static Pages", admin_static_pages_path %></li>
+					<li> <%= link_to "Banners", admin_banners_path %></li>
 				<%end%>
 				<%if current_user.super_admin? || current_user.designer? || current_user.admin?%>
 					<li> <%= link_to "Blog Categories", admin_blog_categories_path %></li>
@@ -160,18 +153,18 @@
 			</ul> 
 		</li>
 		
-		<!-- <li class="has-sub">
+		 <li class="has-sub">
 		  <a href="javascript:;">
 			<i class="icon-signal"></i> 
 			<span class="title">Reports</span>
 			<span class="arrow "></span>
 			</a>
 			<ul class="sub">
-				<li><%#= link_to "Reports", admin_reports_overview_path %></li>
-				<li><%#= link_to 'Graphs', admin_reports_graphs_path %></li>
-		    	<li><%#= link_to 'Help', admin_help_path %></li>
+				<li><%= link_to "Reports", admin_reports_overview_path %></li>
+				<li><%= link_to 'Graphs', admin_reports_graphs_path %></li>
+		    	<!-- <li><%#= link_to 'Help', admin_help_path %></li> -->
 			</ul> 
-		</li> -->
+		</li>
 		
 	<!-- 	<%# unless recent_admin_users.empty? %>
 			<li class="has-sub">

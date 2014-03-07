@@ -46,15 +46,15 @@ class Shopping::OrdersController < Shopping::BaseController
                                           {:email => @order.email, :billing_address=> address, :ip=> @order.ip_address },
                                           @order.amount_to_credit)
         
-        #if response.succeeded?
+        if response.succeeded?
           expire_all_browser_cache
           ##  MARK items as purchased
           session_cart.mark_items_purchased(@order)
           session[:last_order] = @order.number
           redirect_to( confirmation_shopping_order_url(@order) ) and return
-        #else
-        #  flash[:alert] =  [I18n.t('could_not_process'), I18n.t('the_order')].join(' ')
-        #end
+        else
+          flash[:alert] =  [I18n.t('could_not_process'), I18n.t('the_order')].join(' ')
+        end
       else
         flash[:alert] = [I18n.t('could_not_process'), I18n.t('the_credit_card')].join(' ')
       end
@@ -92,6 +92,7 @@ class Shopping::OrdersController < Shopping::BaseController
     @credit_card ||= ActiveMerchant::Billing::CreditCard.new()
     @order.credited_total
   end
+  
   def require_login
     if !current_user
       session[:return_to] = shopping_orders_url

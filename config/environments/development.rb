@@ -51,17 +51,17 @@ Hadean::Application.configure do
     #Formtastic::SemanticFormBuilder.send(:include, Formtastic::YearPicker)
 
     ActiveMerchant::Billing::Base.mode = :test
-    #::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
-    #  :login      => Settings.paypal.login,
-    #  :password   => Settings.paypal.password,
-    #  :signature  => Settings.paypal.signature
-    #)
-
-    ::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
-      :login    => Settings.authnet.login,
-      :password => Settings.authnet.password,
-      :test     => true   #  Make sure this is pointing to the authnet test server.  This needs to be uncommented to test capturing a payment.
+    ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+      :login      => Settings.paypal.login,
+      :password   => Settings.paypal.password,
+      :signature  => Settings.paypal.signature
     )
+
+    #::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
+    #  :login    => Settings.authnet.login,
+    #  :password => Settings.authnet.password,
+    #  :test     => true   #  Make sure this is pointing to the authnet test server.  This needs to be uncommented to test capturing a payment.
+    #)
 #
 #    ::CIM_GATEWAY = ActiveMerchant::Billing::AuthorizeNetCimGateway.new(
 #      :login    => Settings.authnet.login,
@@ -82,4 +82,11 @@ Hadean::Application.configure do
                               :default_style => :product,
                               :url => "/assets/products/:id/:style/:basename.:extension",
                               :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension" }
+
+  PAPERCLIP_STORAGE_OPTS_BANNER = {  :styles => {
+                                          :small    => '100x100>',
+                                          :large    => '600x600>' },
+                                          :default_style => :large,
+                                          :url => "/assets/banners/:id/:style/:basename.:extension",
+                                          :path => ":rails_root/public/assets/banners/:id/:style/:basename.:extension" }
 end

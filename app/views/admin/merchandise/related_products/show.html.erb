@@ -1,0 +1,15 @@
+<%= render :partial => '/admin/merchandise/sub_header'%>
+
+<h3 class="page-title">Related product - <%= @related_product.name %></h3>
+
+<p>
+  <strong>Name:</strong>
+  <%= @related_product.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_admin_merchandise_product_related_product_path(@related_product), :class => 'button' %>
+  <%= link_to "Delete", admin_merchandise_product_related_product_path(@related_product), :data => {:confirm => 'Are you sure?'}, :method => :delete, :class => 'button' %>
+  <%= link_to "New Related product", new_admin_merchandise_product_related_product_path, :class => 'button' %>
+  <%= link_to "View All", admin_merchandise_product_related_products_path, :class => 'button' %>
+</p>

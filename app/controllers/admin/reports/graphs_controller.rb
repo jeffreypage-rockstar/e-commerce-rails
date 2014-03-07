@@ -1,5 +1,5 @@
 class Admin::Reports::GraphsController < Admin::Reports::BaseController
-  layout 'admin_charts'
+  #layout 'admin_charts'
   def index
 
   end
