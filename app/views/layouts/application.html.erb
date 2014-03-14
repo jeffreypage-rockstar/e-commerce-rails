@@ -24,10 +24,11 @@
   <header>
     <div class="row-fluid top-login">
       <div class="container">
-          <p><% unless current_user %>
-            <div class="span4 pull-left">Welcome to MadDot, you can 
-              <%= link_to 'Login',  login_path %>
-              or <a href="<%=login_path%>">create an account</a>
+          <% unless current_user %>
+            <div class="span6 pull-left ">
+                Welcome to MadDot, you can <%= link_to 'Login',  login_path %> or
+                <a href="<%=login_path%>">create an   account
+              </p>
             </div>
             <% else %>
               <div class="span9 top-menu">
@@ -37,7 +38,7 @@
                 <% end %>
                 <%= link_to 'Log Out', logout_path, method: :delete %>
               </div>
-            <%end%> </p>
+            <%end%>
         <div class="span2 pull-right">
           <ul class="top-language">
             <li><a href="#">USD <i><img src="/assets/main/down-arrow.png" alt=""></i></a></li>
