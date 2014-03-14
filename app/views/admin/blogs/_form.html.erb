@@ -24,28 +24,13 @@
      </div>
 </div>
 
-<div class="control-group">
-  <label class="control-label">Image </label>
+ <div class="control-group">
+    <label class="control-label">Banner</label>
     <div class="controls">
-      <div id="product_images" class='span-16'>
-        <fieldset>
-          <legend>Images - <%= add_child_link "New Image", :images %></legend>
-
-          <%= new_child_fields_template f, :images, :form_builder_local => :image_form %>
-
-          <div id="blog_images" class='span-16'>
-            <% @blog.images.each do |image| %>
-              <div id='image_<%= image.id %>' class="variant_form left span-16 last">
-                <%= f.fields_for :images, image do |image_form|%>
-                  <%= render :partial => 'image', :locals => {:image_form => image_form } %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-        </fieldset>
-      </div>
+        <%if f.object.image.present?%><%=image_tag(f.object.image.url(:small))%><%end%>
+        <%= f.file_field   :image %>
     </div>
-</div>
+ </div>
 
 <div class="control-group">
   <label class="control-label">Status </label>

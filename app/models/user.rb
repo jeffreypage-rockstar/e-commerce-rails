@@ -55,6 +55,7 @@ class User < ActiveRecord::Base
 
   belongs_to :account
 
+  has_many    :blogs
   has_many    :users_newsletters
   has_many    :newsletters, through: :users_newsletters
   has_many    :commissions
@@ -145,6 +146,11 @@ class User < ActiveRecord::Base
     end
 
   end
+
+  FEATURED = {    
+    1 => 'Yes',
+    0 => 'No'
+  }
 
   # returns true or false if the user is active or not
   #

@@ -58,7 +58,7 @@ class Admin::BlogsController < Admin::BaseController
 	      (params[:status].casecmp(" Active")) == 0 ? status = 1 : status = 0
 	      params[:values].each do |ele|
 	          @blog = Blog.find(ele.to_i)
-	          unless @blog.update_attribute(:status, status )
+	          unless @blog.update_attribute(user_params)
 	            err =1
 	          end
 	      end
@@ -68,7 +68,7 @@ class Admin::BlogsController < Admin::BaseController
 	        flash[:notice] = (params[:status].casecmp(" Active")) == 0 ? 'Activated Successfully' : 'In-activated Successfully'
 	      end
 	    else
-	    	@blog = Blog.find(params[:id])
+    		@blog = Blog.find(params[:id])
 	  	  respond_to do |format|
 	  	    if @blog.update_attributes(user_params)
 	  	      format.html  { redirect_to(admin_blogs_path,

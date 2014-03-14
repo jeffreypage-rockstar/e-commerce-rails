@@ -53,6 +53,8 @@ class Product < ActiveRecord::Base
 
   GENDER = {"Male"=>"Male","Female"=>"Female"}
   CONDITION_OF_PRODUCT = {"New"=>"New","Old"=>"Old"}
+  SUPER_HOT = {"Yes"=> true,"No"=> false}
+  FEATURED = {"Yes"=> true,"No"=> false}
 
   before_validation :sanitize_data
   before_validation :not_active_on_create!, on: :create
@@ -71,6 +73,11 @@ class Product < ActiveRecord::Base
   validates :permalink,             uniqueness: true,      length: { maximum: 150 }
 
   validate  :ensure_available
+
+  # => Scopes
+  scope :super_hot, :conditions => ["#{Product.table_name}.super_hot = ?",true]
+  scope :featured_products, :conditions => ["#{Product.table_name}.featured = ?",true]
+  scope :new_arrivals, :conditions => "#{Product.table_name}.condition_of_product = 'New'"
 
   def hero_variant
     active_variants.detect{|v| v.master } || active_variants.first

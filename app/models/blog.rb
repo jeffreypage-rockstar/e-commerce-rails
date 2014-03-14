@@ -1,14 +1,10 @@
 class Blog < ActiveRecord::Base
 	# => Relations 
 	has_many   :comments, as: :commentable
-	
-	has_many :images, -> {order(:position)},
-                    as:        :imageable,
-                    dependent: :destroy
-
-    belongs_to :blog_category
-    accepts_nested_attributes_for :images,             reject_if: proc { |t| (t['photo'].nil? && t['photo_from_link'].blank?) }, allow_destroy: true
-
+	has_attached_file :image, PAPERCLIP_STORAGE_OPTS_BANNER ##  this constant is in /config/environments/*.rb
+	belongs_to :blog_category
+	belongs_to :user
+    
 	ACTIVE    = 1
 	INACTIVE  = 0
 

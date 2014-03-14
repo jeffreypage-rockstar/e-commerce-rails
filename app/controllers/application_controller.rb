@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
                 :select_countries,
                 :customer_confirmation_page_view
 
-  before_filter :secure_session
+  before_filter :secure_session ,:check_user_session
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied."
@@ -37,6 +37,19 @@ class ApplicationController < ActionController::Base
 
   def product_types
     @product_types ||= ProductType.roots
+  end
+
+  def check_user_session
+    unless current_user
+      @user_session = UserSession.new
+      @user = User.new
+    end
+    if session_cart
+      @cart_items       = session_cart.shopping_cart_items
+      @saved_cart_items = session_cart.saved_cart_items
+    end
+    @brands = Brand.all.in_groups_of(6)
+    
   end
 
   private

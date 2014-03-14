@@ -1,0 +1,41 @@
+
+<div class="topslider">
+      <div id="myCarousel" class="topslider carousel slide">
+        <ol class="carousel-indicators">
+          <%@banners.each_with_index do |banner,index|%>
+            <li data-target="#myCarousel" data-slide-to="<%=index%>" class="<%=index == 0 ? 'active' : '' %>"></li>
+          <%end%>
+        </ol>
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+          <%@banners.each_with_index do |banner,index|%>
+            <div id="<%=index%>" class="<%=index == 0 ? 'active' : '' %> item">
+              <%=image_tag(banner.image.url(:original),style: 'width:1300px;height:550px')%>
+              <div class="carousel-caption">
+                <h2><%=banner.title%></h2>
+                <p><%=banner.description%></p>
+                <a href="<%=banner.link%>">Shop now</a> <a href="/login">Login</a> 
+              </div>
+            </div>
+          <%end%>
+          <!-- <div class="active item">
+            <div class="pull-right"><img src="/assets/main/sleder-img1.png" alt=""></div>
+            <div class="span6 pull-left carousel-caption">
+              <h2>2014 New style.</h2>
+              <p>Donec sagittis quis purus quis ultricies. Donec aliquet, nulla eget 
+                aliquam tincidunt, eros neque commod interdum nibh lectus sed libero. Duis pretium commodo tempor, mauris risus ipsum. 
+                Duis vel ullamcorper sem.</p>
+              <a href="#">Shop now</a> <a href="#">Shop now</a> 
+            </div>
+          </div>
+          <div class="item">
+            <img src="/assets/main/sleder-img1.png" alt="">
+          </div>
+          <div class="item">
+            <img src="/assets/main/sleder-img1.png" alt="">
+          </div> -->
+        </div>
+        <!-- Carousel nav --> 
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a> <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a> 
+      </div>
+    </div>

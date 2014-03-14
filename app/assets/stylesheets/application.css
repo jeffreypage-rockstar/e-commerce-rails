@@ -1,5 +1,6 @@
 /** application.css
-   *= require_self
-   *= require	slider/jquery.bxslider
-   
+   *= require main/dev_style	
+   *= require main/style
+   *= require main/bootstrap
+   *= require main/bootstrap-responsive
 */

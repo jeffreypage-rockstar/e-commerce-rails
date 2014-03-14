@@ -1,13 +1,53 @@
-<div>Blog Categories</div>
-<ul> 
-<%@blog_categories.each do |bc|%>
-	<li><%=link_to bc.name,blogs_path(:blog_category_id=>bc.id)%></li>
-<%end%>
-	<li><%=link_to "All",blogs_path%></li>
-</ul>
-<%@blogs.each do |blog|%>
-	<div style="padding:20px">
-		<%=blog.blog_category.name%> >> <%=blog.created_at%> >> <%=link_to blog.title,blog_path(blog)%> 
-		<br/>
-	</div>
-<%end%>
+<div class="row-fluid breadcrumb-full-bg">
+  <div class="container">
+    <h1>Mad Dot Blog</h1>
+    <ul class="breadcrumb pull-right">
+      <li><a href="/">Home</a> <span class="divider">→</span></li>
+      <li class="active">Mad Dot Blog</li>
+    </ul>
+  </div>
+</div>
+<div class="container blog-page">
+  <div class="row">
+    <div class="span8">
+    	<%@blogs.each do |blog|%>
+    	  <div class="blog-box">
+          <h2><%=blog.title%></h2>
+          <div class="blog-img"><%=image_tag(blog.image.url)%></div>
+          <div class="row">
+            <div class="span2 date-comment"><%=blog.created_at.strftime("%d %b %Y")%><span><a href="#"><%=blog.comments.size%> comment(s)</a></span></div>
+            <div class="span6">
+              <p><%=truncate(strip_tags(blog.description), length: 600)%></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span2 blog-postby">by <%=blog.user.name%><span>tags: Fashion, Clothes</span></div>
+            <div class="span2"><a href="<%=blog_path(blog)%>" class="read-more">Read more &gt;</a></div>
+          </div>
+        </div>
+    	<%end%>
+      <div class="row">
+        <div class="span3 paging-show"><%= page_entries_info @blogs %></div>
+        <!--Paging Section Starts here-->
+        <div class="pagination pagination-right pagination_dev">
+          	<%= will_paginate @blogs, :container => false %>
+        </div>
+        <!--Paging Section Ends here--> 
+      </div>
+    </div>
+    <div class="span4 blog-cat">
+      <div class="cat-hd">
+        <h1>Categories</h1>
+      </div>
+      <div id="accordion2" class="accordion">
+      	<%@blog_categories.each do |bc|%>
+					<div class="accordion-group">
+            <div class="accordion-heading"> 
+            	<a href="<%=blogs_path(:blog_category_id=>bc.id)%>" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle"><%=bc.name%><span class="plus-icon"></span> </a> 
+            </div>
+          </div>
+        <%end%>  
+      </div>
+    </div>
+  </div>
+</div>

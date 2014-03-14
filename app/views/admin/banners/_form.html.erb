@@ -9,12 +9,24 @@
     </ul>
   </div>
 <% end %>
-<div class="control-group">
+  <div class="control-group">
     <label class="control-label">Title</label>
     <div class="controls">
        <%=f.text_field :title ,:class=>"span5 m-wrap"%>
     </div>
- </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Description</label>
+    <div class="controls">
+       <%=f.text_area :description ,:class=>"span5 m-wrap"%>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Link</label>
+    <div class="controls">
+       <%=f.text_field :link ,:class=>"span5 m-wrap"%>
+    </div>
+  </div>
 
  <div class="control-group">
     <label class="control-label">Banner</label>

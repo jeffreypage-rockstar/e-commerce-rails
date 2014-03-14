@@ -1,55 +1,94 @@
 <!DOCTYPE html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
 <html>
+<!--<![endif]-->
 <head>
 <title>:: Mad Dot ::</title>
-<link rel="stylesheet" type="text/css" href="/assets/main/dev_style.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <%= stylesheet_link_tag "normalize.css" %>
-  <%= stylesheet_link_tag "foundation_and_overrides.css" %>
-  <%= stylesheet_link_tag 'site/app.css' %>
-  <%= javascript_include_tag 'vendor/custom.modernizr' %>
+  <%#= stylesheet_link_tag "normalize.css" %>
+  <%#= stylesheet_link_tag "foundation_and_overrides.css" %>
+  <%#= stylesheet_link_tag 'site/app.css' %>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag 'vendor/custom.modernizr' %>
   <%= csrf_meta_tag %>
   <%= render 'shared/metadata' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
 </head>
-<body class="bod-bg">
-<!--Main Wrapper Starts Here-->
-<div id="main-container">
+<body>
+<div id="main-container"> 
+  <!--Header Starts here-->
   <header>
-    <div class="center-inner-cont">
-      <div class="float-div">
-        <div class="my-img" style="height:65px;width:190px"> &nbsp;
-          <a href="#"><img src="/assets/main/my-img.gif" alt="" /></a>
-        </div>
-          <div class="login-div" style="display:none;float:right">
-            <% unless current_user %>
+    <div class="row-fluid top-login">
+      <div class="container">
+          <p><% unless current_user %>Welcome to MadDot, you can 
+            <div class="span4 pull-left">
               <%= link_to 'Login',  login_path %>
+              or <a href="<%=login_path%>">create an account</a>
+            </div>
             <% else %>
-              <% if current_user.admin? || current_user.designer? %>
-                <%= link_to 'Admin', admin_path %>|
-              <% end %>
-              <%= link_to 'Log Out', logout_path, method: :delete %>
-            <%end%>
-          </div>
-        <div class="inner-page-logo"> 
-          <a href="/"><img src="/assets/main/inner-logo-mad-logo.gif" alt="" /></a> 
+              <div class="span9 top-menu">
+                <a href="/">Home</a> <a href="<%=myaccount_overview_path%>">My Profile</a><a href="#">My Favorites</a><a href="/shopping/cart_items">Shopping Bag (<%if @cart_items.present?%><%=@cart_items.size%><%else%>0<%end%>)</a>
+                <% if current_user.admin? || current_user.designer? %>
+                  <%= link_to 'Admin', admin_path %>|
+                <% end %>
+                <%= link_to 'Log Out', logout_path, method: :delete %>
+              </div>
+            <%end%> </p>
+        <div class="span2 pull-right">
+          <ul class="top-language">
+            <li><a href="#">USD <i><img src="/assets/main/down-arrow.png" alt=""></i></a></li>
+            <li class="last"><a href="#">English<i><img src="/assets/main/down-arrow.png" alt=""></i></a></li>
+          </ul>
         </div>
       </div>
     </div>
-  </header>
-  <section>
-    <div class="center-inner-cont">
-      <%=yield%>
+    <div class="row-fluid logo-main">
+      <div class="container">
+
+        <div class="span4 logo"><a href="/"><img src="/assets/main/logo-mad-dot.png" alt=""></a></div>
+        <%if current_user%>
+          <!--Shopping Bag Section Starts here-->
+          <%=render partial: "/shopping/cart_items/home_cart_items"%>
+          <!--Shopping Bag Section Ends here-->
+        <%else%>
+          <div class="span5 pull-right resister-field">
+            <%= form_for  @user_session, :as => :user_session,:url => user_sessions_path(@user_session),:html => {:class => 'span-12 custom'} do |form| %>
+              <div class="resister-field-left">
+                <%= form.email_field :email,:placeholder=> "Email"%>
+                <%= form.password_field :password, :autocomplete => 'off', :autocapitalize => 'off',:placeholder=> "Password" %>
+              </div>
+              <div class="resister-field-right">
+                <input class="register" name="" type="button" value="Register">
+                <%= form.submit "Login", :class => 'login' %>
+              </div>
+            <%end%>
+          </div>
+        <%end%>
+      </div>
     </div>
+    <div class="container">
+      <%=render partial: "/layouts/main_menu"%>
+    </div>
+    <!-- Slider Start here-->
+    <!-- Slider End here--> 
+  </header>
+  <!--Header Ends here--> 
+  
+  <!--Section Starts here-->
+  <section>
+    <%=yield%>
   </section>
-  <!--Footer Wrapper Starts Here-->
-  <footer>
-    <div class="copy-right">Copyright &copy; 2014 mrmaddot All rights reserved.</div>
-  </footer>
-  <!--Footer Wrapper Ends Here--> 
+  <!--Section Ends here--> 
+  
+  <!--Footer Starts here-->
+  <%=render partial: "/layouts/footer"%>
+  <!--Footer Ends here--> 
+  
 </div>
-<!--Main Wrapper Ends Here-->
+
 </body>
 </html>

@@ -85,7 +85,7 @@
 												<tr class="">
 													<td><input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" /></td>
 													<td><%=sp.title%></td>
-													<td><%=sp.description%></td>
+													<td><%=truncate(sp.description,legth: 100)%></td>
 													<td class="text-center"><i class="icon-ok icon-center-<%= sp.active? ? 'check' : 'uncheck' %>"></i></td>
 													<td class="text-center">
 														<a href="<%=edit_admin_blog_path(sp.id)%>"><i class="icon-edit icon-center-edit"></i></a>
@@ -109,7 +109,7 @@
                                 
                                 <div class="row-fluid table-top-cont">
                                 	<div style="float:right">
-                                		<div class="dataTables_paginate paging_bootstrap digg_pagination">
+                                		<div class="dataTables_paginate paging_bootstrap digg_pagination ">
                                 			<%= will_paginate @blogs, :container => false %>
                                 		</div>
                                 		<label class="showing-records"><%= page_entries_info @blogs %></label>

@@ -1,77 +1,128 @@
-<%=link_to "Back to Blogs" ,blogs_path%>
-
-<%=raw(@blog.description)%>
-
-  <div id="player"></div>
-
-  	<div id="blog_images" class='span-16'>
-	<% @blog.images.each do |image| %>
-	  <div id='image_<%= image.id %>' class="variant_form left span-16 last">
-	    <% if image.present? %>
-	      <%= image_tag image.photo.url(:small) %> <br />
-	    <% end %>
-	  </div>
-	<% end %>
-	</div><div style="clear:both"></div>
-
-  <div id="comments">
-
-  	<h1> Comments </h1>
-
-  	<div id="comment_grid_wrapper" class='pretty_table'>
-  	  <table>
-  	    <thead>
-  	      <tr class='odd'>
-
-  	          <th>Comment</th>
-  	          <th>Commentable Type</th>
-  	          <th>Created By</th>
-  	          <th>User</th>
-  	      </tr>
-  	    </thead>
-  	    <tbody>
-  	    <% for comment in @comments %>
-  	      <tr  class='<%= cycle("odd", "")%>'>
-
-  	          <td><%if comment.created_by.to_i == current_user.id.to_i%><%= link_to comment.note[0..100], "" %><%else%><%=comment.note%><%end%>
-              </td>
-  	          <td><%= comment.commentable_type %></td>
-  	          <td><%= comment.author.try(:name) %></td>
-  	          <td><%= comment.user.try(:name) %></td>
-  	      </tr>
-  	    <% end %>
-  	    </tbody>
-  	  </table>
-  	</div>
-
-  	<%= will_paginate @comments %>
-
-  	<p>
-		
-  	 
-  	 <%#= link_to "Back to #{@blog.name}", admin_user_path(@blog), :class => 'small button'  %>
-  	</p>
-
-
-  </div>
-
-  <%if current_user%>
-    <%= form_for @comment, :url => blog_comments_path(@blog),:html=>{:id=>"new_blog_comments"} do |f| %>
-        <%= f.error_messages %>
-        <ul>
-          <li class="field">
-            <%= f.label :note %>
-            <%= f.text_area :note %>
-            <%=f.hidden_field :created_by,:value=>current_user.id%>
-            <%=f.hidden_field :user_id,:value=>@blog.user_id%>
-          </li>
+<div class="row-fluid breadcrumb-full-bg">
+      <div class="container">
+        <h1>Mad Dot Blog</h1>
+        <ul class="breadcrumb pull-right">
+          <li><a href="/">Home</a> <span class="divider">→</span></li>
+          <li class="active">Mad Dot Blog</li>
         </ul>
-        <%= f.submit 'Create' , :class => 'button' %>
-      <% end %>
-  <%else%>
-    <%=link_to "Login to Commnet","/login"%>
-  <%end%>
+      </div>
+    </div>
+    <div class="container blog-page">
+      <div class="row">
+        <div class="span8 blog-detail">
+          <div class="blog-box">
+            <div class="blog-detail-hd">
+              <h1><%=@blog.title%></h1>
+            </div>
+            <div class="blog-img"><%=image_tag(@blog.image.url)%></div>
+            <div class="row">
+              <div class="span2">
+              <div class="date-comment"><%=@blog.created_at.strftime("%d %b %Y")%><span><a href="#"><%=@blog.comments.size%> comment(s)</a></span></div>
+              <div class="blog-postby"><%=@blog.user.name%><span>tags: Fashion, Clothes</span></div>
+              </div>
+              <div class="span6">
+                <%=raw(@blog.description)%>
+              </div>
+            </div>
+            <div class="row">
+              <div class="span2">
+                  <span class="share-text">Share:</span>
+                </div>
+                <div class="span6 solcial-share">
+                  <!-- AddThis Button BEGIN -->
+                  <div class="addthis_toolbox addthis_default_style ">
+                    <span style="width:200px"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a></span>
+                    <a class="addthis_button_tweet"></a>
+                  <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+                  <a class="addthis_counter addthis_pill_style"></a>
+                  </div>
+                  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-5322fc0a7e8b5fc1"></script>
+                  <!-- AddThis Button END -->
+                </div>
+            </div>
+            
+            <div class="blog-comment-main">
+            <div class="row">
+              <div class="span2 comment-hd-text">Comments (<%=@comments.size%>)</div>
+                <div class="span6 blank-border-bot">&nbsp;</div>
+            </div>
+            <%@comments.each do |comment|%>
 
+              <div class="comment-row1">
+                <div class="comment-thumb">
+                  <div class="thumb-img"><a href="#">
+
+                    <%if  comment.author && comment.author.images[0]%>
+                      <%=image_tag(comment.author.images[0].photo.url(:small))%>
+                     <%else%>
+                      <img src="/assets/main/comment-thumb.jpg" alt=""></a>
+                     <%end%>
+                  </div>
+                  <div class="thumb-img-name"><a href="#"><%= comment.author.try(:name) %></a>
+                    <span>4<%=comment.created_at.strftime("%d.%b.%Y")%></span></div>
+                  </div>
+                  <div class="comment-box">
+                    <h3><a href"#" class="reply-link">Reply</a>Mauris mattis molestie</h3>
+                      <p><%=  comment.note %></p>
+                  </div>
+              </div>
+            <%end%>
+           
+
+    
+            <div class="leave-comment-form">
+             <%if current_user%>
+              <%= form_for @comment, :url => blog_comments_path(@blog),:html=>{:id=>"new_blog_comments"} do |f| %>
+            
+              <div class="row">
+                <!-- <div class="span4">
+                <input name="" type="text" placeholder="Enter your name*" class="user-inp-icon">
+                <input name="" type="text" placeholder="Enter your E-mail*" class="email-inp-icon">
+                <input name="" type="text" placeholder="Enter your subject*" class="sub-inp-icon">
+                </div> -->
+                <div class="span4"><h2>LEAVE A COMMENT</h2>
+                  <%= f.text_area :note ,placeholder: 'Enter your massage' , class: 'edit-icon-textarea'%>
+                  <%=f.hidden_field :created_by,:value=>current_user.id%>
+                  <%=f.hidden_field :user_id,:value=>@blog.user_id%>
+                </div>
+                </div>
+                <div class="row">
+                <div class="span4 comment-form-req">
+                  <p>Your email address will not be published.<br> 
+                    Required fields are marked <span class="req-field">*</span></p></div>
+                  <div class="span4">
+                    <%=f.submit "POST COMMENT" ,class: "btn-post-comment" %>
+                  </div>
+                </div>
+              <%end%>
+            <%else%>
+              <%=link_to "Login to Commnet","/login"%>
+            <%end%>
+            </div>
+            </div>
+
+          </div> 
+        </div>
+        <div class="span4 blog-cat">
+          <div class="cat-hd">
+            <h1>Categories</h1>
+          </div>
+          <div id="accordion2" class="accordion">
+            <%@blog_categories.each do |bc|%>
+              <div class="accordion-group">
+                <div class="accordion-heading"> 
+                  <a href="<%=blogs_path(:blog_category_id=>bc.id)%>" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle"><%=bc.name%><span class="plus-icon"></span> </a> 
+                </div>
+              </div>
+            <%end%>  
+          </div>
+        </div>
+      </div>
+    </div>
+
+  	
+
+  
     <script>
       // 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
