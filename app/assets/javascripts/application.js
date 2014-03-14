@@ -1,4 +1,7 @@
 //= require admin/jquery-1.8.3.min
+//= require bootstrap/bootstrap
+//= require bootstrap/bootstrap-collapse
+//= require bootstrap/bootstrap-dropdown
 //= require new_sliders/carouFredSel
 //= require new_sliders/jquery.bxslider
 //= require jquery_ujs
@@ -6,6 +9,7 @@
 //= require admin/jquery-ui-1.10.1.custom.min
 //= require admin/jquery.slimscroll.min
 //= require admin/bootstrap.min
+//= require admin/bootstrap-colorpicker
 //= require admin/jquery.blockui
 //= require admin/jquery.cookie
 //= require admin/jquery.vmap
@@ -19,11 +23,27 @@
 //= require admin/app
 //= require foundation
 //= require ckeditor/init
-
 //= require_tree .
 
 $(function(){ 
   $(document).foundation();
+  $('.carousel').carousel();
+  $('#myCarousel').on('slid', function() {
+      var to_slide = $('#myCarousel .carousel-inner .item.active').attr('id');
+      $('.carousel-indicators').children().removeClass('active');
+      $('.carousel-indicators [data-slide-to=' + to_slide + ']').addClass('active');
+  });
+  $('#MyProdctslider').on('slid', function() {
+      var to_slide = $('#MyProdctslider .carousel-inner .item.active').attr('id');
+      $('.product-indicators ul li .active').removeClass('active');
+      $('.product-indicators [data-slide-to=' + to_slide + ']').addClass('active');
+  });
+
+  $('#MyDiscountslider').on('slid', function() {
+      var to_slide = $('#MyDiscountslider .carousel-inner .item.active').attr('id');
+      $('.product-indicators ul li .active').removeClass('active');
+      $('.product-indicators [data-slide-to=' + to_slide + ']').addClass('active');
+  });
   
   $('.my-img').click(function(){
     $('.my-img a').slideToggle();

@@ -3,6 +3,7 @@ class WelcomeController < ApplicationController
   layout 'application'
 
   def index
+
     type = params[:option].present? ? params[:option] : ""
     @featured_product = Product.featured
     @best_selling_products = Product.limit(5)
@@ -10,8 +11,6 @@ class WelcomeController < ApplicationController
       @brands = Brand.all
     elsif type == "style"
     end
-    @role = Role.find_by_name("designer")
-    @designers = @role.users
     @other_products  ## search 2 or 3 categories (maybe based on the user)
     unless @featured_product
       if current_user && current_user.admin?
@@ -27,18 +26,16 @@ class WelcomeController < ApplicationController
   end
 
   def welcome
-    type = params[:option].present? ? params[:option] : ""
-    @featured_product = Product.featured
-    @best_selling_products = Product.limit(5)
-    if type == "brand"
-      @brands = Brand.all
-    elsif type == "style"
-    end
+    @banners= Banner.active
+    @super_hot_proudcts = Product.super_hot
+    @featured_proudcts = Product.featured_products
+    @new_products = Product.new_arrivals
+    # @all_discounts = Variant.where(["discount_percent != '' "])
+    @discount_fifties = Variant.where(["discount_percent = 50"])
+    @discount_thirties = Variant.where(["discount_percent = 30"])
+    @latest_blogs = Blog.order("created_at").limit(5)
     @role = Role.find_by_name("designer")
-    @designers = @role.users
-    @other_products  ## search 2 or 3 categories (maybe based on the user)
-    render :layout=>"home"
-    
+    @featured_designers = @role.users.where(["featrued = ?",true])
   end
 
 

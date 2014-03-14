@@ -12,6 +12,7 @@
  *= require_self 
  *= require admin_metro/bootstrap.min
  *= require admin_metro/bootstrap-responsive.min
+ *= require admin_metro/colorpicker
  *= require admin_metro/font-awesome
  *= require admin_metro/style
  *= require admin_metro/metro

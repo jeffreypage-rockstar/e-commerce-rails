@@ -62,9 +62,28 @@
   </div>
   <div class='span-6 last'>
     <%= form.select :condition_of_product,
-                    options_for_select(Product::CONDITION_OF_PRODUCT),
-                    { :include_blank => true } %>
+                    options_for_select(Product::CONDITION_OF_PRODUCT,:selected=> @product.condition_of_product) ,{},{} %>
   </div>
+
+
+<div class='clear'></div>
+  <div class='span-3'>
+    <%= form.label :super_hot %>
+  </div>
+  <div class='span-6 last'>
+    <%= form.select :super_hot,
+                    options_for_select(Product::SUPER_HOT,:selected=> @product.super_hot),{},{} %>
+  </div>
+
+<div class='clear'></div>
+  <div class='span-3'>
+    <%= form.label :featured %>
+  </div>
+  <div class='span-6 last'>
+    <%= form.select :featured,
+                    options_for_select(Product::FEATURED ,:selected=> @product.featured ),{},{}%>
+  </div>
+
 
 <div class='clear'><br/></div>
   <div class='span-3'>
@@ -72,8 +91,7 @@
   </div>
   <div class='span-6 '>
     <%= form.select :gender,
-                    options_for_select(Product::GENDER),
-                    { :include_blank => true } %>
+                    options_for_select(Product::GENDER,:selected=> @product.gender ),{},{}%>
   </div>
 
 <div class='clear'><br/></div>

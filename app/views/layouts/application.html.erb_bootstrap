@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>:: Mad Dot ::</title>
+<link rel="stylesheet" type="text/css" href="/assets/main/dev_style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <%= stylesheet_link_tag "normalize.css" %>
+  <%= stylesheet_link_tag "foundation_and_overrides.css" %>
+  <%= stylesheet_link_tag 'site/app.css' %>
+  <%= javascript_include_tag 'vendor/custom.modernizr' %>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tag %>
+  <%= render 'shared/metadata' %>
+</head>
+<body class="bod-bg">
+<!--Main Wrapper Starts Here-->
+<div id="main-container">
+  <header>
+    <div class="center-inner-cont">
+      <div class="float-div">
+        <div class="my-img" style="height:65px;width:190px"> &nbsp;
+          <a href="#"><img src="/assets/main/my-img.gif" alt="" /></a>
+        </div>
+          <div class="login-div" style="display:none;float:right">
+            <% unless current_user %>
+              <%= link_to 'Login',  login_path %>
+            <% else %>
+              <% if current_user.admin? || current_user.designer? %>
+                <%= link_to 'Admin', admin_path %>|
+              <% end %>
+              <%= link_to 'Log Out', logout_path, method: :delete %>
+            <%end%>
+          </div>
+        <div class="inner-page-logo"> 
+          <a href="/"><img src="/assets/main/inner-logo-mad-logo.gif" alt="" /></a> 
+        </div>
+      </div>
+    </div>
+  </header>
+  <section>
+    <div class="center-inner-cont">
+      <%=yield%>
+    </div>
+  </section>
+  <!--Footer Wrapper Starts Here-->
+  <footer>
+    <div class="copy-right">Copyright &copy; 2014 mrmaddot All rights reserved.</div>
+  </footer>
+  <!--Footer Wrapper Ends Here--> 
+</div>
+<!--Main Wrapper Ends Here-->
+</body>
+</html>
