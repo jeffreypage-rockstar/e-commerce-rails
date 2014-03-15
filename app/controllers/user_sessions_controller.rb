@@ -4,14 +4,9 @@ class UserSessionsController < ApplicationController
       @user_session = UserSession.new
       @user = User.new
     else
-      if current_user.admin?
-        redirect_back_or_default admin_url
-      elsif current_user.designer?
-        redirect_back_or_default admin_url
-      else
-        #redirect_back_or_default root_url
-          redirect_to root_url
-      end 
+      if current_user
+        redirect_to root_url
+      end
     end
   end
 
