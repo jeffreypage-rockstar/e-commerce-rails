@@ -31,12 +31,14 @@
       <%= form.text_field :last_name %>
       <label>Birth Date</label>
       <%= form.text_field :bday %>
-      <label>Birth Date</label>
+      <label>Title</label>
+      <%= form.text_field :title %>
+      <label>About Me</label>
       <%= form.text_area :about_me ,:rows=> 3%>
       <label>State</label>
       <%= form.select :state, @states %>
       <%if current_user.admin? or current_user.super_admin?%>
-        <label>State</label>
+        <label>Featured</label>
         <%= form.select :featrued,User::FEATURED.map{|k,v| [v,k]},:selected =>form.object.new_record? ? 1 : @user.featrued ? 1 : 0 %>
       <%end%>
     </div>
