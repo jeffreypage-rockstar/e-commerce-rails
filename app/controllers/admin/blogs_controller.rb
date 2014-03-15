@@ -1,6 +1,6 @@
 class Admin::BlogsController < Admin::BaseController
  	  before_filter :filter_queries , :only=>[:index]
-	  load_and_authorize_resource
+	  #load_and_authorize_resource
 	  def filter_queries    
 	    @statuses = Blog::STATES.map{|k,v| [v,k]}
 	  end
@@ -33,10 +33,11 @@ class Admin::BlogsController < Admin::BaseController
 
 	  def new
 	  	@blog = Blog.new
+
 	  end
 
 	  def create
-  		@blog = Blog.new(user_params)
+	  	@blog = Blog.new(user_params)
   		respond_to do |format|
 		    if @blog.save
 		      format.html  { redirect_to(admin_blogs_path,
