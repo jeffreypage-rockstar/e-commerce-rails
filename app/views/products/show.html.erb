@@ -58,11 +58,13 @@
             </ul>
             <%@product.active_variants.each do |v|%>
               <ul id="variant_images_a<%=v.id%>" class="jcarousel-skin-pika" style="display:none">
-                <% v.image_group.images.each do |image|%>
-                  <li>
-                    <a><%= image_tag(image.photo.url(:large)) %></a>
-                  </li>
-                <% end %>
+                <%if v.image_group.present?%>
+                  <% v.image_group.images.each do |image|%>
+                    <li>
+                      <a><%= image_tag(image.photo.url(:large)) %></a>
+                    </li>
+                  <% end %>
+                <%end%>
               </ul>
             <%end%>
             
