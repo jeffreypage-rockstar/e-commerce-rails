@@ -133,18 +133,25 @@ Hadean::Application.configure do
       :password => Settings.authnet.password,
       :test     => true
     )
-    Paperclip::Attachment.default_options[:storage] = :s3
+    #Paperclip::Attachment.default_options[:storage] = :s3
     #::GATEWAY = ActiveMerchant::Billing::BraintreeGateway.new(
     #  :login     => Settings.braintree.login,
     #  :password  => Settings.braintree.password
     #)
   end
   PAPERCLIP_STORAGE_OPTS = {  :styles => {:mini => '48x48>',
-                                          :small => '100x100>',
+                                          :small    => '100x100>',
                                           :medium   => '200x200>',
-                                          :product => '320x320>',
-                                          :large => '600x600>' },
+                                          :product  => '270x325>',
+                                          :large    => '600x600>' },
                               :default_style => :product,
                               :url => "/assets/products/:id/:style/:basename.:extension",
                               :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension" }
+
+  PAPERCLIP_STORAGE_OPTS_BANNER = {  :styles => {
+                                          :small    => '100x100>',
+                                          :large    => '600x600>' },
+                                          :default_style => :large,
+                                          :url => "/assets/banners/:id/:style/:basename.:extension",
+                                          :path => ":rails_root/public/assets/banners/:id/:style/:basename.:extension" }
 end

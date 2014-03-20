@@ -1,166 +1,147 @@
 
-<% content_for :head do -%>
-  <%= stylesheet_link_tag 'product_page.css' %>
-  <%= stylesheet_link_tag 'pikachoose_product.css' %>
-<% end %>
-<div class=''>
-<div id='product' class=''>
-
-  <div class=' clearfix'>
-    <%if current_user%>
-      <%if @rock_product.present?%>
-        <%=link_to "Un Rock",rock_product_path(@product,:unrock=>true),:remote=>true%>
-      <%else%>
-        <%=link_to "Rock",rock_product_path(@product),:remote=>true%>
-      <%end%>
-
-    <%else%>
-      <%=link_to "Rock",login_path%>
-    <%end%>
-    <% if @product.active_variants.empty? %>
-      <div id='no-variant-available' class=' four large-4 last'>
-        Sorry this product is not currently available.
+    <div class="row-fluid breadcrumb-full-bg">
+      <div class="container">
+        <h1>Product Detail</h1>
+        <ul class="breadcrumb pull-right">
+          <li><a href="/">Home</a> <span class="divider">→</span></li>
+          <li><a href="#">Brand</a> <span class="divider">→</span></li>
+          <li><a href="#">Woman</a> <span class="divider">→</span></li>
+          <li class="active"><%= @product.name %></li>
+        </ul>
       </div>
-    <% else %>
-
-      <div id='left_product_wrapper' class='columns five large-5'>
-         <!-- <ul class='horizontal-list'>
-            <li><%= link_to 'Share', '#share-product', :class => 'button small share' %></li>
-          </ul> -->
-          <% if @product.hero_variant.low_stock? %>
-            <%= image_tag("ribbons/#{@product.hero_variant.stock_status}.png",
-                          :width => 63, :height => 62,
-                          :style => 'border:none;',
-                          :class => 'upper_left_overlay'
-                           ) %>
-          <% end %>
-          <% if @product.images.size == 1 %>
-            <ul>
-              <% @product.images.each do |image|%>
-                <li>
-                  <a><%= image_tag(image.photo.url(:large)) %></a>
-                </li>
-              <% end %>
-            </ul>
-          <% elsif @product.images.size == 0 %>
-            <ul>
-              <li>
-                <a><%= image_tag(@product.featured_image(:large)) %></a>
-              </li>
-            </ul>
-          <% else %>
-            <ul id="pikame" class="jcarousel-skin-pika">
-              <% @product.images.each do |image|%>
-                <li>
-                  <a><%= image_tag(image.photo.url(:large)) %></a>
-                </li>
-              <% end %>
-            </ul>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="span6">
+          <div class="prd-left-list"> 
             <%@product.active_variants.each do |v|%>
-              <ul id="variant_images_a<%=v.id%>" class="jcarousel-skin-pika" style="display:none">
-                <%if v.image_group.present?%>
-                  <% v.image_group.images.each do |image|%>
-                    <li>
-                      <a><%= image_tag(image.photo.url(:large)) %></a>
-                    </li>
-                  <% end %>
+              <%if v.image_group.present?%>
+                <%if v.image_group.images.size > 3%>
+                  <a href="#" class="top-arrow-prd arrow-prd-sprite"></a> 
+                  <a href="#" class="bot-arrow-prd arrow-prd-sprite"></a>
                 <%end%>
-              </ul>
+                <% v.image_group.images.each do |image|%>
+                  <div class="prd-thumb"><a href="#"><%= image_tag(image.photo.url(:large)) %></a></div>
+                <%end%>
+              <%end%>
             <%end%>
+            <!-- <div class="prd-thumb"> <a href="#"><img src="/assets/main/prd-tumb.jpg" alt=""></a> </div>
+            <div class="prd-thumb"> <a href="#"><img src="/assets/main/prd-tumb.jpg" alt=""></a> </div>
+            <div class="prd-thumb"> <a href="#"><img src="/assets/main/prd-tumb.jpg" alt=""></a> </div> -->
+          </div>
+          <div class="prd-big-img"> 
             
-          <% end %>
-
-      </div>
-      <div id='right_2_product_wrapper' class='six columns large-6 last'>
-          <div id='right_product_wrapper' class=''>
-            <div class='product_title_name'><%= @product.name %></div>
-            <% if @product.active_variants.count > 0 %>
-              <div class='product_content'>
-                <div class='product_content_price'>
-                  <%= number_to_currency @product.active_variants.first.price %>
-                </div>
-
-              </div>
-              <div id='your_product' class='panel'>
-                <% @product.active_variants.each_with_index do |variant, i| %>
-                  <div id='variant_<%= variant.id %>'
-                       class='tiny button variant_select secondary <%= 'selected_variant' if i == 0 %>'
-                       data-variant_id='<%= variant.id %>'>
-                    <%= raw variant.product_name %>
-                  </div>
-                <% end %>
-                  <div  class='properties_inner_wrapper ' >
-                    <hr/>
-                    <%= form_for  @cart_item,
-                                  :url  => shopping_cart_items_path(@cart_item),
-                                  :html => { :id => 'new_cart_item', :class => '' } do |f| %>
-                        <%= f.hidden_field :variant_id %>
-                        <div class=''>
-                        Quantity:
-                        <%= f.select :quantity, [1,2,3,4], {:include_blank => false}, {:class => ' '} %>
-                        </div>
-                        <div class='add_to_cart_wrapper '>
-                          <% unless @product.active_variants.empty? %>
-                            <%= link_to 'Add to Cart', '#', :id => 'submit_add_to_cart', :class => 'small button' %>
-                          <% end %>
-                        </div>
-                    <% end %>
-                  </div>
-                  <div  class='clearfix' style='margin-bottom:20px;' >&nbsp;</div>
-              </div>
-
-              <div id='product_tabs'  class='' style='padding-bottom:5px;'>
-                <div class="section-container tabs auto" style='height:100%;' data-section data-options="deep_linking: true; ">
-                  <section class="section">
-                    <p class="title"><a >Product</a></p>
-                    <div class="content">
-                      <div><%= raw @product.description %></div>
-                    </div>
-                  </section>
-                  <section class="section">
-                    <p class="title"><a >Properties</a></p>
-                    <div class="content">
-                      <div class=''>
-                        <% @product.active_variants.each_with_index do |var, i| %>
-                          <div id='variant_properties_<%= var.id %>' class='variant_properties <%= 'selected' if i == 0 %>'>
-                            <ul class='vertical-list'>
-                              <% var.variant_properties.each do |prop| %>
-                                <li><label><%= prop.property_name %>:</label>  <%= prop.description %></li>
-                              <% end %>
-                            </ul>
-                          </div>
-                        <% end %>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-              </div>
-
+            <%if @product.images.present?%>
+              <%= image_tag(@product.images[0].photo.url(:original),:width=>410) %>
+            <%else%>
+              <img src="/assets/main/prd-big-img.jpg" alt=""> 
             <% end %>
+          </div>
+        </div>
+        <div class="span6 prd-detail">
+          
+          <h1>
+            <%if current_user%>
+              <%if @rock_product.present?%>
+                <%=link_to image_tag("/assets/main/fav-icon-blue.png")+"Unfavorite",rock_product_path(@product,:unrock=>true),:remote=>true,:class=>"add-fav"%>
+              <%else%>
+                <%=link_to image_tag("/assets/main/fav-icon-blue.png")+" Add to favorites",rock_product_path(@product),:remote=>true,:class=>"add-fav"%>
+              <%end%>
+            <%else%>
+              <%=link_to image_tag("/assets/main/fav-icon-blue.png")+" Add to favorites",login_path,:class=>"add-fav"%>
+            <%end%>
+            <%= @product.name %></h1>
+          <div class="add-favted">
+            <h3><img src="/assets/main/fav-icon-blue.png" alt=""> Favorited (<%=@product.product_rocks.size%>)</h3>
+            <div class="favted-right"><span>5 review(s)</span> | <a href="#">Add Your Review</a></div>
+          </div>
+          <div class="prd-detail-cat">
+            <label>Availability: <span>In Stock</span></label>
+            <label>Product Code: <span>483512569</span></label>
+            <label>Designer: <span>Allie Walden</span></label>
+            <label>Shipping: <span>$12</span></label>
+          </div>
+          <div class="prd-detail-desc">
+            <h4>Description:</h4>
+            <p><%= raw @product.description %>
+            </p>
+          </div>
+          <div class="prd-option">
+            <!-- <select name="" class="width-160-select">
+              <option>Select Color</option>
+              <%colors  = @product.active_variants.map{|e| e.color}%>
+              <%#if colors.present?%>
+                <%# colors.each do |color|%>
+                  <option style="background-color:<%#=color%>"><%#=color%></option>
+                <%#end%>
+              <%#end%>
+            </select> -->
+            <%@product.properties.each_with_index do |pro|%>
+              <select name="">
+                <option>Select <%=pro.display_name%></option>  
+                <%pro.variant_properties.each do |v|%>
+                  <option><%=v.description%></option>  
+                <%end%>
+            <%end%>
+            <!-- <select name="">
+              <option>Select Size</option>
+            </select>
+            <select name="" class="right">
+              <option>1</option>
+             </select>-->
+          </div>
+          <%= form_for  @cart_item,
+                        :url  => shopping_cart_items_path(@cart_item),
+                        :html => { :id => 'new_cart_item', :class => '' } do |f| %>
+              <%= f.hidden_field :variant_id %>
+              <div class=''>
+              Quantity:
+              <%= f.select :quantity, [1,2,3,4], {:include_blank => false}, {:class => ' '} %>
+              </div>
+              <div class='add_to_cart_wrapper '>
+              </div>
+              <div class="price-bag"> 
+                <span>
+                  <%= number_to_currency @product.active_variants.first.price %>
+                </span>
+                <% unless @product.active_variants.empty? %>
+                  <%= link_to 'Add to Bag', '#', :id => 'submit_add_to_cart', :class => 'btn-bag' %>
+                <% end %>
+              </div>
+          <% end %>
+          <div class="prd-share">
+            <div class="bot-blue-line-img"><img src="/assets/main/bot-blue-line.gif" alt=""></div>
+            <span>Share:</span>
+            <div class="share-div"><img src="/assets/main/share-img.gif" alt=""></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <%@designer = @product.user%>
+        <%if @designer.present?%>
+          <div class="span6 prd-designer">
+            <h4>
+              <div class="bot-blue-line-img"><img src="/assets/main/bot-blue-line.gif" alt=""></div>
+              Designer: <span><%=@designer.name%></span></h4>
+            <div class="designer-detail-prd"> <%=image_tag(@designer.images[0].photo(:small))%>
+              <p><%=@designer.about_me%> </p>
             </div>
           </div>
+        <%end%>
+        <div class="span6 prd-designer">
+          <h4>
+            <div class="comp-right">HEIGHT OF MODEL: <span>180 CM</span></div>
+            <div class="bot-blue-line-img"><img src="/assets/main/bot-blue-line.gif" alt=""></div>
+            Composition:</h4>
+          <div class="designer-detail-prd">
+            <ul>
+              <li class="color">OUTER SHELL</li>
+              <li>66% POLYESTER, 30% VISCOSE, 4% ELASTANE</li>
+              <li class="color">LINING</li>
+              <li>100% POLYESTER</li>
+            </ul>
+          </div>
+        </div>
       </div>
-
-    <% end %>
-  </div>
-
-</div>
-&nbsp;<div class='clearfix' style='height:50px;'>&nbsp</div>
-</div>
-<div id='generic-dialog'></div>
-
-<% content_for :below_body do -%>
-  <%= javascript_include_tag 'shopping/cart.js' %>
-  <%= javascript_include_tag 'jquery.jcarousel.js' %>
-  <%= javascript_include_tag 'jquery.pikachoose.full.js' %>
-
-  <% if @product.images.size > 1 %>
-  <script>
-    $(document).ready(function (){
-        $("#pikame").PikaChoose({autoPlay:true, carousel:false, carouselVertical:false});
-        $('#pikame').data('pikachoose').Pause();
-    });
-  </script>
-  <% end %>
-  <%= javascript_include_tag 'product_page.js' %>
-<% end %>
+    </div>
+  
