@@ -3,4 +3,7 @@
    *= require main/style
    *= require main/bootstrap
    *= require main/bootstrap-responsive
+   *= require product_page/jquery.jcarousel
+   *= require product_page/skin
+   *= require product_page/jc
 */

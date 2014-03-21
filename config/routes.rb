@@ -8,6 +8,7 @@ Hadean::Application.routes.draw do
   end
   get 'designer/:id' => "designers#show" ,as: :designer
   get 'rock_product/:id' => "products#rock_product" ,as: :rock_product
+  get 'change_variant/:id/:variant_id' => "products#change_variant" , as: :change_variant
 
   resources :image_groups
   # mount Resque::Server.new, at: "/resque"
