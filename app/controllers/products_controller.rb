@@ -32,6 +32,14 @@ class ProductsController < ApplicationController
     end
     form_info
     @cart_item.variant_id = @product.active_variants.first.try(:id)
+    if params[:variant_id] 
+      @current_variant = Variant.find(params[:variant_id])
+      session[:current_variant] = @current_variant.id
+    elsif session[:current_variant]
+      @current_variant = Variant.find(session[:current_variant])
+    else
+      @current_variant = @product.active_variants[0]
+    end
   end
 
   def rock_product
@@ -45,6 +53,13 @@ class ProductsController < ApplicationController
       end
     end
     render :text => "Done" and return false
+  end
+
+  def change_variant
+    show
+    respond_to do |format|
+       format.js  # { render :layout => false }
+    end
   end
 
   private

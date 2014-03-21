@@ -3,6 +3,7 @@
 //= require bootstrap/bootstrap-collapse
 //= require bootstrap/bootstrap-dropdown
 //= require new_sliders/carouFredSel
+//= require product_page/jquery.jcarousel.pack
 //= require new_sliders/jquery.bxslider
 //= require jquery_ujs
 //= require admin/breakpoints
