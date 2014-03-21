@@ -12,7 +12,16 @@
     <%end%>
     <%if !product.variants[0].discount_percent.present? && product.hero_variant.low_stock? %><span class="discount-red white-color">out</span><%end%>
 	  <a href="<%=product_path(product)%>" title="<%=product.name%>" >
-			<%= image_tag(product.featured_image(:product),:style=> "width:270px")  %>
+      <%if product.images[0].present?%>
+			 <%= image_tag(product.images[0].photo(:product),:style=> "width:270px")  %>
+      <%else%>
+        <%if variant.present? && variant.image_group.present?%>
+          <%= image_tag(variant.image_group.images[0].photo.url(:large),:style=> "width:270px")  %>
+        <%else%>
+          <%=product.variants[0].discount_percent%>%
+        <%end%>
+      <%end%>
+
 	 		<img src="/assets/main/fav-icon.png" alt="" class="fav-icon" /> 
 	 	</a>
  	</div>

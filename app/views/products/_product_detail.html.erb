@@ -71,7 +71,7 @@
     <div class="favted-right"><span>5 review(s)</span> | <a href="#">Add Your Review</a></div>
   </div>
   <div class="prd-detail-cat">
-    <label>Availability: <span><%if @current_variant.inventory.count_on_hand.to_i <= 0 %>No Stock<% elsif @current_variant.low_stock? %>Low Stock(<%=@current_variant.inventory.count_on_hand%>)<%else%>In Stock<%end%></span></label>
+    <label>Availability: <span><%=@current_variant.inventory.count_on_hand.to_i%><%if @current_variant.inventory.count_on_hand.to_i <= 0 %>No Stock<% elsif @current_variant.low_stock? %>Low Stock(<%=@current_variant.inventory.count_on_hand%>)<%else%>In Stock<%end%></span></label>
       <label>Variants: <span><%@product.active_variants.each do |v|%>    <%=link_to v.name, change_variant_path(@product.id,v.id),:remote=> true%>  <%end%></span></label>
     <label>Current Variant: <span><%=@current_variant.name%></label>  
     <label>Product Code: <span>483512569</span></label>
