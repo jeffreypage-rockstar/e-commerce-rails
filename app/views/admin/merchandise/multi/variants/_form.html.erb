@@ -1,6 +1,6 @@
 <%if current_user.designer? %>
   <%comm = Commission.find_by_user_id(current_user.id)%>
-  <%admin_commision = comm.commission%>
+  <%admin_commision = comm.present? comm.commission : 0 %>
 <%else%>
   <%admin_commision = 0%>
 <%end%>
