@@ -1,4 +1,6 @@
 class Blog < ActiveRecord::Base
+
+	translates :title,:description
 	# => Relations 
 	has_many   :comments, as: :commentable
 	has_attached_file :image, PAPERCLIP_STORAGE_OPTS_BANNER ##  this constant is in /config/environments/*.rb

@@ -37,6 +37,7 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
   def create
     @property = Property.new(allowed_params)
     if @property.save
+      update_all_language(@property,allowed_params)
       redirect_to :action => :index
     else
       flash[:error] = "The property could not be saved"
@@ -51,6 +52,7 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
   def update
     @property = Property.find(params[:id])
     if @property.update_attributes(allowed_params)
+      update_all_language(@property,allowed_params)
       redirect_to :action => :index
     else
       render :action => :edit

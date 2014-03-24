@@ -26,23 +26,60 @@
       <div class="container">
           <% unless current_user %>
             <div class="span6 pull-left ">
-                Welcome to MadDot, you can <%= link_to 'Login',  login_path %> or
+                Welcome to MadDot, you can <%= link_to t(:login_link),  login_path %> or
                 <a href="<%=login_path%>">create an   account
               </p>
             </div>
             <% else %>
-              <div class="span9 top-menu">
-                <a href="/">Home</a> <a href="<%=myaccount_overview_path%>">My Profile</a><a href="#">My Favorites</a><a href="/shopping/cart_items">Shopping Bag (<%if @cart_items.present?%><%=@cart_items.size%><%else%>0<%end%>)</a>
+              <div class="span8 top-menu">
+                <a href="/"><%=t(:home)%></a> <a href="<%=myaccount_overview_path%>"><%=t(:my_profile)%></a><a href="#"><%=t(:my_favorites)%></a><a href="/shopping/cart_items"><%=t(:shoping_bag)%> (<%if @cart_items.present?%><%=@cart_items.size%><%else%>0<%end%>)</a>
                 <% if current_user.admin? || current_user.designer? %>
-                  <%= link_to 'Admin', admin_path %>|
+                  <%= link_to t(:admin_link), admin_path %>
                 <% end %>
-                <%= link_to 'Log Out', logout_path, method: :delete %>
+                <%= link_to t(:logout_link), logout_path, method: :delete %>
               </div>
             <%end%>
-        <div class="span2 pull-right">
+        <div class="span4 pull-right">
           <ul class="top-language">
-            <li><a href="#">USD <i><img src="/assets/main/down-arrow.png" alt=""></i></a></li>
-            <li class="last"><a href="#">English<i><img src="/assets/main/down-arrow.png" alt=""></i></a></li>
+            <li class="last " style="float:right">
+              <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle white remove-background" data-toggle="dropdown">
+                    USD
+                    <i><img src="/assets/main/down-arrow.png" alt=""></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li class="<%if session[:lang] == "en"%>active<%end%>" style="width:100%">
+                      <%= link_to "AUD",change_language_path(:new_locale => "en")%>
+                    </li>
+                    <li class="<%if session[:lang] == "pt"%>active<%end%>" style="width:100%">
+                      <%= link_to "ERO",change_language_path(:new_locale => "cn")%>
+                    </li>
+                    <li class="<%if session[:lang] == "de"%>active<%end%>" style="width:100%">
+                      <%= link_to "USD",change_language_path(:new_locale => "tcn")%>
+                    </li>
+                  </ul>
+              </div>  
+            </li>
+            <li class=""  style="float:right">
+              <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle white remove-background" data-toggle="dropdown">
+                    <%if session[:lang] == "en"%><%=t(:english_lang)%><%elsif session[:lang] == "cn"%><%=t(:simple_chines_lang)%><%elsif session[:lang] == "tcn"%><%=t(:traditional_chines_lang)%><%else%>English<%end%>
+                    <i><img src="/assets/main/down-arrow.png" alt=""></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li class="<%if session[:lang] == "en"%>active<%end%>" style="width:100%">
+                      <%= link_to t(:english_lang),change_language_path(:new_locale => "en")%>
+                    </li>
+                    <li class="<%if session[:lang] == "cn"%>active<%end%>" style="width:100%">
+                      <%= link_to t(:simple_chines_lang),change_language_path(:new_locale => "cn")%>
+                    </li>
+                    <li class="<%if session[:lang] == "tcn"%>active<%end%>" style="width:100%">
+                      <%= link_to t(:traditional_chines_lang),change_language_path(:new_locale => "tcn")%>
+                    </li>
+                  </ul>
+              </div>  
+              <!-- <a href="#">English</a> -->
+            </li>
           </ul>
         </div>
       </div>

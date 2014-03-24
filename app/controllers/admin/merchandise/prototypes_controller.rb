@@ -30,6 +30,7 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
   def create
     @prototype = Prototype.new(allowed_params)
     if @prototype.save
+      update_all_language(@prototype,allowed_params)
       redirect_to :action => :index
     else
       @all_properties = Property.all
@@ -53,6 +54,7 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
     @prototype = Prototype.find(params[:id])
 @prototype.property_ids = params[:prototype][:property_ids]
     if @prototype.update_attributes(allowed_params)
+      update_all_language(@prototype,allowed_params)
       redirect_to :action => :index
     else
       @all_properties = Property.all

@@ -19,6 +19,11 @@ EXAMPLE USAGE!!
     link_to title, {:sort => column, :direction => direction}, {:class => css_class}
   end
 
+  def set_lang(lang)
+    I18n.locale = lang
+  end
+
+
   def site_name
     I18n.t(:company)
   end

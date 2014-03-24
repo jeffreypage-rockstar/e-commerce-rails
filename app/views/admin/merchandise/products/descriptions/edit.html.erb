@@ -5,7 +5,21 @@
 <div id="article-sidebar" class="sidebar">
   <%= form_for @product, :url  => admin_merchandise_products_description_path(@product) do |f| %>
     <%= f.text_field :name %>
-    <%= f.cktext_area :description_markup,  :cols => "92", :rows => "15" %>
+    <label>Description</label>
+      <fieldset>
+        <label>English</label>
+        <% set_lang "en" %>
+        <%= f.cktext_area :description_markup,  :cols => "92", :rows => "15" %>
+        <label>Simple Chines</label>
+        <% set_lang "cn" %>
+        <% chin = f.object %>
+        <%= cktext_area_tag "cn[description]",chin.description %>
+        <label>Traditional Chines</label>
+        <% set_lang "tcn" %>
+        <% z_chin = f.object %>
+        <%= cktext_area_tag "tcn[description]",z_chin.description %>
+      </fieldset>
+
     <%= f.submit "Update", :class  => "button" %>
   <% end %>
 </div>

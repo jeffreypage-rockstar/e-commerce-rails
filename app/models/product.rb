@@ -35,6 +35,8 @@ class Product < ActiveRecord::Base
 
   attr_accessor :available_shipping_rates # these the the shipping rates per the shipping address on the order
 
+  translates :name ,:description,:meta_keywords,:meta_description,:product_keywords,:description_markup
+
   belongs_to :brand
   belongs_to :product_type
   belongs_to :prototype

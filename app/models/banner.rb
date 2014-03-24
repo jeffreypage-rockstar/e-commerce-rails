@@ -1,5 +1,6 @@
 class Banner < ActiveRecord::Base
 	
+	translates :title,:description
   	has_attached_file :image, PAPERCLIP_STORAGE_OPTS_BANNER ##  this constant is in /config/environments/*.rb
 	
 	

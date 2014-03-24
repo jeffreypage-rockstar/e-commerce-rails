@@ -48,3 +48,7 @@
     height: 1%; }
   *:first-child + html .pagination_dev {
     overflow: hidden; }
+.remove-background{background: none !important;border:none !important;}
+.white{color:white !important ;text-shadow:none !important;}
+.remove-background span{background-image: url(/assets/main/down-arrow.png) no-repeat;}
+.dropdown-toggle i {margin-left: 20px;}

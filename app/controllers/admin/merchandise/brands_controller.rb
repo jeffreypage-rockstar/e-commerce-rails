@@ -1,4 +1,6 @@
 class Admin::Merchandise::BrandsController < Admin::BaseController
+
+
   def index
     keyword = filter_helper(params)
     @brands = Brand.where(keyword).paginate(:page => pagination_page, :per_page => pagination_rows)
@@ -21,6 +23,12 @@ class Admin::Merchandise::BrandsController < Admin::BaseController
   def create
     @brand = Brand.new(allowed_params)
     if @brand.save
+      I18n.locale = "cn"
+      @brand.update_attributes(allowed_params_cn)
+      I18n.locale = "tcn"
+      @brand.update_attributes(allowed_params_tcn)
+      I18n.locale = "en"
+      @brand.save
       flash[:notice] = "Successfully created brand."
       redirect_to admin_merchandise_brand_url(@brand)
     else
@@ -35,8 +43,15 @@ class Admin::Merchandise::BrandsController < Admin::BaseController
   def update
     @brand = Brand.find(params[:id])
     if @brand.update_attributes(allowed_params)
+      I18n.locale = "cn"
+      @brand.update_attributes(allowed_params_cn)
+      I18n.locale = "tcn"
+      @brand.update_attributes(allowed_params_tcn)
+      I18n.locale = "en"
+      @brand.update_attributes(allowed_params)
       flash[:notice] = "Successfully updated brand."
       redirect_to admin_merchandise_brand_url(@brand)
+
     else
       render :action => 'edit'
     end

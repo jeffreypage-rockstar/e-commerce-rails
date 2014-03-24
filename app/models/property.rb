@@ -1,5 +1,7 @@
 class Property < ActiveRecord::Base
 
+  translates :display_name
+
   has_many :prototype_properties
   has_many :prototypes,          :through => :prototype_properties
 

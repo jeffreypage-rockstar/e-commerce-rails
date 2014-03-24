@@ -1,4 +1,6 @@
 class StaticPage < ActiveRecord::Base
+
+	translates :title,:content
 	ACTIVE    = 1
 	INACTIVE  = 0
 

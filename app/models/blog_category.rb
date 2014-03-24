@@ -1,5 +1,6 @@
 class BlogCategory < ActiveRecord::Base
 
+	translates :name
 	# => Relations 
 	has_many :blogs
 	ACTIVE    = 1

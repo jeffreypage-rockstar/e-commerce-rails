@@ -1,4 +1,5 @@
 class ProductType < ActiveRecord::Base
+  translates :name
   acts_as_nested_set  #:order => "name"
   has_many :products, dependent: :restrict_with_exception
 

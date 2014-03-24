@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
                 :select_countries,
                 :customer_confirmation_page_view
 
-  before_filter :secure_session ,:check_user_session
+  before_filter :secure_session ,:check_user_session , :default_lang
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied."
@@ -25,6 +25,36 @@ class ApplicationController < ActionController::Base
       flash[:alert] = 'Sorry you are not allowed to do that.'
       redirect_to root_url
     end
+  end
+
+
+  def default_lang    
+    #loading enitre language data into an object,to use in all views     
+    
+    flash = nil          
+    # new_locale will carry language value,in its absence getting language from location or browser request
+    if !params[:new_locale].present?      
+        @country = Country.find_by_name(request.location.country) if request.location.present? && request.subdomain != "admin"
+        session[:lang] ||= @country.language if @country.present?        
+        session[:lang] ||= ((lang = request.env['HTTP_ACCEPT_LANGUAGE']) && lang[/^[a-z]{2}/])      
+        session[:lang] = "en" unless ["en","cn","tcn",:en,:cn,:tcn].include?(session[:lang])                          
+        I18n.locale = session[:lang]
+    else
+      if params[:new_locale] == "tcn" || params[:new_locale] == "cn"       
+        session[:lang] = params[:new_locale]        
+      else
+        session[:lang] = "en"
+      end
+      I18n.locale = session[:lang]
+      session[:place] = params[:place] if params[:place].present?
+    end
+    # Fetching meta data from admin side
+    # @general_setting=GeneralSetting.first
+    # if @general_setting.present?      
+    #   @meta_title = @general_setting.meta_title if @general_setting.meta_title.present?       
+    #   @meta_keyword = @general_setting.meta_keyword if @general_setting.meta_keyword.present?
+    #   @meta_desc=@general_setting.meta_description if @general_setting.meta_description.present?  
+    # end
   end
 
   rescue_from ActiveRecord::DeleteRestrictionError do |exception|
