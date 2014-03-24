@@ -1,15 +1,4 @@
 <footer>
-    <ul>
-      <li class="<%if session[:lang] == "en"%>active<%end%>" >
-              <%= link_to "English",change_language_path(:new_locale => "en")%>
-            </li>
-            <li class="<%if session[:lang] == "pt"%>active<%end%>">
-              <%= link_to "Portuguese",change_language_path(:new_locale => "pt")%>
-            </li>
-            <li class="<%if session[:lang] == "de"%>active<%end%>">
-              <%= link_to "German",change_language_path(:new_locale => "de")%>
-            </li>
-    </ul>
     <div class="row-fluid get-app"> <a href="#" class="btn-get-app">Get the App</a> </div>
     <div class="row-fluid footer-main">
       <div class="container">
