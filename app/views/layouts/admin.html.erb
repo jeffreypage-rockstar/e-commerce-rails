@@ -35,18 +35,20 @@
 				<!-- BEGIN TOP NAVIGATION MENU -->					
 				<ul class="nav pull-right">
                 	<li><div class="super-admin-box">
-                    	<div class="photo-icon"><%images = current_user.images%>
-      						<%@image = images.present? ? images[0] : current_user.images.new%>
-      						<%if @image.new_record?%>
-      						&nbsp;
-      						<%else%>
-      							<%=image_tag @image.photo.url(:small),:style=> "height:30px"%>
-      						<%end%>
-      					</div>
-                        <div class="photo-name">
-	                        <%= current_user.name%><br/>
-	                        <span><%=link_to "Edit Profile" ,edit_myaccount_overview_path%></span>
-                        </div>
+                		<%if current_user%>
+	                    	<div class="photo-icon"><%images = current_user.images%>
+	      						<%@image = images.present? ? images[0] : current_user.images.new%>
+	      						<%if @image.new_record?%>
+	      						&nbsp;
+	      						<%else%>
+	      							<%=image_tag @image.photo.url(:small),:style=> "height:30px"%>
+	      						<%end%>
+	      					</div>
+	                        <div class="photo-name">
+		                        <%= current_user.name%><br/>
+		                        <span><%=link_to "Edit Profile" ,edit_myaccount_overview_path%></span>
+	                        </div>
+                        <%end%>
                     </div>
                     </li>
                     <span>

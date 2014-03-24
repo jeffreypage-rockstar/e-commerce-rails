@@ -53,6 +53,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     @product = Product.new(allowed_params)
 
     if @product.save
+      update_all_language(@product,allowed_params)
       flash[:notice] = "Success, You should create a variant for the product."
       redirect_to edit_admin_merchandise_products_description_url(@product)
     else
@@ -73,6 +74,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     @product = Product.find(params[:id])
 
     if @product.update_attributes(allowed_params)
+      update_all_language(@product,allowed_params)
       redirect_to admin_merchandise_product_url(@product)
     else
       form_info

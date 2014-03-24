@@ -38,5 +38,24 @@ class WelcomeController < ApplicationController
     @featured_designers = @role.users.where(["featrued = ?",true]).limit(4)
   end
 
+  def change_lang    
+    if params[:new_locale] == "cn" || params[:new_locale] == "tcn"       
+        session[:lang] = params[:new_locale]
+        I18n.locale = session[:lang]
+    else
+        session[:lang] = "en"
+        I18n.locale = session[:lang]
+    end
+    session[:place] = params[:place] if params[:place].present?
+    if session[:previous_url].present?      
+      if (session[:previous_url] =~ /new_locale/i) != nil
+        redirect_to root_path    
+      else
+        redirect_to session[:previous_url]    
+      end
+    else
+      redirect_to root_path
+    end
+  end
 
 end

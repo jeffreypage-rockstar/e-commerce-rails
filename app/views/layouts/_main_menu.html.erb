@@ -3,10 +3,10 @@
           <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="#"></a>
             <div class="nav-collapse collapse top-nav">
               <ul class="nav">
-                <li class="dropdown active"> <a data-toggle="dropdown" class="dropdown-toggle" href="#">Brand <b class="caret"></b></a>
+                <li class="dropdown active"> <a data-toggle="dropdown" class="dropdown-toggle" href="#"><%= t(:brands) %> <b class="caret"></b></a>
                   <div class="dropdown-menu">
                     <div class="drop-down-hd">
-                      <h3>Brands</h3>
+                      <h3><%= t(:brands) %></h3>
                       <a href="#" class="clear-all">Cleare all</a>
                     </div>
                     <%@brands.each do |b_group|%>
@@ -22,12 +22,12 @@
                     
                   </div>
                 </li>
-                <li><a href="#">Style</a></li>
-                <li><a href="#">Gender</a></li>
-                <li><a href="#">Hot</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="<%=blogs_path%>">Blog</a></li>
-                <li><a href="#">Show</a></li>
+                <li><a href="#"><%= t(:style)%></a></li>
+                <li><a href="#"><%= t(:gender)%></a></li>
+                <li><a href="#"><%= t(:hot)%></a></li>
+                <li><a href="#"><%= t(:news)%></a></li>
+                <li><a href="<%=blogs_path%>"><%= t(:blog)%></a></li>
+                <li><a href="#"><%= t(:show)%></a></li>
               </ul>
             </div>
             <div class="span2 pull-right search-top">

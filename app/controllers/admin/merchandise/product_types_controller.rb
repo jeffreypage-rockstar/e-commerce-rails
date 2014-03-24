@@ -24,6 +24,7 @@ class Admin::Merchandise::ProductTypesController < Admin::BaseController
     @product_type = ProductType.new(allowed_params)
 
     if @product_type.save
+      update_all_language(@product_type,allowed_params)
       redirect_to :action => :index
     else
       form_info
@@ -41,6 +42,7 @@ class Admin::Merchandise::ProductTypesController < Admin::BaseController
     @product_type = ProductType.find(params[:id])
 
     if @product_type.update_attributes(allowed_params)
+      update_all_language(@product_type,allowed_params)
       redirect_to :action => :index
     else
       form_info

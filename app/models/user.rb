@@ -48,6 +48,8 @@ class User < ActiveRecord::Base
     config.validate_email_field = true;
   end
 
+  translates :first_name,:about_me,:title,:last_name
+
   before_validation :sanitize_data
   before_validation :before_validation_on_create, :on => :create
   before_create :start_store_credits, :subscribe_to_newsletters

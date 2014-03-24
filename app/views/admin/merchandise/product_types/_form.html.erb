@@ -1,7 +1,19 @@
 <fieldset id="admin-product_type-names">
   <div class="six columns">
-    <label>Name</label>
+  <label>Name</label>
+  <fieldset>
+    <label>English</label>
+    <% set_lang "en" %>
     <%= form.text_field :name %>
+    <label>Simple Chines</label>
+    <% set_lang "cn" %>
+    <% chin = form.object %>
+    <%= text_field_tag "cn[name]",chin.name %>
+    <label>Traditional Chines</label>
+    <% set_lang "tcn" %>
+    <% z_chin = form.object %>
+    <%= text_field_tag "tcn[name]",z_chin.name %>
+  </fieldset>
   </div>
   <div class="six columns">
     <label>Parent</label>

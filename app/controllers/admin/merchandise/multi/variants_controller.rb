@@ -10,6 +10,7 @@ class Admin::Merchandise::Multi::VariantsController < Admin::BaseController
     @product = Product.find(params[:product_id])
 
     if @product.update_attributes!(allowed_params)
+      update_all_language(@product,allowed_params)
       flash[:notice] = "Successfully updated variants"
       redirect_to admin_merchandise_product_url(@product)
     else

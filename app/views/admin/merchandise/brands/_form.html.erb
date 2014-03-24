@@ -11,7 +11,19 @@
 <% end %>
 
 <label>Name</label>
-<%= f.text_field :name %>
+<fieldset>
+	<label>English</label>
+	<% set_lang "en" %>
+	<%= f.text_field :name %>
+	<label>Simple Chines</label>
+	<% set_lang "cn" %>
+	<% chin = f.object %>
+	<%= text_field_tag "cn[name]",chin.name %>
+	<label>Traditional Chines</label>
+	<% set_lang "tcn" %>
+	<% z_chin = f.object %>
+	<%= text_field_tag "tcn[name]",z_chin.name %>
+</fieldset>
 <%if current_user%>
 	<%=f.hidden_field :user_id ,:value=> current_user.id%>
 <%end%>

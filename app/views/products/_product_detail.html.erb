@@ -108,6 +108,20 @@
      </select>-->
   </div>
   <%= form_for  @cart_item,
+                                  :url  => shopping_cart_items_path(@cart_item),
+                                  :html => { :id => 'new_cart_item', :class => '' } do |f| %>
+                        <%= f.hidden_field :variant_id %>
+                        <div class=''>
+                        Quantity:
+                        <%= f.select :quantity, [1,2,3,4], {:include_blank => false}, {:class => ' '} %>
+                        </div>
+                        <div class='add_to_cart_wrapper '>
+                          <% unless @product.active_variants.empty? %>
+                            <%= link_to 'Add to Cart', '#', :id => 'submit_add_to_cart', :class => 'small button' %>
+                          <% end %>
+                        </div>
+                    <% end %>
+  <%= form_for  @cart_item,
                 :url  => shopping_cart_items_path(@cart_item),
                 :html => { :id => 'new_cart_item', :class => '' } do |f| %>
       <%= f.hidden_field :variant_id %>
@@ -122,8 +136,8 @@
         <span>
           <%= number_to_currency @current_variant.price %>
         </span>
-        <% unless @current_variant.present? %>
-          <%= link_to 'Add to Bag', '#', :id => 'submit_add_to_cart', :class => 'btn-bag' %>
+        <% if @current_variant.present? %>
+          <%= link_to 'Add to Bag', '#', :id => 'submit_add_to_cart', :class => 'btn-bag small button' %>
         <% end %>
       </div>
   <% end %>

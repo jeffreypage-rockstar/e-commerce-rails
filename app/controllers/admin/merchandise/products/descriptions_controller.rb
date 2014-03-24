@@ -6,6 +6,7 @@ class Admin::Merchandise::Products::DescriptionsController < Admin::BaseControll
   def update
     @product = Product.find(params[:id])
     if @product.update_attributes(allowed_params)
+      update_all_language(@product,allowed_params)
       redirect_to admin_merchandise_product_url(@product)
     else
       render :action => :edit

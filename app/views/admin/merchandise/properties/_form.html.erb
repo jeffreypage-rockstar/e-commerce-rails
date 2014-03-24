@@ -3,7 +3,22 @@
   <%= form.text_field :identifing_name %>
 
   <label>Display Name</label>
-  <%= form.text_field :display_name %>
+    
+  <fieldset>
+        <label>English</label>
+        <% set_lang "en" %>
+        <%= form.text_field :display_name %>
+        <label>Simple Chines</label>
+        <% set_lang "cn" %>
+        <% chin = form.object %>
+        <%= text_field_tag "cn[display_name]",chin.display_name %>
+        <label>Traditional Chines</label>
+        <% set_lang "tcn" %>
+        <% z_chin = form.object %>
+        <%= text_field_tag "tcn[display_name]",z_chin.display_name %>
+  </fieldset>
+  
+  
   <%if current_user%>
   	<%=form.hidden_field :user_id ,:value=> current_user.id%>
   <%end%>
