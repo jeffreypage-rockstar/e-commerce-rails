@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
     # new_locale will carry language value,in its absence getting language from location or browser request
     if !params[:new_locale].present?      
         @country = Country.find_by_name(request.location.country) if request.location.present? && request.subdomain != "admin"
-        session[:lang] ||= @country.language if @country.present?        
+        #session[:lang] ||= @country.language if @country.present?        
         session[:lang] ||= ((lang = request.env['HTTP_ACCEPT_LANGUAGE']) && lang[/^[a-z]{2}/])      
         session[:lang] = "en" unless ["en","cn","tcn",:en,:cn,:tcn].include?(session[:lang])                          
         I18n.locale = session[:lang]
