@@ -93,13 +93,14 @@
         <%#end%>
       <%#end%>
     </select> -->
-    <%@product.properties.each_with_index do |pro|%>
+    <%#@product.properties.each_with_index do |pro|%>
       <select name="">
-        <option>Select <%=pro.display_name%></option>  
-        <%pro.variant_properties.each do |v|%>
-          <option><%=v.description%></option>  
-        <%end%>
-    <%end%>
+        <option>Select <%#=pro.display_name%></option>  
+        <%#pro.variant_properties.each do |v|%>
+          <option><%#=v.description%></option>  
+        <%#end%>
+    <%#end%>
+      </select>
     <!-- <select name="">
       <option>Select Size</option>
     </select>
@@ -107,37 +108,20 @@
       <option>1</option>
      </select>-->
   </div>
-  <%= form_for  @cart_item,
-                                  :url  => shopping_cart_items_path(@cart_item),
-                                  :html => { :id => 'new_cart_item', :class => '' } do |f| %>
-                        <%= f.hidden_field :variant_id %>
-                        <div class=''>
-                        Quantity:
-                        <%= f.select :quantity, [1,2,3,4], {:include_blank => false}, {:class => ' '} %>
-                        </div>
-                        <div class='add_to_cart_wrapper '>
-                          <% unless @product.active_variants.empty? %>
-                            <%= link_to 'Add to Cart', '#', :id => 'submit_add_to_cart', :class => 'small button' %>
-                          <% end %>
-                        </div>
-                    <% end %>
-  <%= form_for  @cart_item,
-                :url  => shopping_cart_items_path(@cart_item),
-                :html => { :id => 'new_cart_item', :class => '' } do |f| %>
+
+  <%= form_for  @cart_item,:url  => shopping_cart_items_path(@cart_item),:html => { :id => '', :class => '' } do |f| %>
       <%= f.hidden_field :variant_id %>
       <div class=''>
-      Quantity:
-      <%left_quantity = @current_variant.inventory.present? ? @current_variant.inventory.count_on_hand.to_i : 0%>
-      <%= f.select :quantity, (0..left_quantity).to_a, {:include_blank => false}, {:class => ' '} %>
-      </div>
-      <div class='add_to_cart_wrapper '>
+        Quantity:
+        <%left_quantity = @current_variant.inventory.present? ? @current_variant.inventory.count_on_hand.to_i : 0%>
+        <%= f.select :quantity, (0..left_quantity).to_a, {:include_blank => false}, {:class => ' '} %>
       </div>
       <div class="price-bag"> 
         <span>
           <%= number_to_currency @current_variant.price %>
         </span>
         <% if @current_variant.present? %>
-          <%= link_to 'Add to Bag', '#', :id => 'submit_add_to_cart', :class => 'btn-bag small button' %>
+          <%= f.submit 'Add to Bag', :class => 'btn-bag small button' %>
         <% end %>
       </div>
   <% end %>
@@ -148,7 +132,8 @@
     <div class="share-div" style="width:84%">
       <!-- AddThis Button BEGIN -->
       <div class="addthis_toolbox addthis_default_style ">
-        <span style="width:200px"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a></span>
+        <!-- <span style="width:200px">
+        <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a></span> -->
         <a class="addthis_button_tweet"></a>
       <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
       <a class="addthis_counter addthis_pill_style"></a>

@@ -52,3 +52,17 @@
 .white{color:white !important ;text-shadow:none !important;}
 .remove-background span{background-image: url(/assets/main/down-arrow.png) no-repeat;}
 .dropdown-toggle i {margin-left: 20px;}
+
+.checkout-option #new_address select {font-size:16px; color:#bebebe; height:36px; margin-bottom:13px;margin-left: 0px; border-radius:4px;}
+
+input[type="submit"].btn-commen-blue-inp {background:#2cc6c2; color:#fff; font-size:16px; height:36px; text-align:center; border:none; border-radius:2px;}
+input[type="submit"].btn-commen-blue-inp:hover {background:#1cb1ad;}
+input[type="submit"].inp-btn-170 {width:170px;}
+input[type="submit"].btn-bag {background:#2cc6c2; border-radius:2px; width:170px; height:36px; line-height:36px;border:none; color:#fff; font-size:16px; display:inline-block; text-align:center; float:right;}
+.total-list label {font-size: 16px;color: #444444;float: left;text-transform: uppercase;margin: 0 0 0 2px !important;width: 150px !important;}
+.total-list .price{font-size: 16px;color: #444444;text-transform: uppercase;margin: 0 0 0 2px !important;width: 150px !important;float:right;text-align: right}
+.delivery-meth-box-inner input[type="text"]{text-align: left !important}
+.width-250-inp[type="submit"]{width:250px !important;}
+.top-login a{color:#fff;}
+.top-login .span6{padding-top:5px;}
+.checkout-option input[type="email"]{width: 90%;height: 26px;line-height: 26px;border-radius: 4px;font-size: 16px;color: #bebebe;margin-bottom: 14px;}

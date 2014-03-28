@@ -183,6 +183,33 @@ en:
         name: 
       variant:
         qty_to_add: 
+        cost: 
+        count_on_hand: 
+        count_pending_from_supplier: 
+        count_pending_to_customer: 
+        price: 
+        sku: 
+      brand:
+        name: 
+      property:
+        display_name: 
+        identifing_name: 
+      user:
+        about_me: 
+        bday: 
+        email: 
+        first_name: 
+        last_name: 
+        password: 
+        password_confirmation: 
+        phone: 
+      address:
+        address1: 
+        address2: 
+        city: 
+        first_name: 
+        last_name: 
+        zip_code: 
   number:
     currency:
       format:
@@ -253,8 +280,39 @@ en:
         product_id: Product
       variant:
         qty_to_add: Qty to add
+        cost: Cost
+        count_on_hand: Count on hand
+        count_pending_from_supplier: Count pending from supplier
+        count_pending_to_customer: Count pending to customer
+        price: Price
+        sku: Sku
+      brand:
+        name: Name
+      property:
+        display_name: Display name
+        identifing_name: Identifing name
+      user:
+        about_me: About me
+        bday: Bday
+        email: Email
+        first_name: First name
+        last_name: Last name
+        password: Password
+        password_confirmation: Password confirmation
+        phone: Phone
+      address:
+        address1: Address1
+        address2: Address2
+        city: City
+        first_name: First name
+        last_name: Last name
+        zip_code: Zip code
     models:
       product: Product
       product_property: Product property
   Green t: 
   Nike Men Red Manchester United Jersey: 
+  authlogic:
+    error_messages:
+      no_authentication_details: You did not provide any details for authentication.
+      password_invalid: is not valid

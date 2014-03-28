@@ -22,12 +22,11 @@
 //= require admin/jquery.vmap.sampledata
 //= require admin/jquery.uniform.min
 //= require admin/app
-//= require foundation
 //= require ckeditor/init
-//= require_tree .
+
 
 $(function(){ 
-  $(document).foundation();
+  //$(document).foundation();
   $('.carousel').carousel();
   $('#myCarousel').on('slid', function() {
       var to_slide = $('#myCarousel .carousel-inner .item.active').attr('id');
