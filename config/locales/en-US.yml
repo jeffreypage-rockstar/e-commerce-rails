@@ -46,6 +46,24 @@ en-US:
         product_id: 
       variant:
         qty_to_add: 
+        cost: 
+        count_on_hand: 
+        count_pending_from_supplier: 
+        count_pending_to_customer: 
+        price: 
+        sku: 
+      user:
+        email: 
+        first_name: 
+        last_name: 
+        about_me: 
+        bday: 
+        password: 
+      brand:
+        name: 
+      property:
+        display_name: 
+        identifing_name: 
     models:
       product: 
   helpers:
@@ -54,5 +72,28 @@ en-US:
         name: 
       variant:
         qty_to_add: 
+        cost: 
+        count_on_hand: 
+        count_pending_from_supplier: 
+        count_pending_to_customer: 
+        price: 
+        sku: 
+      user:
+        bday: 
+        email: 
+        first_name: 
+        last_name: 
+        phone: 
+        about_me: 
+        password: 
+        password_confirmation: 
+      brand:
+        name: 
+      property:
+        display_name: 
+        identifing_name: 
   Green t: 
   Nike Men Red Manchester United Jersey: 
+  authlogic:
+    error_messages:
+      no_authentication_details: 
