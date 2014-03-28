@@ -26,7 +26,9 @@ class Shopping::CartItemsController < Shopping::BaseController
 
   # PUT /carts/1
   def update
-    if session_cart.update_attributes(allowed_params)
+
+    if session_cart.update_attributes!(allowed_params)
+    # render :text => params.inspect and return false
       if params[:commit] && params[:commit] == "checkout"
         redirect_to( checkout_shopping_order_url('checkout'))
       else

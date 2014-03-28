@@ -1,139 +1,103 @@
-<% content_for :head do -%>
-  <%= stylesheet_link_tag 'tables.css' %>
-<% end %>
-<div id='order-wrapper' class='twelve' style="padding-left:200px">
-  <div class='seven large-7 columns'>
-    <h1>Order Summary</h1>
-
-    <div id='order-items-summary'>
-      <% i = 1 %>
-      <% @order.order_items.group_by(&:variant_id).each do |variant_id, items| %>
-        <div id='order-item-<%= i %>' class='panel'>
-          <%= render :partial => 'order_item', :locals => {:items => items } %>
-        </div>
-        <% i += 1 %>
-      <% end %>
-    </div>
-    <div class='row'>
-      <div id='final-order-shipping-address' class=' four large-6 columns radius' >
-        <div class='panel'>
-          <h5>Shipping Address</h5>
-          <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
-          <%= link_to 'Change address', shopping_addresses_path, :class => 'button tiny green' %>
-        </div>
-      </div>
-      <div id='final-order-shipping-address' class=' four large-6 columns radius last' >
-        <div class='panel'>
-          <h5>Billing Address</h5>
-          <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.bill_address} %>
-          <%= link_to 'Change address', shopping_billing_addresses_path, :class => 'button tiny green' %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class='pretty_table five large-5 columns last'>
-    <table>
-      <thead>
-        <tr class='odd'>
-          <th class='column1_header'>
-            Item
-          </th><th>Price:</th><th>Price + Tax</th>
-        </tr>
-      </thead>
-      <% @order.order_items.each do |item| %>
-        <tr class='<%= cycle("odd", "")%> '>
-          <td><%= item.variant.product.name %></td><td><%= number_to_currency item.price %></td><td><%= number_to_currency item.total %></td>
-        </tr>
-      <% end %>
-      <tr class='odd'>
-        <td></td><td>Sub-total:</td><td><%= number_to_currency @order.sub_total %></td>
-      </tr>
-      <tr>
-        <td></td><td>Shipping Charges:</td><td><%= number_to_currency @order.shipping_charges %></td>
-      </tr>
-      <% if @order.coupon_amount > 0.0 %>
-        <tr>
-          <td></td><td>Coupon:</td><td><%= number_to_currency @order.coupon_amount %></td>
-        </tr>
-      <% end %>
-      <% if @order.deal_amount && @order.deal_amount > 0.0 %>
-        <tr>
-          <td></td><td>Promotion:</td><td><%= number_to_currency @order.deal_amount %></td><td></td>
-        </tr>
-      <% end %>
-      <tr>
-        <td></td><td>Tax:</td><td><%= number_to_currency @order.taxed_amount %></td>
-      </tr>
-      <% if @order.amount_to_credit && @order.amount_to_credit > 0.0 %>
-        <tr class='odd'>
-          <td></td>
-          <td>Credits:</td><td></td>
-          <td><%= number_to_currency @order.amount_to_credit %></td>
-        </tr>
-      <% end %>
-
-      <tfoot>
-        <tr class='even'>
-          <td></td><td>Total:</td><td><em><%= number_to_currency @order.credited_total %></em></td>
-        </tr>
-      </tfoot>
-    </table>
-    <div>
-  </div>
-    <%= form_tag( shopping_order_path(@order),
-                                  method: :put,
-                                  html:  {class: 'custom'},
-                                  id:    'purchase_order') do  %>
-
-      <div class="field ">
-        <%= label_tag  :name %>
-      </div>
-<div class='clear'></div>
-      <div class='row'>
-        <div class="field six large-6 column">
-          <%= label_tag 'First' %>
-           <%= text_field_tag(:first_name, @credit_card.first_name,:placeholder=>"Ryan") %>
-        </div>
-
-        <div class="field six large-6 column">
-          <%= label_tag :last_name, 'Last' %>
-           <%= text_field_tag(:last_name, @credit_card.last_name,:placeholder=>"Bates") %>
-        </div>
-      </div>
-      <div class='clear'></div>
-      <div class='row'>
-        <div class="field twelve large-8 column">
-          <%= label_tag 'Number'%>
-           <%= text_field_tag(:number, @credit_card.number ,:class => ' disableAutoComplete', :autocomplete => "on",:placeholder=>"4024007148673576") %>
-        </div>
-        <div class="field three large-3 column">
-          <%= label_tag :verification_value, 'VCC'%>
-           <%= text_field_tag(:verification_value, @credit_card.verification_value ,:class => 'disableAutoComplete', :autocomplete => "on",:placeholder=>"123") %>
-        </div>
-      </div>
-      <div class='twelve large-12 clearfix custom'>
-        <div class='row'>
-
-          <div class="field column large-6">
-            <%= label_tag :type, 'Type'%>
-             <%= select_tag(:type, options_for_select(['visa', 'mastercard'])) %>
-          </div>
-
-          <div class="field column large-3">
-            <%= label_tag :month %>
-            <%= select_tag(:month, options_for_select(['01', '02',  '03', '04', '05', '06', '07', '08', '09', '10', '11', '12' ])) %>
-          </div>
-
-          <div class="field column large-3">
-            <%= label_tag :year %>
-             <%= select_tag(:year, options_for_select((Time.zone.now.year..(Time.zone.now.year + 10)))) %>
-          </div>
-        </div>
-      </div>
-
-
-      <%= submit_tag 'Complete Order', :class => 'button success' %>
-    <% end %>
+<div class="row-fluid breadcrumb-full-bg">
+  <div class="container">
+    <h1>Shopping Bag</h1>
+    <ul class="breadcrumb pull-right">
+      <li><a href="/">Home</a> <span class="divider">→</span></li>
+      <li class="active">Shopping Bag</li>
+    </ul>
   </div>
 </div>
+<div class="container">
+  <%= form_tag( shopping_order_path(@order),method: :put,html:  {class: 'custom'},id:    'purchase_order') do  %>
+    <div class="checkout-option">
+      <div class="span5 delivery-meth-box">
+        <h4>Delivery Method</h4>
+        <div class="delivery-meth-box-inner">
+
+            <div class="row-fluid">
+              <label>First Name*</label>
+              <%= text_field_tag(:first_name, @credit_card.first_name,:placeholder=>"Ryan") %>
+              <!-- <a href="#" class="btn-get-quote">Get a Quote</a>  -->
+            </div>
+            <div class="row-fluid">
+              <label>Last Name*</label>
+              <%= text_field_tag(:last_name, @credit_card.last_name,:placeholder=>"Bates") %>
+            </div>
+            <div class="row-fluid">
+              <label>Credit Card Number</label>
+              <%= text_field_tag(:number, @credit_card.number ,:class => ' disableAutoComplete', :autocomplete => "on",:placeholder=>"4024007148673576") %>
+            </div>
+            <div class="row-fluid">
+              <label>VCC</label>
+              <%= text_field_tag(:verification_value, @credit_card.verification_value ,:class => 'disableAutoComplete', :autocomplete => "on",:placeholder=>"123") %>
+            </div>
+            <div class="row-fluid">
+              <label>Type</label>
+              <%= select_tag(:type, options_for_select(['visa', 'mastercard'])) %>
+            </div>
+            <div class="row-fluid">
+              <label>Month</label>
+              <%= select_tag(:month, options_for_select(['01', '02',  '03', '04', '05', '06', '07', '08', '09', '10', '11', '12' ])) %>
+            </div>
+            <div class="row-fluid">
+              <label>Year</label>
+              <%= select_tag(:year, options_for_select((Time.zone.now.year..(Time.zone.now.year + 10)))) %>
+            </div>
+
+        </div>
+      </div>
+      <div class="span6">
+        <div class="total-list">
+
+          <div class="row-fluid">
+            <label>Shipping Address : </label>
+            <label class="price">
+              <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
+              <%= link_to 'Change address', shopping_addresses_path, :class => 'button tiny green' %>
+            </label>
+          </div>
+          <div class="row-fluid">
+            <label><strong>Item</strong></label>
+            <label class="price"><strong>Price + Tax</strong></label> 
+            <label class="price"><strong>Price</strong></label>
+          </div>
+          <% @order.order_items.each do |item| %>
+          <div class="row-fluid">
+          
+            <label><%= item.variant.product.name %></label>
+            <label class="price"><%= number_to_currency item.price %></label>
+            <label class="price"><%= number_to_currency item.total %></label>
+          
+          </div>
+          <% end %>
+          <div class="row-fluid">
+            <label>Sub Total : </label>
+            <label class="price"><%= number_to_currency @order.sub_total %></label>
+          </div>
+          <div class="row-fluid">
+            <label>Shipping Charges : </label>
+            <label class="price"><%= number_to_currency @order.shipping_charges %></label>
+          </div>
+          <div class="row-fluid">
+            <label>Sub Total : </label>
+            <label class="price"><%= number_to_currency @order.sub_total %></label>
+          </div>
+          <div class="row-fluid">
+            <label>Tax : </label>
+            <label class="price"><%= number_to_currency @order.taxed_amount %></label>
+          </div>
+          <div class="row-fluid">
+            <label>Total : </label>
+            <label class="price"><%= number_to_currency @order.credited_total %></label>
+          </div>
+        </div>
+      </div>
+      <div style="clear:both"></div>
+      <div class="span12 btn-form-center">
+              <%= submit_tag 'Complete Order', :class => 'button success btn-commen-blue-inp width-250-inp' %>  
+      </div>
+  </div>
+  <% end %>
+</div>
+
 
