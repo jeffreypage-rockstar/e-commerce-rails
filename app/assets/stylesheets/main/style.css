@@ -49,6 +49,8 @@ header .resister-field input.login { background:#2cc6c2; border:1px solid #2cc6c
 .featured-main { margin-bottom:50px; float:left; width:100%;}
 .featured-main .span4 { position:relative;}
 .feat-txt1, .feat-txt2, .feat-txt3 { padding-bottom:22px; position:absolute; left:0; top:54px; font-size:50px; line-height:44px; color:#fff; text-transform:uppercase; font-weight:400; background:url(/assets/main/bott-img-bg.jpg) no-repeat center bottom; width:100%; text-align:center;}
+.feat-txt1 {background:url(/assets/main/gray-dark-bg.png) repeat; width:340px; height:60px; font-size:30px; line-height:normal; padding-top:20px; margin:0 0 0 14px;}
+.feat-txt1 small {font-size:14px; color:#fff; display:block; letter-spacing:3px;}
 .feat-txt1 em { letter-spacing:4px;}
 .feat-txt2 { top:35px; font-size:32px; line-height:50px; background:none;}
 .feat-txt2 strong { font-size:100px; display:block; letter-spacing:2px; font-weight:500;}
@@ -167,8 +169,9 @@ a:hover.check-out {color:#373737;}
 .search-top {margin:12px 0 0 0;}
 .search-top input[type="text"] {border-right:1px solid #eeeeee; border-left:none; border-top:none; border-bottom:none; font-size:16px; color:#a4a4a4; height:20px; line-height:20px; width:100px; box-shadow:none; margin:0 24px 0 0; padding:0 5px 0 0;}
 .search-top img {margin-top:2px;}
-.top-menu a{color:#fff; font-size:14px; margin:0 60px 0 0; line-height:26px;}
+.top-menu a{color:#fff; font-size:14px; margin:0 30px 0 0; line-height:26px;}
 .top-menu a:hover {color:#f1f1f1;}
+.top-menu img {vertical-align:middle;}
 
 /*-------BLOG PAGE CSS STARTS HERE-----*/
 .breadcrumb-full-bg {background:#2a2a2a; height:50px; line-height:50px; margin-bottom:65px;}
@@ -287,7 +290,7 @@ a:hover.btn-bag {background:#1fb7b3; color:#fff;}
 .prd-designer h4 span {color:#2cc6c2;text-transform:none;}
 .prd-designer h4 .bot-blue-line-img img {top: 34px;}
 .designer-detail-prd {float:left; width:100%;}
-.designer-detail-prd img {float:left; margin:0 28px 15px 0;}
+.designer-detail-prd img {float:left;}
 .designer-detail-prd p {font-size:16px;}
 .comp-right {float:right; font-size:16px; color:#c4c4c4;}
 .comp-right span {color:#2cc6c2;}
@@ -371,9 +374,9 @@ a:hover.btn-get-quote {background:#1cb1ad; color:#fff;}
 
 /*----------NEW CSS ADDED BY HB HB 25-03-2014---------*/
 .slider-inner {position:relative;}
-.slider-cont-inner {float:left; width:633px; position:absolute; left:349px; bottom:112px;}
+.slider-cont-inner {float:left; width:633px; position:absolute; left:289px; bottom:112px;}
 .slider-cont-inner img {float:left;}
-.banner-cap {background:url(/assets/main/inner-slider-cont-bg.png) repeat; width:500px; height:130px; line-height:130px; text-align:center; font-size:64px; color:#fff; text-transform:uppercase;}
+.banner-cap {background:url(/assets/main/inner-slider-cont-bg.png) repeat; width:640px; height:130px; line-height:130px; text-align:center; font-size:64px; color:#fff; text-transform:uppercase;}
 a.slider-inner-left-arrow {background:url(/assets/main/inner-slider-left-arrow.png) no-repeat 0 0; width:22px; height:40px; display:inline-block; position:absolute; left:74px; top:155px;}
 a:hover.slider-inner-left-arrow {background-position:0 -41px;}
 
@@ -432,3 +435,57 @@ a:hover.weibo-icon-f {background-position:-213px -50px;}
 
 .prd-designer .pre-next {margin-top:0px;}
 .designer-detail-prd span{color:#2cc6c2; display:block;}
+/*-------NEW CSS ADDED BY HB 26-03-2014--------*/
+.designer-prd-detail {}
+.designer-prd-detail ul {margin:0; padding:0;}
+.designer-prd-detail ul li {margin:0; padding:10px 0px; list-style:none; float:left; width:100%; border-bottom:1px solid #f6f6f6;}
+.designer-prd-detail ul li label {float:left; width:106px; font-size:16px; color:#2a2a2a;}
+.designer-prd-detail ul li span {float:left; width:40px; text-align:center; color:#2cc6c2;}
+.prd-detail-rating {float:right; width:140px;}
+.prd-detail-rating a {margin-right:8px; display:inline-block;}
+.designer-img {float:left; width:150px; margin:0 40px 0 10px;}
+.designer-prd-detail {float:left; width:370px;}
+.prd-detail-listed {float:right; color:#2cc6c2; font-size:16px; text-transform:uppercase;}
+.prddetail-center {float:left; width:100%; padding:0 0 0 0;}
+a.btn-black-coommen {background:#444444; font-size:16px; text-align:center; height:36px; line-height:36px; display:inline-block; border-radius:2px; color:#fff; padding:0 10px;}
+a:hover.btn-black-coommen {background:#303030; color:#fff;}
+.btn-rock-designer {width:140px;}
+footer {margin-top:50px;}
+.right-align {margin-left:30px;}
+/*---------NEW CSS ADDED BY HB FOR MY PROFILE PAGE-----------*/
+.my-profile {float:left; width:100%;}
+.my-prf-header {}
+.my-prf-header h1 {border-bottom:1px solid #e2e2e2; padding:0 0 10px 0; display:block; font-size:28px; color:#444;}
+.my-prf-header h1 span {border-bottom:1px solid #2cc6c2;padding:0 9px 9px 0; position:relative; top:1px;}
+.prf-right {float:right; font-size:16px; color:#2a2a2a; margin:10px 0 0 0;}
+.style-prf {float:left; width:98px;}
+.style-prf small {color:#2cc6c2; margin-left:10px; font-size:16px;}
+.profile-detail {padding:40px 0 0 0;}
+.profile-detail h2 {font-size:24px; color:#2cc6c2; font-weight:normal; margin-bottom:15px; text-transform:uppercase;}
+.profile-detail p{color:#444; line-height:25px; font-size:16px;}
+.profil-tab-right{margin:0 0 0 35px;}
+.profil-tab-right h1{color:#444; font-size:24px; font-weight:normal; text-transform:uppercase; border-bottom:1px solid #e2e2e2; padding:0 0 14px 0;}
+.profil-tab-right h1 span {border-bottom:1px solid #2cc6c2;padding:0 9px 13px 0; position:relative; top:1px;}
+.profil-tab-right ul {margin:0 0 0 0; padding:0;}
+.profil-tab-right ul li {margin:0; padding:13px 10px; list-style:none; display:block; border-bottom:1px solid #eee;}
+.profil-tab-right ul li a {color:#444; font-size:14px; text-transform:uppercase;}
+.profil-tab-right ul li span {float:right;}
+.profil-tab-right ul li a span {color:#2cc6c2;}
+.profil-tab-right ul li a em{text-transform:none; color:#979797; margin-left:7px; display:inline-block;}
+.profil-tab-right ul li a span.add-icon {background:url(/assets/main/add-gray-icon.png) no-repeat; width:8px; height:8px; margin-top:4px;}
+.profil-tab-right ul li.new-list a{color:#acacac;}
+.profil-tab-right ul li a span.edit-text {text-transform:none;}
+.prf-designer h2{}
+.prf-designer h2 {font-size:24px; color:#2cc6c2; font-weight:normal; margin-bottom:15px; text-transform:uppercase;}
+.prf-designer p{color:#444; line-height:25px; font-size:16px;}
+.designer-profile-page .sale-company-section {padding:20px 0 0 0;}
+.designer-profile-page .slider-brd {margin:38px 0 38px 0;}
+.designer-profile-page .prd-detail-rating {float:none; margin:0 auto;}
+.light-blue-bg {background:url(/assets/main/light-blue-bg.png) repeat;}
+.pink-bg {background:url(/assets/main/pink-bg.png) repeat;}
+
+a.home-slider-left-arrow {background:url(/assets/main/home-slider-arrow-left.png) no-repeat 0 0 !important; width:22px; height:40px; border:none; font-size:0px;}
+a:hover.home-slider-left-arrow {background:url(/assets/main/home-slider-arrow-left.png) no-repeat 0 -41px !important;}
+
+a.home-slider-right-arrow {background:url(/assets/main/home-slider-arrow-right.png) no-repeat 0 0 !important; width:22px; height:40px; border:none; font-size:0px;}
+a:hover.home-slider-right-arrow {background:url(/assets/main/home-slider-arrow-right.png) no-repeat 0 -41px !important;}
