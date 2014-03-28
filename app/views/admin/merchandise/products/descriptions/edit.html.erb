@@ -13,11 +13,11 @@
         <label>Simple Chines</label>
         <% set_lang "cn" %>
         <% chin = f.object %>
-        <%= cktext_area_tag "cn[description]",chin.description %>
+        <%= cktext_area_tag "cn[description_markup]",chin.description_markup %>
         <label>Traditional Chines</label>
         <% set_lang "tcn" %>
         <% z_chin = f.object %>
-        <%= cktext_area_tag "tcn[description]",z_chin.description %>
+        <%= cktext_area_tag "tcn[description_markup]",z_chin.description_markup %>
       </fieldset>
 
     <%= f.submit "Update", :class  => "button" %>

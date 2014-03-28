@@ -49,6 +49,8 @@ header .resister-field input.login { background:#2cc6c2; border:1px solid #2cc6c
 .featured-main { margin-bottom:50px; float:left; width:100%;}
 .featured-main .span4 { position:relative;}
 .feat-txt1, .feat-txt2, .feat-txt3 { padding-bottom:22px; position:absolute; left:0; top:54px; font-size:50px; line-height:44px; color:#fff; text-transform:uppercase; font-weight:400; background:url(../img/bott-img-bg.jpg) no-repeat center bottom; width:100%; text-align:center;}
+.feat-txt1 {background:url(../img/gray-dark-bg.png) repeat; width:340px; height:60px; font-size:30px; line-height:normal; padding-top:20px; margin:0 0 0 14px;}
+.feat-txt1 small {font-size:14px; color:#fff; display:block; letter-spacing:3px;}
 .feat-txt1 em { letter-spacing:4px;}
 .feat-txt2 { top:35px; font-size:32px; line-height:50px; background:none;}
 .feat-txt2 strong { font-size:100px; display:block; letter-spacing:2px; font-weight:500;}
@@ -167,8 +169,9 @@ a:hover.check-out {color:#373737;}
 .search-top {margin:12px 0 0 0;}
 .search-top input[type="text"] {border-right:1px solid #eeeeee; border-left:none; border-top:none; border-bottom:none; font-size:16px; color:#a4a4a4; height:20px; line-height:20px; width:100px; box-shadow:none; margin:0 24px 0 0; padding:0 5px 0 0;}
 .search-top img {margin-top:2px;}
-.top-menu a{color:#fff; font-size:14px; margin:0 60px 0 0; line-height:26px;}
+.top-menu a{color:#fff; font-size:14px; margin:0 30px 0 0; line-height:26px;}
 .top-menu a:hover {color:#f1f1f1;}
+.top-menu img {vertical-align:middle;}
 
 /*-------BLOG PAGE CSS STARTS HERE-----*/
 .breadcrumb-full-bg {background:#2a2a2a; height:50px; line-height:50px; margin-bottom:65px;}
@@ -478,3 +481,5 @@ footer {margin-top:50px;}
 .designer-profile-page .sale-company-section {padding:20px 0 0 0;}
 .designer-profile-page .slider-brd {margin:38px 0 38px 0;}
 .designer-profile-page .prd-detail-rating {float:none; margin:0 auto;}
+.light-blue-bg {background:url(../img/light-blue-bg.png) repeat;}
+.pink-bg {background:url(../img/pink-bg.png) repeat;}
