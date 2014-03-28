@@ -21,7 +21,7 @@
             <h4>
               <div class="bot-blue-line-img"><img src="/assets/main/bot-blue-line.gif" alt=""></div>
               Designer: <span><%=@designer.name%></span></h4>
-            <div class="designer-detail-prd"> <%=image_tag(@designer.images[0].photo(:small))%>
+            <div class="designer-detail-prd"> <%if @designer.images.present?%><%=image_tag(@designer.images[0].photo(:small))%><%end%>
               <p><%=@designer.about_me%> </p>
             </div>
           </div>
