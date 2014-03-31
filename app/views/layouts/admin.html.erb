@@ -27,6 +27,14 @@
 				<img src="/assets/admin/maddot.png" style="width:186px">
 				</a>
 				<!-- END LOGO -->
+				<% if flash.present? %>
+				  <%flash.each do |type,message|%>
+				    <div id="flash" >
+				      <div class="message_<%=type %>" style="z-index:1000px"><%= message.titleize.gsub("<Br/>","<br/>").html_safe if message.present?%></div>
+				      <%flash.discard(type) %>
+				    </div>
+				  <%end%>
+				<% end %>
 				<!-- BEGIN RESPONSIVE MENU TOGGLER -->
 				<a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
 				<img src="/assets/admin/sidebar-toggler.jpg" alt="" />

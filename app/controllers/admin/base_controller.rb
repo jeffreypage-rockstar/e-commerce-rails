@@ -17,9 +17,9 @@ class Admin::BaseController < ApplicationController
     I18n.locale = "cn"
     obj.update_attributes(allowed_params_cn)
     I18n.locale = "tcn"
-    obj.update_attributes(allowed_params_tcn)
-    I18n.locale = "en"
     obj.update_attributes(allowed_params)
+    I18n.locale = "en"
+    obj.update_attributes(allowed_params_en)
   end
 
   private
@@ -28,8 +28,8 @@ class Admin::BaseController < ApplicationController
     params.require(:cn).permit!
   end
 
-  def allowed_params_tcn
-    params.require(:tcn).permit!
+  def allowed_params_en
+    params.require(:en).permit!
   end
 
   def recent_admin_users

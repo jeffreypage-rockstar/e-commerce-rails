@@ -26,8 +26,9 @@
                       admin_merchandise_product_related_products_path(@product) %>
         </li>
         <li>
-          <%= link_to "Inventory",
-                      admin_inventory_adjustment_path(@product) %>
+          <%@inventry = @product.variants.collect { |v| v.inventory }%>
+          <%= link_to "Inventory",admin_inventory_adjustment_path(@product), 
+            :style => "#{@inventry.size == 0 ? 'color:#EF2255;' : ''}"%>
         </li>
     </ul>
 

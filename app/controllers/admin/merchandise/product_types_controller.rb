@@ -22,7 +22,7 @@ class Admin::Merchandise::ProductTypesController < Admin::BaseController
 
   def create
     @product_type = ProductType.new(allowed_params)
-
+    
     if @product_type.save
       update_all_language(@product_type,allowed_params)
       redirect_to :action => :index
