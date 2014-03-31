@@ -21,8 +21,8 @@ class Admin::Merchandise::ProductTypesController < Admin::BaseController
   end
 
   def create
-    @product_type = ProductType.new(allowed_params)
-    
+    I18n.locale = "tcn"
+    @product_type = ProductType.new(allowed_params)    
     if @product_type.save
       update_all_language(@product_type,allowed_params)
       redirect_to :action => :index
@@ -39,6 +39,7 @@ class Admin::Merchandise::ProductTypesController < Admin::BaseController
   end
 
   def update
+    I18n.locale = "tcn"
     @product_type = ProductType.find(params[:id])
 
     if @product_type.update_attributes(allowed_params)
