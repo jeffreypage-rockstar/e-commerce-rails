@@ -1,7 +1,7 @@
 <div class="span3 relative ">
   <div style="height:400px;width:270">
     
-    <%if product.variants[0].discount_percent.present? %> 
+    <%if product.variants.present? && product.variants[0].discount_percent.present? %> 
       <span class="discount-red">
         <%if variant.present?%>
           <%=variant.discount_percent%>%
