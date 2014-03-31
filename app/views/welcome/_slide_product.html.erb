@@ -1,3 +1,4 @@
+<%if product.variants.present?%>
 <div class="span3 relative ">
   <div style="height:400px;width:270">
     
@@ -18,7 +19,7 @@
         <%if variant.present? && variant.image_group.present?%>
           <%= image_tag(variant.image_group.images[0].photo.url(:large),:style=> "width:270px")  %>
         <%else%>
-          <%=product.variants[0].discount_percent%>%
+          <%="#{product.variants[0].discount_percent}%" if product.variants.present? %>
         <%end%>
       <%end%>
 
@@ -38,3 +39,4 @@
     <%end%>
 	</div>
 </div>
+<% end %>
