@@ -4,12 +4,12 @@
 
 <span style='color:<%= @product.active ? "#3A3" : "#C33" %>; float:right; margin-top: -45px'>
   <% if @product.available? %>
-    <%= link_to 'Active', admin_merchandise_product_path(@product),
+    <%= link_to 'Turn InActive', admin_merchandise_product_path(@product),
                           :method => :delete,
                           :data => {:confirm => "This will inactivate the product,  Are you sure?"},
                           :class => 'button green-button' %>
   <% else %>
-    <%= link_to 'Not Active', activate_admin_merchandise_product_path(@product),
+    <%= link_to 'Turn Active', activate_admin_merchandise_product_path(@product),
                               :method => 'PUT',
                               :data => {:confirm => "This will activate the product,  Are you sure?"},
                               :class => 'button red-button' %>

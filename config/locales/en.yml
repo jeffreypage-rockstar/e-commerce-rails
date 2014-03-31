@@ -181,6 +181,14 @@ en:
     label:
       product:
         name: 
+        brand: 
+        condition_of_product: 
+        featured: 
+        gender: 
+        permalink: 
+        product_type: 
+        shipping_category: 
+        super_hot: 
       variant:
         qty_to_add: 
         cost: 
@@ -276,6 +284,16 @@ en:
     attributes:
       product:
         name: Name
+        brand: Brand
+        condition_of_product: Condition of product
+        featured: Featured
+        gender: Gender
+        permalink: Permalink
+        product_type: Product type
+        shipping_category: Shipping category
+        super_hot: Super hot
+        product_type_id: Product type
+        shipping_category_id: Shipping category
       product_property:
         product_id: Product
       variant:
@@ -310,6 +328,8 @@ en:
     models:
       product: Product
       product_property: Product property
+      user: User
+      brand: Brand
   Green t: 
   Nike Men Red Manchester United Jersey: 
   authlogic:
@@ -317,4 +337,5 @@ en:
       no_authentication_details: You did not provide any details for authentication.
       password_invalid: is not valid
       login_not_found: is not valid
-
+  hot_menu: 
+  sale_menu: 

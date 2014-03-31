@@ -23,17 +23,17 @@
   <div class='span-6 last'>
     <label>Name</label>
       <fieldset>
-        <label>English</label>
-        <% set_lang "en" %>
+        <label>Traditional Chinese</label>
+        <% set_lang "tcn" %>
         <%= form.text_field :name %>
-        <label>Simple Chines</label>
+        <label>Simple Chinese</label>
         <% set_lang "cn" %>
         <% chin = form.object %>
         <%= text_field_tag "cn[name]",chin.name %>
-        <label>Traditional Chines</label>
-        <% set_lang "tcn" %>
-        <% z_chin = form.object %>
-        <%= text_field_tag "tcn[name]",z_chin.name %>
+        <label>English</label>
+        <% set_lang "en" %>
+        <% eng = form.object %>
+        <%= text_field_tag "en[name]",eng.name %>
       </fieldset>
   </div>
 
@@ -58,17 +58,17 @@
   <div class='span-6 last'>
     <label>Meta Keyword</label>
       <fieldset>
-        <label>English</label>
-        <% set_lang "en" %>
+        <label>Traditional Chinese</label>
+        <% set_lang "tcn" %>
         <%= form.text_field :meta_keywords %>
         <label>Simple Chines</label>
         <% set_lang "cn" %>
         <% chin = form.object %>
         <%= text_field_tag "cn[meta_keywords]",chin.meta_keywords %>
-        <label>Traditional Chines</label>
-        <% set_lang "tcn" %>
-        <% z_chin = form.object %>
-        <%= text_field_tag "tcn[meta_keywords]",z_chin.meta_keywords %>
+        <label>English</label>
+        <% set_lang "en" %>
+        <% eng = form.object %>
+        <%= text_field_tag "en[meta_keywords]",eng.meta_keywords %>
       </fieldset>
     <%#= form.text_field :meta_keywords %>
   </div>
@@ -80,17 +80,17 @@
   <div class='span-6 last'>
     <label>Meta Description</label>
       <fieldset>
-        <label>English</label>
-        <% set_lang "en" %>
+        <label>Traditional Chinese</label>
+        <% set_lang "tcn" %>
         <%= form.text_field :meta_description %>
-        <label>Simple Chines</label>
+        <label>Simple Chinese</label>
         <% set_lang "cn" %>
         <% chin = form.object %>
         <%= text_field_tag "cn[meta_description]",chin.meta_description %>
-        <label>Traditional Chines</label>
-        <% set_lang "tcn" %>
-        <% z_chin = form.object %>
-        <%= text_field_tag "tcn[meta_description]",z_chin.meta_description %>
+        <label>English</label>
+        <% set_lang "en" %>
+        <% eng = form.object %>
+        <%= text_field_tag "en[meta_description]",eng.meta_description %>
       </fieldset>
     <%= form.text_field :meta_description %>
   </div>

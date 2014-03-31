@@ -101,4 +101,4 @@ gem 'omniauth-facebook', '1.4.0'
 gem 'thin'
 gem 'globalize', '~> 4.0.0'
 gem "geocoder"
-gem 'localeapp'
+# gem 'localeapp'

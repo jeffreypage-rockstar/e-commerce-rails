@@ -7,17 +7,17 @@
     <%= f.text_field :name %>
     <label>Description</label>
       <fieldset>
-        <label>English</label>
-        <% set_lang "en" %>
+        <label>Traditional Chinese</label>
+        <% set_lang "tcn" %>
         <%= f.cktext_area :description_markup,  :cols => "92", :rows => "15" %>
-        <label>Simple Chines</label>
+        <label>Simple Chinese</label>
         <% set_lang "cn" %>
         <% chin = f.object %>
         <%= cktext_area_tag "cn[description_markup]",chin.description_markup %>
-        <label>Traditional Chines</label>
-        <% set_lang "tcn" %>
-        <% z_chin = f.object %>
-        <%= cktext_area_tag "tcn[description_markup]",z_chin.description_markup %>
+        <label>English</label>
+        <% set_lang "en" %>
+        <% eng = f.object %>
+        <%= cktext_area_tag "en[description_markup]",eng.description_markup %>
       </fieldset>
 
     <%= f.submit "Update", :class  => "button" %>

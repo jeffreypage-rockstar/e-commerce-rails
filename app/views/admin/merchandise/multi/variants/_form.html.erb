@@ -15,11 +15,11 @@
         <tr>
           <td>SKU   </td><td> <%= ff.text_field :sku,   class: 'span-3' %> </td>
         </tr><tr>
-          <td>Name<br/>(Eng)  </td><td> <%= ff.text_field :name,  class: 'span-3' %> </td>
+          <td>Name<br/>(Traditional Ch)  </td><td> <% set_lang "tcn" %><%= ff.text_field :name,  class: 'span-3' %> </td>
         </tr><tr>
           <td>Name<br/>(Simple Ch)  </td><td><% set_lang "cn" %><% chin = ff.object %> <%= text_field_tag "cn[name]",chin.name ,  class: 'span-3'%> </td>
         </tr><tr>
-          <td>Name<br/>(Traditional Ch)  </td><td><% set_lang "tcn" %><% chin = ff.object %> <%= text_field_tag "tcn[name]",chin.name ,  class: 'span-3'%>  </td>
+          <td>Name<br/>(Eng)  </td><td><% set_lang "en" %><% chin = ff.object %> <%= text_field_tag "en[name]",chin.name ,  class: 'span-3'%>  </td>
         </tr><tr>
           <td>Cost  </td><td> <%= ff.text_field :cost,  class: 'span-3' %> </td>
         </tr><tr>
@@ -77,11 +77,11 @@
         <tr>
           <td>SKU   </td><td> <%= ff.text_field :sku,   class: 'span-3' %> </td>
         </tr><tr>
-          <td>Name<br/>(Eng)  </td><td> <%= ff.text_field :name,  class: 'span-3' %> </td>
+          <td>Name<br/>(Traditional Ch)  </td><td> <% set_lang "tcn" %><%= ff.text_field :name,  class: 'span-3' %> </td>
         </tr><tr>
           <td>Name<br/>(Simple Ch)  </td><td><% set_lang "cn" %><% chin = ff.object %> <%= text_field_tag "cn[name]",chin.name ,  class: 'span-3'%> </td>
         </tr><tr>
-          <td>Name<br/>(Traditional Ch)  </td><td><% set_lang "tcn" %><% chin = ff.object %> <%= text_field_tag "tcn[name]",chin.name ,  class: 'span-3'%>  </td>
+          <td>Name<br/>(Eng)  </td><td><% set_lang "en" %><% chin = ff.object %> <%= text_field_tag "en[name]",chin.name ,  class: 'span-3'%>  </td>
         </tr><tr>
           <td>Cost  </td><td> <%= ff.text_field :cost,  class: 'span-3' %> </td>
         </tr><tr>

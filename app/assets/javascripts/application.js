@@ -81,6 +81,8 @@ $(function(){
         });
   });
 
+  $('#flash').fadeOut(10000)
+
   $('body').prepend('<div id="fb-root"></div>');
   return $.ajax({
     url: "" + window.location.protocol + "//connect.facebook.net/en_US/all.js",

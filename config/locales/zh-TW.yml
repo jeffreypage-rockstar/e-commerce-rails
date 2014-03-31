@@ -42,6 +42,16 @@ zh-TW:
     attributes:
       product:
         name: 
+        brand: 
+        condition_of_product: 
+        featured: 
+        gender: 
+        permalink: 
+        product_type: 
+        shipping_category: 
+        super_hot: 
+        product_type_id: 
+        shipping_category_id: 
       product_property:
         product_id: 
       variant:
@@ -75,10 +85,20 @@ zh-TW:
         zip_code: 
     models:
       product: 
+      user: 
+      brand: 
   helpers:
     label:
       product:
         name: 
+        brand: 
+        condition_of_product: 
+        featured: 
+        gender: 
+        permalink: 
+        product_type: 
+        shipping_category: 
+        super_hot: 
       variant:
         qty_to_add: 
         cost: 
@@ -115,4 +135,5 @@ zh-TW:
       no_authentication_details: 
       password_invalid: 
       login_not_found: 
-
+  hot_menu: 
+  sale_menu: 
