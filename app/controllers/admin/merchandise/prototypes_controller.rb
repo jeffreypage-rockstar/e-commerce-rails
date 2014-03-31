@@ -28,6 +28,7 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
   end
 
   def create
+    I18n.locale = "tcn"
     @prototype = Prototype.new(allowed_params)
     if @prototype.save
       update_all_language(@prototype,allowed_params)
@@ -51,8 +52,9 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
   end
 
   def update
+    I18n.locale = "tcn"
     @prototype = Prototype.find(params[:id])
-@prototype.property_ids = params[:prototype][:property_ids]
+    @prototype.property_ids = params[:prototype][:property_ids]
     if @prototype.update_attributes(allowed_params)
       update_all_language(@prototype,allowed_params)
       redirect_to :action => :index

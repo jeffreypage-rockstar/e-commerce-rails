@@ -15,11 +15,11 @@ class Admin::BaseController < ApplicationController
 
   def update_all_language(obj,allowed_params)
     I18n.locale = "cn"
-    obj.update_attributes(allowed_params_cn)
-    I18n.locale = "tcn"
-    obj.update_attributes(allowed_params)
+    obj.update_attributes(allowed_params_cn)    
     I18n.locale = "en"
     obj.update_attributes(allowed_params_en)
+    # I18n.locale = "tcn"
+    # obj.update_attributes(allowed_params)
   end
 
   private

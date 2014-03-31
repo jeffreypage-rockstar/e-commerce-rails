@@ -35,6 +35,7 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
   end
 
   def create
+    I18n.locale = "tcn"
     @property = Property.new(allowed_params)
     if @property.save
       update_all_language(@property,allowed_params)
@@ -50,6 +51,7 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
   end
 
   def update
+    I18n.locale = "tcn"
     @property = Property.find(params[:id])
     if @property.update_attributes(allowed_params)
       update_all_language(@property,allowed_params)

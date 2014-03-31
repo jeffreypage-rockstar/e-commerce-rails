@@ -50,9 +50,9 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   end
 
   def create
-    @product = Product.new(allowed_params)
-
-    if @product.save
+    I18n.locale = "tcn"
+    @product = Product.new(allowed_params)        
+    if @product.save      
       update_all_language(@product,allowed_params)
       flash[:notice] = "Success, You should create a variant for the product."
       redirect_to edit_admin_merchandise_products_description_url(@product)
@@ -66,11 +66,12 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   end
 
   def edit
-    @product        = Product.includes(:properties,:product_properties, {:prototype => :properties}).find(params[:id])
+    @product = Product.includes(:properties,:product_properties, {:prototype => :properties}).find(params[:id])
     form_info
   end
 
   def update
+    I18n.locale = "tcn"
     @product = Product.find(params[:id])
 
     if @product.update_attributes(allowed_params)

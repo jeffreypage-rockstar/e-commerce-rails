@@ -20,6 +20,7 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
   end
 
   def create
+    
     @product = Product.find(params[:product_id])
     @variant = @product.variants.new(allowed_params)
 
