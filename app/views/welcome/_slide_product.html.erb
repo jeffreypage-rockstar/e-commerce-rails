@@ -10,7 +10,7 @@
         <%end%>
       </span>
     <%end%>
-    <%if !product.variants[0].discount_percent.present? && product.hero_variant.low_stock? %><span class="discount-red white-color">out</span><%end%>
+    <%if ((product.variants.present? && !product.variants[0].discount_percent.present?) && product.hero_variant.low_stock?) %><span class="discount-red white-color">out</span><%end%>
 	  <a href="<%=product_path(product)%>" title="<%=product.name%>" >
       <%if product.images[0].present?%>
 			 <%= image_tag(product.images[0].photo(:product),:style=> "width:270px")  %>
