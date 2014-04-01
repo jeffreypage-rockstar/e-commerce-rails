@@ -15,10 +15,7 @@ Hadean::Application.routes.draw do
   get 'brand-products/:id' => 'products#brand_products' ,as: :brand_products
   get 'cat-products/:id' => 'products#cat_products'  ,as: :cat_products
   get 'hot-products' => 'products#hot_products'  ,as: :hot_products
-<<<<<<< HEAD
   post 'get_property_product'=> 'products#get_property_product'
-=======
->>>>>>> bcff3ab79ef30dd77f1204033febcd49f682b27f
 
 
   resources :image_groups
