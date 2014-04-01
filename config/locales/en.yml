@@ -2,11 +2,12 @@ en:
   brands: Brands
   style: Style
   gender: Gender
-  hot: Hot
+  hot: Hot!
   news: News
   blog: Blog
   show: Show
   home: Home
+  sale: Sale!
   my_profile: My Profile
   my_favorites: My Favorites
   shoping_bag: Shoping Bag

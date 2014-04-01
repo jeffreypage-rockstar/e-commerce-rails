@@ -2,11 +2,12 @@ tcn:
   brands:               '品牌'
   style:                '風格'
   gender: 性別 
-  hot: 熱
+  hot: 熱 !
   news: 新聞 
   blog: 博客 
   show: 節目
   home: 家 
+  sale: 銷售！ 
   my_profile: 我的個人資料 
   my_favorites:  我的最愛 
   shoping_bag: 街上購物袋

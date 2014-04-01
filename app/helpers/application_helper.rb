@@ -79,4 +79,13 @@ EXAMPLE USAGE!!
       end
       return keyword
   end
+
+  def get_properties_values(property_variants)
+    if property_variants.present?
+      property_variants =  property_variants.map { |e| [e.description] }
+      return property_variants.present? ? property_variants.uniq : nil
+    else
+      return nil
+    end
+  end
 end

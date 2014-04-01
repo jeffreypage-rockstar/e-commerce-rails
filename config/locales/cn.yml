@@ -2,11 +2,12 @@ cn:
   brands:               '品牌'
   style:                '风格'
   gender: 性别 
-  hot: 热 
+  hot: 热 !
   news: 新闻 
   blog: 博客 
   show: 节目
   home: 家 
+  sale: 销售！
   my_profile: 我的个人资料 
   my_favorites: 我的最爱 
   shoping_bag:  街上购物袋
