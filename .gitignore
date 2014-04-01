@@ -2,6 +2,7 @@
 nbproject/*
 nbproject
 .idea
+.rvmrc
 .vimrc
 .powrc
 .vim

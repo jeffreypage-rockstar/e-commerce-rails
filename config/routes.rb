@@ -9,7 +9,13 @@ Hadean::Application.routes.draw do
   get 'designer/:id' => "designers#show" ,as: :designer
   get 'rock_product/:id' => "products#rock_product" ,as: :rock_product
   get 'change_variant/:id/:variant_id' => "products#change_variant" , as: :change_variant
-  get 'change_language' => 'welcome#change_lang', :as => :change_language
+  get 'change_language' => 'welcome#change_lang', as: :change_language
+  get 'my-favorites' => 'products#my_favorites' ,as: :my_favorites
+  get 'my-profile' => 'products#my_profile' ,as: :my_profile
+  get 'brand-products/:id' => 'products#brand_products' ,as: :brand_products
+  get 'cat-products/:id' => 'products#cat_products'  ,as: :cat_products
+  get 'hot-products' => 'products#hot_products'  ,as: :hot_products
+
 
   resources :image_groups
   # mount Resque::Server.new, at: "/resque"

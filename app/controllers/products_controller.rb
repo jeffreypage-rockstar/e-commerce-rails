@@ -25,6 +25,29 @@ class ProductsController < ApplicationController
     render :template => '/products/index'
   end
 
+  def my_favorites
+      prodcut_rocks= ProductRock.find_all_by_user_id(current_user.id).map(&:product_id)
+      @fav_products = Product.paginate(:page => pagination_page, :per_page => pagination_rows).where(["id in (?)",prodcut_rocks])
+  end
+
+  def brand_products
+      @brand = Brand.find(params[:id])
+      @products = Product.paginate(:page => pagination_page, :per_page => pagination_rows).where(["brand_id =?",params[:id]])
+  end
+
+  def cat_products
+    @cat = ProductType.find(params[:id])
+    @products = Product.paginate(:page => pagination_page, :per_page => pagination_rows).where(["product_type_id =?",params[:id]])
+  end
+
+  def hot_products
+    @products = Product.paginate(:page => pagination_page, :per_page => pagination_rows).where(["super_hot =?",true])
+  end
+
+  def my_profile
+    
+  end
+
   def show
     @product = Product.active.find(params[:id])
     if current_user

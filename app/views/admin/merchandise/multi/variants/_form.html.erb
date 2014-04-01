@@ -4,7 +4,7 @@
 <%else%>
   <%admin_commision = 0%>
 <%end%>
-<%= form.fields_for :variants, Variant.new(product_id: @product.id), child_index: "new_variants" do |ff| %>
+<%= form.fields_for :variants, Variant.new(product_id: @product.id), child_index: "new_variants" do |ff| %>  
   <div id='variants_fields_template' style='display:none;'>
     <div class='span-6 three large-5  columns new_variant_container'  style='float: left;margin-bottom:15px' >
       <table class='span-6 ar-sidebar' style='width:240px;' >
@@ -12,6 +12,7 @@
           <td></td>
           <td style='float:right;'> <%= link_to 'remove', '#remove', :class => 'remove_variant_child' %> </td>
         </tr>
+        <% nest_index = ff.options[:child_index].blank? ? ff.options[:parent_builder].instance_values["nested_child_index"]["job_seeker[academic_information_attributes]"] : ff.options[:child_index]%>
         <tr>
           <td>SKU   </td><td> <%= ff.text_field :sku,   class: 'span-3' %> </td>
         </tr><tr>
@@ -23,15 +24,15 @@
         </tr><tr>
           <td>Cost  </td><td> <%= ff.text_field :cost,  class: 'span-3' %> </td>
         </tr><tr>
-          <td>Before Commission </td><td> <%= ff.text_field :price_before_commission, class: 'span-1' %>  </td>
+          <td>Price(Before Commission) </td><td> <%= ff.text_field :price_before_commission, class: 'span-1',:onchange=>"update_commision(#{nest_index})" %>  </td>
         </tr><tr>
-          <td>Commission </td><td> <%= ff.text_field :commission,:value=> admin_commision,class: 'span4' %> % </td>
+          <td>Commission </td><td> <%= ff.text_field :commission,:value=> admin_commision, disabled: true,class: 'span4' %> % </td>
         </tr><tr>
-          <td>Price </td><td> <%= ff.text_field :price, class: 'span-3' %> </td>
+          <td>Price(After Commission) </td><td> <%= ff.text_field :price, disabled: true, class: 'span-3' %> </td>
         </tr><tr>
-          <td>Discount </td><td> <%= ff.text_field :discount_percent, class: 'span4' %> % </td>
+          <td>Discount </td><td> <%= ff.text_field :discount_percent, class: 'span4',:onchange=>"update_discount(#{nest_index})" %> % </td>
         </tr><tr>
-          <td>Discounted Price </td><td> <%= ff.text_field :price_after_discount, class: 'span-3' %> </td>
+          <td>Discounted Price </td><td> <%= ff.text_field :price_after_discount, disabled: true, class: 'span-3' %> </td>
         </tr><tr>
           <td>Images  </td><td> <%= ff.select :image_group_id, image_groups,{ include_blank: true, prompt: "Defaults to product's images" } %> </td>
         </tr><tr>
@@ -75,6 +76,7 @@
           </tr>
         </thead>
         <tr>
+          <% nest_index = ff.options[:child_index].blank? ? ff.options[:parent_builder].instance_values["nested_child_index"]["job_seeker[academic_information_attributes]"] : ff.options[:child_index]%>          
           <td>SKU   </td><td> <%= ff.text_field :sku,   class: 'span-3' %> </td>
         </tr><tr>
           <td>Name<br/>(Traditional Ch)  </td><td> <% set_lang "tcn" %><%= ff.text_field :name,  class: 'span-3' %> </td>
@@ -85,15 +87,15 @@
         </tr><tr>
           <td>Cost  </td><td> <%= ff.text_field :cost,  class: 'span-3' %> </td>
         </tr><tr>
-          <td>Beofre Commission </td><td> <%= ff.text_field :price_before_commission, class: 'span-1' %>  </td>
+          <td>Price(Before Commission) </td><td> <%= ff.text_field :price_before_commission, class: 'span-1',:onchange=>"update_commision(#{nest_index})" %>  </td>
         </tr><tr>
-          <td>Commission </td><td> <%= ff.text_field :commission,:value=> variant.commission.present? ? variant.commission.to_i :  admin_commision, class: 'span4' %> % </td>
+          <td>Commission </td><td> <%= ff.text_field :commission,:value=> variant.commission.present? ? variant.commission.to_i :  admin_commision, disabled: true, class: 'span4' %> % </td>
         </tr><tr>
-          <td>Price </td><td> <%= ff.text_field :price, class: 'span-3' %> </td>
+          <td>Price (After Commission) </td><td> <%= ff.text_field :price, disabled: true, class: 'span-3' %> </td>
         </tr><tr>
-          <td>Discount </td><td> <%= ff.text_field :discount_percent, class: 'span4' %> % </td>
+          <td>Discount </td><td> <%= ff.text_field :discount_percent, class: 'span4',:onchange=>"update_discount(#{nest_index})" %> % </td>
         </tr><tr>
-          <td>Discounted Price </td><td> <%= ff.text_field :price_after_discount, class: 'span-3' %> </td>
+          <td>Discounted Price </td><td> <%= ff.text_field :price_after_discount, disabled: true, class: 'span-3' %> </td>
         </tr><tr>
           <td>Images  </td><td> <%= ff.select :image_group_id, image_groups,{ include_blank: true, prompt: "Defaults to product's images" } %> </td>
         </tr>
