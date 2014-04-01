@@ -62,7 +62,7 @@ class Admin::Merchandise::ProductTypesController < Admin::BaseController
   private
 
   def allowed_params
-    params.require(:product_type).permit( :name, :parent_id )
+    params.require(:product_type).permit( :name, :parent_id ,:main_menu)
   end
 
   def form_info

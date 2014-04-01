@@ -116,3 +116,22 @@ $(function(){
 
 });
 
+<<<<<<< HEAD
+=======
+});
+
+
+function update_commision(comission_id) {  
+  var commission = parseInt($("#product_variants_attributes_"+comission_id+"_commission").val())  
+  var before_commission = parseInt($("#product_variants_attributes_"+comission_id+"_price_before_commission").val())
+  var after_commission = ((commission*before_commission)/100)+before_commission
+  $("#product_variants_attributes_"+comission_id+"_price").val(parseInt(after_commission));
+}
+
+function update_discount(price_id) {  
+  var discount = parseInt($("#product_variants_attributes_"+price_id+"_discount_percent").val())  
+  var before_discount = parseInt($("#product_variants_attributes_"+price_id+"_price").val())
+  var after_discount = before_discount - ((discount*before_discount)/100)
+  $("#product_variants_attributes_"+price_id+"_price_after_discount").val(parseInt(after_discount));
+}
+>>>>>>> 4b26fabe1a4ead602eb8caa36270be231e0bde25

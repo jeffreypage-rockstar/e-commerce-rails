@@ -14,7 +14,9 @@
                     <div class="span2">
                       <ul>
                         <%b_group.each do |brand|%>
-                          <li><%=link_to brand.present? ? brand.name : '' %></li>
+                          <%if brand.present?%>
+                            <li><%=link_to brand.present? ? brand.name : '' ,brand_products_path(brand)%></li>
+                          <%end%>
                         <%end%>
                       </ul>
                     </div>
@@ -22,12 +24,12 @@
                     
                   </div>
                 </li>
-                <li><a href="#"><%= t(:style)%></a></li>
-                <li><a href="#"><%= t(:gender)%></a></li>
-                <li><a href="#"><%= t(:hot)%></a></li>
-                <li><a href="#"><%= t(:news)%></a></li>
+                <%@product_category_on_main_menu.each do |cat|%>
+                  <li><a href="<%=cat_products_path(cat)%>"><%= cat.name%></a></li>
+                <%end%>
+                <li><a href="#"><%= t(:sale)%></a></li>
+                <li><a href="<%=hot_products_path%>"><%= t(:hot)%></a></li>
                 <li><a href="<%=blogs_path%>"><%= t(:blog)%></a></li>
-                <li><a href="#"><%= t(:show)%></a></li>
               </ul>
             </div>
             <div class="span2 pull-right search-top">
