@@ -109,7 +109,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     if @product.save
       redirect_to admin_merchandise_product_url(@product)      
     else      
-      flash[:alert] = "Please add a description before Activating."+@product.errors.full_messages.join(",")
+      flash[:alert] = @product.errors.full_messages.join(",")
       redirect_to edit_admin_merchandise_products_description_url(@product)
     end
   end

@@ -20,15 +20,15 @@
         <li>
           <%= link_to 'Variants',
                       edit_admin_merchandise_multi_product_variant_path(@product),
-                      :style => "#{@product.variants.size == 0 ? 'color:#EF2255;' : ''}" %> </li>
+                      :style => "#{@product.variants.size == 0 ? 'color:#EF2255;' : ''}" %></li>
         <li>
           <%= link_to "Related Products",
                       admin_merchandise_product_related_products_path(@product) %>
         </li>
         <li>
-          <%@inventry = @product.variants.collect { |v| v.inventory }%>
+          <%@inventry = @product.variants.map { |v| v.inventory if v.inventory.count_on_hand > 0 }.compact%>
           <%= link_to "Inventory",admin_inventory_adjustment_path(@product), 
-            :style => "#{@inventry.size == 0 ? 'color:#EF2255;' : ''}"%>
+            :style => "#{(@inventry.size == 0 || @inventry.size != @product.variants.size) ? 'color:#EF2255;' : ''}"%>
         </li>
     </ul>
 

@@ -43,11 +43,9 @@ class ProductsController < ApplicationController
   def hot_products
     @products = Product.paginate(:page => pagination_page, :per_page => pagination_rows).where(["super_hot =?",true])
   end
-
   def my_profile
 #    @user = 
   end
-
 
   def show
     @product = Product.active.find(params[:id])
