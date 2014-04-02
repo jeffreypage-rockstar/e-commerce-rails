@@ -2,8 +2,6 @@
 //= require bootstrap/bootstrap
 //= require bootstrap/bootstrap-collapse
 //= require bootstrap/bootstrap-dropdown
-//= require admin/bootstrap.min
-//= require admin/bootstrap-colorpicker
 //= require new_sliders/carouFredSel
 //= require product_page/jquery.jcarousel.pack
 //= require new_sliders/jquery.bxslider
@@ -11,6 +9,8 @@
 //= require admin/breakpoints
 //= require admin/jquery-ui-1.10.1.custom.min
 //= require admin/jquery.slimscroll.min
+//= require admin/bootstrap.min
+//= require admin/bootstrap-colorpicker
 //= require admin/jquery.blockui
 //= require admin/jquery.cookie
 //= require admin/jquery.vmap
@@ -23,11 +23,11 @@
 //= require admin/jquery.uniform.min
 //= require admin/app
 //= require ckeditor/init
-
+//= require_tree .
 
 
 $(function(){ 
-  
+  $(document).foundation();
   $('.carousel').carousel();
   $('#myCarousel').on('slid', function() {
       var to_slide = $('#myCarousel .carousel-inner .item.active').attr('id');
@@ -93,7 +93,7 @@ $(function(){
 
   window.fbAsyncInit = function() {
     FB.init({
-      appId: '1377312692524865',
+      appId: '',
       cookie: true
     });
     $('#sign_in').click(function(e) {
@@ -113,6 +113,8 @@ $(function(){
       return true;
     });
   };
+
+  
 
 });
 
@@ -138,3 +140,5 @@ function update_discount(price_id) {
   }
   $("#product_variants_attributes_"+price_id+"_price_after_discount").val(parseInt(after_discount));
 }
+
+
