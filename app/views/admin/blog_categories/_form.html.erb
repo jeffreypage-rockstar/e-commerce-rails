@@ -1,9 +1,18 @@
 <div class="control-group">
     <label class="control-label">Title </label>
-    <div class="controls">
-       <%=f.text_field :name ,:class=>"span5 m-wrap"%>
-       <!-- <div class="pull-right"> Required Fields </div> -->
-    </div>
+    <fieldset>
+      <label>Traditional Chinese</label>
+      <% set_lang "tcn" %>      
+      <%=f.text_field :name ,:class=>"span5 m-wrap"%>            
+      <label>Simple Chinese</label>
+      <% set_lang "cn" %>
+      <% chin = f.object %>      
+      <%=text_field_tag "cn[name]",chin.name ,:class=>"span5 m-wrap"%>            
+      <label>English</label>
+      <% set_lang "en" %>
+      <% eng = f.object %>      
+      <%=text_field_tag "en[name]",eng.name ,:class=>"span5 m-wrap"%>            
+    </fieldset>    
 </div>
 
 <div class="control-group">

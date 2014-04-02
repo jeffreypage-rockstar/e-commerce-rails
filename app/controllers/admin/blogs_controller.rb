@@ -37,9 +37,11 @@ class Admin::BlogsController < Admin::BaseController
 	  end
 
 	  def create
+	  	I18n.locale = "tcn"    
 	  	@blog = Blog.new(user_params)
   		respond_to do |format|
 		    if @blog.save
+		    	update_all_language(@blog,user_params)
 		      format.html  { redirect_to(admin_blogs_path,
 		                    :notice => 'blog was successfully created.') }
 		    else
@@ -69,9 +71,11 @@ class Admin::BlogsController < Admin::BaseController
 	        flash[:notice] = (params[:status].casecmp(" Active")) == 0 ? 'Activated Successfully' : 'In-activated Successfully'
 	      end
 	    else
+	    	I18n.locale = "tcn"
     		@blog = Blog.find(params[:id])
 	  	  respond_to do |format|
 	  	    if @blog.update_attributes(user_params)
+	  	    	update_all_language(@blog,user_params)
 	  	      format.html  { redirect_to(admin_blogs_path,
 	  	                    :notice => 'blog was successfully updated.') }
 	  	    else
