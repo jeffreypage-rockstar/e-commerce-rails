@@ -2,6 +2,8 @@
 //= require bootstrap/bootstrap
 //= require bootstrap/bootstrap-collapse
 //= require bootstrap/bootstrap-dropdown
+//= require admin/bootstrap.min
+//= require admin/bootstrap-colorpicker
 //= require new_sliders/carouFredSel
 //= require product_page/jquery.jcarousel.pack
 //= require new_sliders/jquery.bxslider
@@ -9,8 +11,6 @@
 //= require admin/breakpoints
 //= require admin/jquery-ui-1.10.1.custom.min
 //= require admin/jquery.slimscroll.min
-//= require admin/bootstrap.min
-//= require admin/bootstrap-colorpicker
 //= require admin/jquery.blockui
 //= require admin/jquery.cookie
 //= require admin/jquery.vmap
@@ -27,7 +27,7 @@
 
 
 $(function(){ 
-  $(document).foundation();
+  
   $('.carousel').carousel();
   $('#myCarousel').on('slid', function() {
       var to_slide = $('#myCarousel .carousel-inner .item.active').attr('id');
@@ -116,16 +116,12 @@ $(function(){
 
 });
 
-<<<<<<< HEAD
-=======
-});
-
 
 function update_commision(comission_id) {  
   var commission = parseInt($("#product_variants_attributes_"+comission_id+"_commission").val())  
   var before_commission = parseInt($("#product_variants_attributes_"+comission_id+"_price_before_commission").val())
   if (commission == 0){
-    var after_commission = before_commission;
+    var after_commission = before_commission; 
   }else{
     var after_commission = ((commission*before_commission)/100)+before_commission
   }
@@ -142,4 +138,3 @@ function update_discount(price_id) {
   }
   $("#product_variants_attributes_"+price_id+"_price_after_discount").val(parseInt(after_discount));
 }
->>>>>>> 4b26fabe1a4ead602eb8caa36270be231e0bde25
