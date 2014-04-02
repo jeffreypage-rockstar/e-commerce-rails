@@ -23,11 +23,11 @@
 //= require admin/jquery.uniform.min
 //= require admin/app
 //= require ckeditor/init
-
+//= require_tree .
 
 
 $(function(){ 
-  
+  $(document).foundation();
   $('.carousel').carousel();
   $('#myCarousel').on('slid', function() {
       var to_slide = $('#myCarousel .carousel-inner .item.active').attr('id');

@@ -72,7 +72,7 @@
   </div>
   <div class="prd-detail-cat">
     <label>Availability: <span><%=@current_variant.inventory.count_on_hand.to_i%><%if @current_variant.inventory.count_on_hand.to_i <= 0 %>No Stock<% elsif @current_variant.low_stock? %>Low Stock(<%=@current_variant.inventory.count_on_hand%>)<%else%>In Stock<%end%></span></label>
-      <label>Variants: <span><%@product.active_variants.each do |v|%>    <%=link_to v.name, change_variant_path(@product.id,v.id),:remote=> true%>  <%end%></span></label>
+      <label>Variants: <span><%@product.active_variants.each do |v|%>    <%=link_to v.name, change_variant_path(@product.id,v.id),:remote=> true%> |  <%end%></span></label>
     <label>Current Variant: <span><%=@current_variant.name%></label>  
     <label>Product Code: <span>483512569</span></label>
     <label>Designer: <span>Allie Walden</span></label>
@@ -84,37 +84,37 @@
     </p>
   </div>
   <div class="prd-option">
-    <!-- <select name="" class="width-160-select">
-      <option>Select Color</option>
-      <%colors  = @product.active_variants.map{|e| e.color}%>
-      <%#if colors.present?%>
-        <%# colors.each do |color|%>
-          <option style="background-color:<%#=color%>"><%#=color%></option>
-        <%#end%>
-      <%#end%>
-    </select> -->
-    <%#@product.properties.each_with_index do |pro|%>
-      <select name="">
-        <option>Select <%#=pro.display_name%></option>  
-        <%#pro.variant_properties.each do |v|%>
-          <option><%#=v.description%></option>  
-        <%#end%>
-    <%#end%>
-      </select>
-    <!-- <select name="">
-      <option>Select Size</option>
-    </select>
-    <select name="" class="right">
-      <option>1</option>
-     </select>-->
+    <%=form_tag ("/get_property_product") ,:id=>"select_property_form",:remote=> true do%>
+      <%@current_variant.properties.each_with_index do |pro,index|%>
+        <select id="select_property_<%=pro.id%>" name="select_property[<%=pro.id%>][]" onchange="$('#select_property_form').submit();"><!--  onchange="get_product_detail('<%=pro.id%>',this.value)"> -->
+          <option value="">Select <%=pro.display_name%></option>  
+          <%#if index == 0%>
+            <%property_valriants =get_properties_values(pro.variant_properties)%>
+          <%#else%>
+            <%#property_valriants =get_properties_values(@current_variant.variant_properties)%>
+          <%#end%>
+          <%if property_valriants.present?%>
+            <%property_valriants.each do |k,v|%>
+              <option value="<%=k%>"><%=k%></option>  
+            <%end%>
+          <%end%>
+        </select>
+        <%=hidden_field_tag "id",@product.id%>
+      <%end%>
+    <%end%>
   </div>
 
   <%= form_for  @cart_item,:url  => shopping_cart_items_path(@cart_item),:html => { :id => '', :class => '' } do |f| %>
       <%= f.hidden_field :variant_id %>
-      <div class=''>
-        Quantity:
+      <div class='prd-option'>
         <%left_quantity = @current_variant.inventory.present? ? @current_variant.inventory.count_on_hand.to_i : 0%>
-        <%= f.select :quantity, (0..left_quantity).to_a, {:include_blank => false}, {:class => ' '} %>
+        <select class=" " id="cart_item_quantity" name="cart_item[quantity]">
+          <option value="0">Quantity</option>
+          <%for i in 1..left_quantity%>
+            <option value="<%=i%>"><%=i%></option>
+          <%end%>
+        </select>
+        <%#= f.select :quantity, (0..left_quantity).to_a, {:prompt=>"Quantity",:include_blank => false},{:class => ' '} %>
       </div>
       <div class="price-bag"> 
         <span>
@@ -206,6 +206,17 @@
       }, function() {
         carousel.startAuto();
       });
+    }
+
+    function get_product_detail(property_id,variant_val) {
+      
+      $.ajax({
+        method:'GET',
+        url: "/get_property_product?property_id="+property_id+"&variant_val="+variant_val+"&id="+<%=@product.id%>
+      }).done(function() {
+        $( this ).addClass( "done" );
+      });
+
     }
     
   </script>
