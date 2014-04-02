@@ -92,12 +92,14 @@
                 <%@featured_designers.each_with_index do |designer,index|%>
                   <div class="<% if index == 0 %>active<%end%> item" id="<%=index%>">  
                     <div class="row slider-cont">
-                      <div class="span3"><%=image_tag(designer.images[0].photo.url)%></div>
-                      <div class="span3 blog-img-detail">
-                        <h2><%=designer.name%></h2>
-                        <h3><a href="#"><%=designer.first_name%> <%=designer.last_name%></a></h3>
-                        <p>Sed a mattis dolor. Aliquam condimentum, ipsum in sodales malesuada, sapien lacus pretium elit, in ultricies lacus orci vel tortor. Suspendisse porta volutpat risus,  scelque nisi pharetra quis. Maecenas velit dolor, varius eu sem et, eleifend porta nisl. </p>
-                        <a href="#" class="read-more">Read more &rsaquo;</a> </div>
+                      <%if designer.present?%>
+                        <div class="span3"><%=image_tag(designer.images[0].photo.url)%></div>
+                        <div class="span3 blog-img-detail">
+                          <h2><%=designer.name%></h2>
+                          <h3><a href="#"><%=designer.first_name%> <%=designer.last_name%></a></h3>
+                          <p>Sed a mattis dolor. Aliquam condimentum, ipsum in sodales malesuada, sapien lacus pretium elit, in ultricies lacus orci vel tortor. Suspendisse porta volutpat risus,  scelque nisi pharetra quis. Maecenas velit dolor, varius eu sem et, eleifend porta nisl. </p>
+                          <a href="#" class="read-more">Read more &rsaquo;</a> </div>
+                        <%end%>
                     </div>
                   </div>
                 <%end%>
