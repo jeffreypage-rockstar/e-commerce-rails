@@ -123,7 +123,7 @@ function update_commision(comission_id) {
   var commission = parseInt($("#product_variants_attributes_"+comission_id+"_commission").val())  
   var before_commission = parseInt($("#product_variants_attributes_"+comission_id+"_price_before_commission").val())
   if (commission == 0){
-    var after_commission = before_commission;
+    var after_commission = before_commission; 
   }else{
     var after_commission = ((commission*before_commission)/100)+before_commission
   }
@@ -140,3 +140,5 @@ function update_discount(price_id) {
   }
   $("#product_variants_attributes_"+price_id+"_price_after_discount").val(parseInt(after_discount));
 }
+
+
