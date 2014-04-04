@@ -63,7 +63,11 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
 
   def destroy
     @property = Property.find(params[:id])
-    @property.active = false
+    if @property.active
+      @property.active = false
+    else
+      @property.active = true
+    end
     @property.save
 
     redirect_to :action => :index
