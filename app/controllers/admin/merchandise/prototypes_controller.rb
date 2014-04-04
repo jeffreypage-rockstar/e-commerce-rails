@@ -69,7 +69,11 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
 
   def destroy
     @prototype = Prototype.find(params[:id])
-    @prototype.active = false
+    if @prototype.active
+      @prototype.active = false
+    else
+      @prototype.active = true
+    end
     @prototype.save
 
     redirect_to :action => :index
