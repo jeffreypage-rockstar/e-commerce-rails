@@ -1,5 +1,5 @@
 
-<div class="topslider" style="width:1300px;margin-right: auto;margin-left: auto;float:none;">
+<div class="topslider"  ><!-- style="width:1950px;margin-right: auto;margin-left: auto;float:none;"> -->
       <div id="myCarousel" class="topslider carousel slide">
         <ol class="carousel-indicators">
           <%@banners.each_with_index do |banner,index|%>
@@ -10,7 +10,7 @@
         <div class="carousel-inner">
           <%@banners.each_with_index do |banner,index|%>
             <div id="<%=index%>" class="<%=index == 0 ? 'active' : '' %> item">
-              <%=image_tag(banner.image.url(:original),style: 'width:1300px;height:550px')%>
+              <%=image_tag(banner.image.url(:original),style: '')%>
               <div class="carousel-caption">
                 <h2><%=banner.title%></h2>
                 <p><%=banner.description%></p>
@@ -36,6 +36,11 @@
           </div> -->
         </div>
         <!-- Carousel nav --> 
-        <a class="carousel-control home-slider-left-arrow left" href="#myCarousel" data-slide="prev">&lsaquo;</a> <a class="carousel-control home-slider-right-arrow right" href="#myCarousel" data-slide="next">&rsaquo;</a> 
+        <!-- <div style="text-align:center;">
+          <div style="width:1300px;margin-left:auto;margin-right:auto"> -->
+            <a class="carousel-control home-slider-left-arrow left" href="#myCarousel" data-slide="prev">&lsaquo;</a> 
+            <a class="carousel-control home-slider-right-arrow right" href="#myCarousel" data-slide="next">&rsaquo;</a> 
+          <!-- </div>
+        </div> -->
       </div>
     </div>
