@@ -29,11 +29,27 @@
     <thead>
     <tr class='odd'>
       <th class='column1_header'><%= sortable "name" %></th>
+      <%if current_user.admin? || current_user.role?("SuperAdmin")%>
+          <th class="text-center">Edit</th>
+          <th class="text-center">Active/Inactive</th>
+      <%end%>
     </tr>
     </thead>
     <% @prototypes.each do |prototype| %>
       <tr class='<%= cycle("odd", "")%>'>
         <td><%= link_to prototype.name, edit_admin_merchandise_prototype_path(prototype) %></td>
+        <%if current_user.admin? || current_user.role?("SuperAdmin")%>
+          <td class="text-center">
+            <a href="<%=edit_admin_merchandise_prototype_path(prototype)%>"><i class="icon-edit icon-center-edit"></i></a>
+          </td>
+          <td class="text-center">
+            <% if prototype.active == true %>
+              <%= link_to("Inactive","/admin/merchandise/prototypes/#{prototype.id}",:method=>"DELETE",:confirm=>"Are you sure you want to Inactive?")%>
+            <%else%>
+              <%= link_to("Active","/admin/merchandise/prototypes/#{prototype.id}",:method=>"DELETE",:confirm=>"Are you sure you want to Active?")%>
+            <%end%>
+          </td>
+        <%end%>
       </tr>
     <% end %>
   </table>

@@ -37,11 +37,11 @@ class ProductsController < ApplicationController
 
   def cat_products
     @cat = ProductType.find(params[:id])
-    @products = Product.paginate(:page => pagination_page, :per_page => pagination_rows).where(["product_type_id =?",params[:id]])
+    @products = Product.aactive.paginate(:page => pagination_page, :per_page => pagination_rows).where(["product_type_id =?",params[:id]])
   end
 
   def hot_products
-    @products = Product.paginate(:page => pagination_page, :per_page => pagination_rows).where(["super_hot =?",true])
+    @products = Product.aactive.paginate(:page => pagination_page, :per_page => pagination_rows).where(["super_hot =?",true])
   end
 
   def my_profile

@@ -11,7 +11,7 @@ class CreateTranslationGlobalizationTables < ActiveRecord::Migration
 		User.create_translation_table! :first_name =>:string ,:last_name=>:string,:title=>:string,:about_me=> :text
 		BlogCategory.create_translation_table! :name =>:string
 		Blog.create_translation_table! :title =>:string, :description=>:text
-		StaticPage.create_translation_table! :title=>:string ,:content=>:text
+		StaticPage0.create_translation_table! :title=>:string ,:content=>:text
   end
 
   def down
@@ -25,7 +25,6 @@ class CreateTranslationGlobalizationTables < ActiveRecord::Migration
   	BlogCategory.drop_translation_table!
   	Blog.drop_translation_table!
   	StaticPage.drop_translation_table!
-
   end
 
 end

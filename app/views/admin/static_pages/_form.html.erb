@@ -1,14 +1,38 @@
 <div class="control-group">
     <label class="control-label">Title </label>
     <div class="controls">
-       <%=f.text_field :eng_title ,:class=>"span5 m-wrap"%>
+      <fieldset>
+        <label>Traditional Chinese</label>
+        <% set_lang "tcn" %>      
+        <%=f.text_field :title ,:class=>"span5 m-wrap"%>            
+        <label>Simple Chinese</label>
+        <% set_lang "cn" %>
+        <% chin = f.object %>      
+        <%=text_field_tag "cn[title]",chin.title ,:class=>"span5 m-wrap"%>            
+        <label>English</label>
+        <% set_lang "en" %>
+        <% eng = f.object %>      
+        <%=text_field_tag "en[title]",eng.title ,:class=>"span5 m-wrap"%>            
+      </fieldset>        
        <!-- <div class="pull-right"> Required Fields </div> -->
     </div>
  </div>
  <div class="control-group">
-    <label class="control-label">English Title </label>
+    <label class="control-label">Content </label>
     <div class="controls">
-     <%= f.cktext_area :eng_content, :class => 'someclass', :ckeditor => {:language => 'eng'} %>
+      <fieldset>
+        <label>Traditional Chinese</label>
+        <% set_lang "tcn" %>      
+        <%=f.cktext_area :content ,:class=>"span5 m-wrap"%>            
+        <label>Simple Chinese</label>
+        <% set_lang "cn" %>
+        <% chin = f.object %>      
+        <%=cktext_area_tag "cn[content]",chin.content ,:class=>"span5 m-wrap"%>            
+        <label>English</label>
+        <% set_lang "en" %>
+        <% eng = f.object %>      
+        <%=cktext_area_tag "en[content]",eng.content ,:class=>"span5 m-wrap"%>            
+      </fieldset>      
 
        <!-- <input type="text" class="span5 m-wrap" /> -->
        <!-- <div class="pull-right"> Required Fields </div> -->

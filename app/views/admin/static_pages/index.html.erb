@@ -83,8 +83,8 @@
 							<%if @static_pages.present? %>
 								<%@static_pages.each do |sp|%>
 									<tr class="">
-										<td><%=sp.eng_title%></td>
-										<td><%=sp.eng_content%></td>
+										<td><%=sp.title%></td>
+										<td><%=sp.content.html_safe%></td>
 										<td class="text-center"><i class="icon-ok icon-center-<%= sp.active? ? 'check' : 'uncheck' %>"></i></td>
 										<td class="text-center">
 											<a href="<%=edit_admin_static_page_path(sp.id)%>"><i class="icon-edit icon-center-edit"></i></a>

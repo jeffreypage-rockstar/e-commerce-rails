@@ -82,7 +82,7 @@ class Product < ActiveRecord::Base
   scope :super_hot, :conditions => ["#{Product.table_name}.super_hot = ?",true]
   scope :featured_products, :conditions => ["#{Product.table_name}.featured = ?",true]
   scope :new_arrivals, :conditions => "#{Product.table_name}.condition_of_product = 'New'"
-
+  scope :aactive, :conditions => ["#{Product.table_name}.deleted_at is null || #{Product.table_name}.deleted_at > ?", Time.zone.now]
   def hero_variant
     active_variants.detect{|v| v.master } || active_variants.first
   end

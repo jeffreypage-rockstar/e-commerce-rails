@@ -20,8 +20,8 @@ class Admin::StaticPagesController < Admin::BaseController
 	    order_by = "#{field} #{sort}"
 	    @static_pages = scope.paginate(:conditions => keyword, :order => order_by,:per_page=>pagination_rows,:page=>params[:page])
 	    @action = "index"
-	    @columns = [["StaticPage","eng_title@string"],["Status","state@list"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
-	    @nodes = scope.select("eng_title").map{|x| x.eng_title[0] if x.eng_title}.uniq
+	    @columns = [["StaticPage","title@string"],["Status","state@list"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
+	    @nodes = scope.select("title").map{|x| x.title[0] if x.title}.uniq
 	  end
 
 	  def new
@@ -29,9 +29,11 @@ class Admin::StaticPagesController < Admin::BaseController
 	  end
 
 	  def create
+	  	I18n.locale = "tcn"    
   		@static_page = StaticPage.new(user_params)
   		respond_to do |format|
 		    if @static_page.save
+		    	update_all_language(@static_page,user_params)
 		      format.html  { redirect_to(admin_static_pages_path,
 		                    :notice => 'static page was successfully created.') }
 		    else
@@ -61,9 +63,11 @@ class Admin::StaticPagesController < Admin::BaseController
 	        flash[:notice] = (params[:status].casecmp(" Active")) == 0 ? 'Activated Successfully' : 'In-activated Successfully'
 	      end
 	    else
+	    	I18n.locale = "tcn"    
 	    	@static_page = StaticPage.find(params[:id])
 	  	  respond_to do |format|
 	  	    if @static_page.update_attributes(user_params)
+	  	    	update_all_language(@static_page,user_params)
 	  	      format.html  { redirect_to(admin_static_pages_path,
 	  	                    :notice => 'static page was successfully updated.') }
 	  	    else

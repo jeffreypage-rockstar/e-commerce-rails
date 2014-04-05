@@ -5,17 +5,17 @@
   <label>Display Name</label>
     
   <fieldset>
-        <label>Traditional Chinese</label>
-        <% set_lang "tcn" %>
-        <%= form.text_field :display_name %>
-        <label>Simple Chinese</label>
-        <% set_lang "cn" %>
-        <% chin = form.object %>
-        <%= text_field_tag "cn[display_name]",chin.display_name %>
-        <label>English</label>
-        <% set_lang "en" %>
-        <% eng = form.object %>
-        <%= text_field_tag "en[display_name]",eng.display_name %>
+    <label>Traditional Chinese</label>
+    <% set_lang "tcn" %>
+    <%= form.text_field :display_name %>
+    <label>Simple Chinese</label>
+    <% set_lang "cn" %>
+    <% chin = form.object %>
+    <%= text_field_tag "cn[display_name]",chin.display_name %>
+    <label>English</label>
+    <% set_lang "en" %>
+    <% eng = form.object %>
+    <%= text_field_tag "en[display_name]",eng.display_name %>
   </fieldset>
   
   
