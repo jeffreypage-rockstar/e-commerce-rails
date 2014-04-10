@@ -7,6 +7,7 @@ class Shopping::AddressesController < Shopping::BaseController
       @shopping_address.country = countries.first
     end
     form_info
+    @news = News.where('state = ?',true)
   end
 
   # GET /shopping/addresses/1/edit
@@ -17,6 +18,7 @@ class Shopping::AddressesController < Shopping::BaseController
 
   # POST /shopping/addresses
   def create
+    @news = News.where('state = ?',true)
     if params[:address].present?
       @shopping_address = current_user.addresses.new(allowed_params)
       @shopping_address.default = true          if current_user.default_shipping_address.nil?

@@ -146,6 +146,12 @@
 				<%if current_user.super_admin? || current_user.designer? || current_user.admin?%>
 					<li> <%= link_to "Blog Categories", admin_blog_categories_path %></li>
 					<li> <%= link_to "Blogs", admin_blogs_path %></li>
+					<li> <%= link_to "News", admin_newses_path %></li>
+				<%end%>
+				<% if current_user.super_admin? || current_user.admin? %>
+					<li> <%= link_to "Rocks", admin_rocks_path %></li>
+				<% elsif current_user.designer? %>
+					<li> <%= link_to "Rocks", admin_designerrock_path(current_user) %></li>
 				<%end%>
 				<!-- <li><%#= link_to 'Invoices', admin_document_invoices_path %></li>
 		    	<li><%#= link_to 'Orders', admin_fulfillment_orders_path %></li>

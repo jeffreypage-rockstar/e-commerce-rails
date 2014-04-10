@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   layout 'application'
-
+  before_filter :get_news
   helper_method :current_user,
                 :current_user_id,
                 :most_likely_user,
@@ -26,7 +26,11 @@ class ApplicationController < ActionController::Base
       redirect_to root_url
     end
   end
-
+  
+  def get_news
+    @news = News.where('state = ?',true)
+    @designer = User.where('user_roles.role_id = 6').joins(:user_roles).first
+  end
 
   def default_lang    
     #loading enitre language data into an object,to use in all views     

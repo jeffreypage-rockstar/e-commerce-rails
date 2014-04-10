@@ -88,4 +88,19 @@ EXAMPLE USAGE!!
       return nil
     end
   end
+
+  def get_count_rating(designer)
+    @ratings = Rating.where('designer_id = ?',designer.id)
+    if @ratings == []
+      @avg_rating = 0
+      @count = 0
+      #@rating = Rating.new(:id => 0,:score => 0, :designer_id => @designer.id)
+    else
+      @count = Rating.where('designer_id = ?',designer.id).count.to_s
+      @avg_rating = Rating.where('designer_id = ?',designer.id).sum(:score).to_f/@count.to_f
+      
+    end
+    return @avg_rating,@count
+  end
+
 end

@@ -1,5 +1,6 @@
 class UserSessionsController < ApplicationController
   def new
+    @news = News.where('state = ?',true)
     unless current_user
       @user_session = UserSession.new
       @user = User.new
@@ -26,7 +27,7 @@ class UserSessionsController < ApplicationController
         ## if there is a cart make sure the user_id is correct
         set_user_to_cart_items
         flash[:notice] = I18n.t('login_successful')
-        if @user_session.record.admin? || @user_session.record.designer?
+        if @user_session.record.admin?
           redirect_back_or_default admin_url
         else
           redirect_back_or_default root_url

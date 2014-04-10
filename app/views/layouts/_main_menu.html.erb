@@ -30,6 +30,9 @@
                 <li><a href="#"><%= t(:sale)%></a></li>
                 <li><a href="<%=hot_products_path%>"><%= t(:hot)%></a></li>
                 <li><a href="<%=blogs_path%>"><%= t(:blog)%></a></li>
+                <% if @designer != nil %>
+                  <li><a href="/designers/<%=@designer.id%>">View Designer</a></li>
+                <%end%>
               </ul>
             </div>
             <div class="span2 pull-right search-top">

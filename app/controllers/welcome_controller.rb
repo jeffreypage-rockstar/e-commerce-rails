@@ -30,9 +30,7 @@ class WelcomeController < ApplicationController
     @super_hot_proudcts = Product.super_hot.aactive.limit(4)
     @featured_proudcts = Product.featured_products.aactive.limit(4)
     @new_products = Product.new_arrivals.aactive.limit(4)
-    puts "super hot="+@super_hot_proudcts.inspect
-    puts "featured prod="+@featured_products.inspect
-    puts "new pro="+@new_products.inspect
+    @news = News.where('state = ?',true)
     # @all_discounts = Variant.where(["discount_percent != '' "])
     @discount_fifties = Variant.where(["discount_percent = 50"]).limit(4)
     @discount_thirties = Variant.where(["discount_percent = 30"]).limit(4)

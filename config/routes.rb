@@ -1,12 +1,13 @@
 Hadean::Application.routes.draw do
-  get "designers/index"
-  get "designers/show"
+  #get "designers/index"
+  #get "designers/show"
   # New Routes
   mount Ckeditor::Engine => '/ckeditor'
   resources :blogs do 
     resources :comments  
   end
   get 'designer/:id' => "designers#show" ,as: :designer
+  #get 'designer' => "designers#index"
   get 'rock_product/:id' => "products#rock_product" ,as: :rock_product
   get 'change_variant/:id/:variant_id' => "products#change_variant" , as: :change_variant
   get 'change_language' => 'welcome#change_lang', as: :change_language
@@ -17,14 +18,17 @@ Hadean::Application.routes.draw do
   get 'hot-products' => 'products#hot_products'  ,as: :hot_products
   post 'get_property_product'=> 'products#get_property_product'
 
-
+  resources :ratings, only: :update
   resources :image_groups
+  resources :designers
   # mount Resque::Server.new, at: "/resque"
 
   
   match 'auth/:provider/callback', to: 'user_sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'user_sessions#destroy', as: 'signout', via: [:get, :post]
+  match 'ratings/update_ratings', to: 'ratings#update_ratings', via: [:post]
+
 
   namespace(:admin){ namespace(:customer_service){ resources :comments } }
 
@@ -97,15 +101,21 @@ Hadean::Application.routes.draw do
         resources :comments
       end
     end
+    resources :blogs do
+      resources :comments
+    end
     resources :users
-    
+    #resources :comments
+
     #New Admin changes
     resources :static_pages
     resources :blog_categories
     resources :blogs
     resources :commissions
     resources :banners
-
+    resources :newses
+    resources :rocks
+    resources :designerrocks
     namespace :user_datas do
 
       resources :referrals do

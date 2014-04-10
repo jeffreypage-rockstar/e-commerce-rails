@@ -15,6 +15,7 @@ class Shopping::ShippingMethodsController < Shopping::BaseController
         item.variant.product.available_shipping_rates = ShippingRate.with_these_shipping_methods(item.variant.product.shipping_category.shipping_rate_ids, @shipping_method_ids)
       end
     end
+    @news = News.where('state = ?',true)
   end
 
   # PUT /shopping/shipping_methods/1

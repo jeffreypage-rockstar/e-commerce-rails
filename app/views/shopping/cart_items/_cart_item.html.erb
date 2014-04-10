@@ -13,9 +13,12 @@
   <td align="center" class="code-table-data" valign="middle"><%=item.variant.sku%></td>
   <td class="price-table"><%= number_to_currency item.price %></td>
   <td class="quantity-td">
+
     <%= cart_items_form.text_field :quantity, :size=>"2" ,class: "span1" %>
-    <a href="#"><img src="/assets/main/add-icon.gif" alt="" class="add-btn-inp"></a></td>
+    <a href="#;return false;" onclick="javascript:add_val('<%=i%>')"><img src="/assets/main/add-icon.gif" alt="" class="add-btn-inp"></a></td>
   <td class="sub-total"><%= number_to_currency item.price.to_f * cart_items_form.object.quantity.to_f %></td>
   <td class="close-icon-td"><%= link_to image_tag("/assets/main/close-icon.png"), shopping_cart_item_path(item, :variant_id => item.variant_id),:method => :delete, :class => 'button tiny' %><%#= link_to 'Save for Later',move_to_shopping_cart_item_path(item, :variant_id => item.variant_id,:item_type_id     => ItemType::SAVE_FOR_LATER_ID),:method           => 'put',:class            => 'button tiny secondary' %>
   </td>
 </tr>
+
+

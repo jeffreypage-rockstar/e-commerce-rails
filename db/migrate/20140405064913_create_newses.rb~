@@ -1,0 +1,14 @@
+class CreateNewses < ActiveRecord::Migration
+  def self.up
+    create_table :newses do |t|
+      t.string :title,
+      t.string :hreflink,
+      t.text :description,
+      t.boolean :active, :default => true,
+      t.timestamps
+    end
+  end
+  def self.down
+    drop_table :newses
+  end
+end

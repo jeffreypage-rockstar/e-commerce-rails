@@ -28,6 +28,7 @@ class ProductsController < ApplicationController
   def my_favorites
       prodcut_rocks= ProductRock.find_all_by_user_id(current_user.id).map(&:product_id)
       @fav_products = Product.paginate(:page => pagination_page, :per_page => pagination_rows).where(["id in (?)",prodcut_rocks])
+      @news = News.where('state = ?',true)
   end
 
   def brand_products
@@ -63,6 +64,7 @@ class ProductsController < ApplicationController
     else
       @current_variant = @product.active_variants[0]
     end
+    @news = News.where('state = ?',true)
   end
 
   def rock_product

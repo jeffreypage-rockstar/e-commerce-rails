@@ -1,0 +1,8 @@
+development:
+  adapter: mysql2
+  database: maddot_dev
+  username: root
+  password: root	
+  host: localhost
+
+
