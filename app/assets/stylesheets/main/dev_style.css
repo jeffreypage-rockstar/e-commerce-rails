@@ -69,3 +69,4 @@ input[type="submit"].btn-bag {background:#2cc6c2; border-radius:2px; width:170px
 /*.carousel-control.left{left:10% !important;}
 .carousel-control.right{right:10% !important  ;}*/
 .carousel-control{position: relative !important;margin-top: -23% !important;}
+.topslider{background: white !important}
