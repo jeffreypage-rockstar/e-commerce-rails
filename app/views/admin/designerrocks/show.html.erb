@@ -1,14 +1,8 @@
-<%# require 'will_paginate/array'%>
-
-
 <h3 class="page-title">Ratings</h3>
 <br/>
-
   <% @avg_rating, @count = get_count_rating(@designer) %>
-  
-    
-      <%= @designer.first_name %> with average rating <%= @avg_rating.to_i.to_s %> and rocks <%= @count.to_i.to_s%>
-      <br/>
+    <%= @designer.first_name %> with average rating <%= @avg_rating.to_i.to_s %> and rocks <%= @count.to_i.to_s%>
+    <br/>
     <br/>
     <br/>
     <br/>
@@ -18,24 +12,16 @@
       <tr class='odd'>
         <th class='column1_header'>User</th>
         <th>Score</th>
-        
-     
-      </tr>
+        </tr>
     </thead>
-
-  <% @ratings.each do |rating| %>
-  
-  
+  <% @user_ratings.each do |rating| %>
     <tr class='<%= cycle("odd", "")%>'>
       <td><%= rating.user.first_name %></td>
       <td><%=rating.score.to_i.to_s %></td>
-      
-     
     </tr>
   <% end %>
   </table>
 </div>
-<%#= will_paginate @ratings %>
+<%= will_paginate @user_ratings %>
 <br />
 
-<%#= link_to 'New Order', new_admin_history_order_path %>

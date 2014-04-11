@@ -1,6 +1,11 @@
 class DesignersController < ApplicationController
  
-  def show
+  def index
+    @role = Role.find_by_name("designer")
+    @designers = @role.users
+  end
+
+  def show  
   	@designer = User.find(params[:id])
   	#@designer_products = @designer.products
 
@@ -24,7 +29,7 @@ class DesignersController < ApplicationController
 
     @products = @products.paginate(:page => pagination_page, :per_page => 8)
     
-    	@user = current_user
+    @user = current_user
     @ratings = current_user.ratings
     if @ratings == []
       @rating = Rating.new(:id => 0,:score => 0, :designer_id => @designer.id)

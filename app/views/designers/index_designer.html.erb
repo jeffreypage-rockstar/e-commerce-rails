@@ -24,8 +24,11 @@
           <h2>Description</h2>
           <p>Donec adipiscing mauris id vulputate fringilla. Nullam nulla risus, iaculis ut facilisis ac, congue sit amet massa. Phasellus ornare feugiat dui, ac sagittis nisi sollicitudin nec. Maecenas quis posuere arcu, a dignissim lectus. Integer id lacus consequat, dignissim massa tincidunt, iaculis mi. Donec justo felis, aliquet vulputate bibendum et, egestas nec sem. Donec eu dui sit amet libero bibendum gravida at in lectus. Etiam nulla enim, iaculis vulputate quam eu, pellentesque vehicula magna. Nulla et eros nec velit rutrum tincidunt at ut erat. </p>
         </div>
-        <div class="span6 offset3 sale-company-section" id="designer_data">
-          <%= render :partial => '/ratings/designer_data' %>
+        <div class="span6 offset3 sale-company-section" >
+          <span id="designer_data">
+            <%= render :partial => '/ratings/designer_data' %>
+          </span>
+          <label class="width-200-label">Listed:: <span><%=@products.size%></span></label>
         </div>
         <div class="span12 slider-brd"><a href="#"><img alt="" src="/assets/slider-line.gif"></a> </div>
         <div class="prd-detail-rating" id="user_star">
