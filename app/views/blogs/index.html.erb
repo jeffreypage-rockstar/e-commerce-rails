@@ -39,11 +39,20 @@
       <div class="cat-hd">
         <h1>Categories</h1>
       </div>
-      <div id="accordion2" class="accordion">
+      <div id="accordion2" class="accordion" id="accordion">
       	<%@blog_categories.each do |bc|%>
 					<div class="accordion-group">
             <div class="accordion-heading"> 
-            	<a href="<%=blogs_path(:blog_category_id=>bc.id)%>" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle"><%=bc.name%><span class="plus-icon"></span> </a> 
+            	<a href="#collapse<%=bc.id%>" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle"><%=bc.name%><span class="plus-icon"></span> </a> 
+            </div>
+            <div id="collapse<%=bc.id%>" class="panel-collapse collapse in">
+              <div class="panel-body">
+                  <%BlogCategory.subcategories(bc.id).each do |sub_cat|%>
+                    <div class="accordion-heading"> 
+                      <%=link_to "#{sub_cat.name}", blogs_path(:blog_category_id=> sub_cat.id),class: 'accordion-toggle'%>
+                    </div>
+                  <%end%>
+              </div>
             </div>
           </div>
         <%end%>  
