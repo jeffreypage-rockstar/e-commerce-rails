@@ -28,6 +28,7 @@ class ProductsController < ApplicationController
   def my_favorites
       prodcut_rocks= ProductRock.find_all_by_user_id(current_user.id).map(&:product_id)
       @fav_products = Product.paginate(:page => pagination_page, :per_page => pagination_rows).where(["id in (?)",prodcut_rocks])
+      @news = News.where('state = ?',true)
   end
 
   def brand_products
@@ -37,11 +38,11 @@ class ProductsController < ApplicationController
 
   def cat_products
     @cat = ProductType.find(params[:id])
-    @products = Product.paginate(:page => pagination_page, :per_page => pagination_rows).where(["product_type_id =?",params[:id]])
+    @products = Product.aactive.paginate(:page => pagination_page, :per_page => pagination_rows).where(["product_type_id =?",params[:id]])
   end
 
   def hot_products
-    @products = Product.paginate(:page => pagination_page, :per_page => pagination_rows).where(["super_hot =?",true])
+    @products = Product.aactive.paginate(:page => pagination_page, :per_page => pagination_rows).where(["super_hot =?",true])
   end
 
   def my_profile
@@ -63,6 +64,7 @@ class ProductsController < ApplicationController
     else
       @current_variant = @product.active_variants[0]
     end
+    @news = News.where('state = ?',true)
   end
 
   def rock_product

@@ -15,6 +15,7 @@ class BlogsController < ApplicationController
 		@blog = Blog.active.find(params[:id])
 		@comments = @blog.comments.paginate(:per_page=>10,:page=>params[:page])
 		@comment = @blog.comments.new
+		@news = News.where('state = ?',true)
 		
 	end
 

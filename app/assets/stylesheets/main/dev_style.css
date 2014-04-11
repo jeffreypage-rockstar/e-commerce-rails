@@ -66,3 +66,6 @@ input[type="submit"].btn-bag {background:#2cc6c2; border-radius:2px; width:170px
 .top-login a{color:#fff;}
 .top-login .span6{padding-top:5px;}
 .checkout-option input[type="email"]{width: 90%;height: 26px;line-height: 26px;border-radius: 4px;font-size: 16px;color: #bebebe;margin-bottom: 14px;}
+/*.carousel-control {position: relative !important;margin-top:-300px !important}*/
+/*.carousel-control.left{left:10% !important;}
+.carousel-control.right{right:10% !important  ;}*/

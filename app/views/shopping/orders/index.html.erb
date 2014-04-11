@@ -8,7 +8,7 @@
   </div>
 </div>
 <div class="container">
-  <%= form_tag( shopping_order_path(@order),method: :put,html:  {class: 'custom'},id:    'purchase_order') do  %>
+  <%= form_tag( shopping_order_path(@order.id),method: :put,html:  {class: 'custom'},id:    'purchase_order') do  %>
     <div class="checkout-option">
       <div class="span5 delivery-meth-box">
         <h4>Delivery Method</h4>

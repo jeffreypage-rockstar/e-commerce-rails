@@ -1,31 +1,171 @@
-<div class='five large-5 column'>
-  <h4> <%= current_user.name %> Profile </h4>
+<section>
+    <div class="row-fluid breadcrumb-full-bg">
+      <div class="container">
+        <h1>My Profile</h1>
+        <ul class="breadcrumb pull-right">
+          <li><a href="#">Rock Credits: 50</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      <div class="my-profile">
+        <div class="row">
+          <div class="span8 my-prf-header">
+            <h1>
+              <div class="prf-right">
+                <div class="style-prf"> Style: <small>3</small> </div>
+                <div class="style-prf"> Rocks: <small>37</small> </div>
+                <div class="prd-detail-rating"><a href="#"><img src="/assets/rating-gray-active.png" alt=""></a> <a href="#"><img src="/assets/rating-gray-active.png" alt=""></a> <a href="#"><img src="/assets/rating-gray-active.png" alt=""></a> <a href="#"><img src="/assets/rating-gray.png" alt=""></a> <a href="#"><img src="/assets/rating-gray.png" alt=""></a></div>
+              </div>
+              <span>A:M DESIGN STUDIO</span></h1>
+            <div class="row profile-detail">
+              <div class="span2"> 
+                <%if @user.images.present?%>
+                  <%= image_tag @user.images[0].photo.url(:medium), :width => "150px"%>
+                <%else%>
+                  N/A
+                <%end%>
+                <!--<img alt="" src="/assets/designer-img-detail.jpg">--> 
+              </div>
+              <div class="span6">
+                <h2>Description</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
+                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
+                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
+                  malesuada non purus eu, aliquet ornare elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
+                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
+                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
+                  malesuada non purus eu, aliquet ornare elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
+                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
+                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
+                  malesuada non purus eu, aliquet ornare elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
+                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
+                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
+                  malesuada non purus eu, aliquet ornare elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
+                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
+                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
+                  malesuada non purus eu, aliquet ornare elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
+                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
+                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
+                  malesuada non purus eu, aliquet ornare elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
+                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
+                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
+                  malesuada non purus eu, aliquet ornare elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
+                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
+                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
+                  malesuada non purus eu, aliquet ornare elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
+                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
+                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
+                  malesuada non purus eu, aliquet ornare elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
+                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
+                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
+                  malesuada non purus eu, aliquet ornare elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
+                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
+                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
+                  malesuada non purus eu, aliquet ornare elit. </p>
+              </div>
+            </div>
+          </div>
+          <div class="span4">
+            <div class="profil-tab-right">
+              <h1><span>My Profile</span></h1>
+              <ul>
+                <li><a href="#">Inbox<span>23</span></a></li>
+                <li><a href="#">Rocking<em>(User Following)</em><span>123</span></a></li>
+                <li><a href="#">Rockers<em>(Followers of the User)</em><span>37</span></a></li>
+                <li><a href="#">Favorites<span>81</span></a></li>
+                <li><a href="#">Rock Credits<span>50</span></a></li>
+                <li><a href="#">Listings<span>4</span></a></li>
+                <li class="new-list"><a href="#">List New item<span class="add-icon">&nbsp;</span></a></li>
+                <li><a href="#">Sale History<span>2</span></a></li>
+                <li><a href="#">Purchase History<span>5</span></a></li>
+                <li><a href="#">Reviews<span>2</span></a></li>
+                <li><a href="#">Update Profile <span class="edit-text">Edit</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="sale-listing">
+          <!--<div class="row">
+            <div class="span12 sale-header white-line">
+              <div class="pre-next"> <a href="#" class="pre">Pre</a> <a href="#" class="next">Next</a></div>
+              <h1><span>Purchase History</span></h1>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="span3 relative"><a href="#"><img src="/assets/super-hot-img1.jpg" alt=""> <img src="/assets/fav-icon.png" alt="" class="fav-icon"> </a>
+              <div class="suphot-cont">
+                <div class="rating-color"></div>
+                <div class="rating-color"></div>
+                <p><a href="#">White Silk Kotobuki Dress</a></p>
+                <p><strong>$58.00</strong></p>
+              </div>
+            </div>
+            <div class="span3 relative"> <span class="discount-red">-50%</span> <a href="#"><img src="/assets/super-hot-img2.jpg" alt=""> <img src="/assets/fav-icon.png" alt="" class="fav-icon"> </a>
+              <div class="suphot-cont">
+                <div class="rating-color"></div>
+                <div class="rating-color"></div>
+                <p>White Silk Kotobuki Dress</p>
+                <p><span class="disable"><strike>$120.00</strike></span><strong>$58.00</strong></p>
+              </div>
+            </div>
+            <div class="span3 relative"> <span class="discount-red white-color">out</span> <a href="#"><img src="/assets/super-hot-img3.jpg" alt=""> <img src="/assets/fav-icon.png" alt="" class="fav-icon"> </a>
+              <div class="suphot-cont">
+                <div class="rating-color"></div>
+                <div class="rating-color"></div>
+                <p>White Silk Kotobuki Dress </p>
+                <p><span class="disable"><strike>$120.00</strike></span><strong>$58.00</strong></p>
+              </div>
+            </div>
+            <div class="span3 relative"> <span class="discount-red light-blue-color">VIP</span> <a href="#"><img src="/assets/super-hot-img4.jpg" alt=""> <img src="/assets/fav-icon.png" alt="" class="fav-icon"> </a>
+              <div class="suphot-cont">
+                <div class="rating-color"></div>
+                <div class="rating-color"></div>
+                <p>White Silk Kotobuki Dress </p>
+                <p><span class="disable"><strike>$120.00</strike></span><strong>$58.00</strong></p>
+              </div>
+            </div>
+          </div>-->
+          <div class="row">
+            <div class="span12 sale-header white-line">
+              <div class="pre-next"> <a href="#MyProdctslider" data-slide="prev" class="pre">Pre</a> <a href="#MyProdctslider" class="next" data-slide="next" >Next</a> </div>
+              <h1><span>Purchase History</span></h1>
+            </div>
+          </div>
+          
 
-  <ul id='profile_details' >
-    <li>
-      <label>Email:</label>
-      <%= current_user.email %>
-    </li>
 
-    <li>
-      <%= link_to "Edit", edit_myaccount_overview_path() %>
-    </li>
-  </ul>
-</div>
+          
+     
+        <div class="row-fluid">
+        <div id="MyProdctslider" class="carousel slide">
+          <div class="carousel-inner">
 
-<div class='four large-4 column'>
-  <div>
-    <h4> Address </h4>
-    <% if current_user.shipping_address %>
-      <%= render :partial => '/shared/compact_address', :locals => { :shopping_address => current_user.shipping_address } %>
-      <%= link_to "Edit", edit_myaccount_address_path(current_user.shipping_address) %>
-    <% else %>
-      No Address Saved.<br/>
-      <%= link_to "New", new_myaccount_address_path() %>
-    <% end %>
-  </div>
-  <div>
-    <h4> Store Credits </h4>
-    <%= number_to_currency current_user.store_credit.amount %>
-  </div>
-</div>
+             
+              <%@products.each_slice(4).with_index do |(a,b,c,d),index|%>
+             <div class="item">
+                <% if a != nil %>
+                <%=render partial: "welcome/slide_product",locals: {product: a,:variant=> nil}%>
+                <%end%>
+                <%if b != nil %>
+                <%=render partial: "welcome/slide_product",locals: {product: b,:variant=> nil}%>
+                <%end%>
+                <% if c != nil %>
+                <%=render partial: "welcome/slide_product",locals: {product: c,:variant=> nil}%>
+                <%end%>
+                <% if d != nil %>
+                <%=render partial: "welcome/slide_product",locals: {product: d,:variant=> nil}%>
+                <%end%>
+              
+                
+              
+              </div>
+              <%end%>
+              
+          
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

@@ -30,9 +30,11 @@ class Admin::BannersController < Admin::BaseController
   end
 
   def create
+    I18n.locale = "tcn"    
   	@banner = Banner.new(user_params)
 		respond_to do |format|
 	    if @banner.save
+        update_all_language(@banner,user_params)
 	   		format.html  { redirect_to(admin_banners_path,
 	                    :notice => 'Banner was successfully created.') }
 	    else
@@ -45,7 +47,7 @@ class Admin::BannersController < Admin::BaseController
   	@banner = Banner.find(params[:id])
   end
 
-  def update
+  def update    
     err=0
     if params[:values]
       (params[:status].casecmp(" Active")) == 0 ? status = 1 : status = 0
@@ -61,9 +63,11 @@ class Admin::BannersController < Admin::BaseController
         flash[:notice] = (params[:status].casecmp(" Active")) == 0 ? 'Activated Successfully' : 'In-activated Successfully'
       end
     else
+      I18n.locale = "tcn"
     	@banner = Banner.find(params[:id])
   	  respond_to do |format|
   	    if @banner.update_attributes(user_params)
+          update_all_language(@banner,user_params)
   	      format.html  { redirect_to(admin_banners_path,
   	                    :notice => 'banner was successfully updated.') }
   	    else

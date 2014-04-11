@@ -23,7 +23,7 @@
 //= require admin/jquery.uniform.min
 //= require admin/app
 //= require ckeditor/init
-
+//= require jquery.raty.min
 
 
 $(function(){ 
@@ -138,3 +138,14 @@ function update_discount(price_id) {
   }
   $("#product_variants_attributes_"+price_id+"_price_after_discount").val(parseInt(after_discount));
 }
+function add_val(index1)
+{  
+  var quantity1 = parseInt($("#cart_shopping_cart_items_attributes_"+index1+"_quantity").val());
+  var newval = quantity1+ 1;
+  $("input[type=text]#cart_shopping_cart_items_attributes_"+index1+"_quantity").val(newval.toString());
+  $("input[type=hidden]#cart_shopping_cart_items_attributes_"+index1+"_quantity").val(newval.toString());
+}
+
+
+
+

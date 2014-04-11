@@ -1,0 +1,27 @@
+<h3 class="page-title">Ratings</h3>
+<br/>
+  <% @avg_rating, @count = get_count_rating(@designer) %>
+    <%= @designer.first_name %> with average rating <%= @avg_rating.to_i.to_s %> and rocks <%= @count.to_i.to_s%>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+<div class="history_orders">
+  <table class="table table-striped table-hover table-bordered table-hd" >
+    <thead>
+      <tr class='odd'>
+        <th class='column1_header'>User</th>
+        <th>Score</th>
+        </tr>
+    </thead>
+  <% @user_ratings.each do |rating| %>
+    <tr class='<%= cycle("odd", "")%>'>
+      <td><%= rating.user.first_name %></td>
+      <td><%=rating.score.to_i.to_s %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
+<%= will_paginate @user_ratings %>
+<br />
+

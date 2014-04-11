@@ -1,0 +1,104 @@
+<%require 'will_paginate/array' %>
+<section>
+    <div class="row-fluid breadcrumb-full-bg">
+      <div class="container">
+        <h1>My Profile</h1>
+        <ul class="breadcrumb pull-right">
+          <li><a href="#">Rock Credits: 50</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row designer-profile-page">
+        <div class="span12 sale-header white-line">
+          <h1><span>Taki &amp; TAKI</span></h1>
+        </div>
+        <div class="span2">
+                <%if @designer.images.present?%>
+                  <%= image_tag @designer.images[0].photo.url(:medium), :width => "150px"%>
+                <%else%>
+                  N/A
+                <%end%>
+        </div>
+        <div class="span10 prf-designer">
+          <h2>Description</h2>
+          <p>Donec adipiscing mauris id vulputate fringilla. Nullam nulla risus, iaculis ut facilisis ac, congue sit amet massa. Phasellus ornare feugiat dui, ac sagittis nisi sollicitudin nec. Maecenas quis posuere arcu, a dignissim lectus. Integer id lacus consequat, dignissim massa tincidunt, iaculis mi. Donec justo felis, aliquet vulputate bibendum et, egestas nec sem. Donec eu dui sit amet libero bibendum gravida at in lectus. Etiam nulla enim, iaculis vulputate quam eu, pellentesque vehicula magna. Nulla et eros nec velit rutrum tincidunt at ut erat. </p>
+        </div>
+        <div class="span6 offset3 sale-company-section" >
+          <span id="designer_data">
+            <%= render :partial => '/ratings/designer_data' %>
+          </span>
+          <label class="width-200-label">Listed:: <span><%=@products.size%></span></label>
+        </div>
+        <div class="span12 slider-brd"><a href="#"><img alt="" src="/assets/slider-line.gif"></a> </div>
+        <div class="prd-detail-rating" id="user_star">
+
+
+
+
+        </div>
+        <div class="btn-center-div"><a href="#" onclick="javascript:update_rating();return false;" class="alink-btn-commen-blue view-prf-btn">Rock Designer</a></div>
+        <div class="sale-listing">
+          <div class="row">
+            <div class="span12 sale-header white-line">
+              <h1><span>Showcase</span></h1>
+            </div>
+          </div>
+         
+          <div class="row">
+            <%@products.each_with_index do |product,index|%>
+              <%=render partial: "welcome/slide_product",locals: {product: product,:variant=> nil}%>
+            <%end%>
+          </div>
+          <div class="row">
+            <% if @products != [] %>
+        <div class="span3 paging-show"><%= page_entries_info @products %></div>
+        <!--Paging Section Starts here-->
+        <div class="pagination pagination-right pagination_dev">
+            <%= will_paginate @products, :container => false %>
+        </div>
+        <!--Paging Section Ends here--> 
+        <%end%>
+      </div>
+       </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="text/javascript">
+  <% if @user != nil %>
+$('#user_star').raty({
+
+    score: <%= @rating.score %>,
+    path: '/assets',
+    click: function(score, evt) {
+      $.ajax({
+        url: '/ratings/' + <%= @rating.id.to_s %> + '?designer_id=' + <%= @designer.id.to_s %>,
+        type: 'PATCH',
+        data: { score: score },
+        success: function(resultData) {}
+      });
+    }
+  });
+<%else%>
+$('#user_star').raty({
+
+    score: <%= @avg_rating.to_i %>,
+    path: '/assets',
+    readOnly    : true
+  });
+
+<%end%>
+function update_rating()
+{
+  
+  <% if @user == nil %>
+    window.location = '/login';
+  <%end%>
+  $.ajax({
+        url: '/ratings/update_ratings',
+        type: 'POST',
+        success: function(resultData) {$('#designer_data').html(resultData);}
+      });
+}
+  </script>

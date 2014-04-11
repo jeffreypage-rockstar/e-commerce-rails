@@ -1,0 +1,30 @@
+<% require 'will_paginate/array' %>
+<h3 class="page-title">Rocks</h3>
+
+<div class="history_orders">
+  <table class="table table-striped table-hover table-bordered table-hd" >
+    <thead>
+      <tr class='odd'>
+        <th class='column1_header'>Designer</th>
+        <th>Average Rating</th>
+        <th>Rocks</th>
+     
+      </tr>
+    </thead>
+
+  <% @designers.each do |designer| %>
+  <% @avg_rating, @count = get_count_rating(designer) %>
+  
+    <tr class='<%= cycle("odd", "")%>'>
+      <td><%= designer.first_name %></td>
+      <td><%= @avg_rating.to_i.to_s %></td>
+      <td><%= link_to @count.to_i.to_s, admin_designerrock_path(designer) %></td>
+     
+    </tr>
+  <% end %>
+  </table>
+</div>
+<%= will_paginate @designers %>
+<br />
+
+<%#= link_to 'New Order', new_admin_history_order_path %>

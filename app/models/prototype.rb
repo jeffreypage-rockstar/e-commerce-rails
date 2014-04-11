@@ -16,8 +16,8 @@ class Prototype < ActiveRecord::Base
   def self.admin_grid(params = {})
 
     grid = Prototype
-    grid = grid.where("active = ?",true)                    unless  params[:show_all].present? &&
-                                                              params[:show_all] == 'true'
+    #grid = grid.where("active = ?",true)                    unless  params[:show_all].present? &&
+    #                                                          params[:show_all] == 'true'
     grid = grid.where("prototypes.name LIKE ?", "#{params[:name]}%")  if params[:name].present?
     grid
 

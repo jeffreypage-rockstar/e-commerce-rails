@@ -15,7 +15,7 @@ class Banner < ActiveRecord::Base
 	
 	scope :visible
 	scope :active, :conditions => "#{Banner.table_name}.state = #{ACTIVE}"
-	scope :inactive, :conditions => "#{Banner.table_name}.stae = #{INACTIVE}"
+	scope :inactive, :conditions => "#{Banner.table_name}.state = #{INACTIVE}"
 
 	def active?
 	  state

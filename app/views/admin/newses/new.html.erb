@@ -1,0 +1,39 @@
+
+	<div class="container-fluid">
+		<!-- BEGIN PAGE HEADER-->
+		<div class="row-fluid">
+			<div class="span12">
+				<!-- BEGIN PAGE TITLE & BREADCRUMB-->			
+				<h3 class="page-title innerpage-title">
+                <button class="btn blue pull-right" id="sample_editable_1_new" onclick="window.location.href='/<%=params[:controller]%>'">Back to Listing</button>
+                New News
+				</h3>                        
+			</div>
+		</div>
+		<!-- END PAGE HEADER-->
+		<div class="row-fluid">
+			<div class="span12">
+				<!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet-body">
+                	<%=render :partial => "/shared/flash_notice"%>
+                	<% if @news.errors.any? %>
+						<ul>
+  							<% @news.errors.full_messages.each do |msg| %>
+    						<li class="red"><%= msg %></li>
+  							<% end %>
+						</ul>
+					<% end %>
+				</div>
+                <div class="portlet-body form edit-form">
+                <!-- BEGIN FORM-->
+                 <%=form_for @news,:url=> "/admin/newses" ,:html=>{:class=>"form-horizontal"} do |f|%>
+                  <%=render :partial => "form",:locals=>{:f=>f}%>
+
+                <%end%>
+                <!-- END FORM-->
+             </div>
+				<!-- END EXAMPLE TABLE PORTLET-->
+			</div>
+		</div>
+	</div>
+	<!-- END PAGE CONTAINER-->		

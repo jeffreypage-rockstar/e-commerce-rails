@@ -20,30 +20,39 @@
     <div class="row-fluid footer-main">
       <div class="container">
         <div class="row footer-inner-cont">
-          <div class="span4">
-            <h2>Latest News</h2>
-            <div class="span3">
-              <h3>05 March 2014</h3>
-              <h4>Paris Fashion week <span><a href="#">Miu Miu A/W '14 collection</a></span> </h4>
-              <p>Miuccia Prada looks ahead to next winter's inclement weather with some innovative wellies and anoraks. Integer eled dignissim libero, sit amet condimentum ma imperdiet eu. Proin a libero interdum, consectetur ante sed, convallis dolor. Donec vestibulum metus vitae diam adipiscing tempor. </p>
-              <p>Vestibulum laoreet eros sapien, at 
-                commodo tellus commodo eu. Donec eget odio consequat massa tempor vehicula. 
-                Pellentesque euismod faucibus eros, vel dignissim metus tristique sed</p>
-              <a href="#">See more from Paris Fashion Week </a> </div>
-          </div>
-          <div class="span4">
-            <h2>Latest Tweets</h2>
-            <div class="span3">
-              <h3>2312 people follow <a href="#">#maddot</a></h3>
-              <h4>Maddot <span><a href="#">Style Guide ,1h</a></span> </h4>
-              <p>Sed a mattis dolor. Aliquam condimentum, ipsum in sodales malesuada, <a href="#">@maddot</a>.
-                Suspendisse porta volutpat risus,  scelque nisi pharetra quis. <a href="#">fb/maddot</a></p>
-              <h4>Maddot <span><a href="#">Summer 2014 ,2h</a></span></h4>
-              <p>Sed a mattis dolor. Aliquam condimentum, ipsum in sodales malesuada, @maddot.
-                Suspendisse porta volutpat risus,  scelque nisi pharetra quis.  fb/maddot </p>
+          <%if @news.present?%>
+            <div class="span4">
+              <h2>Latest News</h2>
+              <div class="span3">
+                <h3>05 March 2014</h3>
+
+                <h4><%=@news.fetch(0).title%> <span><a href=<%=@news.fetch(0).hreflink%>><%=@news.fetch(0).subject%></a></span> </h4>
+                <p><%=@news.fetch(0).description%> </p>
+                <p><%=@news.fetch(1).description%> </p>    
+              </div>
             </div>
-          </div>
-          <div class="span4">
+            <div class="span4">
+              <h2>Latest Tweets</h2>
+              <div class="span3">
+                <h3>2312 people follow <a href="#">#maddot</a></h3>
+                <h4><%=@news.fetch(2).title%> <span><a href=<%=@news.fetch(2).hreflink%>><%=@news.fetch(2).subject%></a></span> </h4>
+                <p><%=@news.fetch(2).description%></p>
+                <h4><%=@news.fetch(3).title%> <span><a href=<%=@news.fetch(3).hreflink%>><%=@news.fetch(3).subject%></a></span> </h4>
+                <p><%=@news.fetch(3).description%></p>
+              </div>
+            </div>
+          <%else%>
+            <div class="span4">
+              <h2>Latest News</h2>
+            </div>
+            <div class="span4">
+              <h2>Latest Tweets</h2>
+              <div class="span3">
+                <h3>2312 people follow <a href="#">#maddot</a></h3>
+              </div>
+            </div>
+          <%end%>
+          <div class="span4 ">
             <h2>facebook</h2>
             <h3>1452 people like <a href="#">MadDot</a></h3>
             <div class="facebook-img-list">

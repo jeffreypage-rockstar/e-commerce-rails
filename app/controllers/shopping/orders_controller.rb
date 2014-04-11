@@ -16,6 +16,7 @@ class Shopping::OrdersController < Shopping::BaseController
       expire_all_browser_cache
       form_info
     end
+    @news = News.where('state = ?',true)
   end
 
 
@@ -29,11 +30,12 @@ class Shopping::OrdersController < Shopping::BaseController
 
   # POST /shopping/orders
   def update
+    @news = News.where('state = ?',true)
     @order = find_or_create_order
     @order.ip_address = request.remote_ip
 
     @credit_card ||= ActiveMerchant::Billing::CreditCard.new(cc_params)
-
+    puts "credit_card ="+@credit_card.inspect
     address = @order.bill_address.cc_params
 
     if !@order.in_progress?
@@ -62,6 +64,7 @@ class Shopping::OrdersController < Shopping::BaseController
       render :action => 'index'
     else
       form_info
+      puts "here in else"
       flash[:alert] = [I18n.t('credit_card'), I18n.t('is_not_valid')].join(' ')
       render :action => 'index'
     end
@@ -69,6 +72,7 @@ class Shopping::OrdersController < Shopping::BaseController
 
   def confirmation
     @tab = 'confirmation'
+    @news = News.where('state = ?',true)
     if session[:last_order].present? && session[:last_order] == params[:id]
       session[:last_order] = nil
       @order = Order.where(:number => params[:id]).includes({:order_items => :variant}).first

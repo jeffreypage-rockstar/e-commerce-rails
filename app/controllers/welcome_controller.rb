@@ -27,15 +27,17 @@ class WelcomeController < ApplicationController
 
   def welcome
     @banners= Banner.active
-    @super_hot_proudcts = Product.super_hot.limit(4)
-    @featured_proudcts = Product.featured_products.limit(4)
-    @new_products = Product.new_arrivals.limit(4)
+    @super_hot_proudcts = Product.super_hot.aactive.limit(4)
+    @featured_proudcts = Product.featured_products.aactive.limit(4)
+    @new_products = Product.new_arrivals.aactive.limit(4)
+    @news = News.where('state = ?',true)
     # @all_discounts = Variant.where(["discount_percent != '' "])
     @discount_fifties = Variant.where(["discount_percent = 50"]).limit(4)
     @discount_thirties = Variant.where(["discount_percent = 30"]).limit(4)
     @latest_blogs = Blog.order("created_at").limit(5).limit(4)
     @role = Role.find_by_name("designer")
     @featured_designers = @role.users.where(["featrued = ?",true]).limit(4)
+    #@featured_designers =[]
   end
 
   def change_lang    

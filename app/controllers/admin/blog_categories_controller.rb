@@ -35,23 +35,24 @@ class Admin::BlogCategoriesController < Admin::BaseController
 	  end
 
 	  def create
+	  	I18n.locale = "tcn"
   		@blog_category = BlogCategory.new(user_params)
   		respond_to do |format|
-		    if @blog_category.save
+		    if @blog_category.save		    	
+		    	update_all_language(@blog_category,user_params)
 		      format.html  { redirect_to(admin_blog_categories_path,
 		                    :notice => 'blog_category was successfully created.') }
-		    else
+		    else		    	
 		      format.html  { render :action => "new" }
 		    end
 			end
 	  end
 
-	  def edit
+	  def edit	  	
 	  	@blog_category = BlogCategory.find(params[:id])
-
 	  end
 
-	  def update
+	  def update	  		  	
 	    err=0
 	    if params[:values]
 	      (params[:status].casecmp(" Active")) == 0 ? status = 1 : status = 0
@@ -67,9 +68,11 @@ class Admin::BlogCategoriesController < Admin::BaseController
 	        flash[:notice] = (params[:status].casecmp(" Active")) == 0 ? 'Activated Successfully' : 'In-activated Successfully'
 	      end
 	    else
+	    	I18n.locale = "tcn"
 	    	@blog_category = BlogCategory.find(params[:id])
 	  	  respond_to do |format|
 	  	    if @blog_category.update_attributes(user_params)
+	  	    	update_all_language(@blog_category,user_params)
 	  	      format.html  { redirect_to(admin_blog_categories_path,
 	  	                    :notice => 'blog_category was successfully updated.') }
 	  	    else

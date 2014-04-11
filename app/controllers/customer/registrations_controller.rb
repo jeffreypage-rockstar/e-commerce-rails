@@ -12,6 +12,7 @@ class Customer::RegistrationsController < ApplicationController
   end
 
   def create
+    @news = News.where('state = ?',true)
     @user = User.new(allowed_params)
     # Saving without session maintenance to skip
     # auto-login which can't happen here because
