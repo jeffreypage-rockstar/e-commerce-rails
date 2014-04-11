@@ -22,4 +22,8 @@ class BlogCategory < ActiveRecord::Base
 	def active?
 	  state
 	end
+
+	def self.subcategories(id)
+		return self.where("parent_id = #{id}")
+	end
 end
