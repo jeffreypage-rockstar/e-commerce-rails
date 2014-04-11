@@ -26,7 +26,8 @@ class WelcomeController < ApplicationController
   end
 
   def welcome
-    @banners= Banner.active.order('created_at DESC')
+    @banners= Banner.active.order('created_at DESC').where("place = 'main_slide'")
+    @banner_main_small = Banner.active.order('created_at DESC').where("place = 'main_small'")
     @super_hot_proudcts = Product.super_hot.aactive.limit(4)
     @featured_proudcts = Product.featured_products.aactive.limit(4)
     @new_products = Product.new_arrivals.aactive.limit(4)
