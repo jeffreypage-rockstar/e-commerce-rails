@@ -5930,6 +5930,7 @@ a.badge:focus {
 .carousel-inner > .item > a > img {
   display: block;
   line-height: 1;
+  margin: 0 auto;
 }
 
 .carousel-inner > .active,
