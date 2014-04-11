@@ -23,6 +23,12 @@
        
     </div>
 </div>
+<div class="control-group">
+  <label class="control-label">Parent </label>
+    <div class="controls">
+    <%= f.select :parent_id,nested_set_options(BlogCategory, @blog_category) {|i| "#{'-' * i.level} #{i.name}" },{ include_blank: true }%>
+  </div>
+</div>
 <div class="form-actions">
   <%=f.submit "Save",:class=> "btn blue"%>
   <button type="button" class="btn" onclick="this.form.reset();">Reset</button>

@@ -2,7 +2,7 @@ class BlogsController < ApplicationController
 
 	def index
 		
-		@blog_categories = BlogCategory.active
+		@blog_categories = BlogCategory.active.where('parent_id is null')
 		if params[:blog_category_id]
 			@blogs = Blog.includes(:blog_categories).active.where(["blog_category_id = ?",params[:blog_category_id]])
 		else
@@ -11,7 +11,7 @@ class BlogsController < ApplicationController
 	end
 
 	def show
-		@blog_categories = BlogCategory.active
+		@blog_categories = BlogCategory.active.where('parent_id is null')
 		@blog = Blog.active.find(params[:id])
 		@comments = @blog.comments.paginate(:per_page=>10,:page=>params[:page])
 		@comment = @blog.comments.new

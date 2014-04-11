@@ -111,8 +111,24 @@
             <%@blog_categories.each do |bc|%>
               <div class="accordion-group">
                 <div class="accordion-heading"> 
-                  <a href="<%=blogs_path(:blog_category_id=>bc.id)%>" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle"><%=bc.name%><span class="plus-icon"></span> </a> 
+                  <a href="#<%=bc.id.to_s%>" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle"><%=bc.name%><span class="plus-icon"></span> </a> 
                 </div>
+                <% @sub_categories = find_child(bc) %>
+                   <% if @sub_categories != [] %>
+                      <div class="accordion-body collapse" id="<%=bc.id.to_s%>" style="height: 0px;">
+                        <div class="accordion-inner">
+                  
+                          <ul>
+                   
+                            <% @sub_categories.each do |cat| %>
+                              <li><a href="#"><%=cat.name%></a></li>
+                   
+                            <%end%>
+                    
+                          </ul>
+                        </div>
+                      </div>
+                    <%end%>
               </div>
             <%end%>  
           </div>

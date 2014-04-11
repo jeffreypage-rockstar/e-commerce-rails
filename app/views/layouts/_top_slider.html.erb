@@ -10,12 +10,12 @@
         <div class="carousel-inner">
           <%@banners.each_with_index do |banner,index|%>
             <div id="<%=index%>" class="<%=index == 0 ? 'active' : '' %> item">
-              <%=image_tag(banner.image.url(:original),style: '')%>
-              <div class="carousel-caption">
-                <h2><%=banner.title%></h2>
-                <p><%=banner.description%></p>
-                <a href="<%=banner.link%>">Shop now</a> <a href="/login">Login</a> 
-              </div>
+              <%=image_tag(banner.image.url(:original),style: 'height:550px')%>
+              <!--<div class="carousel-caption">
+                 <h2><%#=banner.title%></h2>
+                <p><%#=banner.description%></p>
+                <a href="<%#=banner.link%>">Shop now</a> <a href="/login">Login</a>  
+              </div>-->
             </div>
           <%end%>
           <!-- <div class="active item">
@@ -36,11 +36,11 @@
           </div> -->
         </div>
         <!-- Carousel nav --> 
-        <!-- <div style="text-align:center;">
-          <div style="width:1300px;margin-left:auto;margin-right:auto"> -->
+        <div style="text-align:center;">
+          <div style="width:1300px;margin-left:auto;margin-right:auto">
             <a class="carousel-control home-slider-left-arrow left" href="#myCarousel" data-slide="prev">&lsaquo;</a> 
             <a class="carousel-control home-slider-right-arrow right" href="#myCarousel" data-slide="next">&rsaquo;</a> 
-          <!-- </div>
-        </div> -->
+          </div>
+        </div>
       </div>
     </div>

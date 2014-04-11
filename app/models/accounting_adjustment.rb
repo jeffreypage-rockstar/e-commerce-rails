@@ -25,7 +25,7 @@
 #
 
 class AccountingAdjustment < ActiveRecord::Base
-
+  belongs_to :adjustable, :polymorphic => true
   has_many  :batches,             :as => :batchable
   has_many  :transaction_ledgers, :as => :accountable
 

@@ -161,11 +161,15 @@
 			<span class="arrow "></span>
 			</a>
 			<ul class="sub">
+
+				<li><%= link_to "Transaction report", admin_reports_transactions_path %></li>
+
 				<% if current_user.super_admin? || current_user.admin? %>
 					<li> <%= link_to "Designer Rocks", admin_rocks_path %></li>
 				<% elsif current_user.designer? %>
 					<li> <%= link_to "Rocks", admin_designerrock_path(current_user) %></li>
 				<%end%>
+
 				<li><%= link_to "Reports", admin_reports_overview_path %></li>
 				<li><%= link_to 'Graphs', admin_reports_graphs_path %></li>
 		    	<!-- <li><%#= link_to 'Help', admin_help_path %></li> -->

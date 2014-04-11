@@ -15,9 +15,11 @@
     </fieldset>     
 </div>
 <div class="control-group">
-  <label class="control-label">Status </label>
+  <label class="control-label">Category </label>
     <div class="controls">
-       <%= f.select :blog_category_id,BlogCategory.active.map { |e| [e.name,e.id]  } ,:selected =>@blog.blog_category_id %>
+       <%= f.select :blog_category_id,
+                    nested_set_options(ProductType, ProductType.new) {|i| "#{'-' * i.level} #{i.name}" },
+                    { :include_blank => true } %>
     </div>
 </div>
 <div class="control-group">
