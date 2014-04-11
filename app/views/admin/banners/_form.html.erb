@@ -51,8 +51,15 @@
  <div class="control-group">
     <label class="control-label">Banner</label>
     <div class="controls">
-        <%if f.object.image.present?%><%=image_tag(f.object.image.url(:small))%><%end%>
+        <%#if f.object.image.present?%><%#=image_tag(f.object.image.url)%><%#end%>
         <%= f.file_field   :image %>
+    </div>
+ </div>
+
+ <div class="control-group">
+    <label class="control-label">Place</label>
+    <div class="controls">
+      <%= f.select :place,Banner::PLACES.map{|k,v| [v,k]},:selected => @banner.place %>
     </div>
  </div>
 
