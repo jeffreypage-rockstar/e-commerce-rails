@@ -1,2 +1,21 @@
-<h1>Designers#index</h1>
-<p>Find me in app/views/designers/index.html.erb</p>
+<div class="container midd-cont">
+
+	<%@designers.each_with_index do |designer,index|%>
+	  <div class="<% if index == 0 %>active<%end%> item" id="<%=index%>">  
+	    <div class="row slider-cont">
+	      <%if designer.present? && designer.images.present?%>
+	        <%if  designer.images[0].photo.present?%>
+		        <div class="span3"><%=image_tag(designer.images[0].photo.url)%></div>
+		        <div class="span3 blog-img-detail">
+		          <h2><%=designer.name%></h2>
+		          <h3><a href="#"><%=designer.first_name%> <%=designer.last_name%></a></h3>
+		          <p><%=truncate(designer.about_me,:length=>200)%> </p>
+		          <a href="<%=designer_path(designer)%>" class="read-more">Read more &rsaquo;</a> 
+		        </div>
+	        <%end%>
+        <%end%>
+	    </div>
+	  </div>
+	<%end%>
+
+</div>

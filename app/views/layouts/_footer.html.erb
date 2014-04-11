@@ -20,26 +20,39 @@
     <div class="row-fluid footer-main">
       <div class="container">
         <div class="row footer-inner-cont">
-          <div class="span4">
-            <h2>Latest News</h2>
-            <div class="span3">
-              <h3>05 March 2014</h3>
-              <h4><%=@news.fetch(0).title%> <span><a href=<%=@news.fetch(0).hreflink%>><%=@news.fetch(0).subject%></a></span> </h4>
-              <p><%=@news.fetch(0).description%> </p>
-              <p><%=@news.fetch(1).description%> </p>    
+          <%if @news.present?%>
+            <div class="span4">
+              <h2>Latest News</h2>
+              <div class="span3">
+                <h3>05 March 2014</h3>
+
+                <h4><%=@news.fetch(0).title%> <span><a href=<%=@news.fetch(0).hreflink%>><%=@news.fetch(0).subject%></a></span> </h4>
+                <p><%=@news.fetch(0).description%> </p>
+                <p><%=@news.fetch(1).description%> </p>    
+              </div>
             </div>
-          </div>
-          <div class="span4">
-            <h2>Latest Tweets</h2>
-            <div class="span3">
-              <h3>2312 people follow <a href="#">#maddot</a></h3>
-              <h4><%=@news.fetch(2).title%> <span><a href=<%=@news.fetch(2).hreflink%>><%=@news.fetch(2).subject%></a></span> </h4>
-              <p><%=@news.fetch(2).description%></p>
-              <h4><%=@news.fetch(3).title%> <span><a href=<%=@news.fetch(3).hreflink%>><%=@news.fetch(3).subject%></a></span> </h4>
-              <p><%=@news.fetch(3).description%></p>
+            <div class="span4">
+              <h2>Latest Tweets</h2>
+              <div class="span3">
+                <h3>2312 people follow <a href="#">#maddot</a></h3>
+                <h4><%=@news.fetch(2).title%> <span><a href=<%=@news.fetch(2).hreflink%>><%=@news.fetch(2).subject%></a></span> </h4>
+                <p><%=@news.fetch(2).description%></p>
+                <h4><%=@news.fetch(3).title%> <span><a href=<%=@news.fetch(3).hreflink%>><%=@news.fetch(3).subject%></a></span> </h4>
+                <p><%=@news.fetch(3).description%></p>
+              </div>
             </div>
-          </div>
-          <div class="span4">
+          <%else%>
+            <div class="span4">
+              <h2>Latest News</h2>
+            </div>
+            <div class="span4">
+              <h2>Latest Tweets</h2>
+              <div class="span3">
+                <h3>2312 people follow <a href="#">#maddot</a></h3>
+              </div>
+            </div>
+          <%end%>
+          <div class="span4 ">
             <h2>facebook</h2>
             <h3>1452 people like <a href="#">MadDot</a></h3>
             <div class="facebook-img-list">
