@@ -1,5 +1,5 @@
 class BlogCategory < ActiveRecord::Base
-
+    acts_as_nested_set
 	translates :name
 	# => Relations 
 	has_many :blogs

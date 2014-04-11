@@ -6,7 +6,8 @@ class Admin::DesignerrocksController < Admin::BaseController
 		#@ratings = []
 		#@ratings = Rating.where('designer_id = ?',@designer.id).to_a.map(&:serializable_hash)
 		#@ratings = @ratings.paginate(:page => pagination_page, :per_page => 10)
-		@ratings = Rating.where('designer_id = ?',@designer.id)
+		@ratings = Rating.paginate(:page => pagination_page, :per_page => 10)
+		#@ratings = Rating.where('designer_id = ?',@designer.id)
 		# render :text => @ratings.inspect and return false
 	end
 

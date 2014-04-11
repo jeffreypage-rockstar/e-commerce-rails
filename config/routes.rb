@@ -137,6 +137,7 @@ Hadean::Application.routes.draw do
       resource :overview, only: [:show]
       resources :graphs
       resources :weekly_charts, only: [:index]
+      resources :transactions
     end
     namespace :rma do
       resources  :orders do
