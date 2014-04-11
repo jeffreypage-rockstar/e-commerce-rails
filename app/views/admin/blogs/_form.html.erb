@@ -18,7 +18,7 @@
   <label class="control-label">Category </label>
     <div class="controls">
        <%= f.select :blog_category_id,
-                    nested_set_options(ProductType, ProductType.new) {|i| "#{'-' * i.level} #{i.name}" },
+                    nested_set_options(BlogCategory.all, BlogCategory.new) {|i| "#{'-' * i.level} #{i.name}" },
                     { :include_blank => true } %>
     </div>
 </div>
