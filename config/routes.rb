@@ -17,6 +17,7 @@ Hadean::Application.routes.draw do
   get 'cat-products/:id' => 'products#cat_products'  ,as: :cat_products
   get 'hot-products' => 'products#hot_products'  ,as: :hot_products
   post 'get_property_product'=> 'products#get_property_product'
+  get 'search/' => 'products#search'
 
   resources :ratings, only: :update
   resources :image_groups

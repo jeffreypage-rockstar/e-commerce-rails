@@ -49,8 +49,14 @@ class ProductsController < ApplicationController
 #    @user = 
   end
 
+  def search
+    @products = Product.aactive.paginate(:page => pagination_page, :per_page => 1).where(["name like ? OR permalink like ?","#{params[:q]}%","#{params[:q]}%"])
+  end
+
   def show
-    @product = Product.active.find(params[:id])
+    @product = Product.active.find_by_permalink(params[:id])
+    @related_products = RelatedProduct.find_all_by_product_id(@product.id) if @product
+
     if current_user
       @rock_product = ProductRock.find_by_product_id_and_user_id(@product.id,current_user.id) if @product
     end
@@ -65,6 +71,7 @@ class ProductsController < ApplicationController
       @current_variant = @product.active_variants[0]
     end
     @news = News.where('state = ?',true)
+
   end
 
   def rock_product
