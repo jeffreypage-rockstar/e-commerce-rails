@@ -1,0 +1,81 @@
+		
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div id="portlet-config" class="modal hide">
+				<div class="modal-header">
+					<button data-dismiss="modal" class="close" type="button"></button>
+					<h3>Favourites</h3>
+				</div>
+				
+			</div>
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE CONTAINER-->
+			<div class="container-fluid">
+				<!-- BEGIN PAGE HEADER-->
+				<div class="row-fluid">
+					<div class="span12">
+						<!-- BEGIN PAGE TITLE & BREADCRUMB-->			
+						<h3 class="page-title">
+                        Favourites
+						</h3>
+						
+					</div>
+				</div>
+				<!-- END PAGE HEADER-->
+				<div class="row-fluid">
+					
+							
+							
+								<table class="table table-striped table-hover table-bordered table-hd" id="sample_editable_1">
+									<thead>
+										<tr>
+											
+											<th>Product Name</th>
+											<th>Favourites Count</th>
+											<th>Cost</th>
+											<th>Price before commission</th>
+											<th>Commission(%)</th>
+											<th>Price after commission</th>
+											<th>Discount(%)</th>
+											<th>Price after discount</th>
+											
+											
+										</tr>
+									</thead>
+									<tbody>
+										<%if @variants.present? %>
+											<%@variants.each do |variant|%>
+												<tr class="">
+													
+													<td><%=variant.name%></td>
+													<td><%=variant.product.name.to_s%></td>
+													<td><%=variant.cost.to_s%></td>
+													<td><%=variant.price_before_commission.to_s%></td>
+													<td><%=variant.commission.to_s%></td>
+													<td><%=variant.price.to_s%></td>
+													<td><%=variant.discount_percent.to_s%></td>
+													<td><%=variant.price_after_discount.to_s%></td>
+												</tr>
+											<%end%>
+										<%else%>
+										<tr class="" >
+											<td colspan="5" align="center" verticle-align="middle"> No Data found </td>
+										</tr>
+										<%end%>
+										
+
+									</tbody>
+								</table>
+                                
+                                <div class="row-fluid table-top-cont">
+                                	<div style="float:right">
+                                		<div class="dataTables_paginate paging_bootstrap digg_pagination">
+                                			<%= will_paginate @variants, :container => false %>
+                                		</div>
+                                		<label class="showing-records"><%= page_entries_info @variants %></label>
+                            		</div>
+                        		</div>
+                        	</div>
+					
+			</div>
+			<!-- END PAGE CONTAINER-->		
+		

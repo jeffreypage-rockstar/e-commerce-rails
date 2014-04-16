@@ -70,7 +70,8 @@ class ProductsController < ApplicationController
   def rock_product
     @product = Product.active.find(params[:id])
     if current_user.present?
-      @rock_product = ProductRock.first_or_initialize(:user_id=> current_user.id,:product_id=>@product.id)
+      @rock_product = ProductRock.where(:user_id=> current_user.id,:product_id=>@product.id).first_or_initialize
+     
       if params[:unrock]
         @rock_product.destroy
       else

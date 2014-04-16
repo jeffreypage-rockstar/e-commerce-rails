@@ -116,6 +116,10 @@ Hadean::Application.routes.draw do
     resources :newses
     resources :rocks
     resources :designerrocks
+    resources :adcommissions
+    resources :descommissions
+    resources :favourites
+    match '/desfavourites/:id', :to => "desfavourites#show" ,via: [:get]
     namespace :user_datas do
 
       resources :referrals do

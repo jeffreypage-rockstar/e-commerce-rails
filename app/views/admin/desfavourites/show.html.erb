@@ -1,0 +1,73 @@
+<% require 'will_paginate/array' %>   
+      <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+      <div id="portlet-config" class="modal hide">
+        <div class="modal-header">
+          <button data-dismiss="modal" class="close" type="button"></button>
+          <h3>Product Favourites</h3>
+        </div>
+        
+      </div>
+      <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+      <!-- BEGIN PAGE CONTAINER-->
+      <div class="container-fluid">
+        <!-- BEGIN PAGE HEADER-->
+        <div class="row-fluid">
+          <div class="span12">
+            <!-- BEGIN PAGE TITLE & BREADCRUMB-->     
+            <h3 class="page-title">
+                        Product Favourites
+            </h3>
+            
+          </div>
+        </div>
+        <!-- END PAGE HEADER-->
+        <div class="row-fluid">
+          
+              
+              
+                <table class="table table-striped table-hover table-bordered table-hd" id="sample_editable_1">
+                  <thead>
+                    <tr>
+                      
+                      
+                      <th>Product Name</th>
+                      <th>User Name</th>
+                      
+                      
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%if @product_rocks.present? %>
+                      <%@product_rocks.each do |product_rock|%>
+                        <tr class="">
+                          
+                          
+                          <td><%=product_rock.product.name.to_s%></td>
+                          <td><%=product_rock.user.first_name.to_s%></td>
+                         
+                        </tr>
+                      <%end%>
+                    <%else%>
+                    <tr class="" >
+                      <td colspan="5" align="center" verticle-align="middle"> No Data found </td>
+                    </tr>
+                    <%end%>
+                    
+
+                  </tbody>
+                </table>
+                                
+                                <div class="row-fluid table-top-cont">
+                                  <div style="float:right">
+                                    <div class="dataTables_paginate paging_bootstrap digg_pagination">
+                                      <%= will_paginate @product_rocks, :container => false %>
+                                    </div>
+                                    <label class="showing-records"><%= page_entries_info @product_rocks %></label>
+                                </div>
+                            </div>
+                          </div>
+          
+      </div>
+      <!-- END PAGE CONTAINER-->    
+    

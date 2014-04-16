@@ -114,6 +114,7 @@ class User < ActiveRecord::Base
   has_many    :authored_return_authorizations, class_name: 'ReturnAuthorization', foreign_key: 'author_id'
   has_many     :ratings
   # Images 
+  has_many    :product_rocks
   has_many :images, -> {order(:position)},
                     as:        :imageable,
                     dependent: :destroy
