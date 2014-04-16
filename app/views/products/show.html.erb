@@ -41,6 +41,20 @@
           </div>
         </div>
       </div>
+      <% if @related_products.present?%>
+        <div class="row">
+          <div class="span12 sale-header white-line">
+            <div class="pre-next"> <a href="#" class="pre">Pre</a> <a href="#" class="next">Next</a></div>
+            <h1><span>related products</span></h1>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <%@related_products.each do |related_product|%>   
+            <% product = related_product.product %>
+            <%=render partial: "/welcome/slide_product",locals: {product: product,:variant=> nil}%>
+          <%end%>
+        </div>  
+      <%end%>
     </div>
   
 

@@ -33,4 +33,8 @@ class ProductType < ActiveRecord::Base
     grid
   end
 
+  def sub_categories
+    ProductType.where("parent_id = ?",id)
+  end
+
 end

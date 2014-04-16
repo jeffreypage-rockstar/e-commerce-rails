@@ -1,8 +1,20 @@
+<div class="row-fluid breadcrumb-full-bg">
+  <div class="container">
+    <h1>Edit Profile</h1>
+    <ul class="breadcrumb pull-right">
+      <li><a href="/">Home</a> <span class="divider">→</span></li>
+      <li><a href="/myaccount/overview">My profile</a> <span class="divider">→</span></li>
+      <li class="active">Edit Profile</li>
+    </ul>
+  </div>
+</div>
+<div class="container">
 
-<div class='nine large-9 columns'>
-  <h3> Edit Profile </h3>
+	<div class='nine large-9 columns'>
+	  <h3> Edit Profile </h3>
 
-  <%= form_for current_user, :url => myaccount_overview_path, :method => 'PUT' do |f| %>
-    <%=  render :partial => 'form', :locals => {:f => f} %>
-  <% end %>
+	  <%= form_for current_user, :url => myaccount_overview_path, :method => 'PUT' do |f| %>
+	    <%=  render :partial => 'form', :locals => {:f => f} %>
+	  <% end %>
+	</div>
 </div>

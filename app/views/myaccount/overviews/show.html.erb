@@ -12,12 +12,12 @@
         <div class="row">
           <div class="span8 my-prf-header">
             <h1>
-              <div class="prf-right">
+              <!-- <div class="prf-right">
                 <div class="style-prf"> Style: <small>3</small> </div>
                 <div class="style-prf"> Rocks: <small>37</small> </div>
                 <div class="prd-detail-rating"><a href="#"><img src="/assets/rating-gray-active.png" alt=""></a> <a href="#"><img src="/assets/rating-gray-active.png" alt=""></a> <a href="#"><img src="/assets/rating-gray-active.png" alt=""></a> <a href="#"><img src="/assets/rating-gray.png" alt=""></a> <a href="#"><img src="/assets/rating-gray.png" alt=""></a></div>
-              </div>
-              <span>A:M DESIGN STUDIO</span></h1>
+              </div> -->
+              <span><%=@user.name%></span></h1>
             <div class="row profile-detail">
               <div class="span2"> 
                 <%if @user.images.present?%>
@@ -29,40 +29,7 @@
               </div>
               <div class="span6">
                 <h2>Description</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
-                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
-                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
-                  malesuada non purus eu, aliquet ornare elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
-                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
-                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
-                  malesuada non purus eu, aliquet ornare elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
-                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
-                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
-                  malesuada non purus eu, aliquet ornare elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
-                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
-                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
-                  malesuada non purus eu, aliquet ornare elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
-                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
-                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
-                  malesuada non purus eu, aliquet ornare elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
-                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
-                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
-                  malesuada non purus eu, aliquet ornare elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
-                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
-                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
-                  malesuada non purus eu, aliquet ornare elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
-                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
-                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
-                  malesuada non purus eu, aliquet ornare elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
-                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
-                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
-                  malesuada non purus eu, aliquet ornare elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
-                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
-                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
-                  malesuada non purus eu, aliquet ornare elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
-                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
-                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
-                  malesuada non purus eu, aliquet ornare elit. </p>
+                <p><%=@user.about_me%> </p>
               </div>
             </div>
           </div>
@@ -78,9 +45,9 @@
                 <li><a href="#">Listings<span>4</span></a></li>
                 <li class="new-list"><a href="#">List New item<span class="add-icon">&nbsp;</span></a></li>
                 <li><a href="#">Sale History<span>2</span></a></li>
-                <li><a href="#">Purchase History<span>5</span></a></li>
+                <li><a href="/myaccount/orders">Purchase History<span>5</span></a></li>
                 <li><a href="#">Reviews<span>2</span></a></li>
-                <li><a href="#">Update Profile <span class="edit-text">Edit</span></a></li>
+                <li><a href="/myaccount/overview/edit">Update Profile <span class="edit-text">Edit</span></a></li>
               </ul>
             </div>
           </div>
