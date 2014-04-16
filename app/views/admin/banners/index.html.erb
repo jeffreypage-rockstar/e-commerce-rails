@@ -74,6 +74,7 @@
 											<th style="width:8px;"><input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" /></th>
 											<th>Banner</th>
 											<th>Title</th>
+											<th class="text-center">Place</th>
 											<th class="text-center">Status</th>
 											<th class="text-center">Edit</th>
 											<th class="text-center">Delete</th>
@@ -86,6 +87,7 @@
 													<td><input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" /></td>
 													<td><%=image_tag(sp.image.url(:small))%></td>
 													<td><%=(sp.title)%></td>
+													<td class="text-center"><%=Banner::PLACES["#{sp.place}"]%></td>
 													<td class="text-center"><i class="icon-ok icon-center-<%= sp.active? ? 'check' : 'uncheck' %>"></i></td>
 													<td class="text-center">
 														<a href="<%=edit_admin_banner_path(sp.id)%>"><i class="icon-edit icon-center-edit"></i></a>

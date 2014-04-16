@@ -30,8 +30,18 @@ class Admin::BannersController < Admin::BaseController
   end
 
   def create
+    # if params[:banner][:place] == "main_slide"
+    #   params[:banner][:place]
+    # elsif params[:banner][:place] == "main_small"
+    
+    # elsif params[:banner][:place] == "sale_main"
+    
+    # elsif params[:banner][:place] == "sale_small"
+          
+    # end
     I18n.locale = "tcn"    
-  	@banner = Banner.new(user_params)
+    @banner = Banner.new(user_params)
+    # render :text => @banner.inspect and return false
 		respond_to do |format|
 	    if @banner.save
         update_all_language(@banner,user_params)
