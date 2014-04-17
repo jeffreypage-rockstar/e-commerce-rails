@@ -31,11 +31,10 @@
           </ul>
           <div class="pre-next"> <a href="#MyProdctslider" data-slide="prev" class="pre">Pre</a> <a href="#MyProdctslider" class="next" data-slide="next" >Next</a> </div>
         </div>
-        <div class="row-fluid">
-        <div id="MyProdctslider" class="carousel slide">
+        <div class="row-fluid" >
+        <div id="MyProdctslider" class="carousel slide" style="height:420px">
         	<div class="carousel-inner">
         	 	<div class="active item" id="0">	
-
               <%@super_hot_proudcts.each do |product|%>   
                 <%=render partial: "slide_product",locals: {product: product,:variant=> nil}%>
 		        	<%end%>
@@ -124,7 +123,7 @@
           <div class="pre-next"> <a href="#MyDiscountslider" data-slide="prev" class="pre">Pre</a> <a href="#MyDiscountslider" class="next" data-slide="next" >Next</a> </div>
         </div>
         <div class="row-fluid">
-        <div id="MyDiscountslider"class="carousel slide">
+        <div id="MyDiscountslider"class="carousel slide" style="height:420px">
           <div class="carousel-inner">
             
             <div class="active item" id="1">  

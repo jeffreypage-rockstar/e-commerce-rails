@@ -7,3 +7,14 @@
    *= require product_page/skin
    *= require product_page/jc
 */
+
+#flash {
+position: fixed;
+z-index: 999;
+margin-left: 35%;
+width: 455px;
+padding: 52px;
+border-radius: 5px;
+}
+
+.red{color:red;}

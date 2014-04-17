@@ -1,6 +1,6 @@
 <%if product.variants.present?%>
 <div class="span3 relative ">
-  <div style="height:400px;width:270">
+  <div style="height:350px;width:270">
     
     <%if product.variants.present? && product.variants[0].discount_percent.present? %> 
       <span class="discount-red">
@@ -14,10 +14,10 @@
     <%if ((product.variants.present? && !product.variants[0].discount_percent.present?) && product.hero_variant.low_stock?) %><span class="discount-red white-color">out</span><%end%>
 	  <a href="<%=product_path(product)%>" title="<%=product.name%>" >
       <%if product.images[0].present?%>
-			 <%= image_tag(product.images[0].photo(:product),:style=> "width:270px")  %>
+			 <%= image_tag(product.images[0].photo(:product),:style=> "width:270px;height:330px")  %>
       <%else%>
         <%if variant.present? && variant.image_group.present?%>
-          <%= image_tag(variant.image_group.images[0].photo.url(:large),:style=> "width:270px")  %>
+          <%= image_tag(variant.image_group.images[0].photo.url(:large),:style=> "width:270px;height:330px")  %>
         <%else%>
           <%="#{product.variants[0].discount_percent}%" if product.variants.present? %>
         <%end%>
