@@ -48,3 +48,6 @@ border-radius: 5px;
 }
 
 .red{color:red;}
+
+/*----------------- style for changes -------------------- */
+.table-hd .odd th{ background:#178FFF !important;}

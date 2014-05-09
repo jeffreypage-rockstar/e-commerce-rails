@@ -7,7 +7,8 @@
         <div class="social-media-footer">
           <ul>
               <li><a href="#" class="twitter-icon-f footer-social-sprite">&nbsp;</a></li>
-                <li><a href="#" class="fb-icon-f footer-social-sprite">&nbsp;</a></li>
+                <!--<li><a href="#" class="fb-icon-f footer-social-sprite">&nbsp;</a></li>-->
+                <li><%= link_to '', Koala::Facebook::OAuth.new.url_for_oauth_code(:callback => oauth_redirect_url), :class =>"fb-icon-f footer-social-sprite"%></li>
                 <li><a href="#" class="google-icon-f footer-social-sprite">&nbsp;</a></li>
                 <li><a href="#" class="printrest-icon-f footer-social-sprite">&nbsp;</a></li>
                 <li><a href="#" class="diaspora-icon-f footer-social-sprite">&nbsp;</a></li>
@@ -34,7 +35,9 @@
             <div class="span4">
               <h2>Latest Tweets</h2>
               <div class="span3">
-                <h3>2312 people follow <a href="#">#maddot</a></h3>
+                <h3><%#= client = TWITTER.new({}) %>
+<%me = TWITTER.user('hiddenhbdev')%>
+<%=me.followers_count.to_s %> people follow <a href="#">#maddot</a></h3>
                 <h4><%=@news.fetch(2).title%> <span><a href=<%=@news.fetch(2).hreflink%>><%=@news.fetch(2).subject%></a></span> </h4>
                 <p><%=@news.fetch(2).description%></p>
                 <h4><%=@news.fetch(3).title%> <span><a href=<%=@news.fetch(3).hreflink%>><%=@news.fetch(3).subject%></a></span> </h4>
@@ -48,7 +51,8 @@
             <div class="span4">
               <h2>Latest Tweets</h2>
               <div class="span3">
-                <h3>2312 people follow <a href="#">#maddot</a></h3>
+                <h3><%me = TWITTER.user('hiddenhbdev')%>
+<%=me.followers_count.to_s %> people follow <a href="#">#maddot</a></h3>
               </div>
             </div>
           <%end%>
