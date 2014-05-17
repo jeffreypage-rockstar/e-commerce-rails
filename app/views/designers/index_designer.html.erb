@@ -28,7 +28,7 @@
           <span id="designer_data">
             <%= render :partial => '/ratings/designer_data' %>
           </span>
-          <label class="width-200-label">Listed:: <span><%=@products.size%></span></label>
+          <label class="width-200-label">Listed: <span><%=@products.size%></span></label>
         </div>
         <div class="span12 slider-brd"><a href="#"><img alt="" src="/assets/slider-line.gif"></a> </div>
         <div class="prd-detail-rating" id="user_star">
@@ -55,7 +55,7 @@
         <div class="span3 paging-show"><%= page_entries_info @products %></div>
         <!--Paging Section Starts here-->
         <div class="pagination pagination-right pagination_dev">
-            <%= will_paginate @products, :container => false %>
+            <%= will_paginate @products, :previous_label => "<", :next_label => ">", :container => false %>
         </div>
         <!--Paging Section Ends here--> 
         <%end%>

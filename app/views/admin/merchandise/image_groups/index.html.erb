@@ -30,6 +30,6 @@
   </table>
 </div>
 
-<%= will_paginate @image_groups %>
+<%= will_paginate @image_groups , :previous_label => "<", :next_label => ">" %>
 
 <p><%= link_to "New Image Group", new_admin_merchandise_image_group_path, :class => 'button' %></p>

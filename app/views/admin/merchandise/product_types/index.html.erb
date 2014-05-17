@@ -66,5 +66,5 @@
     <% end %>
   </table>
 
-  <%= will_paginate @product_types %>
+  <%= will_paginate @product_types, :previous_label => "<", :next_label => ">" %>
 </div>

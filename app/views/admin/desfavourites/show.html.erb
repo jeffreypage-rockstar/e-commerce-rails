@@ -61,7 +61,7 @@
                                 <div class="row-fluid table-top-cont">
                                   <div style="float:right">
                                     <div class="dataTables_paginate paging_bootstrap digg_pagination">
-                                      <%= will_paginate @product_rocks, :container => false %>
+                                      <%= will_paginate @product_rocks , :previous_label => "<", :next_label => ">", :container => false %>
                                     </div>
                                     <label class="showing-records"><%= page_entries_info @product_rocks %></label>
                                 </div>

@@ -23,7 +23,7 @@
   <% end %>
   </table>
 </div>
-<%= will_paginate @orders %>
+<%= will_paginate @orders, :previous_label => "<", :next_label => ">" %>
 <br />
 
 <%#= link_to 'New Order', new_admin_history_order_path %>

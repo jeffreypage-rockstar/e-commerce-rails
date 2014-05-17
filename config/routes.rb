@@ -16,6 +16,7 @@ Hadean::Application.routes.draw do
   get 'brand-products/:id' => 'products#brand_products' ,as: :brand_products
   get 'cat-products/:id' => 'products#cat_products'  ,as: :cat_products
   get 'hot-products' => 'products#hot_products'  ,as: :hot_products
+  get 'on-sale-products' => 'products#on_sale_products'  ,as: :on_sale_products
   post 'get_property_product'=> 'products#get_property_product'
   get 'search/' => 'products#search'
   get 'oauth/redirect' => 'oauth#redirect', as: :oauth_redirect

@@ -26,10 +26,10 @@
                 </li>
 
                 <%@product_category_on_main_menu.each do |cat|%>
-                <li class="dropdown "> <a data-toggle="dropdown" class="dropdown-toggle" href="#"><%= cat.name%> <b class="caret">  </b></a>
+                <li class="dropdown "> <a data-toggle="dropdown" class="dropdown-toggle" href="<%= cat_products_path(cat,:parent=>true) %>"><%= cat.name%> <b class="caret">  </b></a>
                   <div class="dropdown-menu">
                     <div class="drop-down-hd">
-                      <h3><%= cat.name%></h3>
+                      <h3><%=link_to cat.name,cat_products_path(cat,:parent=>true),:style=>"color: #ECF5F5;" %></h3>
                       <a href="#" class="clear-all">Cleare all</a>
                     </div>
                     <%cat.sub_categories.in_groups_of(6).each do |sub_cat|%>
@@ -48,7 +48,7 @@
                 </li>
                   <!-- <li><a href="<%#=cat_products_path(cat)%>"><%#= cat.name%></a></li> -->
                 <%end%>
-                <li><a href="#"><%= t(:sale)%></a></li>
+                <li><a href="<%=on_sale_products_path%>"><%= t(:sale)%></a></li>
                 <li><a href="<%=hot_products_path%>"><%= t(:hot)%></a></li>
                 <li><a href="<%=blogs_path%>"><%= t(:blog)%></a></li>
                 <% if @designer != nil %>

@@ -27,7 +27,7 @@ class DesignersController < ApplicationController
 
     end
 
-    @products = @products.paginate(:page => pagination_page, :per_page => 8)
+    @products = @products.paginate(:page => pagination_page, :per_page => 8) if @products.present?
     
     @user = current_user
     @ratings = current_user.ratings
@@ -56,9 +56,8 @@ class DesignersController < ApplicationController
             
         end
 
-    end
-
-    @products = @products.paginate(:page => pagination_page, :per_page => 8)
+    end    
+    @products = @products.paginate(:page => pagination_page, :per_page => 8) if @products.present?
     
     	@user = current_user
 

@@ -24,7 +24,7 @@
   <% end %>
   </table>
 </div>
-<%= will_paginate @designers %>
+<%= will_paginate @designers, :previous_label => "<", :next_label => ">" %>
 <br />
 
 <%#= link_to 'New Order', new_admin_history_order_path %>

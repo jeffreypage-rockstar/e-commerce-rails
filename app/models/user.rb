@@ -155,6 +155,10 @@ class User < ActiveRecord::Base
     0 => 'No'
   }
 
+  def to_s
+    first_name.to_s+" "+last_name.to_s
+  end
+
   # returns true or false if the user is active or not
   #
   # @param [none]

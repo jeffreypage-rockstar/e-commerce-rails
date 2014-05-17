@@ -23,7 +23,7 @@
           <div class="span3 paging-show"><%= page_entries_info @products %></div>
           <!--Paging Section Starts here-->
           <div class="pagination pagination-right pagination_dev">
-              <%= will_paginate @products, :container => false ,:params => { :q => params[:q] }%>
+              <%= will_paginate @products, :previous_label => "<", :next_label => ">", :container => false ,:params => { :q => params[:q] }%>
           </div>
         <%end%>
       </div>
