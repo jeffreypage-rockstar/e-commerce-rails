@@ -1,62 +1,121 @@
-
-    <div class="row-fluid breadcrumb-full-bg">
-      <div class="container">
-        <h1>Product Detail</h1>
-        <ul class="breadcrumb pull-right">
-          <li><a href="/">Home</a> <span class="divider">→</span></li>
-          <li><a href="#">Brand</a> <span class="divider">→</span></li>
-          <li><a href="#">Woman</a> <span class="divider">→</span></li>
-          <li class="active"><%= @product.name %></li>
-        </ul>
+<div class="row-fluid breadcrumb-full-bg">
+  <div class="container">
+    <h1>Product Detail</h1>
+    <ul class="breadcrumb pull-right">
+      <li>
+        <%= link_to "Home",root_path %>
+        <% if @product.brand.present? %>
+          <%= "<span class='divider'>→</span>".html_safe %>
+          </li>
+          <li>        
+            <%= link_to @product.brand.to_s,brand_products_path(@product.brand) %>  
+        <% end %>  
+        <% if @product.product_type.present? %>    
+          <%= "<span class='divider'>→</span>".html_safe %>
+          </li>
+          <li>
+            <%= link_to @product.product_type.to_s,cat_products_path(@product.product_type) %>
+        <% end %>
+        <%= "<span class='divider'>→</span>".html_safe %>
+      </li>
+      <li class="active"><%= @product.name %></li>
+    </ul>
+  </div>
+</div>
+<div class="container">
+  <div class="row" id="product_detail_box">
+    <%=render partial: "/products/product_detail"%>
+  </div>
+  <div class="row">
+    <div class="span6 prd-designer">
+      <h4>
+        <div class="bot-blue-line-img">
+          <div class="pre-next"> <a href="#" class="pre">Pre</a> <a href="#" class="next">Next</a></div>
+          <img src="/assets/main/bot-blue-line.gif" alt=""></div>
+        Reviews (5)</h4>
+      <div class="designer-detail-prd">
+        <p>Donec a tempor mauris. Donec eu luctus eros. Vivamus tempus justo lacus. 
+          Pellentesque odio mauris, lacinia nec pulvinar a, rhoncus eu nisi suspendisse 
+          condimentum feugiat velit vel la donec fringilla venenatis tellus vestibulum. 
+          Aliquam tristique risuas sed diam at nisl pretium convallis. </p>
+        <p>Awsome design, I like it!</p>
+        <p><span>Anne Hershy</span> 11.03.2014</p>
       </div>
     </div>
-    <div class="container">
-      <div class="row" id="product_detail_box">
-        <%=render partial: "/products/product_detail"%>
-      </div>
-      <div class="row">
-        <%@designer = @product.user%>
-        <%if @designer.present?%>
-          <div class="span6 prd-designer">
-            <h4>
-              <div class="bot-blue-line-img"><img src="/assets/main/bot-blue-line.gif" alt=""></div>
-              Designer: <span><%=@designer.name%></span></h4>
-            <div class="designer-detail-prd"> <%if @designer.images.present?%><%=image_tag(@designer.images[0].photo(:small))%><%end%>
-              <p><%=@designer.about_me%> </p>
+    <%@designer = @product.user%>
+    <%if @designer.present?%>
+      <div class="span6 prd-designer">
+        <h4>
+          <div class="bot-blue-line-img"><img src="/assets/main/bot-blue-line.gif" alt=""></div>
+          Designer:  &nbsp; <span><%=@designer.name%></span>
+        </h4>
+        <div class="designer-detail-prd">
+          <div class="designer-img">
+            <% if @designer.images.present? %>
+              <%= image_tag(@designer.images[0].photo(:small)) %>
+            <% else %>              
+              <%= image_tag("/assets/main/designer-img-detail.jpg") %>
+            <% end %>
+          </div>
+          <div class="designer-prd-detail">
+            <ul>
+              <li>
+                <label>Style Level:</label>
+                <span><%= @designer.ratings.select("avg(score) as style_level").first[:style_level].to_i %></span></li>
+              <li>
+                <label>Rocks:</label>
+                <span><%= @designer.product_rocks.count %></span>
+                <div class="prd-detail-rating">
+                  <a href="#"><img src="/assets/main/rating-gray-active.png" alt=""></a>
+                  <a href="#"><img src="/assets/main/rating-gray-active.png" alt=""></a>
+                  <a href="#"><img src="/assets/main/rating-gray-active.png" alt=""></a>
+                  <a href="#"><img src="/assets/main/rating-gray.png" alt=""></a>
+                  <a href="#"><img src="/assets/main/rating-gray.png" alt=""></a>
+                </div>
+              </li>
+              <li>
+                <label>Listed:</label>
+                <span><%= @designer.products.count %></span>
+                <div class="prd-detail-listed">Products / Designs</div>
+              </li>
+            </ul>
+            <div class="prddetail-center">              
+              <%= link_to "Rock Designer","#" ,:class=>"btn-black-coommen btn-rock-designer" %>
+              <%= link_to "View Profile",designer_path(@designer) ,:class=>"alink-btn-commen-blue view-prf-btn right-align" %>              
             </div>
           </div>
-        <%end%>
-        <div class="span6 prd-designer">
-          <h4>
-            <div class="comp-right">HEIGHT OF MODEL: <span>180 CM</span></div>
-            <div class="bot-blue-line-img"><img src="/assets/main/bot-blue-line.gif" alt=""></div>
-            Composition:</h4>
-          <div class="designer-detail-prd">
-            <ul>
-              <li class="color">OUTER SHELL</li>
-              <li>66% POLYESTER, 30% VISCOSE, 4% ELASTANE</li>
-              <li class="color">LINING</li>
-              <li>100% POLYESTER</li>
-            </ul>
-          </div>
         </div>
       </div>
-      <% if @related_products.present?%>
-        <div class="row">
-          <div class="span12 sale-header white-line">
-            <div class="pre-next"> <a href="#" class="pre">Pre</a> <a href="#" class="next">Next</a></div>
-            <h1><span>related products</span></h1>
-          </div>
+    <%end%>   
+  </div>
+  <div class="sale-listing">
+    <% if @related_products.present?%>
+      <div class="row">
+        <div class="span12 sale-header white-line">
+          <div class="pre-next"> <a href="#" class="pre">Pre</a> <a href="#" class="next">Next</a></div>
+          <h1><span>Accessories</span></h1>
         </div>
-        <div class="row-fluid">
-          <%@related_products.each do |related_product|%>   
-            <% product = related_product.product %>
-            <%=render partial: "/welcome/slide_product",locals: {product: product,:variant=> nil}%>
-          <%end%>
-        </div>  
-      <%end%>
-    </div>
-  
-
-
-  
+      </div>
+      <div class="row-fluid">
+        <%@related_products.each do |related_product|%>   
+          <% product = related_product.product %>
+          <%=render partial: "/welcome/slide_product",locals: {product: product,:variant=> nil}%>
+        <%end%>
+      </div>  
+    <%end%>
+    <% if @related_products.present?%>
+      <div class="row">
+        <div class="span12 sale-header white-line">
+          <div class="pre-next"> <a href="#" class="pre">Pre</a> <a href="#" class="next">Next</a></div>
+          <h1><span>related products</span></h1>
+        </div>
+      </div>
+      <div class="row-fluid">
+        <%@related_products.each do |related_product|%>   
+          <% product = related_product.product %>
+          <%=render partial: "/welcome/slide_product",locals: {product: product,:variant=> nil}%>
+        <%end%>
+      </div>  
+    <%end%>
+  </div>
+</div>  

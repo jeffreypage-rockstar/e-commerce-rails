@@ -37,7 +37,12 @@ gem 'json',           '~> 1.8.0'
 
 #gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
 gem 'nokogiri',     '~> 1.6.0'
-gem 'paperclip',    '~> 3.0'
+
+gem "paperclip", "~> 3.4.0"
+gem "cocaine", "= 0.4"
+
+
+#gem 'paperclip',    '~> 3.0'
 gem 'paperclip-meta'
 
 gem 'prawn',        '~> 0.12.0'

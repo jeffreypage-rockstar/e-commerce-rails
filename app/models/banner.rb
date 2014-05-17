@@ -24,7 +24,8 @@ class Banner < ActiveRecord::Base
 	  "main_slide" => 'Main Page Slider',
 	  "main_small" => 'Main Page After Slider',
 	  "sale_slide" => 'Sale Page slider',
-	  "sale_small" => 'Sale Page after Slider'
+	  "sale_small" => 'Sale Page after Slider',
+	  "hot_slide" => 'Hot Page slider'
 	}
 	
 	scope :visible
@@ -48,6 +49,8 @@ class Banner < ActiveRecord::Base
 				errors.add(:image,'width or height is not matching. Please upload image with size 1950 X 550 pixel for Sale Page Slider')
 			elsif place == 'sale_small' && dimensions.width != 370 && dimensions.height != 200
 		  	errors.add(:image,'width or height is not matching. Please upload image with size 370 X 200 pixel for Sale Page Image After Slider')
+		  	elsif place == 'hot_slide' && dimensions.width != 1950 && dimensions.height != 550
+				errors.add(:image,'width or height is not matching. Please upload image with size 1950 X 550 pixel for Hot Page Slider')
 		  end
 		end
 	end

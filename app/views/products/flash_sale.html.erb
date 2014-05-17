@@ -1,0 +1,89 @@
+<section>
+    <div class="container midd-cont MT-0">
+      <div class="inner-page-slider">
+        <div class="row">
+          <div class="span12 slider-inner"> <img src="/assets/img/inner-slider-banner1.jpg" alt=""> <a href="#" class="slider-inner-left-arrow">&nbsp;</a> <a href="#" class="slider-inner-right-arrow">&nbsp;</a>
+            <div class="slider-bulet-inner"> <a href="#">&nbsp;</a> <a href="#">&nbsp;</a> <a href="#">&nbsp;</a> </div>
+            <div class="slider-cont-inner"> <img src="/assets/img/flash-sale-icon.gif" alt="">
+              <div class="banner-cap">Flash Sale</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sale-listing">
+        <div class="row">
+          <div class="span12 sale-header">
+            <div class="pre-next"> <a class="pre" href="#">Pre</a> <a class="next" href="#">Next</a></div>
+            <h1><span><%= @designer1.first_name %> <%= @designer1.last_name %></span></h1>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <% row=0 %>
+          <%@designer1.products.each do |product|%>   
+            <% if row == 0 %>
+              <div class="prodct-row">                
+            <%end%>
+            <%=render partial: "/welcome/slide_product",locals: {product: product,:variant=> nil}%>
+            <% row+=1 %>
+            <% if row >= 4 || @designer1.products.last == product %>
+              </div>
+              <% row=0 %>
+            <%end%>
+          <%end%>
+        </div>
+        <div class="row-fluid slider-brd"><a href="#"><img alt="" src="/assets/main/slider-line.gif"></a> </div>
+        <div class="span6 offset3 sale-company-section">
+          <h2><%= @designer1.first_name %> <%= @designer1.last_name %></h2>
+          <label class="width-168-label">Style Level: <span><%= @avg_rating1.to_i.to_s %></span></label>
+          <label class="width-127-label">Rocks: <span><%= @count1.to_i.to_s %></span></label>
+          <label class="width-200-label">Listed:: <span><%= @designer1.products.size.to_s%></span></label>
+          <div class="btn-center-div"> <a href="designers/<%=@designer1.id%>" class="alink-btn-commen-blue view-prf-btn">View Profile</a> </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+     
+
+
+      <div class="sale-listing">
+        <div class="row">
+          <div class="span12 sale-header">
+            <div class="pre-next"> <a class="pre" href="#">Pre</a> <a class="next" href="#">Next</a></div>
+            <h1><span><%= @designer2.first_name %> <%= @designer2.last_name %></span></h1>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <% row=0 %>
+          <%@designer2.products.each do |product|%>   
+            <% if row == 0 %>
+              <div class="prodct-row">                
+            <%end%>
+            <%=render partial: "/welcome/slide_product",locals: {product: product,:variant=> nil}%>
+            <% row+=1 %>
+            <% if row >= 4 || @designer2.products.last == product %>
+              </div>
+              <% row=0 %>
+            <%end%>
+          <%end%>
+        </div>
+        <div class="row-fluid slider-brd"><a href="#"><img alt="" src="/assets/main/slider-line.gif"></a> </div>
+        <div class="span6 offset3 sale-company-section">
+          <h2><%= @designer2.first_name %> <%= @designer2.last_name %></h2>
+          <label class="width-168-label">Style Level: <span><%= @avg_rating2.to_i.to_s %></span></label>
+          <label class="width-127-label">Rocks: <span><%= @count2.to_i.to_s %></span></label>
+          <label class="width-200-label">Listed:: <span><%= @designer2.products.size.to_s%></span></label>
+          <div class="btn-center-div"> <a href="designers/<%=@designer2.id%>" class="alink-btn-commen-blue view-prf-btn">View Profile</a> </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+     <div class="row">
+            <% if @designers != [] %>
+        <div class="span3 paging-show"><%= page_entries_info @designers %></div>
+        <!--Paging Section Starts here-->
+        <div class="pagination pagination-right pagination_dev">
+            <%= will_paginate @designers, :container => false %>
+        </div>
+        <!--Paging Section Ends here--> 
+        <%end%>
+      </div>
+    </div>
+  </section>

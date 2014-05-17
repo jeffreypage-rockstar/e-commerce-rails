@@ -55,6 +55,7 @@
             <a href="<%=edit_admin_merchandise_product_type_path(product_type)%>"><i class="icon-edit icon-center-edit"></i></a>
           </td>
           <td class="text-center">
+           
             <% if product_type.active == true %>
               <%= link_to("Inactive","/admin/merchandise/product_types/#{product_type.id}",:method=>"DELETE",:confirm=>"Are you sure you want to Inactive?")%>
             <%else%>

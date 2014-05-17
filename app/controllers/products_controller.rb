@@ -31,6 +31,29 @@ class ProductsController < ApplicationController
       @news = News.where('state = ?',true)
   end
 
+  def flash_sale
+    @role = Role.find_by_name("designer")
+
+    @designers = @role.users.paginate(:page => pagination_page, :per_page => 2)
+    @designer1 = @designers.first
+    @count1 = Rating.where('designer_id = ?',@designer1.id).count.to_f
+    @sum2 = Rating.where('designer_id = ?',@designer1.id).sum(:score).to_f
+    if(@count1 != 0.0)
+      @avg_rating1 = (@sum1.to_f/@count1.to_f).to_f
+    else
+      @avg_rating1 = 0.0
+    end
+
+    @designer2 = @designers.second
+    @count2 = Rating.where('designer_id = ?',@designer2.id).count.to_f
+    @sum2 = Rating.where('designer_id = ?',@designer2.id).sum(:score).to_f
+    if(@count2 != 0.0)
+      @avg_rating2 = (@sum2.to_f/@count2.to_f).to_f
+    else
+      @avg_rating2 = 0.0
+    end
+  end
+
   def brand_products
       @brand = Brand.find(params[:id])
       @products = Product.paginate(:page => pagination_page, :per_page => pagination_rows).where(["brand_id =?",params[:id]])
@@ -42,7 +65,8 @@ class ProductsController < ApplicationController
   end
 
   def hot_products
-    @products = Product.aactive.paginate(:page => pagination_page, :per_page => pagination_rows).where(["super_hot =?",true])
+    @products = Product.aactive.paginate(:page => pagination_page, :per_page => 8).where(["super_hot =?",true])
+    @banners= Banner.active.order('created_at DESC').where("place = 'hot_slide'")
   end
 
   def my_profile
@@ -76,16 +100,21 @@ class ProductsController < ApplicationController
 
   def rock_product
     @product = Product.active.find(params[:id])
+    @flag = true
     if current_user.present?
       @rock_product = ProductRock.where(:user_id=> current_user.id,:product_id=>@product.id).first_or_initialize
      
       if params[:unrock]
         @rock_product.destroy
+        @flag = false
       else
         @rock_product.save
       end
     end
-    render :text => "Done" and return false
+     respond_to do |format|
+       format.js  # { render :layout => false }
+    end
+    #render :text => "Done" and return false
   end
 
   def get_property_product

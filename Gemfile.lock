@@ -63,7 +63,7 @@ GEM
     asset_sync (1.0.0)
       activemodel
       fog (>= 1.8.0)
-    atomic (1.1.14)
+    atomic (1.1.16)
     autotest-rails-pure (4.1.2)
     awesome_nested_set (3.0.0.rc.3)
       activerecord (>= 4.0.0, < 5)
@@ -95,10 +95,7 @@ GEM
     ckeditor (4.0.10)
       mime-types
       orm_adapter (~> 0.5.0)
-    climate_control (0.0.3)
-      activesupport (>= 3.0)
-    cocaine (0.5.3)
-      climate_control (>= 0.0.3, < 1.0)
+    cocaine (0.4.0)
     coderay (1.1.0)
     columnize (0.3.6)
     compass (0.12.2)
@@ -192,7 +189,7 @@ GEM
     money (6.0.1)
       i18n (~> 0.6.4)
       monetize (~> 0.1.3)
-    multi_json (1.8.4)
+    multi_json (1.10.0)
     multipart-post (2.0.0)
     mysql2 (0.3.15)
     naught (1.0.0)
@@ -216,10 +213,11 @@ GEM
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
     orm_adapter (0.5.0)
-    paperclip (3.5.3)
+    paperclip (3.4.0)
       activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
-      cocaine (~> 0.5.3)
+      cocaine (~> 0.4.0)
       mime-types
     paperclip-meta (1.1.0)
       paperclip (>= 3.0.2, < 5.0)
@@ -330,7 +328,7 @@ GEM
       memoizable (~> 0.4.0)
       naught (~> 1.0)
       simple_oauth (~> 0.2.0)
-    tzinfo (0.3.38)
+    tzinfo (0.3.39)
     uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
@@ -363,6 +361,7 @@ DEPENDENCIES
   capybara (~> 1.1)
   chronic
   ckeditor
+  cocaine (= 0.4)
   compass-rails!
   database_cleaner (~> 1.2)
   debugger
@@ -385,7 +384,7 @@ DEPENDENCIES
   nokogiri (~> 1.6.0)
   omniauth
   omniauth-facebook (= 1.4.0)
-  paperclip (~> 3.0)
+  paperclip (~> 3.4.0)
   paperclip-meta
   pg
   prawn (~> 0.12.0)

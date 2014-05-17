@@ -1,13 +1,10 @@
 <tr>
-  <td><%= image_tag item.variant.featured_image ,class: 'img-left' %><!-- <img src="/assets/main/table-img.jpg" alt="" class=""> -->
+  <td><%= image_tag item.variant.featured_image ,class: 'img-left', width: '70px', height: '70px' %><!-- <img src="/assets/main/table-img.jpg" alt="" class=""> -->
     <div class="prd-list-div">
       <span> <%=item.variant.product_name %></span>
       <label>Color: <%=item.variant.color %></label>
       <small>Brand: <%=  item.variant.brand_name.blank? ? '' : ['-', item.variant.brand_name].join(' ') %></small>
-      <br/>
-      <div style="clear:both">Item added on <%= item.created_at.strftime(I18n.translate('time.formats.long_date')) %></div>
-      <small>
-      </small>
+     
     </div>
   </td>
   <td align="center" class="code-table-data" valign="middle"><%=item.variant.sku%></td>

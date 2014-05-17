@@ -24,7 +24,7 @@
       <td><%= link_to account.account_type, edit_admin_config_account_path(account) %></td>
       <td><%= account.monthly_charge %></td>
       <td><%= account.active %></td>
-      <td><%= link_to "Delete", admin_config_account_path(account), :method => :delete %></td>
+      <td><%= link_to "Delete", admin_config_account_path(account), :method => :delete, :confirm => "Are you sure to delete this record?" %></td>
     </tr>
   <% end %>
   </table>

@@ -5,21 +5,49 @@
           <div class="span12 slider-inner"> <img src="/assets/main/inner-slider-banner1.jpg" alt=""> <a href="#" class="slider-inner-left-arrow">&nbsp;</a> <a href="#" class="slider-inner-right-arrow">&nbsp;</a>
             <div class="slider-bulet-inner"> <a href="#">&nbsp;</a> <a href="#">&nbsp;</a> <a href="#">&nbsp;</a> </div>
             <div class="slider-cont-inner"> <img src="/assets/main/flash-sale-icon.gif" alt="">
-              <div class="banner-cap">Hot !</div>
+              <div class="banner-cap">What's Hot !</div>
             </div>
           </div>
         </div>
+        
       </div>
+
+     <!-- <div id="myCarousel" class="topslider carousel slide">
+        <ol class="carousel-indicators">
+          <%@banners.each_with_index do |banner,index|%>
+            <li data-target="#myCarousel" data-slide-to="<%=index%>" class="<%=index == 0 ? 'active' : '' %>"></li>
+          <%end%>
+        </ol>
+       
+        <div class="carousel-inner">
+          <%@banners.each_with_index do |banner,index|%>
+            <div id="<%=index%>" class="<%=index == 0 ? 'active' : '' %> item">
+              <%=link_to image_tag(banner.image.url(:original),style: 'height:550px') , "#{banner.link.present? ? banner.link : '#'}"%>
+
+            </div>
+          <%end%>
+         
+        </div>-->
+      <%#=render partial: "/layouts/hot_slider"%>
       <div class="sale-listing">
         <div class="row">
           <div class="span12 sale-header white-line">
             <div class="pre-next"> <a class="pre" href="#">Pre</a> <a class="next" href="#">Next</a></div>
-            <h1><span>Hot !</span></h1>
+            <h1><span>Listed Items</span></h1>
           </div>
         </div>
         <div class="row-fluid">
+          <% row=0 %>
           <%@products.each do |product|%>   
+            <% if row == 0 %>
+              <div class="prodct-row">                
+            <%end%>
             <%=render partial: "/welcome/slide_product",locals: {product: product,:variant=> nil}%>
+            <% row+=1 %>
+            <% if row >= 4 || @products.last == product %>
+              </div>
+              <% row=0 %>
+            <%end%>
           <%end%>
         </div>
         <div class="row-fluid slider-brd"><a href="#"><img alt="" src="/assets/main/slider-line.gif"></a> </div>
