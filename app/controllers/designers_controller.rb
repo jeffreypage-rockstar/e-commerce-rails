@@ -1,3 +1,4 @@
+
 class DesignersController < ApplicationController
  
   def index
@@ -7,14 +8,14 @@ class DesignersController < ApplicationController
 
   def show  
   	@designer = User.find(params[:id])
-  	#@designer_products = @designer.products
+  	
 
   	@news = News.where('state = ?',true)
-    #@orders = current_user.orders.where('state = complete', :include => {:order_items => {:varients => :product}})
+    
    
     if(current_user)
     	 @orders = Order.where("user_id = ? && state = 'complete'",@designer.id).includes({:order_items => :variant})
-    #@products = Product.all
+   
     @products = []
 
     @orders.each do |order|
@@ -43,9 +44,9 @@ class DesignersController < ApplicationController
     end
     	
     else
-    	#redirect_to login_url
+    	
     	@orders = Order.where("user_id = ? && state = 'complete'",@designer.id).includes({:order_items => :variant})
-   # @products = Product.all
+ 
     @products = []
 
     @orders.each do |order|
@@ -67,12 +68,16 @@ class DesignersController < ApplicationController
     if @ratings == []
     	@avg_rating = 0
     	@count = 0
-      #@rating = Rating.new(:id => 0,:score => 0, :designer_id => @designer.id)
+     
     else
     	@count = Rating.where('designer_id = ?',@designer.id).count.to_s
     	@avg_rating = Rating.where('designer_id = ?',@designer.id).sum(:score).to_f/@count.to_f
     	
     end
+    @prts = Product.none
+    @prts = @designer.products.paginate(:page => pagination_page, :per_page => 8)
+    
     render :action => 'index_designer'
+    #render :text => @prts.inspect
   end
 end

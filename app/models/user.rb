@@ -43,9 +43,9 @@ class User < ActiveRecord::Base
     # So that Authlogic will not use the LOWER() function when checking login, allowing for benefit of column index.
     config.validates_uniqueness_of_login_field_options :case_sensitive => true
     config.validates_uniqueness_of_email_field_options :case_sensitive => true
-
     config.validate_login_field = true;
     config.validate_email_field = true;
+    #config.validates_confirmation_of :password, :message => "doesn't match with Password"
   end
 
   translates :first_name,:about_me,:title,:last_name
@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
   before_validation :before_validation_on_create, :on => :create
   before_create :start_store_credits, :subscribe_to_newsletters
   after_create  :set_referral_registered_at
-
+  
   belongs_to :account
 
   has_many    :blogs
@@ -129,6 +129,7 @@ class User < ActiveRecord::Base
                           :uniqueness => true,##  This should be done at the DB this is too expensive in rails
                           :format   => { :with => CustomValidators::Emails.email_validator },
                           :length => { :maximum => 255 }
+
 
   accepts_nested_attributes_for :images,             reject_if: proc { |t| (t['photo'].nil? && t['photo_from_link'].blank?) }, allow_destroy: true
   accepts_nested_attributes_for :addresses, :user_roles

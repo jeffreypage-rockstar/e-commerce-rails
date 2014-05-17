@@ -27,7 +27,7 @@
             <%= link_to 'Edit', edit_shopping_address_path(shopping_address) %> Or 
             <%= link_to 'Delete', shopping_address_path(shopping_address), :data => {:confirm => 'Are you sure?'}, :method => :delete %> This Address
           </div>
-          <hr style='color:#aac'/>
+          <!-- <hr style='color:#aac'/> -->
         <% end %>
         <% if session_order.ready_to_checkout? %>
           <%= link_to 'Order Summary', shopping_orders_path, :class => 'button success' %>

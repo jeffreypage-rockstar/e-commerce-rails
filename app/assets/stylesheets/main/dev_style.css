@@ -1,4 +1,4 @@
-.topslider{width:1300px;min-height: 0px !important;margin-bottom: 40px}
+.topslider{width:1300px;min-height: 0px !important;margin-bottom: 50px}
 .row-fluid{clear:both;}
 .shp-bag input.checkout { font-weight:700; color:#2cc6c2; float:right; font-size:14px;background: transparent;border: none}
 .carousel{margin-bottom: 0px !important}
@@ -7,30 +7,25 @@
   cursor: default;float: right;
   /* self-clearing method: */ }
   .pagination_dev a, .pagination_dev span, .pagination_dev em {
-    padding: 2px 8px;
+    padding: 0.2em 0.5em;
     display: block;
     float: left;
-	line-height:20px;
-    margin-right: 1px;
-	border-radius:2px; margin-right:25px;
-	}
-	.pagination_dev .next_page:last-child{ margin-right:0px !important;}
+    margin-right: 1px; }
   .pagination_dev .disabled {
     color: #999999;
-    border: 1px solid #dddddd;}
-	
+    border: 1px solid #dddddd; }
   .pagination_dev .current {
     font-style: normal;
     font-weight: bold;
-    color: #fff;
-    border: 1px solid #2cc5c1; background:#2CC5C1; }
+    color: #2cc5c1;;
+    border: 1px solid #2cc5c1; }
   .pagination_dev a {
     text-decoration: none;
     color: #d6d6d6;
     border: 1px solid #d6d6d6; }
     .pagination_dev a:hover, .pagination_dev a:focus {
       color: #2cc5c1;
-     /* border-color: #2cc5c1;*/ }
+      border-color: #2cc5c1; }
   .pagination_dev .page_info {
     /*background: #2e6ab1;*/
     color: #178fff;

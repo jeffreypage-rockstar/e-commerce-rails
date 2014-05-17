@@ -6,8 +6,7 @@
     <%= f.text_field :address1 ,:placeholder=>"Delivery Address " %>
     <%= f.text_field :address2 ,:placeholder=>"Delivery Address " %>
     <%= f.text_field :city,:placeholder=>"City" %>
-    <%= f.select   :state_id, @states,{:include_blank => true, :prompt => "State"} %>
-    <%= countries.first.name %><br/>
+    <%= f.select   :state_id, @states,{:include_blank => true, :prompt => "State"} %>    
     <%= f.hidden_field   :country_id %>
     <%= f.select   :country_id, select_countries,
                           :include_blank => true ,:prompt=> "Country" %><br/>

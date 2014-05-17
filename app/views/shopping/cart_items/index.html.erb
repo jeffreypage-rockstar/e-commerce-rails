@@ -10,14 +10,14 @@
 <div class="container">
   <div class="checkout-option">
     <div class="row">
-      <div class="span12 checkout-header"><a href="#" class="arrow-checkout">&nbsp;</a>Confirm Order
+      <div class="span12 checkout-header"><a href="#" class="arrow-checkout">&nbsp;</a><span>Confirm Order</span>
         <!-- <img src="/assets/main/bot-line-checkout.gif" alt="" class="bot-line-checkout">  -->
       </div>
     </div>
     <div class="confirm-order">
       <%= form_for session_cart, url: shopping_cart_item_path(session_cart), html: {class: 'custom'}, :as => :cart do |cart_form| %>
         <%unless @cart_items.blank? %>
-          <table class="table table-bordered table-striped">
+          <table class="table table-bordered table-striped final-order">
             <thead>
               <tr>
                 <th><span>Product</span></th>

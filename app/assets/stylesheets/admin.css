@@ -51,3 +51,4 @@ border-radius: 5px;
 
 /*----------------- style for changes -------------------- */
 .table-hd .odd th{ background:#178FFF !important;}
+.admin_users .table-hd tr img{ width:45px; height:43px; max-width:45px;}

@@ -1,5 +1,5 @@
 <section>
-    <div class="row-fluid breadcrumb-full-bg">
+<div class="row-fluid breadcrumb-full-bg">
       <div class="container">
         <h1>My Profile</h1>
         <ul class="breadcrumb pull-right">
@@ -12,24 +12,20 @@
         <div class="row">
           <div class="span8 my-prf-header">
             <h1>
-              <!-- <div class="prf-right">
+              <div class="prf-right">
                 <div class="style-prf"> Style: <small>3</small> </div>
                 <div class="style-prf"> Rocks: <small>37</small> </div>
-                <div class="prd-detail-rating"><a href="#"><img src="/assets/rating-gray-active.png" alt=""></a> <a href="#"><img src="/assets/rating-gray-active.png" alt=""></a> <a href="#"><img src="/assets/rating-gray-active.png" alt=""></a> <a href="#"><img src="/assets/rating-gray.png" alt=""></a> <a href="#"><img src="/assets/rating-gray.png" alt=""></a></div>
-              </div> -->
-              <span><%=@user.name%></span></h1>
-            <div class="row profile-detail">
-              <div class="span2"> 
-                <%if @user.images.present?%>
-                  <%= image_tag @user.images[0].photo.url(:medium), :width => "150px"%>
-                <%else%>
-                  N/A
-                <%end%>
-                <!--<img alt="" src="/assets/designer-img-detail.jpg">--> 
+                <div class="prd-detail-rating"><a href="#"><img alt="" src="/assets/img/rating-gray-active.png"></a> <a href="#"><img alt="" src="/assets/img/rating-gray-active.png"></a> <a href="#"><img alt="" src="/assets/img/rating-gray-active.png"></a> <a href="#"><img alt="" src="/assets/img/rating-gray.png"></a> <a href="#"><img alt="" src="/assets/img/rating-gray.png"></a></div>
               </div>
+              <span>A:M DESIGN STUDIO</span></h1>
+            <div class="row profile-detail">
+              <div class="span2"> <img src="/assets/img/designer-img-detail.jpg" alt=""> </div>
               <div class="span6">
                 <h2>Description</h2>
-                <p><%=@user.about_me%> </p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
+                  vulputate tortor. Nulla lacus enim, scelerisque nec urna cursus cursus diam. 
+                  Sed nec arcu varius, vulputate tortor nec, dictum nibh. Duis tellus massa, 
+                  malesuada non purus eu, aliquet ornare elit. </p>
               </div>
             </div>
           </div>
@@ -45,22 +41,22 @@
                 <li><a href="#">Listings<span>4</span></a></li>
                 <li class="new-list"><a href="#">List New item<span class="add-icon">&nbsp;</span></a></li>
                 <li><a href="#">Sale History<span>2</span></a></li>
-                <li><a href="/myaccount/orders">Purchase History<span>5</span></a></li>
+                <li><a href="#">Purchase History<span>5</span></a></li>
                 <li><a href="#">Reviews<span>2</span></a></li>
-                <li><a href="/myaccount/overview/edit">Update Profile <span class="edit-text">Edit</span></a></li>
+                <li><a href="#">Update Profile <span class="edit-text">Edit</span></a></li>
               </ul>
             </div>
           </div>
         </div>
         <div class="sale-listing">
-          <!--<div class="row">
+          <div class="row">
             <div class="span12 sale-header white-line">
-              <div class="pre-next"> <a href="#" class="pre">Pre</a> <a href="#" class="next">Next</a></div>
+              <div class="pre-next"> <a class="pre" href="#">Pre</a> <a class="next" href="#">Next</a></div>
               <h1><span>Purchase History</span></h1>
             </div>
           </div>
           <div class="row-fluid">
-            <div class="span3 relative"><a href="#"><img src="/assets/super-hot-img1.jpg" alt=""> <img src="/assets/fav-icon.png" alt="" class="fav-icon"> </a>
+            <div class="span3 relative"><a href="#"><img alt="" src="/assets/img/super-hot-img1.jpg"> <img class="fav-icon" alt="" src="/assets/img/fav-icon.png"> </a>
               <div class="suphot-cont">
                 <div class="rating-color"></div>
                 <div class="rating-color"></div>
@@ -68,7 +64,7 @@
                 <p><strong>$58.00</strong></p>
               </div>
             </div>
-            <div class="span3 relative"> <span class="discount-red">-50%</span> <a href="#"><img src="/assets/super-hot-img2.jpg" alt=""> <img src="/assets/fav-icon.png" alt="" class="fav-icon"> </a>
+            <div class="span3 relative"> <span class="discount-red">-50%</span> <a href="#"><img alt="" src="/assets/img/super-hot-img2.jpg"> <img class="fav-icon" alt="" src="/assets/img/fav-icon.png"> </a>
               <div class="suphot-cont">
                 <div class="rating-color"></div>
                 <div class="rating-color"></div>
@@ -76,7 +72,7 @@
                 <p><span class="disable"><strike>$120.00</strike></span><strong>$58.00</strong></p>
               </div>
             </div>
-            <div class="span3 relative"> <span class="discount-red white-color">out</span> <a href="#"><img src="/assets/super-hot-img3.jpg" alt=""> <img src="/assets/fav-icon.png" alt="" class="fav-icon"> </a>
+            <div class="span3 relative"> <span class="discount-red white-color">out</span> <a href="#"><img alt="" src="/assets/img/super-hot-img3.jpg"> <img class="fav-icon" alt="" src="/assets/img/fav-icon.png"> </a>
               <div class="suphot-cont">
                 <div class="rating-color"></div>
                 <div class="rating-color"></div>
@@ -84,7 +80,7 @@
                 <p><span class="disable"><strike>$120.00</strike></span><strong>$58.00</strong></p>
               </div>
             </div>
-            <div class="span3 relative"> <span class="discount-red light-blue-color">VIP</span> <a href="#"><img src="/assets/super-hot-img4.jpg" alt=""> <img src="/assets/fav-icon.png" alt="" class="fav-icon"> </a>
+            <div class="span3 relative"> <span class="discount-red light-blue-color">VIP</span> <a href="#"><img alt="" src="/assets/img/super-hot-img4.jpg"> <img class="fav-icon" alt="" src="/assets/img/fav-icon.png"> </a>
               <div class="suphot-cont">
                 <div class="rating-color"></div>
                 <div class="rating-color"></div>
@@ -92,45 +88,46 @@
                 <p><span class="disable"><strike>$120.00</strike></span><strong>$58.00</strong></p>
               </div>
             </div>
-          </div>-->
+          </div>
           <div class="row">
             <div class="span12 sale-header white-line">
-              <div class="pre-next"> <a href="#MyProdctslider" data-slide="prev" class="pre">Pre</a> <a href="#MyProdctslider" class="next" data-slide="next" >Next</a> </div>
+              <div class="pre-next"> <a class="pre" href="#">Pre</a> <a class="next" href="#">Next</a></div>
               <h1><span>Purchase History</span></h1>
             </div>
           </div>
-          
-
-
-          
-     
-        <div class="row-fluid">
-        <div id="MyProdctslider" class="carousel slide">
-          <div class="carousel-inner">
-
-             
-              <%@products.each_slice(4).with_index do |(a,b,c,d),index|%>
-             <div class="item">
-                <% if a != nil %>
-                <%=render partial: "welcome/slide_product",locals: {product: a,:variant=> nil}%>
-                <%end%>
-                <%if b != nil %>
-                <%=render partial: "welcome/slide_product",locals: {product: b,:variant=> nil}%>
-                <%end%>
-                <% if c != nil %>
-                <%=render partial: "welcome/slide_product",locals: {product: c,:variant=> nil}%>
-                <%end%>
-                <% if d != nil %>
-                <%=render partial: "welcome/slide_product",locals: {product: d,:variant=> nil}%>
-                <%end%>
-              
-                
-              
+          <div class="row-fluid">
+            <div class="span3 relative"><a href="#"><img alt="" src="/assets/img/super-hot-img1.jpg"> <img class="fav-icon" alt="" src="/assets/img/fav-icon.png"> </a>
+              <div class="suphot-cont">
+                <div class="rating-color"></div>
+                <div class="rating-color"></div>
+                <p><a href="#">White Silk Kotobuki Dress</a></p>
+                <p><strong>$58.00</strong></p>
               </div>
-              <%end%>
-              
-          
-        </div>
+            </div>
+            <div class="span3 relative"> <span class="discount-red">-50%</span> <a href="#"><img alt="" src="/assets/img/super-hot-img2.jpg"> <img class="fav-icon" alt="" src="/assets/img/fav-icon.png"> </a>
+              <div class="suphot-cont">
+                <div class="rating-color"></div>
+                <div class="rating-color"></div>
+                <p>White Silk Kotobuki Dress</p>
+                <p><span class="disable"><strike>$120.00</strike></span><strong>$58.00</strong></p>
+              </div>
+            </div>
+            <div class="span3 relative"> <span class="discount-red white-color">out</span> <a href="#"><img alt="" src="/assets/img/super-hot-img3.jpg"> <img class="fav-icon" alt="" src="/assets/img/fav-icon.png"> </a>
+              <div class="suphot-cont">
+                <div class="rating-color"></div>
+                <div class="rating-color"></div>
+                <p>White Silk Kotobuki Dress </p>
+                <p><span class="disable"><strike>$120.00</strike></span><strong>$58.00</strong></p>
+              </div>
+            </div>
+            <div class="span3 relative"> <span class="discount-red light-blue-color">VIP</span> <a href="#"><img alt="" src="/assets/img/super-hot-img4.jpg"> <img class="fav-icon" alt="" src="/assets/img/fav-icon.png"> </a>
+              <div class="suphot-cont">
+                <div class="rating-color"></div>
+                <div class="rating-color"></div>
+                <p>White Silk Kotobuki Dress </p>
+                <p><span class="disable"><strike>$120.00</strike></span><strong>$58.00</strong></p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

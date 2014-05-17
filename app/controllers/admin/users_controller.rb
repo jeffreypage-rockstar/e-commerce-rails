@@ -16,8 +16,23 @@ class Admin::UsersController < Admin::BaseController
       keyword = filter_helper(params)
       # order_by = "#{field} #{sort}"
       # render :json => params[:type] and return false
+      if(params[:type] == "super_administrator")
+      @users_admin = User.none
+      @role1 = Role.find_by_name("administrator")
+      
+      @users_admin = @role.users.merge(@role1.users)
+      
+      if(@users_admin.size > 0)
+      @users = @users_admin.admin_grid(params).order(sort_column + " " + sort_direction).where(keyword).
+                                                 paginate(:page => pagination_page, :per_page => pagination_rows)
+
+      else
+      @users = User.none
+      end
+      else
       @users = @role.users.admin_grid(params).order(sort_column + " " + sort_direction).where(keyword).
                                                  paginate(:page => pagination_page, :per_page => pagination_rows)
+      end
       @action = "index"
       @columns = [["Name","first_name@string"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
       @nodes = @role.users.select("first_name").map{|x| x.first_name[0] if x.first_name}.uniq
