@@ -68,7 +68,7 @@ gem 'zurb-foundation', '~> 4.3.2'
 
 group :production do
   gem 'mysql2', '~> 0.3.12'
-  gem 'pg'
+  # gem 'pg'
   gem 'rails_12factor'
 end
 

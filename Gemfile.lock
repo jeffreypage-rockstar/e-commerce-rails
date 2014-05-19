@@ -9,11 +9,10 @@ GIT
 
 GIT
   remote: https://github.com/Compass/compass-rails.git
-  revision: ab84a09c0b84cc979e78540be7bfcb386ef5047d
+  revision: f97a4f41518204683aeec7037da3d9b8c57ef4cb
   specs:
     compass-rails (2.0.0.pre)
       compass (>= 0.12.2)
-      sprockets (<= 2.11.0)
 
 GEM
   remote: http://rubygems.org/
@@ -31,7 +30,7 @@ GEM
       rack-test (~> 0.6.2)
     actionpack-page_caching (1.0.2)
       actionpack (>= 4.0.0, < 5)
-    active_utils (2.1.1)
+    active_utils (2.2.0)
       activesupport (>= 2.3.11)
       i18n
     activemerchant (1.29.3)
@@ -64,11 +63,10 @@ GEM
     asset_sync (1.0.0)
       activemodel
       fog (>= 1.8.0)
-    atomic (1.1.16)
     autotest-rails-pure (4.1.2)
     awesome_nested_set (3.0.0.rc.5)
       activerecord (>= 4.0.0, < 5)
-    aws-sdk (1.40.1)
+    aws-sdk (1.40.3)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
     better_errors (0.9.0)
@@ -159,8 +157,8 @@ GEM
     hashery (2.1.1)
     hashie (2.1.1)
     hike (1.2.3)
-    http (0.5.0)
-      http_parser.rb
+    http (0.6.1)
+      http_parser.rb (~> 0.6.0)
     http_parser.rb (0.6.0)
     httpauth (0.2.1)
     i18n (0.6.9)
@@ -189,22 +187,21 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     metaclass (0.0.4)
     mime-types (1.25.1)
-    mini_portile (0.5.3)
+    mini_portile (0.6.0)
     minitest (4.7.5)
     mocha (0.13.3)
       metaclass (~> 0.0.1)
     money (6.1.1)
       i18n (~> 0.6.4)
-      monetize (~> 0.1.3)
     multi_json (1.10.0)
     multipart-post (2.0.0)
-    mysql2 (0.3.15)
+    mysql2 (0.3.16)
     naught (1.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-ssh (2.9.0)
-    nokogiri (1.6.2)
-      mini_portile (~> 0.5.2)
+    net-ssh (2.9.1)
+    nokogiri (1.6.2.1)
+      mini_portile (= 0.6.0)
     oauth2 (0.8.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -234,7 +231,6 @@ GEM
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
-    pg (0.17.1)
     polyglot (0.3.4)
     prawn (0.12.0)
       pdf-reader (>= 0.9.0)
@@ -261,7 +257,7 @@ GEM
     rails_12factor (0.0.2)
       rails_serve_static_assets
       rails_stdout_logging
-    rails_config (0.4.1)
+    rails_config (0.4.2)
       activesupport (>= 3.0)
     rails_serve_static_assets (0.0.2)
     rails_stdout_logging (0.0.3)
@@ -270,7 +266,7 @@ GEM
       activesupport (= 4.0.2)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.3.1)
+    rake (10.3.2)
     ref (1.0.5)
     rmagick (2.13.2)
     rspec-core (2.12.2)
@@ -327,19 +323,19 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     ttfunk (1.0.3)
-    twitter (5.8.0)
+    twitter (5.9.0)
       addressable (~> 2.3)
       buftok (~> 0.2.0)
       equalizer (~> 0.0.9)
       faraday (~> 0.9.0)
-      http (~> 0.5.0)
+      http (~> 0.6.0)
       http_parser.rb (~> 0.6.0)
       json (~> 1.8)
       memoizable (~> 0.4.0)
       naught (~> 1.0)
       simple_oauth (~> 0.2.0)
     tzinfo (0.3.39)
-    uglifier (2.4.0)
+    uglifier (2.5.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     websocket (1.0.7)
@@ -396,7 +392,6 @@ DEPENDENCIES
   omniauth-facebook (= 1.4.0)
   paperclip (~> 3.4.0)
   paperclip-meta
-  pg
   prawn (~> 0.12.0)
   railroady
   rails (= 4.0.2)
