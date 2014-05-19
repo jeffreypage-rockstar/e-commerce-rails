@@ -4948,7 +4948,7 @@ label.showing-records {cursor:default; float:right; margin-right:10px; margin-to
     padding: 0.2em 0.5em;
     display: block;
     float: left;
-    margin-right: 10px; }
+    margin-right: 1px; }
   .pagination .disabled {
     color: #999999;
     border: 1px solid #dddddd; }
@@ -4986,7 +4986,6 @@ label.showing-records {cursor:default; float:right; margin-right:10px; margin-to
     height: 1%; }
   *:first-child + html .pagination {
     overflow: hidden; }
-    
 fieldset{border:0px !important;}
 fieldset legend{padding: 0px;
 font-size: 20px;
