@@ -110,4 +110,15 @@ EXAMPLE USAGE!!
     ]    
   end
 
+  def get_products(category)
+    products ||= []
+    if category.present? && category.is_a?(ProductType)      
+      products = category.products.to_a
+      category.sub_categories.each do |sub|
+        products += sub.products
+      end
+    end
+    products
+  end
+
 end

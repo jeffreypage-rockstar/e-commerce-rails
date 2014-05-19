@@ -79,8 +79,12 @@ class ProductsController < ApplicationController
     @banners= Banner.active.order('created_at DESC').where("place = 'hot_slide'")
   end
 
-  def on_sale_products
-    @products = Product.includes(:product_type).aactive.paginate(:page => pagination_page, :per_page => pagination_rows).references(:product_type)#.where(["super_hot =?",true])
+  def on_sale_products   
+    @categories = ProductType.where("parent_id IS NULl").order("name")    
+    # Banner small images
+    @banner_main_small = Banner.active.order('created_at DESC').where("place = 'main_small'").limit(3)
+    # Need to implement best sellers logic
+    @best_sellers = Product.aactive    
   end
 
   def my_profile
