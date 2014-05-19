@@ -156,7 +156,7 @@ class ProductsController < ApplicationController
         @rock_product.save
       end
     end
-     respond_to do |format|
+    respond_to do |format|
        format.js  # { render :layout => false }
     end
     #render :text => "Done" and return false
