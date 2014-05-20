@@ -36,7 +36,7 @@
               <a class="buttons prev" href="#" data-slide="prev"></a>
                 <div class="viewport">
                   <ul class="overview">
-                    <%@super_hot_proudcts.flatten.each do |product|%>   
+                    <%@super_hot_proudcts.uniq.flatten.each do |product|%>   
                       <li>
                         <%=render partial: "slide_product",locals: {product: product,:variant=> nil}%>
                       </li>
@@ -51,7 +51,7 @@
               <a class="buttons prev" href="#" data-slide="prev"></a>
                 <div class="viewport">
                   <ul class="overview">
-                    <%@featured_proudcts.each do |product|%>    
+                    <%@featured_proudcts.uniq.flatten.each do |product|%>    
                       <li>
                         <%=render partial: "slide_product",locals: {product: product,:variant=> nil}%>
                       </li>
@@ -66,7 +66,7 @@
               <a class="buttons prev" href="#" data-slide="prev"></a>
                 <div class="viewport">
                   <ul class="overview">
-                    <%@new_products.each do |product|%>   
+                    <%@new_products.uniq.flatten.each do |product|%>   
                       <li>
                         <%=render partial: "slide_product",locals: {product: product,:variant=> nil}%>
                       </li>
