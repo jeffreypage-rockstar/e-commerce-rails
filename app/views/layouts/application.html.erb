@@ -95,21 +95,13 @@
     <div class="row-fluid logo-main">
       <div class="container">
 
-        <div class="span4 logo"><a href="/"><img src="/assets/main/logo-mad-dot.png" alt=""></a></div>
+        <div class="span4 logo"><a href="/"><img src="/assets/main/logo-mad-dot.png" alt=""></a></div>          
         <%if current_user%>
           <!--Shopping Bag Section Starts here-->
           <%=render partial: "/shopping/cart_items/home_cart_items"%>
           <!--Shopping Bag Section Ends here-->
         <%else%>
-          <div class="span5 pull-right resister-field">
-            <% if flash.present? %>
-              <%flash.each do |type,message|%>
-                <div id="flash" >
-                  <div class="message_<%=type %>" style="z-index:1000px"><%= message.titleize.gsub("<Br/>","<br/>").html_safe if message.present?%></div>
-                  <%flash.discard(type) %>
-                </div>
-              <%end%>
-            <% end %>
+          <div class="span5 pull-right resister-field">            
             <%= form_for  @user_session, :as => :user_session,:url => user_sessions_path(@user_session),:html => {:class => 'span-12 custom'} do |form| %>
               <div class="resister-field-left">
                 <%= form.email_field :email,:placeholder=> "Email"%>
@@ -135,6 +127,14 @@
   
   <!--Section Starts here-->
   <section>
+    <% if flash.present? %>
+      <%flash.each do |type,message|%>
+        <div id="flash" >          
+          <div class="message_<%=type %>" style="z-index:1000px"><%= message.titleize.gsub("<Br/>","<br/>").html_safe if message.present?%></div>
+          <%flash.discard(type) %>
+        </div>
+      <%end%>
+    <% end %>
     <%=yield%>
   </section>
   <!--Section Ends here--> 

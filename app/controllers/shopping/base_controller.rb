@@ -15,7 +15,6 @@ class Shopping::BaseController < ApplicationController
   end
 
   def next_form(order)
-
     # if cart is empty
     if session_cart.shopping_cart_items.empty?
       flash[:notice] = I18n.t('do_not_have_anything_in_your_cart')
@@ -23,10 +22,19 @@ class Shopping::BaseController < ApplicationController
     ## If we are insecure
     elsif not_secure?
       session[:return_to] = shopping_orders_url
-      return login_url()
+      if current_user.present?
+        flash[:notice] = "Your session has expired ..!! Please login again ..!!"#I18n.t('not_secure')
+        url = logout_url(:method=>:delete)
+      else
+        flash[:notice] = "Please login before continue !!"#I18n.t('not_secure')
+        url = login_url
+      end
+      return url
     elsif session_order.ship_address_id.nil?
+      flash[:notice] = "Please choose your shipping address ..!!"#I18n.t('ship_address_not_present')
       return shopping_addresses_url()
     elsif !session_order.all_order_items_have_a_shipping_rate?
+      flash[:notice] = "Your order has out of stock item ..!!"#I18n.t('order_shipping_rate_required')
       return shopping_shipping_methods_url()
     end
   end
