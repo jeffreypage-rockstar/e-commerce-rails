@@ -59,12 +59,17 @@
 			<ul class="sub">
 			 	
 			    <li><%= link_to 'Product Categories', admin_merchandise_product_types_path %></li>
+			    <li><%= link_to 'Product Codes', admin_merchandise_product_codes_path %></li>
 			    <li><%= link_to 'Variants', admin_merchandise_properties_path %></li>
 			    <li><%= link_to 'Variant Groups', admin_merchandise_prototypes_path %></li>
 			    <li><%= link_to 'Brands', admin_merchandise_brands_path %></li>
 			 	<li><%= link_to 'Products', admin_merchandise_products_path %></li>
 			    <li><%= link_to 'Image Groups', admin_merchandise_image_groups_path %></li>
 				<li><%= link_to "Inventory", admin_inventory_overviews_path %></li>
+				
+				
+					<li><%= link_to "Favourites", admin_favourite_path(current_user) %></li>
+				
 			</ul> 
 		</li>
 
@@ -166,8 +171,10 @@
 
 				<% if current_user.super_admin? || current_user.admin? %>
 					<li> <%= link_to "Designer Rocks", admin_rocks_path %></li>
+					<li> <%= link_to "Revenue", admin_adcommissions_path %></li>
 				<% elsif current_user.designer? %>
 					<li> <%= link_to "Rocks", admin_designerrock_path(current_user) %></li>
+					<li> <%= link_to "Revenue", admin_descommission_path(current_user) %></li>
 				<%end%>
 
 				<li><%= link_to "Reports", admin_reports_overview_path %></li>

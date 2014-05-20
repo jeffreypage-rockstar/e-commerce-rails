@@ -1,0 +1,32 @@
+<div class="row-fluid breadcrumb-full-bg">
+    <div class="container">
+      <h1>Search Result</h1>
+      <ul class="breadcrumb pull-right">
+        <li><a href="#">(<%=@products.size%>) Products</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container">
+    <div class="">
+      <div class="row">
+        <div class="span12 sale-header white-line">
+          <h1><span>Search Result</span></h1>
+        </div>
+      </div> 
+      <div class="row">
+        <%@products.each_with_index do |product,index|%>
+          <%=render partial: "welcome/slide_product",locals: {product: product,:variant=> nil}%>
+        <%end%>
+      </div>
+      <div class="row">
+        <% if @products != [] %>
+          <div class="span3 paging-show"><%= page_entries_info @products %></div>
+          <!--Paging Section Starts here-->
+          <div class="pagination pagination-right pagination_dev">
+              <%= will_paginate @products, :previous_label => "<", :next_label => ">", :container => false ,:params => { :q => params[:q] }%>
+          </div>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>

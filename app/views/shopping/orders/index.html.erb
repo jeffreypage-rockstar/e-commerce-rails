@@ -16,20 +16,20 @@
 
             <div class="row-fluid">
               <label>First Name*</label>
-              <%= text_field_tag(:first_name, @credit_card.first_name,:placeholder=>"Ryan") %>
+              <%= text_field_tag(:first_name, @credit_card.first_name,:value=>"Ryan") %>
               <!-- <a href="#" class="btn-get-quote">Get a Quote</a>  -->
             </div>
             <div class="row-fluid">
               <label>Last Name*</label>
-              <%= text_field_tag(:last_name, @credit_card.last_name,:placeholder=>"Bates") %>
+              <%= text_field_tag(:last_name, @credit_card.last_name,:value=>"Bates") %>
             </div>
             <div class="row-fluid">
               <label>Credit Card Number</label>
-              <%= text_field_tag(:number, @credit_card.number ,:class => ' disableAutoComplete', :autocomplete => "on",:placeholder=>"4024007148673576") %>
+              <%= text_field_tag(:number, @credit_card.number ,:class => ' disableAutoComplete', :autocomplete => "on",:value=>"4024007148673576") %>
             </div>
             <div class="row-fluid">
               <label>VCC</label>
-              <%= text_field_tag(:verification_value, @credit_card.verification_value ,:class => 'disableAutoComplete', :autocomplete => "on",:placeholder=>"123") %>
+              <%= text_field_tag(:verification_value, @credit_card.verification_value ,:class => 'disableAutoComplete', :autocomplete => "on",:value=>"123") %>
             </div>
             <div class="row-fluid">
               <label>Type</label>

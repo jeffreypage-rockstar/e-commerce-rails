@@ -1,0 +1,59 @@
+<section>
+    <div class="container midd-cont MT-0">
+      <div class="inner-page-slider">
+        <div class="row">
+          <div class="span12 slider-inner"> <img src="/assets/img/inner-slider-banner1.jpg" alt=""> <a href="#" class="slider-inner-left-arrow">&nbsp;</a> <a href="#" class="slider-inner-right-arrow">&nbsp;</a>
+            <div class="slider-bulet-inner"> <a href="#">&nbsp;</a> <a href="#">&nbsp;</a> <a href="#">&nbsp;</a> </div>
+            <div class="slider-cont-inner"> <img src="/assets/img/flash-sale-icon.gif" alt="">
+              <div class="banner-cap">Dress Code</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% @product_codes.each do |product_code| %>
+      <div class="sale-listing">
+        <div class="row">
+          <div class="span12 sale-header">
+            <div class="pre-next"> <a class="pre" href="#">Pre</a> <a class="next" href="#">Next</a></div>
+            <h1>DRESS CODE: <span><%= product_code.title %></span></h1>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <% row=0 %>
+          <div class="prodct-row">  
+        <% product_code.product_code_products.each do |product_code_product| %>
+        
+           
+                            
+
+            <%=render partial: "/welcome/slide_product",locals: {product: product_code_product.product,:variant=> nil}%>
+       
+          
+        
+        <%end%>
+        </div>
+        </div>
+        <div class="row-fluid slider-brd"><a href="#"><img alt="" src="/assets/main/slider-line.gif"></a> </div>
+        <div class="span6 offset3 sale-company-section">
+          <h2>GET THE LOOK - BUY ALL 4 & GET SAVE <%= product_code.discount.to_s %>%</h2>
+          
+          <label class="width-127-label">1234 <span>5678</span></label>
+         
+          <div class="btn-center-div"> <a href="#" class="alink-btn-commen-blue view-prf-btn">ADD TO BAG</a> </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <%end%>
+
+     <div class="row">
+            <% if @product_codes != [] %>
+        <div class="span3 paging-show"><%= page_entries_info @product_codes %></div>
+        <!--Paging Section Starts here-->
+        <div class="pagination pagination-right pagination_dev">
+            <%= will_paginate @product_codes, :container => false %>
+        </div>
+        <!--Paging Section Ends here--> 
+        <%end%>
+      </div>
+    </div>
+  </section>

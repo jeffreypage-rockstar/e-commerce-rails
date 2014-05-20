@@ -76,14 +76,14 @@ module Hadean
 
     config.assets.paths << "#{Rails.root}/app/assets/font"
 
-    config.action_mailer.default_url_options = {:host => "202.131.125.142:3020"}
+    config.action_mailer.default_url_options = {:host => "192.168.36.231:3002"}
     config.action_mailer.perform_deliveries = true
     config.action_mailer.raise_delivery_errors = true
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :domain               => '202.131.125.142:3020',
+    :domain               => 'gmail.com',
     :user_name            => 'hiddenror@gmail.com',
     :password             => 'hb@hbdev',
     :authentication       => 'plain',   

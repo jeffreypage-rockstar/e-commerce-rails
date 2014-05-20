@@ -19,4 +19,9 @@ class Brand < ActiveRecord::Base
   translates :name
   validates :name,  :presence => true,       :length => { :maximum => 255 }, :uniqueness => true
                     #:format   => { :with => CustomValidators::Names.name_validator }
+
+	def to_s
+		name.to_s
+	end
+
 end

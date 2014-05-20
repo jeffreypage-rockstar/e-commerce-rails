@@ -3,7 +3,6 @@ class WelcomeController < ApplicationController
   layout 'application'
 
   def index
-
     type = params[:option].present? ? params[:option] : ""
     @featured_product = Product.featured
     @best_selling_products = Product.limit(5)

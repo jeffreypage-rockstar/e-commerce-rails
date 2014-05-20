@@ -24,6 +24,7 @@
 //= require admin/app
 //= require ckeditor/init
 //= require jquery.raty.min
+//= require jquery.tinycarousel.min
 
 
 $(function(){ 
@@ -50,12 +51,12 @@ $(function(){
     $('.my-img a').slideToggle();
     $('.login-div').slideToggle();
   });
-  $('.slider1').bxSlider({
-      slideWidth: 1640 ,
-      minSlides: 1,
-      maxSlides: 1,
-      slideMargin: 0
-    });
+  // $('.slider1').bxSlider({
+  //     slideWidth: 1640 ,
+  //     minSlides: 1,
+  //     maxSlides: 1,
+  //     slideMargin: 0
+  //   });
   $('.products_bigimage_slider').bxSlider({
       slideWidth: 1500,
       minSlides: 5,
@@ -147,5 +148,36 @@ function add_val(index1)
 }
 
 
+$(document).ready(function()
+{
+  $('#slider1').tinycarousel();
+  $('#slider2').tinycarousel();
+  $('#slider3').tinycarousel();
+  $('#slider4').tinycarousel();
+  $('#slider5').tinycarousel();
+  $('#slider6').tinycarousel();
+});
+ 
+$(document).ready(function(){
+  $('ul.tabs').each(function(){
+    var $active, $content, $links = $(this).find('a');
+    $active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
+    $active.addClass('active');
+    $content = $($active[0].hash);
+    $links.not($active).each(function () {
+      $(this.hash).hide();
+    });
+    $(this).on('click', 'a', function(e){
+      $active.removeClass('active');
+      $content.hide();
+      $active = $(this);
+      $content = $(this.hash);
+      $active.addClass('active');
+      $content.show();
+      e.preventDefault();
+    });
+  });
+});
+    
 
 

@@ -80,6 +80,7 @@ Hadean::Application.configure do
                                           :product  => '270x325>',
                                           :large    => '600x600>' },
                               :default_style => :product,
+                              :whiny => false,
                               :url => "/assets/products/:id/:style/:basename.:extension",
                               :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension" }
 
@@ -87,6 +88,7 @@ Hadean::Application.configure do
                                           :small    => '100x100>',
                                           :large    => '600x600>' },
                                           :default_style => :large,
+                                          :whiny => false,
                                           :url => "/assets/banners/:id/:style/:basename.:extension",
                                           :path => ":rails_root/public/assets/banners/:id/:style/:basename.:extension" }
 end

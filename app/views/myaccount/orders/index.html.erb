@@ -1,19 +1,36 @@
-<div class='nine large-9 columns'>
-  <h3>Orders</h3>
-
-  <% unless @orders.length > 0 %>
-    You currently do not have any orders.
-  <% end %>
-
-  <% @orders.each do |order| %>
-    <div class='order-list-item ten'>
-      <ul>
-        <li><label>Number:</label>        <%= link_to order.number, myaccount_order_path(order) %></li>
-        <li><label>Amount:</label>        <%= number_to_currency( order.first_invoice_amount ) %></li>
-        <li><label>Status:</label>        <%= order.status %></li>
-        <li><label>Completed at:</label>  <%= order.display_completed_at %></li>
-      </ul>
-    </div>
-    <hr/>
-  <% end %>
+<div class="row-fluid breadcrumb-full-bg">
+  <div class="container">
+    <h1>Orders</h1>
+    <ul class="breadcrumb pull-right">
+      <li><a href="/">Home</a> <span class="divider">→</span></li>
+      <li><a href="/myaccount/overview">My profile</a> <span class="divider">→</span></li>
+      <li class="active">Orders</li>
+    </ul>
+  </div>
 </div>
+<div class="container">
+
+  <div class='nine large-9 columns'>
+
+
+    <% unless @orders.length > 0 %>
+      You currently do not have any orders.
+    <% end %>
+
+    <table class="table table-bordered table-striped">
+      <th>Number</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>Completed At</th>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= link_to order.number, myaccount_order_path(order) %></td>
+        <td><%= number_to_currency( order.first_invoice_amount ) %></td>
+        <td><%= order.status %></td>
+        <td><%= order.display_completed_at %></td>
+      </tr>
+    <% end %>
+  </table>
+  </div>
+</div>
+

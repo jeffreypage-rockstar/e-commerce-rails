@@ -61,7 +61,7 @@
                                 	<%=render :partial=>"/shared/filters"%>
                                 	<div style="float:right">
                                 		<div class="dataTables_paginate paging_bootstrap digg_pagination">
-                                			<%= will_paginate @blog_categories, :container => false %>
+                                			<%= will_paginate @blog_categories, :previous_label => "<", :next_label => ">", :container => false %>
                                 		</div>
                         			</div>
                                 </div>
@@ -109,7 +109,7 @@
                                 <div class="row-fluid table-top-cont">
                                 	<div style="float:right">
                                 		<div class="dataTables_paginate paging_bootstrap digg_pagination">
-                                			<%= will_paginate @blog_categories, :container => false %>
+                                			<%= will_paginate @blog_categories , :previous_label => "<", :next_label => ">", :container => false %>
                                 		</div>
                                 		<label class="showing-records"><%= page_entries_info @blog_categories %></label>
                             		</div>

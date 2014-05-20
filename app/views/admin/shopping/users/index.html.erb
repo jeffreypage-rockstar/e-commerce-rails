@@ -19,7 +19,7 @@
       <div id="users">
         <%= hidden_field_tag :direction, params[:direction] %>
         <%= hidden_field_tag :sort, params[:sort] %>
-        <%= will_paginate @users %>
+        <%= will_paginate @users , :previous_label => "<", :next_label => ">" %>
       </div>
     <% end %>
     <div class='clearfix'></div>
@@ -52,7 +52,7 @@
       </table>
 
 
-    <%= will_paginate @users %>
+    <%= will_paginate @users , :previous_label => "<", :next_label => ">"%>
 
   </div>
 

@@ -1,0 +1,53 @@
+<fieldset id="admin-product_code-names">
+  <div class="six columns">
+  <label>Title</label>
+  <fieldset>
+    <label>Traditional Chinese</label>
+    <% set_lang "tcn" %>    
+    <%= form.text_field :title %>
+    <label>Simple Chinese</label>
+    <% set_lang "cn" %>
+    <% chin = form.object %>
+    <%= text_field_tag "cn[title]",chin.title %>
+    <label>English</label>
+    <% set_lang "en" %>
+    <% eng = form.object %>
+    <%= text_field_tag "en[title]",eng.title %>    
+  </fieldset>
+  </div>
+    <div class="six columns">
+  <label>Discount</label>
+  <fieldset>
+    
+    <%= form.text_field :discount %>
+    
+  </fieldset>
+  </div>
+  
+  <% for i in 0..@product_code.product_code_products.size-1 %>
+  <div class="six columns">
+  <label><%="Select Product"+(i+1).to_s%></label>
+  <fieldset>
+    <% obj = @product_code.product_code_products.fetch(i) %>
+  <%= select_tag ("select_product"+(i+1).to_s).to_sym,
+                     options_from_collection_for_select(@products,:id, :name, obj.product_id) , {prompt: 'Select Product'}%>
+
+  </fieldset>
+  </div>
+ <%end%>
+ <% for j in (i+1)..3%>
+    <div class="six columns">
+  <label><%="Select Product"+(j+1).to_s%></label>
+  <fieldset>
+   
+  <%= select_tag ("select_product"+(j+1).to_s).to_sym,
+                     options_from_collection_for_select(@products,:id, :name) , {prompt: 'Select Product'}%>
+
+  </fieldset>
+  </div>
+
+ <%end%>
+</fieldset>
+<div class=" generic_submit_button">
+  <%= submit_tag button_action, class: "button", id: "create_product_code_button" %>
+</div>

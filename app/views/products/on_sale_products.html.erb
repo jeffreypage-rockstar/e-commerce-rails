@@ -1,0 +1,85 @@
+<section>
+  <div class="container midd-cont MT-0">
+    <div class="inner-page-slider">
+      <div class="row">
+        <div class="span12 slider-inner"> <img src="/assets/main/inner-slider-banner1.jpg" alt=""> <a href="#" class="slider-inner-left-arrow">&nbsp;</a> <a href="#" class="slider-inner-right-arrow">&nbsp;</a>
+          <div class="slider-bulet-inner"> <a href="#">&nbsp;</a> <a href="#">&nbsp;</a> <a href="#">&nbsp;</a> </div>
+          <div class="slider-cont-inner"> <img src="/assets/main/flash-sale-icon.gif" alt="">
+            <div class="banner-cap">On Sale</div>
+          </div>
+        </div>
+      </div>
+    </div>    
+    <div class="featured-main" style="margin-top:50px;">
+      <div class="row-fluid">
+        <%@banner_main_small.each do |banner| %>
+          <div class="span4">
+            <%=link_to image_tag(banner.image.url(:original))+"<span class='feat-txt1'>Dress Code<small>Get Tle Look</small></span>".html_safe,"#{banner.link.present? ? banner.link : '#'} "%>
+          </div>
+        <%end%>         
+      </div>
+    </div>
+    <% if @best_sellers.present? %>
+      <div class="clear"></div>
+      <div class="slider-container">
+        <ul class='tabs super-hot-tab'>
+          <li><a href='#tab1'>Best Seller</a></li>          
+        </ul>
+        <div class="clear"></div>
+          <div id='tab1'>
+            <div id="slider1" class="slider1">
+              <a class="buttons prev" href="#" data-slide="prev"></a>
+                <div class="viewport">
+                  <ul class="overview">
+                    <% @best_sellers.each do |product|%>   
+                      <li>
+                        <%=render partial: "/welcome/slide_product",locals: {product: product,:variant=> nil}%>
+                      </li>
+                    <%end%>
+                  </ul>
+                </div>
+              <a class="buttons next" href="#" data-slide="next"></a>
+            </div>
+          </div>
+        </div>
+    <% end %>
+    <% if @categories.present? %>
+      <% @categories.each_with_index do |category,i| %>
+        <% products = get_products(category) %>
+          <div class="clear"></div>
+          <div class="slider-container">
+            <ul class='tabs super-hot-tab'>
+              <li><a href='#tab1'><%=category%></a></li>          
+            </ul>
+            <div class="clear"></div>
+            <div id='tab1'>
+              <div id="slider<%=i+1%>" class="slider1">
+                <a class="buttons prev" href="#" data-slide="prev"></a>
+                  <div class="viewport">
+                    <% if products.present? %>
+                      <ul class="overview">
+                        <% products.each do |product|%>   
+                          <li>
+                            <%=render partial: "/welcome/slide_product",locals: {product: product,:variant=> nil}%>
+                          </li>
+                        <%end%>
+                      </ul>
+                    <% end %>
+                  </div>
+                <a class="buttons next" href="#" data-slide="next"></a>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    <% end %>
+
+    <div class="row">
+      <div class="span3 paging-show"><%#= page_entries_info @products %></div>
+      <!--Paging Section Starts here-->
+      <div class="pagination pagination-right pagination_dev">
+          <%#= will_paginate @products, :previous_label => "<", :next_label => ">", :container => false %>
+      </div>
+      <!--Paging Section Ends here--> 
+    </div>
+  </div>
+</section>

@@ -53,7 +53,7 @@
         <% end %>
       </table>
 
-    <%= will_paginate @variants %>
+    <%= will_paginate @variants , :previous_label => "<", :next_label => ">" %>
 
   </div>
 

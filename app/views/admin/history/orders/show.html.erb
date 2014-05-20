@@ -19,9 +19,8 @@
   <b>Items</b>
     <div  id='order-items'
           class=' panel '>
-
             <% @order.order_items.each do |item| %>
-              <%= item.variant.product_name %> <%= number_to_currency item.total %><br/>
+              <%if item.variant.product.user == current_user && current_user.designer?%><%= item.variant.product_name %> <%= number_to_currency item.total %><br/><%else%><%= item.variant.product_name %> <%= number_to_currency item.total %><br/>  <%end%>
             <% end %>
     </div>
   </div>

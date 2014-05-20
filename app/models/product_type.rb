@@ -8,12 +8,11 @@ class ProductType < ActiveRecord::Base
   MAIN_MANU = {    
     1 => 'Active',
     0 => 'Inactive'
-  }
-
+  } 
   
-  scope :visible
-  scope :active, :conditions => "#{ProductType.table_name}.main_menu = #{ACTIVE}"
-  scope :inactive, :conditions => "#{ProductType.table_name}.main_menu = #{INACTIVE}"
+  scope :visible , -> {}
+  scope :active, -> { where("#{ProductType.table_name}.main_menu = #{ACTIVE}") }
+  scope :inactive, -> { where("#{ProductType.table_name}.main_menu = #{INACTIVE}") }
 
   def active?
     main_menu
@@ -29,8 +28,16 @@ class ProductType < ActiveRecord::Base
   # @return [ Array[ProductType] ]
   def self.admin_grid(params = {})
     grid = ProductType
-    grid = grid.where("product_types.name LIKE ?", "#{params[:name]}%")              if params[:name].present?
+    grid = ProductType.where("product_types.name LIKE ?", "#{params[:name]}%") if params[:name].present?
     grid
+  end
+
+  def sub_categories
+    ProductType.where("parent_id = ?",id)
+  end
+
+  def to_s
+    name.to_s
   end
 
 end

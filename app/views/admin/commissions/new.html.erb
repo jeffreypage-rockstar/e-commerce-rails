@@ -20,6 +20,13 @@
                 <div class="portlet-body form edit-form">
                 <!-- BEGIN FORM-->
                  <%=form_for @commission,:url=> admin_commissions_path ,:html=>{:class=>"form-horizontal"} do |f|%>
+                 <% if @commission.errors != {}%>
+                 	
+   						<%=@commission.errors.first[1].to_s%>
+  
+
+
+                 <%end%>
                   <%=render :partial => "form",:locals=>{:f=>f}%>
 
                 <%end%>

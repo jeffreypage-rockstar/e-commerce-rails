@@ -98,9 +98,27 @@ EXAMPLE USAGE!!
     else
       @count = Rating.where('designer_id = ?',designer.id).count.to_s
       @avg_rating = Rating.where('designer_id = ?',designer.id).sum(:score).to_f/@count.to_f
-      
     end
     return @avg_rating,@count
+  end
+
+  def page_entries_info(collection, options = {})
+    params[:page] ||= 1   
+    %{Page %d of %d total} % [
+      params[:page].to_i,        
+      collection.total_pages
+    ]    
+  end
+
+  def get_products(category)
+    products ||= []
+    if category.present? && category.is_a?(ProductType)      
+      products = category.products.to_a
+      category.sub_categories.each do |sub|
+        products += sub.products
+      end
+    end
+    products
   end
 
 end

@@ -11,6 +11,9 @@ gem 'actionpack-page_caching'
 gem "activemerchant", '~> 1.29.3'#, :lib => 'active_merchant'
 gem "american_date"
 
+gem 'execjs'
+gem 'therubyracer'
+
 # Use https if you are pushing to HEROKU
 ##  NOTE: run the test before upgrading to the tagged version. It has had several deprecation warnings.
 gem 'authlogic', github: 'binarylogic/authlogic', ref: 'e4b2990d6282f3f7b50249b4f639631aef68b939'
@@ -37,7 +40,12 @@ gem 'json',           '~> 1.8.0'
 
 #gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
 gem 'nokogiri',     '~> 1.6.0'
-gem 'paperclip',    '~> 3.0'
+
+gem "paperclip", "~> 3.4.0"
+gem "cocaine", "= 0.4"
+
+
+#gem 'paperclip',    '~> 3.0'
 gem 'paperclip-meta'
 
 gem 'prawn',        '~> 0.12.0'
@@ -60,7 +68,7 @@ gem 'zurb-foundation', '~> 4.3.2'
 
 group :production do
   gem 'mysql2', '~> 0.3.12'
-  gem 'pg'
+  # gem 'pg'
   gem 'rails_12factor'
 end
 
@@ -103,4 +111,6 @@ gem 'omniauth-facebook', '1.4.0'
 gem 'thin'
 gem 'globalize', '~> 4.0.0'
 gem "geocoder"
+gem 'twitter'
+gem 'koala'
 # gem 'localeapp'

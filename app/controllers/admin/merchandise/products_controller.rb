@@ -30,7 +30,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     end
     @action = "index"
     @columns = [["Name","name@string"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
-    @nodes = Product.all.select("name").map{|x| x.name[0] if x.name}.uniq                                              
+    @nodes = @products.select("name").map{|x| x.name[0] if x.name}.uniq                                              
   end
 
   def show

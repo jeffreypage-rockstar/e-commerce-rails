@@ -47,5 +47,5 @@
     <% end %>
   </table>
 
-  <%= will_paginate @purchase_orders %>
+  <%= will_paginate @purchase_orders, :previous_label => "<", :next_label => ">" %>
 </div>

@@ -14,12 +14,12 @@
         <div class="row">
           <div class="span12 sale-header white-line">
             <div class="pre-next"> <a class="pre" href="#">Pre</a> <a class="next" href="#">Next</a></div>
-            <h1><span>Category : <%=@cat.name%></span></h1>
+            <h1><span><%=@cat.name%></span></h1>
           </div>
         </div>
         <div class="row-fluid">
           <%@products.each do |product|%>   
-            <%=render partial: "/welcome/slide_product",locals: {product: product,:variant=> nil}%>
+            <%=render partial: "product",locals: {product: product,:variant=> nil}%>
           <%end%>
         </div>
         <div class="row-fluid slider-brd"><a href="#"><img alt="" src="/assets/main/slider-line.gif"></a> </div>
@@ -29,7 +29,7 @@
         <div class="span3 paging-show"><%= page_entries_info @products %></div>
         <!--Paging Section Starts here-->
         <div class="pagination pagination-right pagination_dev">
-            <%= will_paginate @products, :container => false %>
+            <%= will_paginate @products, :previous_label => "<", :next_label => ">", :container => false %>
         </div>
         <!--Paging Section Ends here--> 
       </div>

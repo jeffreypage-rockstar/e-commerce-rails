@@ -9,52 +9,78 @@
  </ul>
 -->
 <%=render partial: "/layouts/top_slider"%>
-<div class="container midd-cont">
-      <div class="featured-main">
-        <div class="row-fluid">
-           <%@banner_main_small.each do |banner| %>
-            <div class="span4">
-              <%=link_to image_tag(banner.image.url(:original)),"#{banner.link.present? ? banner.link : '#'} "%>
+<section>
+  <div class="container midd-cont">
+    <div class="featured-main">
+      <div class="row-fluid">
+        <%span_bg_classes=['feat-txt1','feat-txt1 light-blue-bg','feat-txt1 pink-bg']%>
+        <%span_bg_titles=['Am Design Studio','spring 2014','summer Sale']%>
+        <%span_bg_caps=['Featured designer','Style Guide','up to 50% off']%>
+        <%@banner_main_small.each_with_index do |banner,index| %>
+          <div class="span4">
+            <%=link_to image_tag(banner.image.url(:original))+"<span class='#{span_bg_classes[index]}'>#{span_bg_titles[index]}<small>#{span_bg_caps[index]}</small></span>".html_safe,"#{banner.link.present? ? banner.link : '#'} "%>
+          </div>
+        <%end%>
+      </div>
+    </div>
+    <div class="clear"></div>
+      <div class="slider-container">
+        <ul class='tabs super-hot-tab'>
+          <li><a href='#tab1'>Super Hot</a></li>
+          <li><a href='#tab2'>Featured</a></li>
+          <li><a href='#tab3'>New arrivals</a></li>
+        </ul>
+        <div class="clear"></div>
+          <div id='tab1'>
+            <div id="slider1" class="slider1">
+              <a class="buttons prev" href="#" data-slide="prev"></a>
+                <div class="viewport">
+                  <ul class="overview">
+                    <%@super_hot_proudcts.flatten.each do |product|%>   
+                      <li>
+                        <%=render partial: "slide_product",locals: {product: product,:variant=> nil}%>
+                      </li>
+                    <%end%>
+                  </ul>
+                </div>
+              <a class="buttons next" href="#" data-slide="next"></a>
             </div>
-           <%end%>
-          <!--<div class="span4"><a href="#"><img src="/assets/main/featured-img2.jpg" alt=""><span class="feat-txt2">extra 50% off <strong>SALE</strong></span></a></div>
-          <div class="span4"><a href="#"><img src="/assets/main/featured-img3.jpg" alt=""><span class="feat-txt1"><em>Style<br>
-            guide</em></span></a></div> -->
+          </div>
+          <div id='tab2'>
+            <div id="slider2" class="slider1">
+              <a class="buttons prev" href="#" data-slide="prev"></a>
+                <div class="viewport">
+                  <ul class="overview">
+                    <%@featured_proudcts.each do |product|%>    
+                      <li>
+                        <%=render partial: "slide_product",locals: {product: product,:variant=> nil}%>
+                      </li>
+                    <%end%>
+                  </ul>
+                </div>
+              <a class="buttons next" href="#" data-slide="next"></a>
+            </div>
+          </div>
+          <div id='tab3'>
+            <div id="slider3" class="slider1">
+              <a class="buttons prev" href="#" data-slide="prev"></a>
+                <div class="viewport">
+                  <ul class="overview">
+                    <%@new_products.each do |product|%>   
+                      <li>
+                        <%=render partial: "slide_product",locals: {product: product,:variant=> nil}%>
+                      </li>
+                    <%end%>
+                  </ul>
+                </div>
+              <a class="buttons next" href="#" data-slide="next"> </a>
+            </div>
+          </div>
+        <div class="row-fluid slider-brd"><a href="#"><img alt="" src="assets/img/slider-line.gif"></a> 
         </div>
-      </div>
-      <div class="featured-main MB-0">
-        <div class="super-hot-tab product-indicators">
-          <ul class=>
-            <li><a data-target="#MyProdctslider" data-slide-to="0" class="active">Super Hot</a></li>
-            <li><a data-target="#MyProdctslider" data-slide-to="1" class="">Featured</a></li>
-            <li><a data-target="#MyProdctslider" data-slide-to="2" class="">New arrivals</a></li>
-          </ul>
-          <div class="pre-next"> <a href="#MyProdctslider" data-slide="prev" class="pre">Pre</a> <a href="#MyProdctslider" class="next" data-slide="next" >Next</a> </div>
+        <div class="clear"></div>
         </div>
-        <div class="row-fluid">
-        <div id="MyProdctslider" class="carousel slide">
-        	<div class="carousel-inner">
-        	 	<div class="active item" id="0">	
-
-              <%@super_hot_proudcts.each do |product|%>   
-                <%=render partial: "slide_product",locals: {product: product,:variant=> nil}%>
-		        	<%end%>
-	      		</div>
-	      		<div class=" item" id="1">	
-		        	<%@featured_proudcts.each do |product|%>		
-			        	<%=render partial: "slide_product",locals: {product: product,:variant=> nil}%>
-		        	<%end%>
-	      		</div>
-	      		<div class=" item" id="2">	
-		        	<%@new_products.each do |product|%>		
-			        	<%=render partial: "slide_product",locals: {product: product,:variant=> nil}%>
-		        	<%end%>
-	      		</div>
-        	</div>
-      	</div>
-        <div class="row-fluid slider-brd"><a href="#"><img src="/assets/main/slider-line.gif" alt="" /></a> </div>
-      </div>
-      <div class="row blog-slider-space">
+        <div class="row blog-slider-space">
         <div class="span6">
           <div class="blog-slider">
             <div class="pre-next"> 
@@ -114,61 +140,121 @@
           </div>
         </div>
       </div>
-      <div class="featured-main MB-0">
-        <div class="super-hot-tab product-indicators">
-          <ul class=>
-            <li><a >Super Sale</a></li>
-            <li><a data-target="#MyDiscountslider" data-slide-to="1" class="active">50% off</a></li>
-            <li><a data-target="#MyDiscountslider" data-slide-to="2" class="">30% off</a></li>
-          </ul>
-          <div class="pre-next"> <a href="#MyDiscountslider" data-slide="prev" class="pre">Pre</a> <a href="#MyDiscountslider" class="next" data-slide="next" >Next</a> </div>
-        </div>
-        <div class="row-fluid">
-        <div id="MyDiscountslider"class="carousel slide">
-          <div class="carousel-inner">
-            
-            <div class="active item" id="1">  
-              <%@discount_fifties.each do |variant_fifty|%>   
-                <%=render partial: "slide_product",locals: {product: variant_fifty.product,:variant=> variant_fifty}%>
-              <%end%>
-            </div>
-            <div class=" item" id="2">  
-              <%@discount_thirties.each do |variant_thirty|%>    
-                <%=render partial: "slide_product",locals: {product: variant_thirty.product,:variant=> variant_thirty}%>
-              <%end%>
+      <div class="clear"></div>
+      <div class="slider-container">
+        <ul class='tabs super-hot-tab'>
+          <li><a href='#tab4'>Super Hot</a></li>
+          <li><a href='#tab5'>50% off</a></li>
+          <li><a href='#tab6'>30% off</a></li>
+        </ul>
+        <div class="clear"></div>
+          <div id='tab4'>
+            <div id="slider4" class="slider1">
+              <a class="buttons prev" href="#" data-slide="prev"></a>
+                <div class="viewport">
+                  <ul class="overview">
+                    <%@super_hot_proudcts.flatten.each do |product|%>   
+                      <li>
+                        <%=render partial: "slide_product",locals: {product: product,:variant=> nil}%>
+                      </li>
+                    <%end%>
+                  </ul>
+                </div>
+              <a class="buttons next" href="#" data-slide="next"></a>
             </div>
           </div>
-        </div>
+          <div id='tab5'>
+            <div id="slider5" class="slider1">
+              <a class="buttons prev" href="#" data-slide="prev"></a>
+                <div class="viewport">
+                  <ul class="overview">
+                    <%@discount_fifties.uniq.each do |variant_fifty|%>    
+                      <li>
+                        <%=render partial: "slide_product",locals: {product: variant_fifty.product,:variant=> variant_fifty}%>
+                      </li>
+                    <%end%>
+                  </ul>
+                </div>
+              <a class="buttons next" href="#" data-slide="next"></a>
+            </div>
+          </div>
+          <div id='tab6'>
+            <div id="slider6" class="slider1">
+              <a class="buttons prev" href="#" data-slide="prev"></a>
+                <div class="viewport">
+                  <ul class="overview">
+                    <%@discount_thirties.uniq.each do |variant_thirty|%>   
+                      <li>
+                        <%=render partial: "slide_product",locals: {product: variant_thirty.product,:variant=> variant_thirty}%>
+                      </li>
+                    <%end%>
+                  </ul>
+                </div>
+              <a class="buttons next" href="#" data-slide="next"> </a>
+            </div>
+          </div>
         <div class="row-fluid slider-brd"><a href="#"><img src="/assets/main/slider-line.gif" alt="" /></a> </div>
       </div>
-      <div class="row blog-slider-space">
+       <div class="row blog-slider-space">
         <div class="span6">
           <div class="blog-slider">
-            <div class="pre-next"> <a class="pre" href="#">Pre</a> <a class="next" href="#">Next</a> </div>
-            <h1>The Buzz</h1>
-            <div class="row slider-cont">
-              <div class="span3 relative"><img src="/assets/main/auskar-vieo.jpg" alt=""> <a href="#"><img src="/assets/main/play-icon.png" alt="" class="play-icon"> </a></div>
-              <div class="span3 blog-img-detail">
-                <h2>Oscar 2014</h2>
-                <h3><a href="#">oscar Red Carpet</a></h3>
-                <p>Sed a mattis dolor. Aliquam condimentum, ipsum in sodales malesuada, sapien lacus pretium elit, in ultricies lacus orci vel tortor. Suspendisse porta volutpat risus,  scelque nisi pharetra quis. Maecenas velit dolor, varius eu sem et, eleifend porta nisl. </p>
-                <a href="#" class="read-more">Read more &rsaquo;</a> </div>
+            <div class="pre-next"> 
+              <a href="#MyBlogs" data-slide="prev" class="pre">Pre</a> 
+              <a href="#MyBlogs" class="next" data-slide="next">Next</a> 
+            </div>
+            <h1>From The Blog</h1>
+            <div id="MyBlogs"class="carousel slide">
+              <div class="carousel-inner">
+                <%@latest_blogs.each_with_index do |blog,index|%>
+                  <div class="<% if index == 0 %>active<%end%> item" id="<%=index%>">  
+                    <div class="row slider-cont ">
+                      <div class="span3 relative"><%=link_to image_tag(blog.image.url),blog_path(blog)%>
+                       <%if blog.video_url.present?%>
+                        <a href="#"><img src="/assets/main/play-icon.png" alt="" class="play-icon"> </a>
+                       <%end%>
+                      </div>
+                      <div class="span3 blog-img-detail">
+                        <h2><%=blog.title%></h2>
+                        <h3><a href="<%=blogs_path(blog_category_id: blog)%>"><%=blog.blog_category.name%></a></h3>
+                        <p><%=truncate(strip_tags(blog.description), length: 250)%></p>
+                        <a href="<%=blog_path(blog)%>" class="read-more">Read more &rsaquo;</a> </div>
+                    </div>
+                  </div>
+                <%end%>
+              </div>
             </div>
           </div>
         </div>
         <div class="span6">
           <div class="blog-slider">
-            <div class="pre-next"> <a class="pre" href="#">Pre</a> <a class="next" href="#">Next</a> </div>
-            <h1>Spring &amp; Summer  Trends</h1>
-            <div class="row slider-cont">
-              <div class="span3"><img src="/assets/main/spring-img.jpg" alt=""></div>
-              <div class="span3 blog-img-detail">
-                <h2>Rick &amp; Ro of Burn Rubber</h2>
-                <h3><a href="#">the down low</a></h3>
-                <p>Sed a mattis dolor. Aliquam condimentum, ipsum in sodales malesuada, sapien lacus pretium elit, in ultricies lacus orci vel tortor. Suspendisse porta volutpat risus,  scelque nisi pharetra quis. Maecenas velit dolor, varius eu sem et, eleifend porta nisl. </p>
-                <a href="#" class="read-more">Read more &rsaquo;</a> </div>
+            <div class="pre-next"> 
+              <a href="#MyFeaturedDesingers" data-slide="prev" class="pre">Pre</a> 
+              <a href="#MyFeaturedDesingers" class="next" data-slide="next">Next</a> 
+            </div>
+            <h1>Featured Designers</h1>
+            <div id="MyFeaturedDesingers"class="carousel slide">
+              <div class="carousel-inner">
+                <%@featured_designers.each_with_index do |designer,index|%>
+                  <div class="<% if index == 0 %>active<%end%> item" id="<%=index%>">  
+                    <div class="row slider-cont">
+                      <%if designer.present? && designer.images.present?%>
+                        <%if  designer.images[0].photo.present?%>
+                        <div class="span3"><%=image_tag(designer.images[0].photo.url)%></div>
+                        <div class="span3 blog-img-detail">
+                          <h2><%=designer.name%></h2>
+                          <h3><a href="#"><%=designer.first_name%> <%=designer.last_name%></a></h3>
+                          <p>Sed a mattis dolor. Aliquam condimentum, ipsum in sodales malesuada, sapien lacus pretium elit, in ultricies lacus orci vel tortor. Suspendisse porta volutpat risus,  scelque nisi pharetra quis. Maecenas velit dolor, varius eu sem et, eleifend porta nisl. </p>
+                          <a href="#" class="read-more">Read more &rsaquo;</a> </div>
+                        <%end%>
+                        <%end%>
+                    </div>
+                  </div>
+                <%end%>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</section>

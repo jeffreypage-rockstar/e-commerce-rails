@@ -83,7 +83,7 @@ class ApplicationController < ActionController::Base
       @saved_cart_items = session_cart.saved_cart_items
     end
     @brands = Brand.all.in_groups_of(6)
-    @product_category_on_main_menu = ProductType.find_all_by_main_menu(true)
+    @product_category_on_main_menu = ProductType.find_all_by_main_menu_and_parent_id(true,nil)
   end
 
   private

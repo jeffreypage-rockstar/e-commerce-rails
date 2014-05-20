@@ -37,7 +37,7 @@
   </table>
 </div>
 
-<%= will_paginate @referrals %>
+<%= will_paginate @referrals , :previous_label => "<", :next_label => ">" %>
 
 <p><%= link_to "Assign Referral", new_admin_user_datas_referral_path, :class => 'button' %></p>
 <p>

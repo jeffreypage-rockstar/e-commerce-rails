@@ -6,4 +6,23 @@
    *= require product_page/jquery.jcarousel
    *= require product_page/skin
    *= require product_page/jc
+   *= require tinycarousel
 */
+
+/*#flash {
+position: fixed;
+z-index: 999;
+margin-left: 35%;
+width: 455px;
+padding: 52px;
+border-radius: 5px;
+}*/
+
+
+#flash {
+position:absolute;
+z-index: 999;
+left:12px; top:-22px;}
+
+
+.red{color:red;}

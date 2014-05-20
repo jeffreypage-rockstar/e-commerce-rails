@@ -1,5 +1,5 @@
-<%require 'will_paginate/array' %>
-<section>
+
+
     <div class="row-fluid breadcrumb-full-bg">
       <div class="container">
         <h1>My Profile</h1>
@@ -11,7 +11,7 @@
     <div class="container">
       <div class="row designer-profile-page">
         <div class="span12 sale-header white-line">
-          <h1><span>Taki &amp; TAKI</span></h1>
+          <h1><span><%= @designer.first_name %> <%= @designer.last_name %></span></h1>
         </div>
         <div class="span2">
                 <%if @designer.images.present?%>
@@ -28,7 +28,7 @@
           <span id="designer_data">
             <%= render :partial => '/ratings/designer_data' %>
           </span>
-          <label class="width-200-label">Listed:: <span><%=@products.size%></span></label>
+          <label class="width-200-label">Listed:: <span><%=@prts.size%></span></label>
         </div>
         <div class="span12 slider-brd"><a href="#"><img alt="" src="/assets/slider-line.gif"></a> </div>
         <div class="prd-detail-rating" id="user_star">
@@ -46,16 +46,17 @@
           </div>
          
           <div class="row">
-            <%@products.each_with_index do |product,index|%>
+            <%@prts.each_with_index do |product,index|%>
               <%=render partial: "welcome/slide_product",locals: {product: product,:variant=> nil}%>
             <%end%>
           </div>
           <div class="row">
-            <% if @products != [] %>
-        <div class="span3 paging-show"><%= page_entries_info @products %></div>
+            <% if @prts.size != 0 %>
+        <div class="span3 paging-show"><%= page_entries_info @prts %></div>
         <!--Paging Section Starts here-->
         <div class="pagination pagination-right pagination_dev">
-            <%= will_paginate @products, :container => false %>
+
+            <%= will_paginate @prts, :container => false %>
         </div>
         <!--Paging Section Ends here--> 
         <%end%>
@@ -63,10 +64,11 @@
        </div>
       </div>
     </div>
-  </section>
+
 
   <script type="text/javascript">
   <% if @user != nil %>
+  <% if @rating != nil %>
 $('#user_star').raty({
 
     score: <%= @rating.score %>,
@@ -80,6 +82,22 @@ $('#user_star').raty({
       });
     }
   });
+<%else %>
+$('#user_star').raty({
+
+    score: 0,
+    path: '/assets',
+    click: function(score, evt) {
+      $.ajax({
+        url: '/ratings/0?designer_id=' + <%= @designer.id.to_s %>,
+        type: 'PATCH',
+        data: { score: score },
+        success: function(resultData) {}
+      });
+    }
+  });
+
+<%end%>
 <%else%>
 $('#user_star').raty({
 

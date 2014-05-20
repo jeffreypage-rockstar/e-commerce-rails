@@ -10,7 +10,7 @@ class Commission < ActiveRecord::Base
 	  0 => 'Inactive'
 	}
 
-	validates_uniqueness_of :user_id
+	validates_uniqueness_of :user_id, :message => "We can add only one commission for the user"
 	
 	scope :visible
 	scope :active, :conditions => "#{Commission.table_name}.state = #{ACTIVE}"

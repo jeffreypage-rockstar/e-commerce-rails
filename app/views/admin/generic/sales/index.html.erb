@@ -31,6 +31,6 @@
   </table>
 </div>
 
-<%= will_paginate @sales %>
+<%= will_paginate @sales , :previous_label => "<", :next_label => ">" %>
 
 <p><%= link_to "New Sale", new_admin_generic_sale_path, :class => 'button' %></p>
