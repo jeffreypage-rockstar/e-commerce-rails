@@ -63,7 +63,7 @@ class ProductsController < ApplicationController
     begin
       if params[:parent] || params[:parent]=="true"
         @cat = ProductType.find(params[:id])      
-        @products = Product.aactive.paginate(:page => pagination_page, :per_page => pagination_rows).where(["product_type_id IN (?)",@cat.child_ids]) if @cat.present?
+        @products = Product.aactive.paginate(:page => pagination_page, :per_page => pagination_rows).where(["product_type_id IN (?)",[@cat.id]+@cat.child_ids]) if @cat.present?
       else      
         @cat = ProductType.find(params[:id])
         @products = Product.aactive.paginate(:page => pagination_page, :per_page => pagination_rows).where(["product_type_id =?",params[:id]])
