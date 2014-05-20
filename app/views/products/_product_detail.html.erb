@@ -43,9 +43,11 @@
 <%if current_user%>
     <div id="fav_login">
       <%if @rock_product.present?%>
-        <%=link_to image_tag("/assets/main/fav-icon-blue.png")+"Unfavorite",rock_product_path(@product,:unrock=>true),:remote=>true,:class=>"add-fav"%>
+
+        <%=link_to image_tag("/assets/main/fav-icon-blue.png")+"Unfavorite",rock_product_path(@product,:unrock=>true),:remote=>true,:class=>"add-fav",:id=>"fav_login" %>
       <%else%>
-        <%=link_to image_tag("/assets/main/fav-icon-blue.png")+" Add to favorites",rock_product_path(@product),:remote=>true,:class=>"add-fav"%>
+        <%=link_to image_tag("/assets/main/fav-icon-blue.png")+" Add to favorites",rock_product_path(@product),:remote=>true,:class=>"add-fav" ,:id=>"fav_login"%>
+
       <%end%>
     </div>
     <%else%>
@@ -53,7 +55,13 @@
     <%end%>
     <%= @product.name %></h1>
   <div class="add-favted">
-    <h3><img src="/assets/main/fav-icon-blue.png" alt=""><span id="fav"> Favorited (<%=@product.product_rocks.size%>)</span></h3>    <div class="favted-right"><span>5 review(s)</span> | <a href="#">Add Your Review</a></div>
+
+    <h3><img src="/assets/main/fav-icon-blue.png" alt="">
+      <span id="fav">
+        Favorited (<%=@product.product_rocks.size%>)</h3>
+      </span> 
+    <div class="favted-right"><span>5 review(s)</span> | <a href="#">Add Your Review</a></div>
+
   </div>
   <div class="prd-detail-cat">
     <label>
