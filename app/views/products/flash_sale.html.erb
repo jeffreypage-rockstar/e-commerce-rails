@@ -10,6 +10,7 @@
           </div>
         </div>
       </div>
+
       <div class="sale-listing">
         <div class="row">
           <div class="span12 sale-header">
@@ -43,7 +44,7 @@
       </div>
      
 
-
+      <% if @designer2 != nil %>
       <div class="sale-listing">
         <div class="row">
           <div class="span12 sale-header">
@@ -75,6 +76,7 @@
           <div class="clear"></div>
         </div>
       </div>
+      <%end%>
      <div class="row">
             <% if @designers != [] %>
         <div class="span3 paging-show"><%= page_entries_info @designers %></div>

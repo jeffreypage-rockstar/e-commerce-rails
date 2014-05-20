@@ -38,7 +38,11 @@
             <% else %>
               <div class="span8 top-menu">
                 <a href="/"><img src="/assets/main/home-icon.png">&nbsp;<%=t(:home)%></a> 
-                <a href="<%=myaccount_overview_path%>"><img src="/assets/main/my-prf-icon.png" alt="">&nbsp;<%=t(:my_profile)%></a>
+                <% if current_user.designer? %>
+                    <a href="/designers/<%=current_user.id%>"><img src="/assets/main/my-prf-icon.png" alt="">&nbsp;<%=t(:my_profile)%></a>
+                <%else%>
+                    <a href="<%=myaccount_overview_path%>"><img src="/assets/main/my-prf-icon.png" alt="">&nbsp;<%=t(:my_profile)%></a>
+                <%end%>
                 <a href="<%=my_favorites_path%>"><img src="/assets/main/my-fav-icon.png" alt="">&nbsp;<%=t(:my_favorites)%></a>
                 <a href="/shopping/cart_items"><img src="/assets/main/shp-bag-icon.png" alt="">&nbsp;<%=t(:shoping_bag)%> (<%if @cart_items.present?%><%=@cart_items.size%><%else%>0<%end%>)</a>
                 <% if current_user.admin? || current_user.designer? %>

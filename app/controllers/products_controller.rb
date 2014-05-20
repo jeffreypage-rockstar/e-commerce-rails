@@ -35,6 +35,7 @@ class ProductsController < ApplicationController
     @role = Role.find_by_name("designer")
 
     @designers = @role.users.paginate(:page => pagination_page, :per_page => 2)
+    if @designers.size >= 1
     @designer1 = @designers.first
     @count1 = Rating.where('designer_id = ?',@designer1.id).count.to_f
     @sum2 = Rating.where('designer_id = ?',@designer1.id).sum(:score).to_f
@@ -43,8 +44,10 @@ class ProductsController < ApplicationController
     else
       @avg_rating1 = 0.0
     end
-
+    end
+    
     @designer2 = @designers.second
+    if @designer2 != nil
     @count2 = Rating.where('designer_id = ?',@designer2.id).count.to_f
     @sum2 = Rating.where('designer_id = ?',@designer2.id).sum(:score).to_f
     if(@count2 != 0.0)
@@ -53,7 +56,10 @@ class ProductsController < ApplicationController
       @avg_rating2 = 0.0
     end
   end
-
+  end
+  def product_codes
+    @product_codes = ProductCode.paginate(:page => pagination_page, :per_page => 4)
+  end
   def brand_products
       @brand = Brand.find(params[:id])
       @products = Product.paginate(:page => pagination_page, :per_page => pagination_rows).where(["brand_id =?",params[:id]])
@@ -93,6 +99,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.active.find_by_permalink(params[:id])
+    redirect_to :back and return false unless @product
     @related_products = RelatedProduct.find_all_by_product_id(@product.id) if @product
     if current_user
       @rock_product = ProductRock.find_by_product_id_and_user_id(@product.id,current_user.id) if @product
@@ -143,6 +150,7 @@ class ProductsController < ApplicationController
   def rock_product    
     @product = Product.active.find(params[:id])
     @flag = true
+    @from_flag = false
     if current_user.present?
       @rock_product = ProductRock.where(:user_id=> current_user.id,:product_id=>@product.id).first_or_initialize     
       if params[:unrock].present? && params[:unrock]=="true"
@@ -151,6 +159,11 @@ class ProductsController < ApplicationController
       else
         @rock_product.save
       end
+    end
+    if(params[:from_icon].to_s == "true")
+      @from_flag = true
+    else
+      @from_flag = false
     end
      respond_to do |format|
        format.js  # { render :layout => false }

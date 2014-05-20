@@ -55,11 +55,8 @@
         <div class="span3 paging-show"><%= page_entries_info @prts %></div>
         <!--Paging Section Starts here-->
         <div class="pagination pagination-right pagination_dev">
-<<<<<<< HEAD
-            <%= will_paginate @products, :previous_label => "<", :next_label => ">", :container => false %>
-=======
+
             <%= will_paginate @prts, :container => false %>
->>>>>>> dc645e0da7e3ed9fd58bbc7fbe42f6bcc73ad46b
         </div>
         <!--Paging Section Ends here--> 
         <%end%>

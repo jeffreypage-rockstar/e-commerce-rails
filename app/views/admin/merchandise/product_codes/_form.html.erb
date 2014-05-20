@@ -1,0 +1,66 @@
+<fieldset id="admin-product_code-names">
+  <div class="six columns">
+  <label>Title</label>
+  <fieldset>
+    <label>Traditional Chinese</label>
+    <% set_lang "tcn" %>    
+    <%= form.text_field :title %>
+    <label>Simple Chinese</label>
+    <% set_lang "cn" %>
+    <% chin = form.object %>
+    <%= text_field_tag "cn[title]",chin.title %>
+    <label>English</label>
+    <% set_lang "en" %>
+    <% eng = form.object %>
+    <%= text_field_tag "en[title]",eng.title %>    
+  </fieldset>
+  </div>
+    <div class="six columns">
+  <label>Discount</label>
+  <fieldset>
+    
+    <%= form.text_field :discount %>
+    
+  </fieldset>
+  </div>
+  
+
+  <div class="six columns">
+  <label>Select Product1</label>
+  <fieldset>
+  <%= select_tag :select_product1,
+                     options_from_collection_for_select(@products,:id, :name) , {prompt: 'Select Product'}%>
+
+  </fieldset>
+  </div>
+
+<div class="six columns">
+  <label>Select Product2</label>
+  <fieldset>
+  <%= select_tag :select_product2,
+                     options_from_collection_for_select(@products,:id, :name) , {prompt: 'Select Product'}%>
+
+  </fieldset>
+  </div>
+
+  <div class="six columns">
+  <label>Select Product3</label>
+  <fieldset>
+  <%= select_tag :select_product3,
+                     options_from_collection_for_select(@products,:id, :name) , {prompt: 'Select Product'}%>
+
+  </fieldset>
+  </div>
+
+  <div class="six columns">
+  <label>Select Product4</label>
+  <fieldset>
+  <%= select_tag :select_product4,
+                     options_from_collection_for_select(@products,:id, :name) , {prompt: 'Select Product'}%>
+
+  </fieldset>
+  </div>
+</fieldset>
+<div class=" generic_submit_button">
+  <%= submit_tag button_action, class: "button", id: "create_product_code_button" %>
+</div>
