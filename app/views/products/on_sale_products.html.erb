@@ -20,50 +20,56 @@
       </div>
     </div>
     <% if @best_sellers.present? %>
-      <div class="sale-listing">
-        <div class="row">
-          <div class="span12 sale-header white-line">
-            <div class="pre-next"> <a class="pre" href="#">Pre</a> <a class="next" href="#">Next</a></div>
-            <h1><span>Best Sellers</span></h1>
+      <div class="clear"></div>
+      <div class="slider-container">
+        <ul class='tabs super-hot-tab'>
+          <li><a href='#tab1'>Best Seller</a></li>          
+        </ul>
+        <div class="clear"></div>
+          <div id='tab1'>
+            <div id="slider1" class="slider1">
+              <a class="buttons prev" href="#" data-slide="prev"></a>
+                <div class="viewport">
+                  <ul class="overview">
+                    <% @best_sellers.each do |product|%>   
+                      <li>
+                        <%=render partial: "/welcome/slide_product",locals: {product: product,:variant=> nil}%>
+                      </li>
+                    <%end%>
+                  </ul>
+                </div>
+              <a class="buttons next" href="#" data-slide="next"></a>
+            </div>
           </div>
         </div>
-        <div class="row-fluid">
-          <div id="MyProdctslider" class="carousel slide" style="height:420px">
-            <div class="carousel-inner">
-              <div class="active item"> 
-                <% @best_sellers.each do |product|%>   
-                  <%=render partial: "/welcome/slide_product",locals: {product: product,:variant=> nil}%>
-                <%end%>
-              </div>
-            </div>
-          <div>
-        </div>        
-      </div>
     <% end %>
     <% if @categories.present? %>
-      <% @categories.each do |category| %>
+      <% @categories.each_with_index do |category,i| %>
         <% products = get_products(category) %>
-        <% if products.present? %>
-          <div class="sale-listing">
-            <div class="row">
-              <div class="span12 sale-header white-line">
-                <div class="pre-next"> <a class="pre" href="#">Pre</a> <a class="next" href="#">Next</a></div>
-                <h1><span><%= category.name %></span></h1>
+          <div class="clear"></div>
+          <div class="slider-container">
+            <ul class='tabs super-hot-tab'>
+              <li><a href='#tab1'><%=category%></a></li>          
+            </ul>
+            <div class="clear"></div>
+            <div id='tab1'>
+              <div id="slider<%=i+1%>" class="slider1">
+                <a class="buttons prev" href="#" data-slide="prev"></a>
+                  <div class="viewport">
+                    <% if products.present? %>
+                      <ul class="overview">
+                        <% products.each do |product|%>   
+                          <li>
+                            <%=render partial: "/welcome/slide_product",locals: {product: product,:variant=> nil}%>
+                          </li>
+                        <%end%>
+                      </ul>
+                    <% end %>
+                  </div>
+                <a class="buttons next" href="#" data-slide="next"></a>
               </div>
             </div>
-            <div class="row-fluid">
-              <div id="MyProdctslider" class="carousel slide" style="height:420px">
-                <div class="carousel-inner">
-                  <div class="active item"> 
-                    <% products.each do |product| %>   
-                      <%=render partial: "/welcome/slide_product",locals: {product: product,:variant=> nil}%>
-                    <%end%>
-                  </div>
-                </div>
-              <div>
-            </div>          
           </div>
-        <% end %>
       <% end %>
     <% end %>
 

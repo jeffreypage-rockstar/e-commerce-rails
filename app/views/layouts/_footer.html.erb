@@ -36,8 +36,18 @@
               <h2>Latest Tweets</h2>
               <div class="span3">
                 <h3><%#= client = TWITTER.new({}) %>
-<%me = TWITTER.user('hiddenhbdev')%>
-<%=me.followers_count.to_s %> people follow <a href="#">#maddot</a></h3>
+              <%begin 
+                  me = TWITTER.user('hiddenhbdev') 
+                rescue Exception => exc
+                  ""
+               end %>
+              <%=begin
+                 "#{me.followers_count.to_s} people follow #{link_to("#maddot",'javascript.void(0);')}".html_safe
+              rescue Exception => exc
+                 " "
+              end %>
+
+
                 <h4><%=@news.fetch(2).title%> <span><a href=<%=@news.fetch(2).hreflink%>><%=@news.fetch(2).subject%></a></span> </h4>
                 <p><%=@news.fetch(2).description%></p>
                 <h4><%=@news.fetch(3).title%> <span><a href=<%=@news.fetch(3).hreflink%>><%=@news.fetch(3).subject%></a></span> </h4>
@@ -52,7 +62,7 @@
               <h2>Latest Tweets</h2>
               <div class="span3">
                 <h3><%me = TWITTER.user('hiddenhbdev')%>
-<%=me.followers_count.to_s %> people follow <a href="#">#maddot</a></h3>
+                <%=me.followers_count.to_s %> people follow <a href="#">#maddot</a></h3>
               </div>
             </div>
           <%end%>

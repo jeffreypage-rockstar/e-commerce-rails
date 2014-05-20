@@ -1,42 +1,70 @@
-<%if product.variants.present?%>
-<div class="span3 relative ">
-  <div>
-    
-    <%if product.variants.present? && product.variants[0].discount_percent.present? %> 
-      <span class="discount-red">
-        <%if variant.present?%>
-          <%=variant.discount_percent%>%
-        <%else%>
-          <%=product.variants[0].discount_percent%>%
-        <%end%>
-      </span>
-    <%end%>
-    <%if ((product.variants.present? && !product.variants[0].discount_percent.present?) && product.hero_variant.low_stock?) %><span class="discount-red white-color">out</span><%end%>
-	  <a href="<%=product_path(product)%>" title="<%=product.name%>" >
-      <%if product.images[0].present?%>
-			 <%= image_tag(product.images[0].photo(:product),:style=> "width:270px;height:330px")  %>
-      <%else%>
-        <%if variant.present? && variant.image_group.present?%>
-          <%= image_tag(variant.image_group.images[0].photo.url(:large),:style=> "width:270px;height:330px")  %>
-        <%else%>
-          <%="#{product.variants[0].discount_percent}%" if product.variants.present? %>
-        <%end%>
+<%if product.present? && product.variants.present?%>
+  <!-- <div class="span3 relative "> -->
+    <div>    
+      <%if product.variants.present? && product.variants[0].discount_percent.present? %> 
+        <span class="discount-red">
+          <%if variant.present?%>
+            <%=variant.discount_percent%>%
+          <%else%>
+            <%=product.variants[0].discount_percent%>%
+          <%end%>
+        </span>
       <%end%>
-
-	 		<img src="/assets/main/fav-icon.png" alt="" class="fav-icon" /> 
-	 	</a>
- 	</div>
-  <div class="suphot-cont">
-    <%product.variants.each do |var|%>
-      <%if var.color.present? %><div class="rating-color" style="background-color:<%= var.color %>"></div><% end%>
-    <%end%>
-    <%if variant.present?%>
-      <p><a href="#"><%=variant.name%></a></p>
-      <p><%if variant.price_after_discount.present? %><span class="disable"><strike>$<%=variant.price%></strike></span><%end%><strong>$<%if variant.price_after_discount.present? %><%= variant.price_after_discount%><%else%><%= variant.price%><%end%></strong></p>
-    <%else%>
-      <p><a href="#"><%=product.name%></a></p>
-      <p><%if product.variants[0].price_after_discount.present? %><span class="disable"><strike>$<%=product.variants[0].price%></strike></span><%end%><strong>$<%if product.variants[0].price_after_discount.present? %><%=product.variants[0].price_after_discount%><%else%><%=product.variants[0].price%><%end%></strong></p>
-    <%end%>
-	</div>
-</div>
+      <% if ((product.variants.present? && !product.variants[0].discount_percent.present?) && product.hero_variant.low_stock?) %>
+        <span class="discount-red white-color">out</span>
+      <% end %>
+      <a href="<%=product_path(product)%>" title="<%=product.name%>" >
+        <% if product.images[0].present? %>
+          <%= image_tag(product.images[0].photo(:product),:style=> "width:270px;height:325px")  %>
+        <% else %>
+          <% if variant.present? && variant.image_group.present? %>
+            <%= image_tag(variant.image_group.images[0].photo.url(:large),:style=> "width:270px;height:325px")  %>
+          <% else %>
+            <%="#{product.variants[0].discount_percent}%" if product.variants.present? %>
+          <% end %>
+        <% end %>
+        <img src="/assets/main/fav-icon.png" alt="" class="fav-icon" /> 
+      </a>
+    </div>
+    <div class="suphot-cont">
+      <% product.variants.each do |var| %>
+        <% if var.color.present? %>
+          <div class="rating-color" style="background-color:<%= var.color %>"></div>
+        <% end %>
+      <%end%>
+      <% if variant.present? %>
+        <p><a href="#"><%= variant.name %></a></p>
+        <p>
+          <% if variant.price_after_discount.present? %>
+            <span class="disable">
+              <strike>$<%=variant.price%></strike>
+            </span>
+          <%end%>
+          <strong>          
+            <% if variant.price_after_discount.present? %>
+              $<%= variant.price_after_discount%>
+            <% else %>
+              $<%= variant.price %>
+            <% end %>
+          </strong>
+        </p>
+      <% else %>
+        <p><a href="#"><%=product.name%></a></p>
+        <p>
+          <% if product.variants[0].price_after_discount.present? %>
+            <span class="disable">
+              <strike>$<%=product.variants[0].price%></strike>
+            </span>
+          <%end%>
+          <strong>
+            <% if product.variants[0].price_after_discount.present? %>
+              $<%=product.variants[0].price_after_discount%>
+            <% else %>
+              $<%=product.variants[0].price%>
+            <% end %>
+          </strong>
+        </p>
+      <%end%>
+    </div>
+  <!-- </div> -->
 <% end %>
