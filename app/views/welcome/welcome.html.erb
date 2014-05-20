@@ -147,6 +147,7 @@
           <li><a href='#tab4'>Super Hot</a></li>
           <li><a href='#tab5'>50% off</a></li>
           <li><a href='#tab6'>30% off</a></li>
+          <li><a href='#tab7'>20% off</a></li>
         </ul>
         <div class="clear"></div>
           <div id='tab4'>
@@ -181,6 +182,21 @@
           </div>
           <div id='tab6'>
             <div id="slider6" class="slider1">
+              <a class="buttons prev" href="#" data-slide="prev"></a>
+                <div class="viewport">
+                  <ul class="overview">
+                    <%@discount_thirties.uniq.each do |variant_thirty|%>   
+                      <li>
+                        <%=render partial: "slide_product",locals: {product: variant_thirty.product,:variant=> variant_thirty}%>
+                      </li>
+                    <%end%>
+                  </ul>
+                </div>
+              <a class="buttons next" href="#" data-slide="next"> </a>
+            </div>
+          </div>
+          <div id='tab7'>
+            <div id="slider7" class="slider1">
               <a class="buttons prev" href="#" data-slide="prev"></a>
                 <div class="viewport">
                   <ul class="overview">
