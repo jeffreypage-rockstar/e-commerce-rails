@@ -1,6 +1,17 @@
 $('#fav').html( "Favorited (<%=@product.product_rocks.size%>)");
 <%if @flag == true%>
-	$("#fav_login").html('<%=link_to image_tag("/assets/main/fav-icon-blue.png")+"Unfavorite",rock_product_path(@product,:unrock=>true),:remote=>true,:class=>"add-fav"%>');
-<%else%>
-	$("#fav_login").html('<%=link_to image_tag("/assets/main/fav-icon-blue.png")+" Add to favorites",rock_product_path(@product),:remote=>true,:class=>"add-fav"%>');
+<% if @from_flag == true %>
+$("#fav_login_<%=@product.id.to_s%>").html('<%=link_to image_tag("/assets/fav-icon.gif"),rock_product_path(@product,:unrock=>true, :from_icon => true),:remote=>true%>');
+<%else %>
+$("#fav_login").html('<%=link_to image_tag("/assets/main/fav-icon-blue.png")+"Unfavorite",rock_product_path(@product,:unrock=>true),:remote=>true,:class=>"add-fav"%>');
 <%end%>
+
+      <%else%>
+      <% if @from_flag == true %>
+$("#fav_login_<%=@product.id.to_s%>").html('<%=link_to image_tag("/assets/main/fav-icon.png"),rock_product_path(@product, :from_icon => true),:remote=>true%>');
+
+<%else %>
+$("#fav_login").html('<%=link_to image_tag("/assets/main/fav-icon-blue.png")+" Add to favorites",rock_product_path(@product),:remote=>true,:class=>"add-fav"%>');
+<%end%>
+        
+      <%end%>

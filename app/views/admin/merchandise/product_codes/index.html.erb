@@ -1,0 +1,63 @@
+
+<% content_for :sidemenu do %>
+
+  <div class='admin_filters'>
+    <%= form_tag admin_merchandise_product_codes_path, method: 'get', id: "product_codes_search" do %>
+      <%= hidden_field_tag :direction, params[:direction] %>
+      <%= hidden_field_tag :sort, params[:sort] %>
+
+      <label>Name</label>
+      <%= text_field_tag :title, params[:title] %>
+      <div style='text-align:center'>
+        <%= submit_tag "Search", title: nil, class: 'button red-button' %>
+      </div>
+    <% end %>
+    <div class='clearfix'></div>
+  </div>
+<% end %>
+
+<div class='admin_title_header'>
+  <h3 class="page-title">Product Codes</h3>
+  <%if current_user.admin? || current_user.role?("super_admin")%>
+    <%= link_to "New Product Code", new_admin_merchandise_product_code_path, class: "button" %>
+  <%end%>
+</div>
+
+<div class="admin_product_codes">
+  <div class="admin_users">
+    <%=render :partial=>"/shared/filters"%>
+  </div>
+  
+
+  <table class="table table-striped table-hover table-bordered table-hd" >
+    <thead>
+    <tr class='odd'>
+      <th class='column1_header' ><%= sortable "title" %></th>
+      <%if current_user.admin? || current_user.role?("SuperAdmin")%>
+        <th class="text-center">Edit</th>
+        
+      <%end%>
+    </tr>
+   
+    </thead>
+    <% @product_codes.each do |product_code| %>
+      <tr class='<%= cycle("odd", "")%>'>
+        <td>
+          <%if current_user.admin? || current_user.role?("SuperAdmin")%>
+            <%= link_to product_code.title, edit_admin_merchandise_product_code_path(product_code) %>
+          <%else%>
+            <%=product_code.title %>          
+          <%end%>
+        </td>
+        <%if current_user.admin? || current_user.role?("SuperAdmin")%>
+          <td class="text-center">
+            <a href="<%=edit_admin_merchandise_product_code_path(product_code)%>"><i class="icon-edit icon-center-edit"></i></a>
+          </td>
+         
+        <%end%>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= will_paginate @product_codes, :previous_label => "<", :next_label => ">" %>
+</div>

@@ -17,9 +17,13 @@
                 <div class="style-prf"> Rocks: <small>37</small> </div>
                 <div class="prd-detail-rating"><a href="#"><img alt="" src="/assets/img/rating-gray-active.png"></a> <a href="#"><img alt="" src="/assets/img/rating-gray-active.png"></a> <a href="#"><img alt="" src="/assets/img/rating-gray-active.png"></a> <a href="#"><img alt="" src="/assets/img/rating-gray.png"></a> <a href="#"><img alt="" src="/assets/img/rating-gray.png"></a></div>
               </div>
-              <span>A:M DESIGN STUDIO</span></h1>
+              <span><%=current_user.first_name%> <%=current_user.last_name%></span></h1>
             <div class="row profile-detail">
-              <div class="span2"> <img src="/assets/img/designer-img-detail.jpg" alt=""> </div>
+              <div class="span2"><%if current_user.images.present?%>
+                  <%= image_tag current_user.images[0].photo.url(:medium), :width => "150px"%>
+                <%else%>
+                  N/A
+                <%end%></div>
               <div class="span6">
                 <h2>Description</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget 
@@ -55,79 +59,27 @@
               <h1><span>Purchase History</span></h1>
             </div>
           </div>
-          <div class="row-fluid">
-            <div class="span3 relative"><a href="#"><img alt="" src="/assets/img/super-hot-img1.jpg"> <img class="fav-icon" alt="" src="/assets/img/fav-icon.png"> </a>
-              <div class="suphot-cont">
-                <div class="rating-color"></div>
-                <div class="rating-color"></div>
-                <p><a href="#">White Silk Kotobuki Dress</a></p>
-                <p><strong>$58.00</strong></p>
-              </div>
-            </div>
-            <div class="span3 relative"> <span class="discount-red">-50%</span> <a href="#"><img alt="" src="/assets/img/super-hot-img2.jpg"> <img class="fav-icon" alt="" src="/assets/img/fav-icon.png"> </a>
-              <div class="suphot-cont">
-                <div class="rating-color"></div>
-                <div class="rating-color"></div>
-                <p>White Silk Kotobuki Dress</p>
-                <p><span class="disable"><strike>$120.00</strike></span><strong>$58.00</strong></p>
-              </div>
-            </div>
-            <div class="span3 relative"> <span class="discount-red white-color">out</span> <a href="#"><img alt="" src="/assets/img/super-hot-img3.jpg"> <img class="fav-icon" alt="" src="/assets/img/fav-icon.png"> </a>
-              <div class="suphot-cont">
-                <div class="rating-color"></div>
-                <div class="rating-color"></div>
-                <p>White Silk Kotobuki Dress </p>
-                <p><span class="disable"><strike>$120.00</strike></span><strong>$58.00</strong></p>
-              </div>
-            </div>
-            <div class="span3 relative"> <span class="discount-red light-blue-color">VIP</span> <a href="#"><img alt="" src="/assets/img/super-hot-img4.jpg"> <img class="fav-icon" alt="" src="/assets/img/fav-icon.png"> </a>
-              <div class="suphot-cont">
-                <div class="rating-color"></div>
-                <div class="rating-color"></div>
-                <p>White Silk Kotobuki Dress </p>
-                <p><span class="disable"><strike>$120.00</strike></span><strong>$58.00</strong></p>
-              </div>
-            </div>
+                    <div class="row-fluid">
+            
+            <%@products.each_with_index do |product,index|%>
+              
+              <%=render partial: "welcome/slide_product",locals: {product: product,:variant=> nil}%>
+             
+            <%end%>
           </div>
           <div class="row">
-            <div class="span12 sale-header white-line">
-              <div class="pre-next"> <a class="pre" href="#">Pre</a> <a class="next" href="#">Next</a></div>
-              <h1><span>Purchase History</span></h1>
-            </div>
+            <% if @products.size != 0 %>
+        <div class="span3 paging-show"><%= page_entries_info @products %></div>
+        <!--Paging Section Starts here-->
+        <div class="pagination pagination-right pagination_dev">
+
+            <%= will_paginate @products, :container => false %>
+        </div>
+        <!--Paging Section Ends here--> 
+        <%end%>
+
           </div>
-          <div class="row-fluid">
-            <div class="span3 relative"><a href="#"><img alt="" src="/assets/img/super-hot-img1.jpg"> <img class="fav-icon" alt="" src="/assets/img/fav-icon.png"> </a>
-              <div class="suphot-cont">
-                <div class="rating-color"></div>
-                <div class="rating-color"></div>
-                <p><a href="#">White Silk Kotobuki Dress</a></p>
-                <p><strong>$58.00</strong></p>
-              </div>
-            </div>
-            <div class="span3 relative"> <span class="discount-red">-50%</span> <a href="#"><img alt="" src="/assets/img/super-hot-img2.jpg"> <img class="fav-icon" alt="" src="/assets/img/fav-icon.png"> </a>
-              <div class="suphot-cont">
-                <div class="rating-color"></div>
-                <div class="rating-color"></div>
-                <p>White Silk Kotobuki Dress</p>
-                <p><span class="disable"><strike>$120.00</strike></span><strong>$58.00</strong></p>
-              </div>
-            </div>
-            <div class="span3 relative"> <span class="discount-red white-color">out</span> <a href="#"><img alt="" src="/assets/img/super-hot-img3.jpg"> <img class="fav-icon" alt="" src="/assets/img/fav-icon.png"> </a>
-              <div class="suphot-cont">
-                <div class="rating-color"></div>
-                <div class="rating-color"></div>
-                <p>White Silk Kotobuki Dress </p>
-                <p><span class="disable"><strike>$120.00</strike></span><strong>$58.00</strong></p>
-              </div>
-            </div>
-            <div class="span3 relative"> <span class="discount-red light-blue-color">VIP</span> <a href="#"><img alt="" src="/assets/img/super-hot-img4.jpg"> <img class="fav-icon" alt="" src="/assets/img/fav-icon.png"> </a>
-              <div class="suphot-cont">
-                <div class="rating-color"></div>
-                <div class="rating-color"></div>
-                <p>White Silk Kotobuki Dress </p>
-                <p><span class="disable"><strike>$120.00</strike></span><strong>$58.00</strong></p>
-              </div>
-            </div>
+          
           </div>
         </div>
       </div>

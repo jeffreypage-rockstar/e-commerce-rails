@@ -19,7 +19,7 @@
         </div>
         <div class="row-fluid">
           <%@products.each do |product|%>   
-            <%=render partial: "/welcome/slide_product",locals: {product: product,:variant=> nil}%>
+            <%=render partial: "product",locals: {product: product,:variant=> nil}%>
           <%end%>
         </div>
         <div class="row-fluid slider-brd"><a href="#"><img alt="" src="/assets/main/slider-line.gif"></a> </div>

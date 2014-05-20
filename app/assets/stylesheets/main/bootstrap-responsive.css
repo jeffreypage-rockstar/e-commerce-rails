@@ -105,8 +105,39 @@ a.bot-arrow-prd{left:50% !important; margin-left:-15px !important;}
 .leave-comment-form h2{ font-size:16px;}
 .profile-detail .span6{margin-left: 30px;
     width: 450px;}
-.my-prf-header .prd-detail-rating{ margin-left:15px;}
-#new_address select {width: 93%;}
+  .my-prf-header .prd-detail-rating{ margin-left:15px;}
+  #new_address select {width: 93%;}
+  /* 20th May 2014 Start*/
+  .slider-content-container{ width:400px;}
+  .carousel-inner{ height:290px;}
+  .topslider{ min-height:inherit;}
+  .bs-example-home .slider-img-bg{ height:290px;}
+  .bs-example-home .slider-img-bg img{ height:290px;}
+  .slider-content-container{ margin-top:36px;}
+  .slider-content-container h1{ font-size:24px; margin-bottom:16px;}
+  .slider-content-container p{ font-size:18px; line-height:20px; margin-bottom:10px;}
+  .sliderbtn-getapp{ width:140px !important; font-size:18px !important; border-radius:2px !important; height:36px !important;}
+  
+  .slider-content-container-1{ width:400px;}
+  .slider-content-container-1{ margin-top:36px;}
+  .slider-content-container-1 h1{ font-size:24px; margin-bottom:16px;}
+  .slider-content-container-1 p{ font-size:16px; line-height:20px; margin-bottom:10px;}
+  .slider-content-container-1 .login-btn input{ font-size:18px;}
+  .show-now { height: 36px !important; margin-top: 10px;width: 120px !important;}
+  
+  .slider-content-container-2{ padding-top:18px; width:238px;}
+  .year-div{ letter-spacing:30px; text-indent:30px;}
+  .year-div{ font-size:20px;}
+  .slider-content-container-2 .sale { font-size: 110px;line-height: 82px; margin-top:5px; margin-bottom:8px;}
+  .slider-content-container-2 .superspring{ font-size:22px;}
+  .slider-content-container-2 .whitebrd-bg{ margin-top:10px; margin-bottom:15px;}
+  .slider-content-container-2 .discount{ font-size:24px; margin:0 auto;}
+  .slider-content-container-2 .allsale-item{ font-size:16px;}
+  .bs-example-home .carousel-control-left{ height:24px;background-position: 2px -7px;}
+  .bs-example-home .carousel-control-left:hover{background-position: 2px -48px;}
+  .bs-example-home .carousel-control-right{ height:24px; background-position:0px -7px;}
+  .bs-example-home .carousel-control-right:hover{background-position:0px -48px;}
+  /* 20th May 2014 End */
 	}
 	
 @media (min-width: 768px) and (max-width: 979px) {
@@ -137,6 +168,32 @@ a.bot-arrow-prd{left:50% !important; margin-left:-15px !important;}
   .hidden-phone {
     display: none !important;
   }
+  /* 20th May 2014 Start*/
+  .carousel-inner{ height:200px;}
+  .bs-example-home .slider-img-bg{ height:200px;}
+  .bs-example-home .slider-img-bg img{ height:200px;}
+  .slider-content-container {margin-top: 10px;}
+  .slider-content-container h1 {font-size: 18px;margin-bottom: 5px;}
+  .slider-content-container p {font-size: 14px;line-height: 17px; margin-bottom: 8px;}
+  .slider-content-container {width: 300px;}
+  .sliderbtn-getapp{font-size: 15px !important;height: 30px !important;width: 106px !important; margin-top:0px;}
+  .slider-content-container-1{ width:300px; margin-left:20px; margin-top:10px;}
+  .slider-content-container-1 h1 {font-size: 18px;margin-bottom: 5px;}
+  .slider-content-container-1 p {font-size: 14px;line-height: 17px; margin-bottom: 8px;}
+  .slider-content-container-1 .login-btn{ margin-top:10px;}
+  .slider-content-container-1 .btn-commen-blue-inp{ margin-top:10px;font-size: 15px !important;height: 30px !important;width: 106px !important;}
+  .carousel-indicators li{ margin-left:5px !important;}
+
+  .slider-content-container-2 {padding-top: 10px;width: 155px;}
+  .year-div{ border-bottom:solid #fff 2px; padding-bottom:2px; letter-spacing: 15px;
+    text-indent: 15px;}
+  .slider-content-container-2 .sale{ font-size:70px; line-height:52px;}
+  .slider-content-container-2 .superspring {font-size: 15px;}
+  .slider-content-container-2 .whitebrd-bg {margin-bottom: 8px;margin-top: 5px; height:2px;}
+  .slider-content-container-2 .discount{ font-size:16px;}
+  .slider-content-container-2 .allsale-item{ font-size:12px; margin-top:4px;}
+  .carousel-indicators{ bottom:5px;}
+  /* 20th May 2014 End*/
 
 }
 
@@ -1235,6 +1292,12 @@ a.bot-arrow-prd{left:50% !important; margin-left:-15px !important;}
 .prd-detail-rating{ width:95px !important;}
 .prd-detail-rating a img{ width:11px !important;}
 #new_address select {width: 100% !important;}
+  /* 20th May 2014 Start*/
+  .slider-content-container{ float:none; margin:auto; padding-top:10px;}
+  .slider-content-container-1{ float:none; margin:auto; padding-top:10px; text-align:center;}
+  .bs-example-home .carousel-control.right{ right:5px !important;}
+  .bs-example-home .carousel-control-left{ left:5px !important;}
+  /* 20th May 2014 End*/
 }
 
 
