@@ -16,9 +16,10 @@
         <%span_bg_classes=['feat-txt1','feat-txt1 light-blue-bg','feat-txt1 pink-bg']%>
         <%span_bg_titles=['Am Design Studio','spring 2014','summer Sale']%>
         <%span_bg_caps=['Featured designer','Style Guide','up to 50% off']%>
+        <% span_bg_urls = ['/designers','/blogs','/']%>
         <%@banner_main_small.each_with_index do |banner,index| %>
           <div class="span4">
-            <%=link_to image_tag(banner.image.url(:original))+"<span class='#{span_bg_classes[index]}'>#{span_bg_titles[index]}<small>#{span_bg_caps[index]}</small></span>".html_safe,"#{banner.link.present? ? banner.link : '#'} "%>
+            <%=link_to image_tag(banner.image.url(:original))+"<span class='#{span_bg_classes[index]}'>#{span_bg_titles[index]}<small>#{span_bg_caps[index]}</small></span>".html_safe,span_bg_urls[index]%>
           </div>
         <%end%>
       </div>

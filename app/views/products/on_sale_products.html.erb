@@ -57,7 +57,7 @@
                 <a class="buttons prev" href="#" data-slide="prev"></a>
                   <div class="viewport">
                     <% if products.present? %>
-                      <ul class="overview">
+                      <ul class="overview">                        
                         <% products.each do |product|%>   
                           <li>
                             <%=render partial: "/welcome/slide_product",locals: {product: product,:variant=> nil}%>
