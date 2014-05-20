@@ -118,7 +118,7 @@ EXAMPLE USAGE!!
         products += sub.products
       end
     end
-    products
+    products.uniq
   end
 
 end
