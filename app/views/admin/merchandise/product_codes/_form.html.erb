@@ -29,7 +29,8 @@
   <label>Select Product1</label>
   <fieldset>
   <%= select_tag :select_product1,
-                     options_from_collection_for_select(@products,:id, :name) , {prompt: 'Select Product'}%>
+                     options_from_collection_for_select(@products,:id, :name) , {prompt: 'Select Product', :onchange => 'call1(this.value,1,$("#product_code_discount").val())'} %>
+  <%= text_field_tag :pr1, 0.0 %>
 
   </fieldset>
   </div>
@@ -38,7 +39,8 @@
   <label>Select Product2</label>
   <fieldset>
   <%= select_tag :select_product2,
-                     options_from_collection_for_select(@products,:id, :name) , {prompt: 'Select Product'}%>
+                     options_from_collection_for_select(@products,:id, :name) , {prompt: 'Select Product', :onchange => 'call1(this.value,2,$("#product_code_discount").val())'}%>
+  <%= text_field_tag :pr2, 0.0 %>
 
   </fieldset>
   </div>
@@ -47,7 +49,8 @@
   <label>Select Product3</label>
   <fieldset>
   <%= select_tag :select_product3,
-                     options_from_collection_for_select(@products,:id, :name) , {prompt: 'Select Product'}%>
+                     options_from_collection_for_select(@products,:id, :name) , {prompt: 'Select Product', :onchange => 'call1(this.value,3,$("#product_code_discount").val())'}%>
+  <%= text_field_tag :pr3, 0.0 %>
 
   </fieldset>
   </div>
@@ -56,11 +59,39 @@
   <label>Select Product4</label>
   <fieldset>
   <%= select_tag :select_product4,
-                     options_from_collection_for_select(@products,:id, :name) , {prompt: 'Select Product'}%>
+                     options_from_collection_for_select(@products,:id, :name) , {prompt: 'Select Product', :onchange => 'call1(this.value,4,$("#product_code_discount").val())'}%>
+  <%= text_field_tag :pr4, 0.0 %>
 
   </fieldset>
   </div>
+
+
+    <div class="six columns">
+  <fieldset>
+    <label>Price before discount</label>
+    <%= text_field_tag :pr_total_before, 0.0 %>
+        <label id="pbd"></label>
+    <label>Price after discount</label>
+
+    <label id="pad"></lable>
+      <%= text_field_tag :pr_total, 0.0 %>
+  </fieldset>
+  </div>
+
 </fieldset>
 <div class=" generic_submit_button">
   <%= submit_tag button_action, class: "button", id: "create_product_code_button" %>
 </div>
+
+<script>
+function call1(val1,from_pr,discount)
+$.ajax({
+type: "GET",
+url: "update_price",
+data: { change_to: val1, from_pr:from_pr, discount:discount }
+})
+.done(function( msg ) {
+
+});
+
+</script>

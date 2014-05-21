@@ -126,7 +126,15 @@ class Admin::Merchandise::ProductCodesController < Admin::BaseController
 
     redirect_to :action => :index
   end
+  def update_price
+    @product = Product.find(params[:change_to])
+    @from_pr = params[:from_pr].to_i
+    @discount = params[:discount].to_f
+    respond_to do |format|
 
+       format.js 
+    end
+  end
   private
 
   def allowed_params

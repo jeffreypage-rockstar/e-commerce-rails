@@ -1,0 +1,25 @@
+<% if @product.variants.size > 0%>
+<% if @product.variants[0].price_after_discount.present? %>
+var val1 = '<%=@product.variants[0].price_after_discount%>'
+<%else%>
+var val1 = '<%=@product.variants[0].price%>'
+<%end%>
+<%else%>
+var val1 = 0.0
+<%end%>
+var before_dis = val1;
+var dis = (val1*(<%=@discount%>))/100.0;
+val1 = before_dis-dis;
+
+<% if @from_pr == 1%>
+$("#pr1").val(val1);
+<% elsif @from_pr == 2%>
+$("#pr2").val(val1);
+<%elsif @from_pr == 3%>
+$("#pr3").val(val1);
+<%elsif @from_pr == 4 %>
+$("#pr4").val(val1);
+<%end%>
+var val_total = parseFloat($('#pr_total').val());
+$('#pr_total').val((parseFloat(val_total) + parseFloat(val1)));
+

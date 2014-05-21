@@ -1045,6 +1045,7 @@ a.bot-arrow-prd{left:50% !important; margin-left:-15px !important;}
 	.sale-company-section h2{ margin-bottom:25px; padding-bottom:25px;}
 	.sale-company-section .view-prf-btn{ float:none !important;}
 	.sale-company-section label{ width:auto !important; margin:auto !important; float:none; display:inline; padding-right:20px;}
+	.fav-icon-slider{ right:30px;}
 	/*----------- style add 05/10/2014 ------------ */
 	
   .navbar-fixed-top,
@@ -1235,6 +1236,7 @@ a.bot-arrow-prd{left:50% !important; margin-left:-15px !important;}
 .prd-detail-rating{ width:95px !important;}
 .prd-detail-rating a img{ width:11px !important;}
 #new_address select {width: 100% !important;}
+.fav-icon-slider{ right:20px;}
 }
 
 
@@ -1553,6 +1555,7 @@ height:12px; background-position:0 -23px; left:inherit !important; right:-10px !
 .profile-detail .span6{ margin-top:20px; margin-left:0px; width:100% !important;}
 .top-menu a{ float:left; width:130px; margin-right:10px;}
 .sale-company-section label{padding-right:10px;}
+.fav-icon-slider {right: 46px;}
 }
 
 @media (max-width: 767px){

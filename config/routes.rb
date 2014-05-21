@@ -22,6 +22,7 @@ Hadean::Application.routes.draw do
   post 'get_property_product'=> 'products#get_property_product'
   get 'search/' => 'products#search'
   get 'oauth/redirect' => 'oauth#redirect', as: :oauth_redirect
+  get 'admin/merchandise/product_codes/update_price' => 'admin/merchandise/product_codes#update_price'
   resources :ratings, only: :update
   resources :image_groups
   resources :designers

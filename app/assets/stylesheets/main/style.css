@@ -529,7 +529,6 @@ a:hover.home-slider-right-arrow {background:url(/assets/main/home-slider-arrow-r
 
 #new_address select{ width:92.5%;}
 #new_user_session{ width:100%;}
-
 /*----------------- style for changes -------------------- */
 
 .search-top #q{ border:solid 1px #B8B8B8; border-radius:5px; padding:3px 0 5px 10px; width:114px; margin-right:14px;}
@@ -548,7 +547,17 @@ a:hover.home-slider-right-arrow {background:url(/assets/main/home-slider-arrow-r
 	}
 .search-top{ width:auto !important;}
 .my-prf-header .prd-detail-rating{ margin-left:28px;}
-
-
-
 .fav-icon-slider{ position: absolute; top: 10px; right: 10px;}
+
+
+
+
+
+.dress-code .sale-header h1 span{ padding-right:0px; border-bottom:solid 1px #2CC6C2;}
+.dress-code .sale-header h1 span:last-child{ color:#2CC6C2;}
+.dress-code .discount{ color:#2CC6C2;}
+.dress-code .sale-company-section{ text-align:center;}
+.dress-code .sale-company-section h2{ border-bottom:none; margin-bottom:0px; padding-bottom:16px;}
+.dress-code .sale-company-section label{ float:none; margin:auto; color:#999999;text-decoration:line-through;}
+.dress-code .sale-company-section label span{ color:#000; padding-left:14px; text-decoration:none;}
+.dress-code .view-prf-btn{ margin-top:22px;}
