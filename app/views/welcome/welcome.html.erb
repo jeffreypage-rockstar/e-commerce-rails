@@ -200,9 +200,9 @@
               <a class="buttons prev" href="#" data-slide="prev"></a>
                 <div class="viewport">
                   <ul class="overview">
-                    <%@discount_thirties.uniq.each do |variant_thirty|%>   
+                    <%@discount_twenties.uniq.each do |variant_twenty|%>   
                       <li>
-                        <%=render partial: "slide_product",locals: {product: variant_thirty.product,:variant=> variant_thirty}%>
+                        <%=render partial: "slide_product",locals: {product: variant_twenty.product,:variant=> variant_twenty}%>
                       </li>
                     <%end%>
                   </ul>
@@ -275,3 +275,9 @@
     </div>
   </div>
 </section>
+<script type="text/javascript">
+$(document).ready(function(){
+  // Removed slider mirrored class li's in sliders
+  $( ".mirrored" ).remove();
+})
+</script>
