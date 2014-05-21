@@ -1,28 +1,28 @@
 class Admin::StaticPagesController < Admin::BaseController
   def index
-  		authorize! :static_pages, current_user
-	  	if params[:state] == "1"
-	      @state = 0;
-	      sort = "ASC"
-	    else
-	      @state = 1;
-	      sort = "DESC"
-	    end
-	    scope = StaticPage.visible
-	    if params[:sorton]
-	      field = params[:sorton]
-	    else
-	      field = 'created_at'
-	    end
-	    
-	    keyword = filter_helper(params)
+	authorize! :static_pages, current_user
+  	if params[:state] == "1"
+      @state = 0;
+      sort = "ASC"
+    else
+      @state = 1;
+      sort = "DESC"
+    end
+    scope = StaticPage.visible
+    if params[:sorton]
+      field = params[:sorton]
+    else
+      field = 'created_at'
+    end
+    
+    keyword = filter_helper(params)
 
-	    order_by = "#{field} #{sort}"
-	    @static_pages = scope.paginate(:conditions => keyword, :order => order_by,:per_page=>pagination_rows,:page=>params[:page])
-	    @action = "index"
-	    @columns = [["StaticPage","title@string"],["Status","state@list"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
-	    @nodes = scope.select("title").map{|x| x.title[0] if x.title}.uniq
-	  end
+    order_by = "#{field} #{sort}"
+    @static_pages = scope.paginate(:conditions => keyword, :order => order_by,:per_page=>pagination_rows,:page=>params[:page])
+    @action = "index"
+    @columns = [["StaticPage","title@string"],["Status","state@list"],["Created At","created_at@date"],["Updated At","updated_at@date"]]    
+    @nodes = scope.select("eng_title").map{|x| x.eng_title[0] if x.eng_title}.uniq
+  end
 
 	  def new
 	  	@static_page = StaticPage.new
