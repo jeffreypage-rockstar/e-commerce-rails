@@ -2,7 +2,7 @@
 
 .slider-container{ width:100%; height:auto; position:relative;}
 .slider-container .super-hot-tab li a{ margin-top:-1px; padding-top:14px; margin-right:0px;}
-.slider-container .super-hot-tab li{ width:300px;}
+.slider-container .super-hot-tab li{ width:291px;}/*changed from 300 to 291 (20th may)*/
 .slider-container .slider-brd{ margin-top:24px;}
 .slider-container ul{ margin:0; position:relative; z-index:99;}
 .slider-container .slider1{ height:auto; margin:0 0 0 0; overflow:hidden; position: relative; padding: 78px 0 0 0; top:-38px;}
