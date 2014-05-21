@@ -1,3 +1,21 @@
+<%static_con = []%>
+<% static_con[0] = "<h1>Suspendisse potenti</h1>
+                          <p>Mauris tempus enim augue, ac feugiat sapien interdum quis. Etiam rhoncus sapien quam. </p>
+                          <p>In orci magna, semper ut neque vitae,  fringilla pulvinar eros.</p>
+                            <div class='row-fluid login-btn'>
+                            <input type='button' class='btn-commen-blue-inp sliderbtn-getapp' value='Get the App' name=''></div>"%>
+<% static_con[1] = "<h1>2014 New style.</h1>
+                    <p>Donec sagittis quis purus quis ultricies. Donec aliquet, nulla eget  aliquam tincidunt, eros neque commod interdum nibh lectus sed libero. Duis pretium commodo tempor, mauris risus ipsum. 
+                    Duis vel ullamcorper sem. </p>
+                            <div class='row-fluid login-btn'>
+                        <input type='button' class='btn-commen-blue-inp show-now' value='Shop now' name=''>
+                     </div>"%>
+<% static_con[2] = "<div class='year-div'>2014</div>
+                    <div class='sale'>SALE</div>
+                    <div class='superspring'>super spring sale </div>
+                    <div class='whitebrd-bg'></div>
+                    <div class='discount'>up to 50% off</div>
+                    <div class='allsale-item'>all sale items</div>"%>
 <div class="topslider">
   <div class="bs-example bs-example-home">
     <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
@@ -14,14 +32,8 @@
               <%=link_to image_tag(banner.image.url(:original),style: 'height:550px') , "#{banner.link.present? ? banner.link : '#'}"%>
             </div>
             <div class="container">
-              <div class="slider-content-container-2">
-                <div class="year-div">2014</div>
-                  <div class="sale">SALE</div>
-                  <div class="superspring">super spring sale </div>
-                  <div class="whitebrd-bg"></div>
-                  <div class="discount">up to 50% off</div>
-                  <div class="allsale-item">all sale items</div>
-                     
+              <div class="slider-content-container<%=index == 0 ? '' : "-#{index}" %>">
+                <%=static_con[index].html_safe%>
               </div>
             </div>
           </div>
