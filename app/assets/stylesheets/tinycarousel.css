@@ -1,4 +1,4 @@
-/*/* Tiny Carousel */
+/* Tiny Carousel */
 
 .slider-container{ width:100%; height:auto; position:relative;}
 .slider-container .super-hot-tab li a{ margin-top:-1px; padding-top:14px; margin-right:0px;}
@@ -63,4 +63,3 @@
 .slider-container .slider1 .overview li { height: 414px;width: 270px; margin-right:30px;}
 .slider-container .slider1 .viewport{ width:270px; margin:auto; height: 414px;}
 }
-*/

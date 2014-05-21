@@ -84,7 +84,7 @@
 								<%@static_pages.each do |sp|%>
 									<tr class="">
 										<td><%=sp.title%></td>
-										<td><%=sp.content.html_safe%></td>
+										<td><%=sp.content.html_safe if sp.content%></td>
 										<td class="text-center"><i class="icon-ok icon-center-<%= sp.active? ? 'check' : 'uncheck' %>"></i></td>
 										<td class="text-center">
 											<a href="<%=edit_admin_static_page_path(sp.id)%>"><i class="icon-edit icon-center-edit"></i></a>
