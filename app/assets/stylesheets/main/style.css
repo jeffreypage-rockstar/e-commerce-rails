@@ -552,7 +552,6 @@ a:hover.home-slider-right-arrow {background:url(/assets/main/home-slider-arrow-r
 
 
 
-
 .dress-code .sale-header h1 span{ padding-right:0px; border-bottom:solid 1px #2CC6C2;}
 .dress-code .sale-header h1 span:last-child{ color:#2CC6C2;}
 .dress-code .discount{ color:#2CC6C2;}
@@ -561,3 +560,46 @@ a:hover.home-slider-right-arrow {background:url(/assets/main/home-slider-arrow-r
 .dress-code .sale-company-section label{ float:none; margin:auto; color:#999999;text-decoration:line-through;}
 .dress-code .sale-company-section label span{ color:#000; padding-left:14px; text-decoration:none;}
 .dress-code .view-prf-btn{ margin-top:22px;}
+
+.fav-icon-slider{ position: absolute; top: 10px; right: 10px;}
+.carousel-inner{ min-height:247;max-height:550px;}
+
+/*----------------- style for home slider 20-5-2014-------------------- */
+/*.topslider{ min-height:auto !important}
+.bs-example-home{ position:relative;}
+.bs-example-home item{ position:relative; height:550px;}
+.carousel-inner{ min-height:247;max-height:550px;}
+.bs-example-home .carousel{ margin-bottom:0px;}
+.bs-example-home .slider-img-bg{ height:550px; width:100%;position:absolute; text-align:center;}
+.bs-example-home .slider-img-bg img{ height:550px;}
+.bs-example-home .carousel-control{ top:50%; margin-top:-11px;}
+.bs-example-home .carousel-control-left{ background:url(../img/home-slider-arrow-left.png) no-repeat; border:0px; width:22px; height:40px;}
+.bs-example-home .carousel-control-right{ background:url(../img/home-slider-arrow-right.png) no-repeat; border:0px; width:22px; height:40px;}
+.carousel-indicators{ bottom:16px; top:inherit !important; left:50%; margin-left:-31px !important;}
+.carousel-indicators li{ cursor:pointer; background:url(../img/inner-lsider-bulet.png) no-repeat; height:14px !important; width:14px !important; background-color:transparent;
+background-position:0 0; margin-left:14px !important;}
+.carousel-indicators .active{ background-position:-14px 0 !important; background-color:transparent !important;}
+
+.slider-content-container{ position:relative; z-index:999; width:480px; float:right; margin-right:50px; margin-top:136px; text-align:center;}
+.slider-content-container h1{ font-size:40px; text-transform:uppercase; margin-bottom:40px;}
+.slider-content-container p{ font-size:24px; color:#fff; line-height:26px;}
+.slider-content-container .login-btn input{ font-size:24px; text-transform:uppercase; font-weight:bold;}
+.sliderbtn-getapp{ width:300px !important; height:48px !important; border-radius:6px !important; margin-top:18px;}
+
+.slider-content-container-1{ position:relative; z-index:999; width:480px; float:left; margin-right:50px; margin-top:146px;}
+.slider-content-container-1 h1{ font-size:40px; text-transform:uppercase; margin-bottom:20px;}
+.slider-content-container-1 p{ font-size:18px; color:#fff; line-height:26px;}
+.slider-content-container-1 .login-btn input{ font-size:24px; text-transform:uppercase; font-weight:bold;}
+.show-now{ width:170px !important; height:48px !important; border-radius:4px !important; margin-top:18px;}
+
+.slider-content-container-2{ position:relative; z-index:999; width:430px;margin-top:146px; margin:auto auto; text-align:center; text-transform:uppercase;
+ color:#FFF; padding-top:68px;}
+.year-div{ border-bottom:solid 5px #fff; font-size:24px;font-weight:bold; letter-spacing:48px; padding-bottom:8px; text-indent:48px;}
+.slider-content-container-2 .sale{ font-size:200px; line-height:160px; font-weight:bold; margin:12px auto 24px auto;}
+.slider-content-container-2 .superspring{ font-size:40px; color:#444444; background:#FFF; padding:5px 0; font-family:Verdana, Geneva, sans-serif;}
+.slider-content-container-2 .whitebrd-bg{ width:70px; height:5px; background:#fff; margin:auto; margin-top:20px; margin-bottom:30px;}
+.slider-content-container-2 .discount{ font-size:42px; margin:10px auto 10px auto;}
+.slider-content-container-2 .allsale-item{ font-size:20px; float:left; width:100%; margin-top:12px;}
+.bs-example-home .carousel-control-right:hover{ background-position:0 -41px;}
+.bs-example-home .carousel-control-left:hover{ background-position:0 -41px;}*/
+

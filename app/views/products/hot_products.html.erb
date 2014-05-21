@@ -42,7 +42,7 @@
             <% if row == 0 %>
               <div class="prodct-row">                
             <%end%>
-            <%=render partial: "/welcome/slide_product",locals: {product: product,:variant=> nil}%>
+            <%=render partial: "product",locals: {product: product,:variant=> nil}%>
             <% row+=1 %>
             <% if row >= 4 || @products.last == product %>
               </div>

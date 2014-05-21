@@ -1,5 +1,5 @@
 <%if product.present? && product.variants.present?%>
-  <!-- <div class="span3 relative "> -->
+  <div class="span3 relative ">
     <div>    
       <%if product.variants.present? && product.variants[0].discount_percent.present? %> 
         <span class="discount-red">
@@ -66,29 +66,5 @@
         </p>
       <%end%>
     </div>
-
-    <%else%>
-     <div class="fav-icon-slider">
-      <%=link_to image_tag("/assets/main/fav-icon.png"),login_path%>
-     </div>
-    <%end%>
-    
-	 		<!--<img src="/assets/main/fav-icon.png" alt="" class="fav-icon" />--> 
-	 	
-  <div class="suphot-cont">
-    <%product.variants.each do |var|%>
-      <%if var.color.present? %><div class="rating-color" style="background-color:<%= var.color %>"></div><% end%>
-    <%end%>
-    <%if variant.present?%>
-      <p><a href="#"><%=variant.name%></a></p>
-      <p><%if variant.price_after_discount.present? %><span class="disable"><strike>$<%=variant.price%></strike></span><%end%><strong>$<%if variant.price_after_discount.present? %><%= variant.price_after_discount%><%else%><%= variant.price%><%end%></strong></p>
-    <%else%>
-      <p><a href="#"><%=product.name%></a></p>
-      <p><%if product.variants[0].price_after_discount.present? %><span class="disable"><strike>$<%=product.variants[0].price%></strike></span><%end%><strong>$<%if product.variants[0].price_after_discount.present? %><%=product.variants[0].price_after_discount%><%else%><%=product.variants[0].price%><%end%></strong></p>
-    <%end%>
-	</div>
-</div>
-
-  <!-- </div> -->
-
+  </div>
 <% end %>

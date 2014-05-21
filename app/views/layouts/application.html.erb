@@ -112,7 +112,8 @@
                 <%= form.password_field :password, :autocomplete => 'off', :autocapitalize => 'off',:placeholder=> "Password" %>
               </div>
               <div class="resister-field-right">
-                <input class="register" name="" type="button" value="Register">
+                <!-- <input class="register" name="" type="button" value="Register"> -->
+                <%=link_to '<input class="register" name="" type="button" value="Register">'.html_safe,"/login"%>
                 <%= form.submit "Login", :class => 'login' %>
               </div>
             <%end%>
