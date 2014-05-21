@@ -46,30 +46,30 @@
     <% if @categories.present? %>
       <% @categories.each_with_index do |category,i| %>
         <% products = get_products(category) %>
-          <div class="clear"></div>
-          <div class="slider-container">
-            <ul class='tabs super-hot-tab'>
-              <li><a href='#tab1'><%=category%></a></li>          
-            </ul>
+          <% if products.present? %>
             <div class="clear"></div>
-            <div id='tab1'>
-              <div id="slider<%=i+1%>" class="slider1">
-                <a class="buttons prev" href="#" data-slide="prev"></a>
-                  <div class="viewport">
-                    <% if products.present? %>
+            <div class="slider-container">
+              <ul class='tabs super-hot-tab'>
+                <li><a href='#tab1'><%=category%></a></li>          
+              </ul>
+              <div class="clear"></div>
+              <div id='tab1'>
+                <div id="slider<%=i+1%>" class="slider1">
+                  <a class="buttons prev" href="#" data-slide="prev"></a>
+                    <div class="viewport">                      
                       <ul class="overview">                        
                         <% products.each do |product|%>   
                           <li>
                             <%=render partial: "/welcome/slide_product",locals: {product: product,:variant=> nil}%>
                           </li>
-                        <%end%>
-                      </ul>
-                    <% end %>
-                  </div>
-                <a class="buttons next" href="#" data-slide="next"></a>
+                        <% end %>
+                      </ul>                    
+                    </div>
+                  <a class="buttons next" href="#" data-slide="next"></a>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
       <% end %>
     <% end %>
 
@@ -83,3 +83,9 @@
     </div>
   </div>
 </section>
+<script type="text/javascript">
+$(document).ready(function(){
+  // Removed slider mirrored class li's in sliders  
+  $( ".mirrored" ).remove();
+})
+</script>
