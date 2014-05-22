@@ -26,3 +26,27 @@ left:12px; top:-22px;}
 
 
 .red{color:red;}
+
+#infscr-loading{
+  text-align: center;
+  z-index: 100;
+  position: fixed;
+  left: 40%;
+  bottom: 40%;
+  width: 200px;
+  padding: 10px;
+  background: black;
+  filter: alpha(opacity=80);
+  opacity: 0.80;
+  -moz-opacity: 0.80;
+  color: white;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+#loadimg{
+  height: 46px;
+  width: 46px;
+}

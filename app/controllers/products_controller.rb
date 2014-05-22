@@ -102,8 +102,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.active.find_by_permalink(params[:id])
-    redirect_to :back and return false unless @product
+    @product = Product.active.find_by_permalink(params[:id])    
     @related_products = RelatedProduct.find_all_by_product_id(@product.id) if @product
     if current_user
       @rock_product = ProductRock.find_by_product_id_and_user_id(@product.id,current_user.id) if @product
@@ -137,6 +136,7 @@ class ProductsController < ApplicationController
       else
         @current_variant = @variant_properties.last.variant if @variant_properties.present?
       end
+      @current_variant = @product.active_variants[0] if (@product && @product.active_variants.present?) && !@current_variant.present?
       # *** end *** 
     else      
       if params[:variant_id] 
@@ -177,37 +177,8 @@ class ProductsController < ApplicationController
     #render :text => "Done" and return false
   end
 
-  def get_property_product        
-    #@q_string = []
-    @variant_properties = []
-    @multi_variant = []
-    params[:select_property].each do |k,v|
-      if v.present?
-        vp =VariantProperty.find_by_description(v)
-        if vp.present?
-          @variant_properties <<  vp
-        end
-      end
-    end
-    @variant_properties.each_with_index do |v,index|
-       if @variant_properties[index].present? &&  @variant_properties[index+1].present?
-          vp = VariantProperty.find_by_variant_id_and_description(@variant_properties[index].variant_id,@variant_properties[index+1].description)
-          if vp.present?
-            @multi_variant << vp
-          end
-       end
-    end if @variant_properties.size > 1
-
-    #@new_q_string = @q_string.join(" OR ")
-    # variant_property = VariantProperty.find_by_description_and_property_id(params[:variant_val],params[:property_id])
+  def get_property_product     
     show
-    if @multi_variant.size > 0
-      @current_variant = @multi_variant.last.variant if @variant_properties.present?
-    else
-      @current_variant = @variant_properties.last.variant if @variant_properties.present?
-    end
-    #render "products/show"    
-    #@current_variant = variant_property.variant
     respond_to do |format|
        format.js 
     end

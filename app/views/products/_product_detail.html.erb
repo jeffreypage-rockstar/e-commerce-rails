@@ -40,38 +40,37 @@
 </div>
 <div class="span6 prd-detail">  
   <h1>
-<%if current_user%>
-    <div id="fav_login">
-      <%if @rock_product.present?%>
+    <%if current_user%>
+      <div id="fav_login">
+        <%if @rock_product.present?%>
 
-        <%=link_to image_tag("/assets/main/fav-icon-blue.png")+"Unfavorite",rock_product_path(@product,:unrock=>true),:remote=>true,:class=>"add-fav",:id=>"fav_login" %>
-      <%else%>
-        <%=link_to image_tag("/assets/main/fav-icon-blue.png")+" Add to favorites",rock_product_path(@product),:remote=>true,:class=>"add-fav" ,:id=>"fav_login"%>
+          <%=link_to image_tag("/assets/main/fav-icon-blue.png")+"Unfavorite",rock_product_path(@product,:unrock=>true),:remote=>true,:class=>"add-fav",:id=>"fav_login" %>
+        <%else%>
+          <%=link_to image_tag("/assets/main/fav-icon-blue.png")+" Add to favorites",rock_product_path(@product),:remote=>true,:class=>"add-fav" ,:id=>"fav_login"%>
 
-      <%end%>
-    </div>
+        <%end%>
+      </div>
     <%else%>
       <%=link_to image_tag("/assets/main/fav-icon-blue.png")+" Add to favorites",login_path,:class=>"add-fav"%>
     <%end%>
-    <%= @product.name %></h1>
+    <%= @product.name %>
+  </h1>
   <div class="add-favted">
-
     <h3><img src="/assets/main/fav-icon-blue.png" alt="">
       <span id="fav">
         Favorited (<%=@product.product_rocks.size%>)</h3>
       </span> 
     <div class="favted-right"><span>5 review(s)</span> | <a href="#">Add Your Review</a></div>
-
   </div>
   <div class="prd-detail-cat">
     <label>
       Availability: 
       <span>
-        <%=@current_variant.inventory.count_on_hand.to_i%>
-        <% if @current_variant.inventory.count_on_hand.to_i <= 0 %>
+        <%= @current_variant.inventory.count_on_hand.to_i %>
+        <% if  @current_variant && @current_variant.inventory.count_on_hand.to_i <= 0 %>
           No Stock
-        <% elsif @current_variant.low_stock? %>
-          Low Stock(<%=@current_variant.inventory.count_on_hand%>)
+        <% elsif  @current_variant && @current_variant.low_stock? %>
+          Low Stock<!-- (<%#=@current_variant.inventory.count_on_hand%>) -->
         <% else %>
           In Stock
         <%end%>
@@ -85,22 +84,23 @@
         <% end %>
       </span>
     </label>
-    <label>Current Variant: <span><%=@current_variant.name%></span></label>  
+    <label>Current Variant: <span><%=@current_variant.name if @current_variant %></span></label>  
     <label>Product Code: <span>483512569</span></label>
     <label>Designer: <span><%= @product.user.to_s %></span></label>
     <label>Shipping: <span>$<%= @product.shipping_category.shipping_rates.select("min(rate) as shipping_rate , id ").first[:shipping_rate].to_f if @product.shipping_category.present? %></span></label>
   </div>
-  <div class="prd-detail-desc">
+  <!-- <div class="prd-detail-desc">
     <h4>Description:</h4>
-    <p><%= raw @product.description %></p>
-  </div>  
+    <p><%#= raw @product.description %></p>
+  </div>   -->
   <div class="prd-option">
-    <% params[:select_property] ||= {} %>    
-    <%= form_tag product_path(@product),:method=>:get ,:id=>"select_property_form",:style=>"float: left;" do%>
+    <% params[:select_property] ||= {} %>         
+    <%#= form_tag product_path(@product),:method=>:get ,:id=>"select_property_form",:style=>"float: left;" do%>
+    <%=form_tag ("/get_property_product") ,:id=>"select_property_form",:style=>"float: left;",:remote=> true do%>
       <% @current_variant.properties.each_with_index do |pro,index| %>
-        <%#= hidden_field_tag "id",@product %>
+        <%= hidden_field_tag "id",@product.permalink %>
         <% property_valriants = get_properties_values(pro.variant_properties) %>             
-        <%= select_tag "select_property[#{pro.id}]",options_for_select([["#{pro.display_name}",""]]+property_valriants,params[:select_property]["#{pro.id}"]),:class=>"#{index==0 ? 'width-160-select' : ''}",:class=>"product_variant",:onchange=>"$('#select_property_form').submit();" if property_valriants.present? && property_valriants.is_a?(Array) %>            
+        <%= select_tag "select_property[#{pro.id}]",options_for_select([["#{pro.display_name}",""]]+property_valriants,:selected=>params[:select_property]["#{pro.id}"].to_s),:class=>"#{index==0 ? 'width-160-select' : ''}",:class=>"product_variant",:onchange=>"$('#select_property_form').submit();" if property_valriants.present? && property_valriants.is_a?(Array) %>            
       <% end %>    
     <% end %>
     <%= form_for  @cart_item,:url  => shopping_cart_items_path(@cart_item),:html => { :id => '', :class => '' } do |f| %>
@@ -112,8 +112,7 @@
       <span><%= number_to_currency @current_variant.price %></span>
        <% if @current_variant.present? %>
           <%= f.submit 'Add to Bag', :class => 'btn-bag small button',:id=>"add_to_bag" %>
-      <% end %>
-      <!-- <a href="#" class="btn-bag">Add to Bag</a>  -->
+      <% end %>      
     </div>
   <% end %>
   <div class="prd-share">
@@ -122,9 +121,9 @@
     <div class="share-div"><%= image_tag("/assets/share-img.gif") %></div>
   </div>
 </div>
- 
 <script type="text/javascript">
-    $(document).ready(function () {      
+
+    $(document).ready(function () {         
       
       //jCarousel Plugin
       $('#carousel').jcarousel({
@@ -196,7 +195,5 @@
         $( this ).addClass( "done" );
       });
 
-    }
-    
-  </script>
-
+    }    
+</script>  
