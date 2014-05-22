@@ -46,9 +46,9 @@
               <div class="span2 comment-hd-text">Comments (<%=@comments.size%>)</div>
                 <div class="span6 blank-border-bot">&nbsp;</div>
             </div>
-            <%@comments.each do |comment|%>
+            <%@comments.each_with_index do |comment,i|%>
 
-              <div class="comment-row1">
+              <div class="comment-row<%=(i+1)%3%>">
                 <div class="comment-thumb">
                   <div class="thumb-img"><a href="#">
 
