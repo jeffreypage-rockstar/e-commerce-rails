@@ -14,18 +14,18 @@
 
      <!-- <div id="myCarousel" class="topslider carousel slide">
         <ol class="carousel-indicators">
-          <%@banners.each_with_index do |banner,index|%>
-            <li data-target="#myCarousel" data-slide-to="<%=index%>" class="<%=index == 0 ? 'active' : '' %>"></li>
-          <%end%>
+          <%#@banners.each_with_index do |banner,index|%>
+            <li data-target="#myCarousel" data-slide-to="<%#=index%>" class="<%#=index == 0 ? 'active' : '' %>"></li>
+          <%#end%>
         </ol>
        
         <div class="carousel-inner">
-          <%@banners.each_with_index do |banner,index|%>
-            <div id="<%=index%>" class="<%=index == 0 ? 'active' : '' %> item">
-              <%=link_to image_tag(banner.image.url(:original),style: 'height:550px') , "#{banner.link.present? ? banner.link : '#'}"%>
+          <%#@banners.each_with_index do |banner,index|%>
+            <div id="<%#=index%>" class="<%#=index == 0 ? 'active' : '' %> item">
+              <%#=link_to image_tag(banner.image.url(:original),style: 'height:550px') , "#{banner.link.present? ? banner.link : '#'}"%>
 
             </div>
-          <%end%>
+          <%#end%>
          
         </div>-->
       <%#=render partial: "/layouts/hot_slider"%>

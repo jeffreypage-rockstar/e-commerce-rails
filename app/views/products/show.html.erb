@@ -99,7 +99,7 @@
       <div class="row-fluid">
         <%@related_products.each do |related_product|%>   
           <% product = related_product.product %>
-          <%=render partial: "/welcome/slide_product",locals: {product: product,:variant=> nil}%>
+          <%=render partial: "product",locals: {product: product,:variant=> nil}%>
         <%end%>
       </div>  
     <%end%>
@@ -113,7 +113,7 @@
       <div class="row-fluid">
         <%@related_products.each do |related_product|%>   
           <% product = related_product.product %>
-          <%=render partial: "/welcome/slide_product",locals: {product: product,:variant=> nil}%>
+          <%=render partial: "product",locals: {product: product,:variant=> nil}%>
         <%end%>
       </div>  
     <%end%>

@@ -1,46 +1,51 @@
-
-<div class="topslider"  ><!-- style="width:1950px;margin-right: auto;margin-left: auto;float:none;"> -->
-      <div id="myCarousel" class="topslider carousel slide">
-        <ol class="carousel-indicators">
-          <%@banners.each_with_index do |banner,index|%>
-            <li data-target="#myCarousel" data-slide-to="<%=index%>" class="<%=index == 0 ? 'active' : '' %>"></li>
-          <%end%>
-        </ol>
-        <!-- Carousel items -->
-        <div class="carousel-inner">
-          <%@banners.each_with_index do |banner,index|%>
-            <div id="<%=index%>" class="<%=index == 0 ? 'active' : '' %> item">
+<%static_con = []%>
+<% static_con[0] = "<h1>Suspendisse potenti</h1>
+                          <p>Mauris tempus enim augue, ac feugiat sapien interdum quis. Etiam rhoncus sapien quam. </p>
+                          <p>In orci magna, semper ut neque vitae,  fringilla pulvinar eros.</p>
+                            <div class='row-fluid login-btn'>
+                            <input type='button' class='btn-commen-blue-inp sliderbtn-getapp' value='Get the App' name=''></div>"%>
+<% static_con[1] = "<h1>2014 New style.</h1>
+                    <p>Donec sagittis quis purus quis ultricies. Donec aliquet, nulla eget  aliquam tincidunt, eros neque commod interdum nibh lectus sed libero. Duis pretium commodo tempor, mauris risus ipsum. 
+                    Duis vel ullamcorper sem. </p>
+                            <div class='row-fluid login-btn'>
+                        <input type='button' class='btn-commen-blue-inp show-now' value='Shop now' name=''>
+                     </div>"%>
+<% static_con[2] = "<div class='year-div'>2014</div>
+                    <div class='sale'>SALE</div>
+                    <div class='superspring'>super spring sale </div>
+                    <div class='whitebrd-bg'></div>
+                    <div class='discount'>up to 50% off</div>
+                    <div class='allsale-item'>all sale items</div>"%>
+<div class="topslider">
+  <div class="bs-example bs-example-home">
+    <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <%@banners.each_with_index do |banner,index|%>
+          <li data-target="#myCarousel" data-slide-to="<%=index%>" class="<%=index == 0 ? 'active' : '' %>"></li>
+        <%end%>
+      </ol>
+      <!-- Carousel items -->
+      <div class="carousel-inner">
+        <%@banners.each_with_index do |banner,index|%>
+          <div id="<%=index%>" class="<%=index == 0 ? 'active' : '' %> item">
+            <div class="slider-img-bg">
               <%=link_to image_tag(banner.image.url(:original),style: 'height:550px') , "#{banner.link.present? ? banner.link : '#'}"%>
-              <!--<div class="carousel-caption">
-                 <h2><%#=banner.title%></h2>
-                <p><%#=banner.description%></p>
-                <a href="<%#=banner.link%>">Shop now</a> <a href="/login">Login</a>  
-              </div>-->
             </div>
-          <%end%>
-          <!-- <div class="active item">
-            <div class="pull-right"><img src="/assets/main/sleder-img1.png" alt=""></div>
-            <div class="span6 pull-left carousel-caption">
-              <h2>2014 New style.</h2>
-              <p>Donec sagittis quis purus quis ultricies. Donec aliquet, nulla eget 
-                aliquam tincidunt, eros neque commod interdum nibh lectus sed libero. Duis pretium commodo tempor, mauris risus ipsum. 
-                Duis vel ullamcorper sem.</p>
-              <a href="#">Shop now</a> <a href="#">Shop now</a> 
+            <div class="container">
+              <div class="slider-content-container<%=index == 0 ? '' : "-#{index}" %>">
+                <%=static_con[index].html_safe%>
+              </div>
             </div>
           </div>
-          <div class="item">
-            <img src="/assets/main/sleder-img1.png" alt="">
-          </div>
-          <div class="item">
-            <img src="/assets/main/sleder-img1.png" alt="">
-          </div> -->
-        </div>
-        <!-- Carousel nav --> 
-        <div style="text-align:center;">
-          <div style="width:1300px;margin-left:auto;margin-right:auto">
-            <a class="carousel-control home-slider-left-arrow left" href="#myCarousel" data-slide="prev">&lsaquo;</a> 
-            <a class="carousel-control home-slider-right-arrow right" href="#myCarousel" data-slide="next">&rsaquo;</a> 
-          </div>
-        </div>
+        <%end%>
       </div>
-    </div>
+      <!-- Carousel nav --> 
+      <a class="carousel-control carousel-control-left left" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="carousel-control carousel-control-right right" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+    </div>  
+  </div>
+</div>
