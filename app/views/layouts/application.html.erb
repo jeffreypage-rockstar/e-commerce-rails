@@ -20,6 +20,15 @@
     $(document).ready(function() {    
       $('#flash').fadeOut(5000);
     });
+
+    $(document).on({
+      ajaxStart: function() {        
+        $("#infscr-loading").css("display","block")
+      },
+      ajaxStop: function() {
+        $("#infscr-loading").css("display","none")
+      }
+    });
   </script>  
 </head>
 <body>
@@ -28,6 +37,10 @@
   <header>
     <div class="row-fluid top-login">
       <div class="container">
+          <div id="infscr-loading" style="display:none;" >
+            <%=image_tag "/assets/ajax-loading.gif",:alt=>"Loading...",:id=>"loadimg"%>
+            <div><em>Loading.....</em></div>
+          </div>
           
           <% unless current_user %>
             <div class="span6 pull-left ">
