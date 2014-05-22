@@ -103,7 +103,7 @@
         <%= select_tag "select_property[#{pro.id}]",options_for_select([["#{pro.display_name}",""]]+property_valriants,params[:select_property]["#{pro.id}"]),:class=>"#{index==0 ? 'width-160-select' : ''}",:class=>"product_variant",:onchange=>"$('#select_property_form').submit();" if property_valriants.present? && property_valriants.is_a?(Array) %>            
       <% end %>    
     <% end %>
-    <%= form_for  @cart_item,:url  => shopping_cart_items_path(@cart_item),:html => { :id => '', :class => '' } do |f| %>
+    <%= form_for  @cart_item,:url  => shopping_cart_items_path(@cart_item),:html => { :id => 'add_to_cart_bag', :class => '' } do |f| %>
       <% left_quantity = @current_variant.inventory.present? ? @current_variant.inventory.count_on_hand.to_i : 0 %>
       <%= select_tag "cart_item[quantity]",options_for_select([["Quantity",""]]+(1..left_quantity).to_a),:class=>"right" %>    
       <%= f.hidden_field :variant_id %>
