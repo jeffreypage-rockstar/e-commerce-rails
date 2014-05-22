@@ -212,62 +212,32 @@
           </div>
         <div class="row-fluid slider-brd"><a href="#"><img src="/assets/main/slider-line.gif" alt="" /></a> </div>
       </div>
-       <div class="row blog-slider-space">
+      <div class="row blog-slider-space">
         <div class="span6">
           <div class="blog-slider">
-            <div class="pre-next"> 
-              <a href="#MyBlogs" data-slide="prev" class="pre">Pre</a> 
-              <a href="#MyBlogs" class="next" data-slide="next">Next</a> 
-            </div>
-            <h1>From The Blog</h1>
-            <div id="MyBlogs"class="carousel slide">
-              <div class="carousel-inner">
-                <%@latest_blogs.each_with_index do |blog,index|%>
-                  <div class="<% if index == 0 %>active<%end%> item" id="<%=index%>">  
-                    <div class="row slider-cont ">
-                      <div class="span3 relative"><%=link_to image_tag(blog.image.url),blog_path(blog)%>
-                       <%if blog.video_url.present?%>
-                        <a href="#"><img src="/assets/main/play-icon.png" alt="" class="play-icon"> </a>
-                       <%end%>
-                      </div>
-                      <div class="span3 blog-img-detail">
-                        <h2><%=blog.title%></h2>
-                        <h3><a href="<%=blogs_path(blog_category_id: blog)%>"><%=blog.blog_category.name%></a></h3>
-                        <p><%=truncate(strip_tags(blog.description), length: 250)%></p>
-                        <a href="<%=blog_path(blog)%>" class="read-more">Read more &rsaquo;</a> </div>
-                    </div>
-                  </div>
-                <%end%>
-              </div>
+            <div class="pre-next"> <a class="pre" href="#">Pre</a> <a class="next" href="#">Next</a> </div>
+            <h1>The Buzz</h1>
+            <div class="row slider-cont">
+              <div class="span3 relative"><img src="assets/img/auskar-vieo.jpg" alt=""> <a href="#"><img src="assets/img/play-icon.png" alt="" class="play-icon"> </a></div>
+              <div class="span3 blog-img-detail">
+                <h2>Oscar 2014</h2>
+                <h3><a href="#">oscar Red Carpet</a></h3>
+                <p>Sed a mattis dolor. Aliquam condimentum, ipsum in sodales malesuada, sapien lacus pretium elit, in ultricies lacus orci vel tortor. Suspendisse porta volutpat risus,  scelque nisi pharetra quis. Maecenas velit dolor, varius eu sem et, eleifend porta nisl. </p>
+                <a href="#" class="read-more">Read more &rsaquo;</a> </div>
             </div>
           </div>
         </div>
         <div class="span6">
           <div class="blog-slider">
-            <div class="pre-next"> 
-              <a href="#MyFeaturedDesingers" data-slide="prev" class="pre">Pre</a> 
-              <a href="#MyFeaturedDesingers" class="next" data-slide="next">Next</a> 
-            </div>
-            <h1>Featured Designers</h1>
-            <div id="MyFeaturedDesingers"class="carousel slide">
-              <div class="carousel-inner">
-                <%@featured_designers.each_with_index do |designer,index|%>
-                  <div class="<% if index == 0 %>active<%end%> item" id="<%=index%>">  
-                    <div class="row slider-cont">
-                      <%if designer.present? && designer.images.present?%>
-                        <%if  designer.images[0].photo.present?%>
-                        <div class="span3"><%=image_tag(designer.images[0].photo.url)%></div>
-                        <div class="span3 blog-img-detail">
-                          <h2><%=designer.name%></h2>
-                          <h3><a href="#"><%=designer.first_name%> <%=designer.last_name%></a></h3>
-                          <p>Sed a mattis dolor. Aliquam condimentum, ipsum in sodales malesuada, sapien lacus pretium elit, in ultricies lacus orci vel tortor. Suspendisse porta volutpat risus,  scelque nisi pharetra quis. Maecenas velit dolor, varius eu sem et, eleifend porta nisl. </p>
-                          <a href="#" class="read-more">Read more &rsaquo;</a> </div>
-                        <%end%>
-                        <%end%>
-                    </div>
-                  </div>
-                <%end%>
-              </div>
+            <div class="pre-next"> <a class="pre" href="#">Pre</a> <a class="next" href="#">Next</a> </div>
+            <h1>Spring &amp; Summer  Trends</h1>
+            <div class="row slider-cont">
+              <div class="span3"><img src="assets/img/spring-img.jpg" alt=""></div>
+              <div class="span3 blog-img-detail">
+                <h2>Rick &amp; Ro of Burn Rubber</h2>
+                <h3><a href="#">the down low</a></h3>
+                <p>Sed a mattis dolor. Aliquam condimentum, ipsum in sodales malesuada, sapien lacus pretium elit, in ultricies lacus orci vel tortor. Suspendisse porta volutpat risus,  scelque nisi pharetra quis. Maecenas velit dolor, varius eu sem et, eleifend porta nisl. </p>
+                <a href="#" class="read-more">Read more &rsaquo;</a> </div>
             </div>
           </div>
         </div>
@@ -281,3 +251,7 @@ $(document).ready(function(){
   $( ".mirrored" ).remove();
 })
 </script>
+<style>
+  .span3 img{height: 200px;width: 270px;}
+  .play-icon {height: 50px !important;width: 50px !important;}
+</style>
