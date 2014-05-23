@@ -27,6 +27,7 @@ class Variant < ActiveRecord::Base
   translates :name
   has_many :variant_suppliers
   has_many :suppliers,         :through => :variant_suppliers
+  has_many :product_code_products
 
   has_many :variant_properties
   has_many :properties,          :through => :variant_properties

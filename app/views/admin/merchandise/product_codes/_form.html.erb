@@ -19,7 +19,7 @@
   <label>Discount</label>
   <fieldset>
     
-    <%= form.text_field :discount %>
+    <%= form.text_field :discount, :onblur =>'call2(this.value,$("#select_product1").val(),$("#select_product2").val(),$("#select_product3").val(),$("#select_product4").val())' %>
     
   </fieldset>
   </div>
@@ -29,7 +29,8 @@
   <label>Select Product1</label>
   <fieldset>
   <%= select_tag :select_product1,
-                     options_from_collection_for_select(@products,:id, :name) , {prompt: 'Select Product'}%>
+                     options_for_select(@variants.collect{|c| [c.product.name + "-" +c.name, c.id]}) , {prompt: 'Select Product', :onchange => 'call1(this.value,1,$("#product_code_discount").val(),$("#select_product2").val(),$("#select_product3").val(),$("#select_product4").val())'} %>
+  <%= hidden_field_tag :pr1, 0.0 %>
 
   </fieldset>
   </div>
@@ -38,7 +39,8 @@
   <label>Select Product2</label>
   <fieldset>
   <%= select_tag :select_product2,
-                     options_from_collection_for_select(@products,:id, :name) , {prompt: 'Select Product'}%>
+                     options_for_select(@variants.collect{|c| [c.product.name + "-" +c.name, c.id]}) , {prompt: 'Select Product', :onchange => 'call1(this.value,2,$("#product_code_discount").val(),$("#select_product1").val(),$("#select_product3").val(),$("#select_product4").val())'}%>
+  <%= hidden_field_tag :pr2, 0.0 %>
 
   </fieldset>
   </div>
@@ -47,7 +49,8 @@
   <label>Select Product3</label>
   <fieldset>
   <%= select_tag :select_product3,
-                     options_from_collection_for_select(@products,:id, :name) , {prompt: 'Select Product'}%>
+                     options_for_select(@variants.collect{|c| [c.product.name + "-" +c.name, c.id]}) , {prompt: 'Select Product', :onchange => 'call1(this.value,3,$("#product_code_discount").val(),$("#select_product1").val(),$("#select_product2").val(),$("#select_product4").val())'}%>
+  <%= hidden_field_tag :pr3, 0.0 %>
 
   </fieldset>
   </div>
@@ -56,11 +59,54 @@
   <label>Select Product4</label>
   <fieldset>
   <%= select_tag :select_product4,
-                     options_from_collection_for_select(@products,:id, :name) , {prompt: 'Select Product'}%>
+                     options_for_select(@variants.collect{|c| [c.product.name + "-" +c.name, c.id]}), {prompt: 'Select Product', :onchange => 'call1(this.value,4,$("#product_code_discount").val(),$("#select_product1").val(),$("#select_product2").val(),$("#select_product3").val())'}%>
+  <%= hidden_field_tag :pr4, 0.0 %>
 
   </fieldset>
   </div>
+
+
+    <div class="six columns">
+  <fieldset>
+    <label>Price before discount</label>
+    <%= hidden_field_tag :pr_total_before, 0.0 %>
+     <label id="pbd"></label>   
+    <label>Price after discount</label>
+
+    
+      <%= hidden_field_tag :pr_total, 0.0 %>
+        <label id="pad"></lable>
+  </fieldset>
+  </div>
+  
+
 </fieldset>
 <div class=" generic_submit_button">
   <%= submit_tag button_action, class: "button", id: "create_product_code_button" %>
+  <%= link_to "Cancel", admin_merchandise_product_codes_path, :class => 'button' , :style=> "padding:14px;"%>
 </div>
+
+<script>
+function call1(val1,from_pr,discount,val11,val12,val13)
+{
+$.ajax({
+type: "GET",
+url: "update_price",
+data: { change_to: val1, from_pr:from_pr, discount:discount,one:val11,two:val12,three:val13 }
+})
+.done(function( msg ) {
+
+});
+}
+function call2(discount,select1_val,select2_val,select3_val,select4_val)
+{
+$.ajax({
+type: "GET",
+url: "update_price_discount",
+data: { discount:discount,select1_val:select1_val,select2_val:select2_val,select3_val:select3_val,select4_val:select4_val }
+})
+.done(function( msg ) {
+
+});
+}
+</script>

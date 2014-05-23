@@ -4605,7 +4605,7 @@ input[type="submit"].btn.btn-mini {
 .navbar .nav > .active > a:focus {
   color: #2cc6c2;
   text-decoration: none;
-  border-top:1px solid #2cc5c1;
+  border-top:1px solid #eeeeee;
 }
 
 .navbar .btn-navbar {

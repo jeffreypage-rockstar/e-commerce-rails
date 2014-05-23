@@ -35,7 +35,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
 
   def show
     @product = Product.find(params[:id])
-    respond_with(@product)
+    respond_with(@product) 
   end
 
   def new
