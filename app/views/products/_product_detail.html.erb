@@ -103,7 +103,7 @@
         <%= select_tag "select_property[#{pro.id}]",options_for_select([["#{pro.display_name}",""]]+property_valriants,:selected=>params[:select_property]["#{pro.id}"].to_s),:class=>"#{index==0 ? 'width-160-select' : ''}",:class=>"product_variant",:onchange=>"$('#select_property_form').submit();" if property_valriants.present? && property_valriants.is_a?(Array) %>            
       <% end %>    
     <% end %>
-    <%= form_for  @cart_item,:url  => shopping_cart_items_path(@cart_item),:html => { :id => '', :class => '' } do |f| %>
+    <%= form_for  @cart_item,:url  => shopping_cart_items_path(@cart_item),:html => { :id => 'add_to_cart_bag', :class => '',:onsubmit=>"return call_validate()" } do |f| %>
       <% left_quantity = @current_variant.inventory.present? ? @current_variant.inventory.count_on_hand.to_i : 0 %>
       <%= select_tag "cart_item[quantity]",options_for_select([["Quantity",""]]+(1..left_quantity).to_a),:class=>"right" %>    
       <%= f.hidden_field :variant_id %>
@@ -196,4 +196,30 @@
       });
 
     }    
+    function call_validate()
+    {
+      check_val = 0
+      validate_msg = ""
+      $('.product_variant').each(function(){
+        if($(this).val() == "")
+        {
+          check_val+=1;
+          validate_msg += $('option',this).first().text()+','
+        }         
+      })
+      if($('#cart_item_quantity').val()==''||$('#cart_item_quantity').val() <= 0)
+      {
+        check_val+=1;
+          validate_msg += 'Quantity ,'
+      }
+      if (check_val == 0)
+      {
+        $('#add_to_cart_bag').submit()
+      }
+      else
+      {
+        alert("please select "+validate_msg.substring(0,validate_msg.length-1))
+        return false
+      }
+    }
 </script>  
