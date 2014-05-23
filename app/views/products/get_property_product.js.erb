@@ -1,4 +1,1 @@
 $('#product_detail_box').html("<%= escape_javascript(render partial: '/products/product_detail') %>");
-<% params[:select_property].each do |k,v| %>
-	$("#select_property_<%=k%>").val('<%=v[0]%>');
-<% end %>

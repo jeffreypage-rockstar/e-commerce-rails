@@ -54,9 +54,8 @@
                 </tr>
                 <%end%>
               </table>
-              <div style='clear:both'></div>
-              
-                <ul class='ten large-10 side-nav '>
+              <div style='clear:both'></div>              
+                <ul class='ten large-10 side-nav '>                 
                 <% items.first.shipping_rate_options(session_order.sub_total).each do |rate| %>
                   <li><%= radio_button_tag "shipping_category[#{shipping_category_id}]", rate.id %> <%= rate.name_rate_min %></li>
                 <% end %>

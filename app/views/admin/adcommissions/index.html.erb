@@ -71,7 +71,7 @@
                                 		<div class="dataTables_paginate paging_bootstrap digg_pagination">
                                 			<%= will_paginate @variants, :previous_label => "<", :next_label => ">", :container => false %>
                                 		</div>
-                                		<label class="showing-records"><%= page_entries_info @variants %></label>
+                                		<label class="showing-records"><%= page_entries_info @variants if @variants.present? %></label>
                             		</div>
                         		</div>
                         	</div>

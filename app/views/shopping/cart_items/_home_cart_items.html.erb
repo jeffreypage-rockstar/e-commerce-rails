@@ -7,15 +7,28 @@
         <%  item.variant.brand_name.blank? ? '' : ['-', item.variant.brand_name].join(' ') %><br/>
         <% item.variant.display_stock_status('', '') %>
         <% number_to_currency item.price %>
-        <% total_price += item.price%>
+        <% total_price += (item.price*item.quantity)%>
         <%= cart_items_form.hidden_field :quantity, :size=>"2" %>
       <% end %>
     <% end %>
   <%end%>
-  <div class="span4 pull-right shp-bag" id="home_cart">
-    <div class="bag-hd">
-      <h4><img src="/assets/main/bag-icon.gif" alt=""> Shopping Bag</h4>
-      <a href="javascript:void(0);" class="close-icon" onclick="$('#home_cart').slideUp()"></a>
+  <%if session_cart.present? && session_cart.shopping_cart_items.present? && params[:controller] != "shopping/cart_items" && params[:action] != "index" %>
+    <div class="span4 pull-right shp-bag" id="home_cart">
+      <div class="bag-hd">
+        <h4><img src="/assets/main/bag-icon.gif" alt=""> Shopping Bag</h4>
+        <a href="javascript:void(0);" class="close-icon" onclick="$('#home_cart').slideUp()"></a>
+      </div>
+      <ul>
+        <li class="item-bag">
+          <label><%if @cart_items.present?%><%=@cart_items.size%><%else%>0<%end%> Items:</label>
+          <label>$<%=total_price%></label>
+          <a href="/shopping/cart_items" class="view-bag">View Bag</a> </li>
+        <li class="total-bag">
+          <label>Total:</label>
+          <label>$<%=total_price%></label>
+          <%= cart_form.submit 'Check Out', {:checkout => 1, :class => 'small button success checkout'} %>
+          </li>
+      </ul>
     </div>
     <ul>
       <li class="item-bag">
@@ -28,5 +41,5 @@
         <%= cart_form.submit 'Check Out', {:checkout => 1, :class => 'small button success checkout'} %>
         </li>
     </ul>
-</div>
+  </div>
 <%end%>

@@ -1,7 +1,7 @@
 class Shopping::CartItemsController < Shopping::BaseController
 
   # GET /shopping/cart_items
-  def index
+  def index    
     @cart_items       = session_cart.shopping_cart_items
     @saved_cart_items = session_cart.saved_cart_items
     @news = News.where('state = ?',true)

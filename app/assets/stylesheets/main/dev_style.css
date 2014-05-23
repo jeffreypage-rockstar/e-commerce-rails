@@ -57,7 +57,7 @@
 .remove-background span{background-image: url(/assets/main/down-arrow.png) no-repeat;}
 .dropdown-toggle i {margin-left: 20px;}
 
-.checkout-option #new_address select {font-size:16px; color:#bebebe; height:36px; margin-bottom:13px;margin-left: 0px; border-radius:4px;}
+.checkout-option #new_address select, #edit_address_6 select{font-size:16px; color:#bebebe; height:36px; margin-bottom:13px;margin-left: 0px; border-radius:4px;}
 
 input[type="submit"].btn-commen-blue-inp {background:#2cc6c2; color:#fff; font-size:16px; height:36px; text-align:center; border:none; border-radius:2px;}
 input[type="submit"].btn-commen-blue-inp:hover {background:#1cb1ad;}

@@ -82,7 +82,7 @@ EXAMPLE USAGE!!
 
   def get_properties_values(property_variants)
     if property_variants.present?
-      property_variants =  property_variants.map { |e| [e.description] }
+      property_variants =  property_variants.map { |e| e.description if e.description.present? }.compact.uniq
       return property_variants.present? ? property_variants.uniq : nil
     else
       return nil

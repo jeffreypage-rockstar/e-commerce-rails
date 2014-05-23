@@ -26,7 +26,7 @@
       </div>
 
       <div class="row">
-        <div class="span3 paging-show"><%= page_entries_info @products %></div>
+        <div class="span3 paging-show"><%= page_entries_info(@products) if @products.present? %></div>
         <!--Paging Section Starts here-->
         <div class="pagination pagination-right pagination_dev">
             <%= will_paginate @products, :previous_label => "<", :next_label => ">", :container => false %>

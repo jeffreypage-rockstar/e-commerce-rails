@@ -121,6 +121,7 @@ a:hover.read-more {color:#2cc6c2;}
 a.btn-get-app {background:#fff; border-radius:6px; width:300px; display:inline-block; text-align:center; color:#2cc5c1; font-size:24px; height:50px; line-height:50px; text-transform:uppercase; font-weight:700; margin:50px 0 0 0;}
 a:hover.btn-get-app {background:#f3f3f3;}
 .footer-main {background:#2a2a2a; padding:54px 0 0 0;}
+.footer-main .container .row{ margin-left:0px;}
 .footer-inner-cont {padding-bottom:50px;}
 .footer-inner-cont h2 {background:url(/assets/main/footer-hd-line.gif) no-repeat bottom left; color:#ccc; font-size:20px; font-weight:700; text-transform:uppercase; padding-bottom:13px; margin-bottom:27px}
 .footer-inner-cont h3 {font-size:16px; color:#bbbbbb; font-weight:normal; margin-bottom:24px;}
@@ -429,7 +430,8 @@ a:hover.slider-inner-right-arrow {background-position:0 -41px;}
 .slider-bulet-inner a{background:url(../assets/img/inner-lsider-bulet.png) no-repeat 0 0; width:14px; height:14px; display:inline-block; margin:0 8px 0 0;}
 .slider-bulet-inner a:hover {background-position:-14px 0px;}
 
-.sale-listing {padding:60px 0 0 0;}
+.sale-listing {padding:60px 0 0 30px;}
+.sale-listing .paging-show {padding-top:20px;}
 .sale-header {margin-bottom:50px;}
 .sale-header h1 {font-size:30px; color:#444444; text-transform:uppercase; background:url(/assets/main/nav-line.gif) repeat-x bottom left; padding:0 0 6px 0;}
 .sale-header h1 span{border-bottom:1px solid #444; padding:0 10px 5px 0;}
@@ -556,7 +558,7 @@ a:hover.home-slider-right-arrow {background:url(/assets/main/home-slider-arrow-r
 .final-order thead th:last-child{width:15px;}
 .final-order tbody td:last-child{ width:15px;}*/
 
-#new_address select{ width:92.5%;}
+#new_address select, #edit_address_6 select{ width:92.5%;}
 #new_user_session{ width:100%;}
 
 /*----------------- style for changes -------------------- */
@@ -622,3 +624,7 @@ background-position:0 0; margin-left:14px !important;float:left;}
 .slider-content-container-2 .allsale-item{ font-size:20px; float:left; width:100%; margin-top:12px;}
 .bs-example-home .carousel-control-right:hover{ background-position:0 -41px;}
 .bs-example-home .carousel-control-left:hover{ background-position:0 -41px;}
+
+
+.top-login .pull-left{ margin-left:0px !important;}
+.top-login .top-menu{ margin-left:0px !important;}

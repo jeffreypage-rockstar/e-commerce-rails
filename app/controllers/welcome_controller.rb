@@ -39,6 +39,7 @@ class WelcomeController < ApplicationController
     @role = Role.find_by_name("designer")
     @featured_designers = @role.users.where(["featrued = ?",true]).limit(4)
     #@featured_designers =[]
+    
   end
 
   def change_lang    

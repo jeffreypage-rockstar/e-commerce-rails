@@ -1,0 +1,32 @@
+
+<% if @from_pr == 1%>
+$("#pr1").val(<%=@val%>);
+$("#pr2").val(<%=@val1%>);
+$("#pr3").val(<%=@val2%>);
+$("#pr4").val(<%=@val3%>);
+<% elsif @from_pr == 2%>
+$("#pr1").val(<%=@val1%>);
+$("#pr2").val(<%=@val%>);
+$("#pr3").val(<%=@val2%>);
+$("#pr4").val(<%=@val3%>);
+<%elsif @from_pr == 3%>
+$("#pr1").val(<%=@val1%>);
+$("#pr2").val(<%=@val2%>);
+$("#pr3").val(<%=@val%>);
+$("#pr4").val(<%=@val3%>);
+<%elsif @from_pr == 4 %>
+$("#pr1").val(<%=@val1%>);
+$("#pr2").val(<%=@val2%>);
+$("#pr3").val(<%=@val3%>);
+$("#pr4").val(<%=@val%>);
+<%end%>
+var before_dis = <%=@val.to_f + @val1.to_f + @val2.to_f + @val3.to_f %>;
+var dis = (before_dis*(<%=@discount%>))/100.0;
+var after_dis = before_dis-dis;
+
+$('#pr_total_before').val(before_dis);
+$('#pr_total').val(after_dis);
+
+$('#pbd').html($('#pr_total_before').val());
+$('#pad').html($('#pr_total').val());
+

@@ -23,9 +23,22 @@
             <%="#{product.variants[0].discount_percent}%" if product.variants.present? %>
           <% end %>
         <% end %>
-        <img src="/assets/main/fav-icon.png" alt="" class="fav-icon" /> 
+        <!--<img src="/assets/main/fav-icon.png" alt="" class="fav-icon" /> -->
       </a>
     </div>
+       <%if current_user%>
+ <div id="fav_login_<%=product.id.to_s%>" class="fav-icon-slider">
+      <%if product.product_rocks.present?%>
+        <%=link_to image_tag("/assets/fav-icon.gif"),rock_product_path(product,:unrock=>true, :from_icon => true),:remote=>true%>
+      <%else%>
+        <%=link_to image_tag("/assets/main/fav-icon.png"),rock_product_path(product, :from_icon => true),:remote=>true%>
+      <%end%>
+    </div>
+    <%else%>
+    <div class="fav-icon-slider">
+      <%=link_to image_tag("/assets/main/fav-icon.png"),login_path%>
+    </div>
+    <%end%>
     <div class="suphot-cont">
       <% product.variants.each do |var| %>
         <% if var.color.present? %>

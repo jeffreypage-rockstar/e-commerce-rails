@@ -1,6 +1,6 @@
 <%= render partial: '/admin/merchandise/sub_header'%>
 
-<h3 class="page-title">Edit Product Code</h3>
+<h3 class="page-title">Edit Dress Code</h3>
 
 <%= form_for @product_code, url: admin_merchandise_product_code_path(@product_code) do |form| %>
   <%= render partial: '/admin/merchandise/product_codes/edit_form', locals: { form: form, button_action: "Update", :product_code => @product_code, :products => @products}%>
