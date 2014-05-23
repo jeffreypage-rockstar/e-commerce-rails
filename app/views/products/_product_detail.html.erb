@@ -111,7 +111,7 @@
     <div class="price-bag">
       <span><%= number_to_currency @current_variant.price %></span>
        <% if @current_variant.present? && left_quantity > 0 %>          
-          <%= f.submit 'Add to Bag', :class => 'btn-bag small button',:id=>"add_to_bag", :onclick=>"$('#add_to_cart_bag').submit()"%>
+          <%= f.submit 'Add to Bag', :class => 'btn-bag small button',:id=>"add_to_bag", :onclick=>"$(add_to_cart_bag).submit()"%>
       <% end %>      
     </div>
   <% end %>
@@ -214,7 +214,8 @@
       }
       if (check_val == 0)
       {
-        $('#add_to_cart_bag').submit()
+        return true
+        // $('#add_to_cart_bag').submit()        
       }
       else
       {
