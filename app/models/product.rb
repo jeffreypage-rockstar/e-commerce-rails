@@ -46,7 +46,6 @@ class Product < ActiveRecord::Base
   has_many :product_rocks
   has_many :product_properties
   has_many :properties,         through: :product_properties
-  has_many :product_code_products
   has_many :variants
   has_many :images, -> {order(:position)},
                     as:        :imageable,

@@ -55,17 +55,19 @@ class Admin::CommissionsController < Admin::BaseController
   def update
     err=0
     if params[:values]
-      (params[:status].casecmp(" Active")) == 0 ? status = 1 : status = 0
+      (params[:status].casecmp("Active")) == 0 ? status = 1 : status = 0
       params[:values].each do |ele|
+        if ele.to_i > 0
           @commission = Commission.find(ele.to_i)
-          unless @commission.update_attribute(:status, status )
+          unless @commission.update_attribute(:state, status )
             err =1
           end
+        end
       end
       if err==1
         flash[:error] = "Error Occured While Updating File"
       else
-        flash[:notice] = (params[:status].casecmp(" Active")) == 0 ? 'Activated Successfully' : 'In-activated Successfully'
+        flash[:notice] = (params[:status].casecmp("Active")) == 0 ? 'Activated Successfully' : 'In-activated Successfully'
       end
     else
     	@commission = Commission.find(params[:id])
@@ -84,10 +86,12 @@ class Admin::CommissionsController < Admin::BaseController
     if params[:values]
       msg = 0
       params[:values].each do |ele|
+        if ele.to_i > 0
           @commission = Commission.find(ele.to_i)
           unless @commission.destroy
             msg = 1
           end
+        end
       end
       if msg == 1
         flash[:error]="Error Occured While Deleting"

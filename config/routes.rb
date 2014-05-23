@@ -22,7 +22,12 @@ Hadean::Application.routes.draw do
   post 'get_property_product'=> 'products#get_property_product'
   get 'search/' => 'products#search'
   get 'oauth/redirect' => 'oauth#redirect', as: :oauth_redirect
-  resources :ratings, only: :update
+  get 'admin/merchandise/product_codes/update_price' => 'admin/merchandise/product_codes#update_price'
+  get 'admin/merchandise/product_codes/:id/update_price' => 'admin/merchandise/product_codes#update_price'
+  get 'admin/merchandise/product_codes/update_price_discount' => 'admin/merchandise/product_codes#update_price_discount'
+  get 'admin/merchandise/product_codes/:id/update_price_discount' => 'admin/merchandise/product_codes#update_price_discount'
+
+resources :ratings, only: :update
   resources :image_groups
   resources :designers
   # mount Resque::Server.new, at: "/resque"
@@ -100,6 +105,7 @@ Hadean::Application.routes.draw do
   end
 
   namespace :admin do
+    put '/batch_actions', :to => "blog#batch_actions"
     namespace :customer_service do
       resources :users do
         resources :comments
@@ -110,6 +116,7 @@ Hadean::Application.routes.draw do
     end
     resources :users
     #resources :comments
+
 
     #New Admin changes
     resources :static_pages

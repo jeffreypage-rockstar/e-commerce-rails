@@ -107,8 +107,7 @@ class ProductsController < ApplicationController
     if current_user
       @rock_product = ProductRock.find_by_product_id_and_user_id(@product.id,current_user.id) if @product
     end
-    form_info
-    @cart_item.variant_id = @product.active_variants.first.try(:id) if @product && @product.active_variants.present?
+    form_info    
     if params[:select_property].present?    
       # *** start ***   
       @variant_properties = []
@@ -137,13 +136,15 @@ class ProductsController < ApplicationController
         @current_variant = @variant_properties.last.variant if @variant_properties.present?
       end
       @current_variant = @product.active_variants[0] if (@product && @product.active_variants.present?) && !@current_variant.present?
+      @cart_item.variant_id = @current_variant.id if @current_variant.present?
       # *** end *** 
-    else      
+    else  
+      @cart_item.variant_id = @product.active_variants.first.try(:id) if @product && @product.active_variants.present?    
       if params[:variant_id] 
         @current_variant = Variant.find(params[:variant_id])
-        session[:current_variant] = @current_variant.id
-      elsif session[:current_variant]
-        @current_variant = Variant.find(session[:current_variant])
+      #   session[:current_variant] = @current_variant.id
+      # elsif session[:current_variant]
+      #   @current_variant = Variant.find(session[:current_variant])
       else
         @current_variant = @product.active_variants[0] if @product && @product.active_variants.present?
       end
@@ -185,7 +186,53 @@ class ProductsController < ApplicationController
   end
 
   def change_variant
-    show
+    #show
+    @product = Product.find(params[:id])
+    @variant = Variant.find(params[:variant_id])
+    @related_products = RelatedProduct.find_all_by_product_id(@product.id) if @product
+    if current_user
+      @rock_product = ProductRock.find_by_product_id_and_user_id(@product.id,current_user.id) if @product
+    end
+    form_info
+    @cart_item.variant_id = @variant.id
+    if params[:select_property].present?    
+      # *** start ***   
+      @variant_properties = []
+      @multi_variant = []
+      params[:select_property].each do |k,v|
+        if v.present?
+          vp =VariantProperty.find_by_description(v)
+          if vp.present?            
+            @variant_properties <<  vp
+          end
+        end
+      end
+      if @variant_properties.present?        
+        @variant_properties.each_with_index do |v,index|
+          if @variant_properties[index].present? &&  @variant_properties[index+1].present?
+            vp = VariantProperty.find_by_variant_id_and_description(@variant_properties[index].variant_id,@variant_properties[index+1].description)
+            if vp.present?
+              @multi_variant << vp
+            end
+          end
+        end if @variant_properties.size > 1
+      end
+      if @multi_variant.size > 0
+        @current_variant = @multi_variant.last.variant if @variant_properties.present?
+      else
+        @current_variant = @variant_properties.last.variant if @variant_properties.present?
+      end
+      # *** end *** 
+    else      
+      if params[:variant_id] 
+        @current_variant = Variant.find(params[:variant_id])
+      #   session[:current_variant] = @current_variant.id
+      # elsif session[:current_variant]
+      #   @current_variant = Variant.find(session[:current_variant])
+      else
+        @current_variant = @product.active_variants[0] if @product && @product.active_variants.present?
+      end
+    end
     respond_to do |format|
        format.js  # { render :layout => false }
     end

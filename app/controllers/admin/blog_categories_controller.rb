@@ -55,17 +55,21 @@ class Admin::BlogCategoriesController < Admin::BaseController
 	  def update	  		  	
 	    err=0
 	    if params[:values]
-	      (params[:status].casecmp(" Active")) == 0 ? status = 1 : status = 0
+	      (params[:status].casecmp("Active")) == 0 ? status = 1 : status = 0
 	      params[:values].each do |ele|
+	      	if ele.to_i > 0
 	          @blog_category = BlogCategory.find(ele.to_i)
-	          unless @blog_category.update_attribute(:status, status )
+	          @blog_category.state=status
+
+	          unless @blog_category.save
 	            err =1
 	          end
+	      	end
 	      end
 	      if err==1
 	        flash[:error] = "Error Occured While Updating File"
 	      else
-	        flash[:notice] = (params[:status].casecmp(" Active")) == 0 ? 'Activated Successfully' : 'In-activated Successfully'
+	        flash[:notice] = (params[:status].casecmp("Active")) == 0 ? 'Activated Successfully' : 'In-activated Successfully'
 	      end
 	    else
 	    	I18n.locale = "tcn"
@@ -86,10 +90,12 @@ class Admin::BlogCategoriesController < Admin::BaseController
 	    if params[:values]
 	      msg = 0
 	      params[:values].each do |ele|
+	      	if ele.to_i > 0
 	          @blog_category = BlogCategory.find(ele.to_i)
 	          unless @blog_category.destroy
 	            msg = 1
 	          end
+	      	end
 	      end
 	      if msg == 1
 	        flash[:error]="Error Occured While Deleting"

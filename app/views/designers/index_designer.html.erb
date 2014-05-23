@@ -14,11 +14,11 @@
           <h1><span><%= @designer.first_name %> <%= @designer.last_name %></span></h1>
         </div>
         <div class="span2">
-                <%if @designer.images.present?%>
-                  <%= image_tag @designer.images[0].photo.url(:medium), :width => "150px"%>
-                <%else%>
-                  N/A
-                <%end%>
+          <%if @designer.images.present?%>
+            <%= image_tag @designer.images[0].photo.url(:medium), :width => "150px"%>
+          <%else%>
+            N/A
+          <%end%>
         </div>
         <div class="span10 prf-designer">
           <h2>Description</h2>
@@ -31,12 +31,7 @@
           <label class="width-200-label">Listed:: <span><%=@prts.size%></span></label>
         </div>
         <div class="span12 slider-brd"><a href="#"><img alt="" src="/assets/slider-line.gif"></a> </div>
-        <div class="prd-detail-rating" id="user_star">
-
-
-
-
-        </div>
+        <div class="prd-detail-rating" id="user_star"></div>
         <div class="btn-center-div"><a href="#" onclick="javascript:update_rating();return false;" class="alink-btn-commen-blue view-prf-btn">Rock Designer</a></div>
         <div class="sale-listing">
           <div class="row">
@@ -44,24 +39,22 @@
               <h1><span>Showcase</span></h1>
             </div>
           </div>
-         
           <div class="row">
             <%@prts.each_with_index do |product,index|%>
-              <%=render partial: "welcome/slide_product",locals: {product: product,:variant=> nil}%>
+              <%=render partial: "products/product",locals: {product: product,:variant=> nil}%>
             <%end%>
           </div>
           <div class="row">
             <% if @prts.size != 0 %>
-        <div class="span3 paging-show"><%= page_entries_info @prts %></div>
-        <!--Paging Section Starts here-->
-        <div class="pagination pagination-right pagination_dev">
-
-            <%= will_paginate @prts, :container => false %>
+              <div class="span3 paging-show"><%= page_entries_info @prts %></div>
+              <!--Paging Section Starts here-->
+              <div class="pagination pagination-right pagination_dev">
+                <%= will_paginate @prts, :container => false %>
+              </div>
+              <!--Paging Section Ends here--> 
+            <%end%>
+          </div>
         </div>
-        <!--Paging Section Ends here--> 
-        <%end%>
-      </div>
-       </div>
       </div>
     </div>
 

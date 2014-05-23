@@ -125,11 +125,11 @@
 			        if (allVals.length > 0)
 			        {
 			          if ( $(this).attr("id")=="Active" || $(this).attr("id")=="InActive" || $(this).attr("id")=="Pending" || $(this).attr("id")=="Approve" || $(this).attr("id")=="DisApprove") {
-			            method='put'
+			            method='PUT'
 			            url='<%= "/"+params[:controller]+"/update" %>'
 			            confirms = true
 			          } else{
-			            method='delete'
+			            method='DELETE'
 			            url='<%= "/"+params[:controller]+"/destroy" %>'
 			            if(confirm('Are you sure you want to delete?'))
 			              confirms = true
@@ -138,14 +138,14 @@
 			          };
 			          if(confirms)
 			          {
-			            $.ajax({
+			        	$.ajax({
 			                url : url,
 			                dataType: 'script',
-			                method : method,
+			                type : method,
 			                data : {
 			                  id : method,
 			                  values : allVals,
-			                  status : $(this).text()
+			                  status : $(this).attr("id")
 			                }
 			            })
 			            $('.table input:checkbox').each(function() {

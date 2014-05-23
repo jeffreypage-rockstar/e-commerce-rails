@@ -58,12 +58,15 @@ class Admin::BlogsController < Admin::BaseController
 	  def update
 	    err=0
 	    if params[:values]
-	      (params[:status].casecmp(" Active")) == 0 ? status = 1 : status = 0
+	      (params[:status].casecmp("Active")) == 0 ? status = 1 : status = 0
 	      params[:values].each do |ele|
-	          @blog = Blog.find(ele.to_i)
-	          unless @blog.update_attribute(user_params)
+	      	if ele.to_i > 0
+	          @blog = Blog.find(ele.to_i) 
+	          @blog.state = status
+	          unless @blog.save
 	            err =1
 	          end
+	      	end
 	      end
 	      if err==1
 	        flash[:error] = "Error Occured While Updating File"
@@ -86,13 +89,16 @@ class Admin::BlogsController < Admin::BaseController
 	  end
 
 	  def destroy
+	  	render :json => params and return false
 	    if params[:values]
 	      msg = 0
 	      params[:values].each do |ele|
+	      	if ele.to_i > 0
 	          @blog = Blog.find(ele.to_i)
 	          unless @blog.destroy
 	            msg = 1
 	          end
+	      	end
 	      end
 	      if msg == 1
 	        flash[:error]="Error Occured While Deleting"
