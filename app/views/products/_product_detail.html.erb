@@ -111,7 +111,7 @@
     <div class="price-bag">
       <span><%= number_to_currency @current_variant.price %></span>
        <% if @current_variant.present? %>
-          <%= f.submit 'Add to Bag', :class => 'btn-bag small button',:id=>"add_to_bag" %>
+          <%= f.submit 'Add to Bag', :class => 'btn-bag small button',:id=>"add_to_bag", :onclick=>"$('#add_to_cart_bag').submit()"%>
       <% end %>      
     </div>
   <% end %>
