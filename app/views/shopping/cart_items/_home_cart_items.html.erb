@@ -7,7 +7,7 @@
         <%  item.variant.brand_name.blank? ? '' : ['-', item.variant.brand_name].join(' ') %><br/>
         <% item.variant.display_stock_status('', '') %>
         <% number_to_currency item.price %>
-        <% total_price += item.price%>
+        <% total_price += (item.price*item.quantity)%>
         <%= cart_items_form.hidden_field :quantity, :size=>"2" %>
       <% end %>
     <% end %>
