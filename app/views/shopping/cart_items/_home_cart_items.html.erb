@@ -30,16 +30,5 @@
           </li>
       </ul>
     </div>
-    <ul>
-      <li class="item-bag">
-        <label><%if @cart_items.present?%><%=@cart_items.size%><%else%>0<%end%> Items:</label>
-        <label>$<%=total_price%></label>
-        <a href="#" class="view-bag">View Bag</a> </li>
-      <li class="total-bag">
-        <label>Total:</label>
-        <label>$<%=total_price%></label>
-        <%= cart_form.submit 'Check Out', {:checkout => 1, :class => 'small button success checkout'} %>
-        </li>
-    </ul>
-  </div>
 <%end%>
+   
