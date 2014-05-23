@@ -100,6 +100,7 @@ Hadean::Application.routes.draw do
   end
 
   namespace :admin do
+    put '/batch_actions', :to => "blog#batch_actions"
     namespace :customer_service do
       resources :users do
         resources :comments
@@ -110,6 +111,7 @@ Hadean::Application.routes.draw do
     end
     resources :users
     #resources :comments
+
 
     #New Admin changes
     resources :static_pages

@@ -41,12 +41,12 @@
 										</button>
 									</div>
                                     <div class="btn-group">
-										<button id="sample_editable_1_new" class="btn yellow updatevals">
+										<button id="Active" class="btn yellow updatevals">
 										 Active <i class="icon-ok"></i>
 										</button>
 									</div>
                                     <div class="btn-group">
-										<button id="sample_editable_1_new" class="btn yellow updatevals">
+										<button id="InActive" class="btn yellow updatevals">
 										 Inactive <i class="icon-ban-circle"></i>
 										</button>
 									</div>
@@ -82,7 +82,7 @@
 										<%if @blog_categories.present? %>
 											<%@blog_categories.each do |sp|%>
 												<tr class="">
-													<td><input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" /></td>
+													<td><input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" value="<%=sp.id%>" /></td>
 													<td><%=sp.name%></td>
 													
 													<td class="text-center"><i class="icon-ok icon-center-<%= sp.active? ? 'check' : 'uncheck' %>"></i></td>
