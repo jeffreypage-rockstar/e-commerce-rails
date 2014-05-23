@@ -14,7 +14,7 @@
         <!-- <img src="/assets/main/bot-line-checkout.gif" alt="" class="bot-line-checkout">  -->
       </div>
     </div>
-    <div class="confirm-order">
+    <div class="confirm-order confirm-order-table">
       <%= form_for session_cart, url: shopping_cart_item_path(session_cart), html: {class: 'custom'}, :as => :cart do |cart_form| %>
         <%unless @cart_items.blank? %>
           <table class="table table-bordered table-striped final-order">

@@ -556,7 +556,7 @@ a:hover.home-slider-right-arrow {background:url(/assets/main/home-slider-arrow-r
 .final-order thead th:last-child{width:15px;}
 .final-order tbody td:last-child{ width:15px;}*/
 
-#new_address select{ width:92.5%;}
+#new_address select, #edit_address_6 select{ width:92.5%;}
 #new_user_session{ width:100%;}
 
 /*----------------- style for changes -------------------- */
@@ -622,3 +622,7 @@ background-position:0 0; margin-left:14px !important;float:left;}
 .slider-content-container-2 .allsale-item{ font-size:20px; float:left; width:100%; margin-top:12px;}
 .bs-example-home .carousel-control-right:hover{ background-position:0 -41px;}
 .bs-example-home .carousel-control-left:hover{ background-position:0 -41px;}
+
+
+.top-login .pull-left{ margin-left:0px !important;}
+.top-login .top-menu{ margin-left:0px !important;}
