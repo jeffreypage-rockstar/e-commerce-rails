@@ -122,7 +122,6 @@ class ProductsController < ApplicationController
           end
         end
       end
-      render :text => params and return false
       if @variant_properties.present?        
         @variant_properties.each_with_index do |v,index|
           if @variant_properties[index].present? &&  @variant_properties[index+1].present?
@@ -181,9 +180,9 @@ class ProductsController < ApplicationController
 
   def get_property_product     
     show
-    # respond_to do |format|
-    #    format.js 
-    # end
+    respond_to do |format|
+       format.js 
+    end
   end
 
   def change_variant
