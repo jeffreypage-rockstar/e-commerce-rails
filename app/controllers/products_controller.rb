@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
 
   def index
+    redirect_to '/'
     products = Product.active.includes(:variants)
 
     product_types = nil
@@ -108,7 +109,7 @@ class ProductsController < ApplicationController
       @rock_product = ProductRock.find_by_product_id_and_user_id(@product.id,current_user.id) if @product
     end
     form_info
-    @cart_item.variant_id = @product.active_variants.first.try(:id) if @product && @product.active_variants.present?
+    @cart_item.variant_id = params[:variant_id].present? ? params[:variant_id] : @product.active_variants.first.try(:id) if @product && @product.active_variants.present?
     if params[:select_property].present?    
       # *** start ***   
       @variant_properties = []
@@ -121,6 +122,7 @@ class ProductsController < ApplicationController
           end
         end
       end
+      render :text => params and return false
       if @variant_properties.present?        
         @variant_properties.each_with_index do |v,index|
           if @variant_properties[index].present? &&  @variant_properties[index+1].present?
@@ -179,9 +181,9 @@ class ProductsController < ApplicationController
 
   def get_property_product     
     show
-    respond_to do |format|
-       format.js 
-    end
+    # respond_to do |format|
+    #    format.js 
+    # end
   end
 
   def change_variant

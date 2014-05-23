@@ -1,7 +1,7 @@
 <tr>
-  <td><%= image_tag item.variant.featured_image ,class: 'img-left', width: '70px', height: '70px' %><!-- <img src="/assets/main/table-img.jpg" alt="" class=""> -->
+  <td><a href="<%=product_path(item.variant.product,:variant_id=>item.variant)%>"><%= image_tag item.variant.featured_image ,class: 'img-left', width: '70px', height: '70px' %><!-- <img src="/assets/main/table-img.jpg" alt="" class=""> --></a>
     <div class="prd-list-div">
-      <span> <%=item.variant.product_name %></span>
+      <span> <%=link_to item.variant.product_name,product_path(item.variant.product,:variant_id=>item.variant) %></span>
       <label>Color: <%=item.variant.color %></label>
       <small>Brand: <%=  item.variant.brand_name.blank? ? '' : ['-', item.variant.brand_name].join(' ') %></small>
      

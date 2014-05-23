@@ -29,7 +29,7 @@
         <%@banners.each_with_index do |banner,index|%>
           <div id="<%=index%>" class="<%=index == 0 ? 'active' : '' %> item">
             <div class="slider-img-bg">
-              <%=link_to image_tag(banner.image.url(:original),style: 'height:550px') , "#{banner.link.present? ? banner.link : '#'}"%>
+              <%=link_to image_tag(banner.image.url(:original),style: 'height:550px') , "#{banner.link.present? ? banner.link : 'javascript:void:(0)'}"%>
             </div>
             <div class="container">
               <div class="slider-content-container<%=index == 0 ? '' : "-#{index}" %>">
