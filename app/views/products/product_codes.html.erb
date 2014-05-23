@@ -14,30 +14,45 @@
       <div class="sale-listing">
         <div class="row">
           <div class="span12 sale-header">
-            <div class="pre-next"> <a class="pre" href="#">Pre</a> <a class="next" href="#">Next</a></div>
+            <!--<div class="pre-next"> <a class="pre" href="#">Pre</a> <a class="next" href="#">Next</a></div>-->
             <h1><span>DRESS CODE: </span><span><%= product_code.title %></span></h1>
           </div>
         </div>
         <div class="row-fluid">
           <% row=0 %>
           <div class="prodct-row">  
+            <%@total = 0.0%>
         <% product_code.product_code_products.each do |product_code_product| %>
         
-           
+           <%
+
+if(product_code_product.variant.present?)
+      if product_code_product.variant.price_after_discount.present? 
+        @val = product_code_product.variant.price_after_discount
+      else
+        @val = product_code_product.variant.price
+      end
+    else
+      @val = 0.0 
+    end
+    @total = @total + @val
+
+           %>
                             
 
-            <%=render partial: "/welcome/slide_product",locals: {product: product_code_product.product,:variant=> nil}%>
+            <%=render partial: "product",locals: {product: product_code_product.variant.product,:variant=> product_code_product.variant}%>
        
           
         
         <%end%>
+        <% @total_after_discount = @total - (@total*product_code.discount.to_f)/100.0%>
         </div>
         </div>
         <div class="row-fluid slider-brd"><a href="#"><img alt="" src="/assets/main/slider-line.gif"></a> </div>
         <div class="span6 offset3 sale-company-section">
           <h2>GET THE LOOK - BUY ALL 4 & <span class="discount">SAVE <%= product_code.discount.to_s %>%</span></h2>
           
-          <label class="width-127-label">1234 <span>5678</span></label>
+          <label class="width-127-label"><span><%=@total.to_s%></span> <span style="text-decoration:none !important;"><%= @total_after_discount.to_s%></span></label>
          
           <div class="btn-center-div"> <a href="#" class="alink-btn-commen-blue view-prf-btn">ADD TO BAG</a> </div>
           <div class="clear"></div>
@@ -50,7 +65,7 @@
         <div class="span3 paging-show"><%= page_entries_info @product_codes %></div>
         <!--Paging Section Starts here-->
         <div class="pagination pagination-right pagination_dev">
-            <%= will_paginate @product_codes, :container => false %>
+            <%= will_paginate @product_codes, :previous_label => "<", :next_label => ">", :container => false%>
         </div>
         <!--Paging Section Ends here--> 
         <%end%>

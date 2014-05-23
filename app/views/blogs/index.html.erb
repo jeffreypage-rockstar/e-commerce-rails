@@ -12,7 +12,9 @@
     <div class="span8">
     	<%@blogs.each do |blog|%>
     	  <div class="blog-box">
+          <div class="blog-left-head">
           <h2><%=blog.title%></h2>
+        </div>
           <div class="blog-img"><%=image_tag(blog.image.url)%></div>
           <div class="row">
             <div class="span2 date-comment"><%=blog.created_at.strftime("%d %b %Y")%><span><a href="#"><%=blog.comments.size%> comment(s)</a></span></div>

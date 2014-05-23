@@ -23,7 +23,11 @@ Hadean::Application.routes.draw do
   get 'search/' => 'products#search'
   get 'oauth/redirect' => 'oauth#redirect', as: :oauth_redirect
   get 'admin/merchandise/product_codes/update_price' => 'admin/merchandise/product_codes#update_price'
-  resources :ratings, only: :update
+  get 'admin/merchandise/product_codes/:id/update_price' => 'admin/merchandise/product_codes#update_price'
+  get 'admin/merchandise/product_codes/update_price_discount' => 'admin/merchandise/product_codes#update_price_discount'
+  get 'admin/merchandise/product_codes/:id/update_price_discount' => 'admin/merchandise/product_codes#update_price_discount'
+
+resources :ratings, only: :update
   resources :image_groups
   resources :designers
   # mount Resque::Server.new, at: "/resque"

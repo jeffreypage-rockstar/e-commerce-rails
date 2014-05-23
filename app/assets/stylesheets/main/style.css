@@ -557,8 +557,9 @@ a:hover.home-slider-right-arrow {background:url(/assets/main/home-slider-arrow-r
 .dress-code .discount{ color:#2CC6C2;}
 .dress-code .sale-company-section{ text-align:center;}
 .dress-code .sale-company-section h2{ border-bottom:none; margin-bottom:0px; padding-bottom:16px;}
-.dress-code .sale-company-section label{ float:none; margin:auto; color:#999999;text-decoration:line-through;}
-.dress-code .sale-company-section label span{ color:#000; padding-left:14px; text-decoration:none;}
+.dress-code .sale-company-section label{ float:none; margin:auto;}
+.dress-code .sale-company-section label span:first-child{ color:#999999;text-decoration:line-through;}
+.dress-code .sale-company-section label span{ color:#000; padding-left:14px;}
 .dress-code .view-prf-btn{ margin-top:22px;}
 
 .fav-icon-slider{ position: absolute; top: 10px; right: 10px;}
