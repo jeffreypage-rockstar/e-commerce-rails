@@ -3,7 +3,7 @@
 	<li><a href="/welcome/index?option=style"><span>Style</span></a></li>
 	<li><a href="<%#=products_path(:option=>"gender")%>"><span>Gender</span></a></li>
 	<li><a href="<%#=products_path(:option=>"hot")%>"><span>Hot</span></a></li>
-  <li><a href="#"><span>News</span></a></li>
+  <li><a href="javascript:void(0)"><span>News</span></a></li>
 	<li><a href="<%=blogs_path()%>"><span>Blog</span></a></li>
 	<li><a href="#"><span>Show</span></a></li>
  </ul>
@@ -34,7 +34,7 @@
         <div class="clear"></div>
           <div id='tab1'>
             <div id="slider1" class="slider1">
-              <a class="buttons prev" href="#" data-slide="prev"></a>
+              <a class="buttons prev" href="javascript:void(0)" data-slide="prev"></a>
                 <div class="viewport">
                   <ul class="overview">
                     <%@super_hot_proudcts.uniq.flatten.each do |product|%>   
@@ -44,12 +44,12 @@
                     <%end%>
                   </ul>
                 </div>
-              <a class="buttons next" href="#" data-slide="next"></a>
+              <a class="buttons next" href="javascript:void(0)" data-slide="next"></a>
             </div>
           </div>
           <div id='tab2'>
             <div id="slider2" class="slider1">
-              <a class="buttons prev" href="#" data-slide="prev"></a>
+              <a class="buttons prev" href="javascript:void(0)" data-slide="prev"></a>
                 <div class="viewport">
                   <ul class="overview">
                     <%@featured_proudcts.uniq.flatten.each do |product|%>    
@@ -59,12 +59,12 @@
                     <%end%>
                   </ul>
                 </div>
-              <a class="buttons next" href="#" data-slide="next"></a>
+              <a class="buttons next" href="javascript:void(0)" data-slide="next"></a>
             </div>
           </div>
           <div id='tab3'>
             <div id="slider3" class="slider1">
-              <a class="buttons prev" href="#" data-slide="prev"></a>
+              <a class="buttons prev" href="javascript:void(0)" data-slide="prev"></a>
                 <div class="viewport">
                   <ul class="overview">
                     <%@new_products.uniq.flatten.each do |product|%>   
@@ -74,10 +74,10 @@
                     <%end%>
                   </ul>
                 </div>
-              <a class="buttons next" href="#" data-slide="next"> </a>
+              <a class="buttons next" href="javascript:void(0)" data-slide="next"> </a>
             </div>
           </div>
-        <div class="row-fluid slider-brd"><a href="#"><img alt="" src="assets/img/slider-line.gif"></a> 
+        <div class="row-fluid slider-brd"><a href="javascript:void(0)"><img alt="" src="assets/img/slider-line.gif"></a> 
         </div>
         <div class="clear"></div>
         </div>
@@ -96,7 +96,7 @@
                     <div class="row slider-cont ">
                       <div class="span3 relative"><%=link_to image_tag(blog.image.url),blog_path(blog)%>
                        <%if blog.video_url.present?%>
-                        <a href="#"><img src="/assets/main/play-icon.png" alt="" class="play-icon"> </a>
+                        <a href="javascript:void(0)"><img src="/assets/main/play-icon.png" alt="" class="play-icon"> </a>
                        <%end%>
                       </div>
                       <div class="span3 blog-img-detail">
@@ -128,9 +128,9 @@
                         <div class="span3"><%=image_tag(designer.images[0].photo.url)%></div>
                         <div class="span3 blog-img-detail">
                           <h2><%=designer.name%></h2>
-                          <h3><a href="#"><%=designer.first_name%> <%=designer.last_name%></a></h3>
+                          <h3><a href="javascript:void(0)"><%=designer.first_name%> <%=designer.last_name%></a></h3>
                           <p>Sed a mattis dolor. Aliquam condimentum, ipsum in sodales malesuada, sapien lacus pretium elit, in ultricies lacus orci vel tortor. Suspendisse porta volutpat risus,  scelque nisi pharetra quis. Maecenas velit dolor, varius eu sem et, eleifend porta nisl. </p>
-                          <a href="#" class="read-more">Read more &rsaquo;</a> </div>
+                          <a href="javascript:void(0)" class="read-more">Read more &rsaquo;</a> </div>
                         <%end%>
                         <%end%>
                     </div>
@@ -152,7 +152,7 @@
         <div class="clear"></div>
           <div id='tab4'>
             <div id="slider4" class="slider1">
-              <a class="buttons prev" href="#" data-slide="prev"></a>
+              <a class="buttons prev" href="javascript:void(0)" data-slide="prev"></a>
                 <div class="viewport">
                   <ul class="overview">
                     <%@super_hot_proudcts.flatten.each do |product|%>   
@@ -162,12 +162,12 @@
                     <%end%>
                   </ul>
                 </div>
-              <a class="buttons next" href="#" data-slide="next"></a>
+              <a class="buttons next" href="javascript:void(0)" data-slide="next"></a>
             </div>
           </div>
           <div id='tab5'>
             <div id="slider5" class="slider1">
-              <a class="buttons prev" href="#" data-slide="prev"></a>
+              <a class="buttons prev" href="javascript:void(0)" data-slide="prev"></a>
                 <div class="viewport">
                   <ul class="overview">
                     <%@discount_fifties.uniq.each do |variant_fifty|%>    
@@ -177,12 +177,12 @@
                     <%end%>
                   </ul>
                 </div>
-              <a class="buttons next" href="#" data-slide="next"></a>
+              <a class="buttons next" href="javascript:void(0)" data-slide="next"></a>
             </div>
           </div>
           <div id='tab6'>
             <div id="slider6" class="slider1">
-              <a class="buttons prev" href="#" data-slide="prev"></a>
+              <a class="buttons prev" href="javascript:void(0)" data-slide="prev"></a>
                 <div class="viewport">
                   <ul class="overview">
                     <%@discount_thirties.uniq.each do |variant_thirty|%>   
@@ -192,12 +192,12 @@
                     <%end%>
                   </ul>
                 </div>
-              <a class="buttons next" href="#" data-slide="next"> </a>
+              <a class="buttons next" href="javascript:void(0)" data-slide="next"> </a>
             </div>
           </div>
           <div id='tab7'>
             <div id="slider7" class="slider1">
-              <a class="buttons prev" href="#" data-slide="prev"></a>
+              <a class="buttons prev" href="javascript:void(0)" data-slide="prev"></a>
                 <div class="viewport">
                   <ul class="overview">
                     <%@discount_twenties.uniq.each do |variant_twenty|%>   
@@ -207,37 +207,37 @@
                     <%end%>
                   </ul>
                 </div>
-              <a class="buttons next" href="#" data-slide="next"> </a>
+              <a class="buttons next" href="javascript:void(0)" data-slide="next"> </a>
             </div>
           </div>
-        <div class="row-fluid slider-brd"><a href="#"><img src="/assets/main/slider-line.gif" alt="" /></a> </div>
+        <div class="row-fluid slider-brd"><a href="javascript:void(0)"><img src="/assets/main/slider-line.gif" alt="" /></a> </div>
       </div>
       <div class="row blog-slider-space">
         <div class="span6">
           <div class="blog-slider">
-            <div class="pre-next"> <a class="pre" href="#">Pre</a> <a class="next" href="#">Next</a> </div>
+            <div class="pre-next"> <a class="pre" href="javascript:void(0)">Pre</a> <a class="next" href="javascript:void(0)">Next</a> </div>
             <h1>The Buzz</h1>
             <div class="row slider-cont">
-              <div class="span3 relative"><img src="assets/img/auskar-vieo.jpg" alt=""> <a href="#"><img src="assets/img/play-icon.png" alt="" class="play-icon"> </a></div>
+              <div class="span3 relative"><img src="assets/img/auskar-vieo.jpg" alt=""> <a href="javascript:void(0)"><img src="assets/img/play-icon.png" alt="" class="play-icon"> </a></div>
               <div class="span3 blog-img-detail">
                 <h2>Oscar 2014</h2>
-                <h3><a href="#">oscar Red Carpet</a></h3>
+                <h3><a href="javascript:void(0)">oscar Red Carpet</a></h3>
                 <p>Sed a mattis dolor. Aliquam condimentum, ipsum in sodales malesuada, sapien lacus pretium elit, in ultricies lacus orci vel tortor. Suspendisse porta volutpat risus,  scelque nisi pharetra quis. Maecenas velit dolor, varius eu sem et, eleifend porta nisl. </p>
-                <a href="#" class="read-more">Read more &rsaquo;</a> </div>
+                <a href="javascript:void(0)" class="read-more">Read more &rsaquo;</a> </div>
             </div>
           </div>
         </div>
         <div class="span6">
           <div class="blog-slider">
-            <div class="pre-next"> <a class="pre" href="#">Pre</a> <a class="next" href="#">Next</a> </div>
+            <div class="pre-next"> <a class="pre" href="javascript:void(0)">Pre</a> <a class="next" href="javascript:void(0)">Next</a> </div>
             <h1>Spring &amp; Summer  Trends</h1>
             <div class="row slider-cont">
               <div class="span3"><img src="assets/img/spring-img.jpg" alt=""></div>
               <div class="span3 blog-img-detail">
                 <h2>Rick &amp; Ro of Burn Rubber</h2>
-                <h3><a href="#">the down low</a></h3>
+                <h3><a href="javascript:void(0)">the down low</a></h3>
                 <p>Sed a mattis dolor. Aliquam condimentum, ipsum in sodales malesuada, sapien lacus pretium elit, in ultricies lacus orci vel tortor. Suspendisse porta volutpat risus,  scelque nisi pharetra quis. Maecenas velit dolor, varius eu sem et, eleifend porta nisl. </p>
-                <a href="#" class="read-more">Read more &rsaquo;</a> </div>
+                <a href="javascript:void(0)" class="read-more">Read more &rsaquo;</a> </div>
             </div>
           </div>
         </div>

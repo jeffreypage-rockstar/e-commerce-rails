@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
 
   def index
+    redirect_to '/'
     products = Product.active.includes(:variants)
 
     product_types = nil
@@ -139,7 +140,8 @@ class ProductsController < ApplicationController
       @cart_item.variant_id = @current_variant.id if @current_variant.present?
       # *** end *** 
     else  
-      @cart_item.variant_id = @product.active_variants.first.try(:id) if @product && @product.active_variants.present?    
+      #@cart_item.variant_id = @product.active_variants.first.try(:id) if @product && @product.active_variants.present?    
+      @cart_item.variant_id = params[:variant_id].present? ? params[:variant_id] : @product.active_variants.first.try(:id) if @product && @product.active_variants.present?
       if params[:variant_id] 
         @current_variant = Variant.find(params[:variant_id])
       #   session[:current_variant] = @current_variant.id
