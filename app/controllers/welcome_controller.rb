@@ -34,7 +34,7 @@ class WelcomeController < ApplicationController
     # @all_discounts = Variant.where(["discount_percent != '' "])
     @discount_fifties = Variant.where(["discount_percent = 50"])
     @discount_thirties = Variant.where(["discount_percent = 30"])
-    @discount_thirties = Variant.where(["discount_percent = 20"])
+    @discount_twenties = Variant.where(["discount_percent = 20"])
     @latest_blogs = Blog.order("created_at").limit(5).limit(4)
     @role = Role.find_by_name("designer")
     @featured_designers = @role.users.where(["featrued = ?",true]).limit(4)

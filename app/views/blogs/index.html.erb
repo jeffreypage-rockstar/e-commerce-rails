@@ -12,9 +12,7 @@
     <div class="span8">
     	<%@blogs.each do |blog|%>
     	  <div class="blog-box">
-          <div class="blog-left-head">
-          <h2><%=blog.title%></h2>
-        </div>
+          <div class="blog-left-head"><h2><%=blog.title%></h2></div>
           <div class="blog-img"><%=image_tag(blog.image.url)%></div>
           <div class="row">
             <div class="span2 date-comment"><%=blog.created_at.strftime("%d %b %Y")%><span><a href="#"><%=blog.comments.size%> comment(s)</a></span></div>
@@ -23,16 +21,18 @@
             </div>
           </div>
           <div class="row">
+            <div class="span2 mobile-view"><a href="<%=blog_path(blog)%>" class="read-more">Read more &gt;</a></div>
             <div class="span2 blog-postby">by <%=blog.user.name%><span>tags: Fashion, Clothes</span></div>
-            <div class="span2"><a href="<%=blog_path(blog)%>" class="read-more">Read more &gt;</a></div>
+            <div class="span2 web-view"><a href="<%=blog_path(blog)%>" class="read-more">Read more &gt;</a></div>
           </div>
         </div>
     	<%end%>
+      <div class="row-fluid slider-brd"><a href="#"><img src="/assets/main/slider-line.gif" alt=""></a> </div>
       <div class="row">
         <div class="span3 paging-show"><%= page_entries_info @blogs %></div>
         <!--Paging Section Starts here-->
         <div class="pagination pagination-right pagination_dev">
-          	<%= will_paginate @blogs, :previous_label => "<", :next_label => ">", :container => false %>
+            <%= will_paginate @blogs, :previous_label => "<", :next_label => ">", :container => false %>
         </div>
         <!--Paging Section Ends here--> 
       </div>
@@ -42,10 +42,10 @@
         <h1>Categories</h1>
       </div>
       <div id="accordion2" class="accordion" id="accordion">
-      	<%@blog_categories.each do |bc|%>
-					<div class="accordion-group">
+        <%@blog_categories.each do |bc|%>
+          <div class="accordion-group">
             <div class="accordion-heading"> 
-            	<a href="#collapse<%=bc.id%>" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle"><%=bc.name%><span class="plus-icon"></span> </a> 
+              <a href="#collapse<%=bc.id%>" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle"><%=bc.name%><span class="plus-icon"></span> </a> 
             </div>
             <div id="collapse<%=bc.id%>" class="panel-collapse collapse in">
               <div class="panel-body">

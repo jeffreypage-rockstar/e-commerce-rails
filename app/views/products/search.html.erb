@@ -15,7 +15,7 @@
       </div> 
       <div class="row">
         <%@products.each_with_index do |product,index|%>
-          <%=render partial: "welcome/slide_product",locals: {product: product,:variant=> nil}%>
+          <%=render partial: "product",locals: {product: product,:variant=> nil}%>
         <%end%>
       </div>
       <div class="row">

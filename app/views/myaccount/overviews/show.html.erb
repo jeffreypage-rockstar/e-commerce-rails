@@ -38,8 +38,8 @@
               <h1><span>My Profile</span></h1>
               <ul>
                 <li><a href="#">Inbox<span>23</span></a></li>
-                <li><a href="#">Rocking<em>(User Following)</em><span>123</span></a></li>
-                <li><a href="#">Rockers<em>(Followers of the User)</em><span>37</span></a></li>
+                <li><a href="#">Rocking<br/><em>(User Following)</em><span>123</span></a></li>
+                <li><a href="#">Rockers<br/><em>(Followers of the User)</em><span>37</span></a></li>
                 <li><a href="#">Favorites<span>81</span></a></li>
                 <li><a href="#">Rock Credits<span>50</span></a></li>
                 <li><a href="#">Listings<span>4</span></a></li>
@@ -63,7 +63,7 @@
             
             <%@products.each_with_index do |product,index|%>
               
-              <%=render partial: "welcome/slide_product",locals: {product: product,:variant=> nil}%>
+              <%=render partial: "products/product",locals: {product: product,:variant=> nil}%>
              
             <%end%>
           </div>
