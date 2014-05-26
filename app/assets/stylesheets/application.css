@@ -20,9 +20,9 @@ border-radius: 5px;
 
 
 #flash {
-position:absolute;
+position:fixed;
 z-index: 999;
-left:12px; top:-22px;}
+left:545px; top:118px;}
 
 
 .red{color:red;}
