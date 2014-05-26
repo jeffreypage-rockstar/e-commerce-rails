@@ -119,6 +119,7 @@ textarea {
   margin: 0;
   font-size: 100%;
   vertical-align: middle;
+  padding:0px;
 }
 
 button,
@@ -150,6 +151,7 @@ input[type="submit"],
 input[type="radio"],
 input[type="checkbox"] {
   cursor: pointer;
+
 }
 
 input[type="search"] {
@@ -6103,4 +6105,8 @@ a.badge:focus {
 
 .affix {
   position: fixed;
+}
+
+label{
+  cursor: auto;
 }
