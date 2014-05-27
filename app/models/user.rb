@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   include UserEmailer
 
   acts_as_authentic do |config|
-    config.validate_email_field
+    # config.validate_email_field
     config.validates_length_of_password_field_options( :minimum => 6, :on => :update, :if => :password_changed? )
 
     # So that Authlogic will not use the LOWER() function when checking login, allowing for benefit of column index.

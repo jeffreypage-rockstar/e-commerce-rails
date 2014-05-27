@@ -169,6 +169,7 @@ class ProductsController < ApplicationController
         @flag = false
       else
         @rock_product.save
+        @message = "Your favorite is updated"
       end
     end
 
