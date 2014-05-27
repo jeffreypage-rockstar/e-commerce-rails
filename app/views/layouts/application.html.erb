@@ -63,29 +63,10 @@
                 <% end %>
                 &nbsp;<%= link_to t(:logout_link), logout_path, method: :delete %>
               </div>
-            <%end%>            
+            <%end%>        
         <div class="span4 pull-right">
           <ul class="top-language">
-            <li class="last " style="float:right">
-              <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle white remove-background" data-toggle="dropdown">
-                    USD
-                    <i><img src="/assets/main/down-arrow.png" alt=""></i>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li class="<%if session[:lang] == "en"%>active<%end%>" style="width:100%">
-                      <%= link_to "AUD",change_language_path(:new_locale => "en")%>
-                    </li>
-                    <li class="<%if session[:lang] == "pt"%>active<%end%>" style="width:100%">
-                      <%= link_to "ERO",change_language_path(:new_locale => "cn")%>
-                    </li>
-                    <li class="<%if session[:lang] == "de"%>active<%end%>" style="width:100%">
-                      <%= link_to "USD",change_language_path(:new_locale => "tcn")%>
-                    </li>
-                  </ul>
-              </div>  
-            </li>
-            <li class=""  style="float:right">
+            <li class="last"  style="float:right">
               <div class="btn-group">
                   <button type="button" class="btn btn-default dropdown-toggle white remove-background" data-toggle="dropdown">
                     <%if session[:lang] == "en"%><%=t(:english_lang)%><%elsif session[:lang] == "cn"%><%=t(:simple_chines_lang)%><%elsif session[:lang] == "tcn"%><%=t(:traditional_chines_lang)%><%else%>English<%end%>
@@ -104,6 +85,25 @@
                   </ul>
               </div>  
               <!-- <a href="#">English</a> -->
+            </li>
+            <li class=" " style="float:right">
+              <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle white remove-background" data-toggle="dropdown">
+                    USD
+                    <i><img src="/assets/main/down-arrow.png" alt=""></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li class="<%if session[:lang] == "en"%>active<%end%>" style="width:100%">
+                      <%= link_to "AUD",change_language_path(:new_locale => "en")%>
+                    </li>
+                    <li class="<%if session[:lang] == "pt"%>active<%end%>" style="width:100%">
+                      <%= link_to "ERO",change_language_path(:new_locale => "cn")%>
+                    </li>
+                    <li class="<%if session[:lang] == "de"%>active<%end%>" style="width:100%">
+                      <%= link_to "USD",change_language_path(:new_locale => "tcn")%>
+                    </li>
+                  </ul>
+              </div>  
             </li>
           </ul>
         </div>
@@ -134,6 +134,7 @@
         <%end%>
       </div>
     </div>
+            
     <div class="container">
       <%=render partial: "/layouts/main_menu"%>
     </div>
