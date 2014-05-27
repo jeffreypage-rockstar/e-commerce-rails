@@ -629,3 +629,9 @@ background-position:0 0; margin-left:14px !important;float:left;}
 .top-login .pull-left{ margin-left:0px !important;}
 .top-login .top-menu{ margin-left:0px !important;}
 .error{color:red;}
+.message_notice {background: rgba(100,142,49,1);color: white;text-align: center;padding: 8px;border-radius: 12px;font-size: 15px;}
+.message_error {background: rgba(203,90,90,1);color: white;text-align: center;padding: 8px;border-radius: 12px;font-size: 15px;}
+.message_alert{background: rgba(203,90,90,1);color: white;text-align: center;padding: 8px;border-radius: 12px;font-size: 15px;}
+.notice {color:green;}
+.error {color:red;}
+.highlight{background-color:#B2FF99;}

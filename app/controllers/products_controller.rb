@@ -99,7 +99,11 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.aactive.paginate(:page => pagination_page, :per_page => 1).where(["name like ? OR permalink like ?","#{params[:q]}%","#{params[:q]}%"])
+    if params[:q].present?
+      @products = Product.aactive.paginate(:page => pagination_page, :per_page => 10).where(["name like ? OR permalink like ?","#{params[:q]}%","#{params[:q]}%"])
+    else
+      @products = []
+    end
   end
 
   def show

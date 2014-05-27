@@ -25,7 +25,7 @@
                   </div>
                 </li>
 
-                <%@product_category_on_main_menu.each do |cat|%>
+                <%@product_category_on_main_menu[0..4].each do |cat|%>
                 <li class="dropdown "> <a data-toggle="dropdown" class="dropdown-toggle" href="<%= cat_products_path(cat,:parent=>true) %>"><%= cat.name%> <b class="caret">  </b></a>
                   <div class="dropdown-menu">
                     <div class="drop-down-hd">

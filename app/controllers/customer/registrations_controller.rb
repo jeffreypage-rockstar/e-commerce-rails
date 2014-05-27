@@ -13,6 +13,7 @@ class Customer::RegistrationsController < ApplicationController
 
   def create
     @news = News.where('state = ?',true)
+    params[:user][:state]= 'inactive'
     @user = User.new(allowed_params)
     # Saving without session maintenance to skip
     # auto-login which can't happen here because
@@ -34,8 +35,8 @@ class Customer::RegistrationsController < ApplicationController
 
   protected
 
-    def allowed_params
-      params.require(:user).permit(:password, :password_confirmation, :first_name, :last_name, :email)
+   def allowed_params
+      params.require(:user).permit(:password, :password_confirmation, :first_name, :last_name, :email,:state)
     end
 
 end

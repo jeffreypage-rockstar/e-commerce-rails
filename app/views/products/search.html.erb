@@ -10,7 +10,7 @@
     <div class="">
       <div class="row">
         <div class="span12 sale-header white-line">
-          <h1><span>Search Result</span></h1>
+          <!-- <h1><span>Search Result</span></h1> -->
         </div>
       </div> 
       <div class="row">
@@ -25,6 +25,8 @@
           <div class="pagination pagination-right pagination_dev">
               <%= will_paginate @products, :previous_label => "<", :next_label => ">", :container => false ,:params => { :q => params[:q] }%>
           </div>
+        <%else%>
+          <div class="span3 paging-show"><%="No Search Results Were Found ...!"%></div>
         <%end%>
       </div>
     </div>

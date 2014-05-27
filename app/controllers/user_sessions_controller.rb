@@ -43,9 +43,12 @@ class UserSessionsController < ApplicationController
     if session[:user_id]
       reset_session
     else  
-      current_user_session.destroy
-      reset_session
-      cookies.delete(:hadean_uid)
+      if current_user
+        current_user_session.destroy
+        reset_session
+        cookies.delete(:hadean_uid)
+      else
+      end
     end
     redirect_to login_url, :notice => I18n.t('logout_successful')
 
