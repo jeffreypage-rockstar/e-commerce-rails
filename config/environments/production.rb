@@ -5,7 +5,7 @@ Hadean::Application.configure do
 
   # Settings specified here will take precedence over those in config/environment.rb
 
-  config.force_ssl = true
+  # config.force_ssl = true
 
   # The production environment is meant for finished, "live" apps.
   # Code is not reloaded between requests
@@ -65,7 +65,7 @@ Hadean::Application.configure do
   config.action_controller.perform_caching = true
 
   if ENV['FOG_DIRECTORY'].present?
-    config.action_controller.asset_host = "https://#{ENV['FOG_DIRECTORY']}.s3.amazonaws.com"
+    # config.action_controller.asset_host = "https://#{ENV['FOG_DIRECTORY']}.s3.amazonaws.com"
   end
 
   # Specifies the header that your server uses for sending files
