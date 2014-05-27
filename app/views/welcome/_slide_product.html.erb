@@ -46,7 +46,7 @@
         <% end %>
       <%end%>
       <% if variant.present? %>
-        <p><a href="#"><%= variant.name %></a></p>
+        <p><a href="<%=product_path(product)%>"><%= variant.name %></a></p>
         <p>
           <% if variant.price_after_discount.present? %>
             <span class="disable">
@@ -62,7 +62,7 @@
           </strong>
         </p>
       <% else %>
-        <p><a href="#"><%=product.name%></a></p>
+        <p><a href="<%=product_path(product)%>"><%=product.name%></a></p>
         <p>
           <% if product.variants[0].price_after_discount.present? %>
             <span class="disable">

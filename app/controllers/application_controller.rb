@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
                 :select_countries,
                 :customer_confirmation_page_view
 
-  before_filter :secure_session ,:check_user_session , :default_lang
+  before_filter :secure_session ,:check_user_session , :default_lang, :set_mailer_host
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied."
@@ -25,6 +25,12 @@ class ApplicationController < ActionController::Base
       flash[:alert] = 'Sorry you are not allowed to do that.'
       redirect_to root_url
     end
+  end
+
+
+  def set_mailer_host
+    ActionMailer::Base.default_url_options[:host] = request.host_with_port
+    $url_host = request.host_with_port
   end
   
   def get_news
@@ -83,7 +89,7 @@ class ApplicationController < ActionController::Base
       @saved_cart_items = session_cart.saved_cart_items
     end
     @brands = Brand.all.in_groups_of(6)
-    @product_category_on_main_menu = ProductType.find_all_by_main_menu_and_parent_id(true,nil)
+    @product_category_on_main_menu = ProductType.find_all_by_main_menu_and_parent_id_and_active(true,nil,true)
   end
 
   private
