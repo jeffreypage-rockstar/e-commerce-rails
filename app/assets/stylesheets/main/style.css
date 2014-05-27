@@ -563,7 +563,7 @@ a:hover.home-slider-right-arrow {background:url(/assets/main/home-slider-arrow-r
 
 /*----------------- style for changes -------------------- */
 
-.search-top #q{ border:solid 1px #B8B8B8; border-radius:5px; padding:3px 0 5px 10px; width:114px; margin-right:14px;}
+.search-top #q{ /*border:solid 1px #B8B8B8; border-radius:5px;*/ padding:3px 0 5px 10px; width:114px; margin-right:14px;}
 .top-login .span6 a{ color:#008888 !important;}
 .top-login .span6 a:hover{ color:#444444 !important;}
 #product_detail_box .prd-big-img a img{ max-width:410px;}
