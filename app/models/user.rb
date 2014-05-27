@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
     config.validates_uniqueness_of_email_field_options :case_sensitive => true
     config.validate_login_field = true;
     config.validate_email_field = true;
-    config.validates_confirmation_of :password, :message => "doesn't match with Password"
+    # config.validates_confirmation_of :password, :message => "doesn't match with Password"
   end
 
   translates :first_name,:about_me,:title,:last_name
