@@ -85,7 +85,6 @@ $(function(){
 
   $('#flash').fadeOut(10000)
   $('#error_explanation').fadeOut(2000);
-  // $('#error_explanation').empty()
 
   $('body').prepend('<div id="fb-root"></div>');
   return $.ajax({
