@@ -28,7 +28,7 @@
 
     <ul>
     <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+      <li><%= msg == "Password confirmation doesn't match Password" ? "Confirm password doesn't match with the password" : msg %></li>
     <% end %>
     </ul>
   </div>
