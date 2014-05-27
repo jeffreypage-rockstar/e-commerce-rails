@@ -26,7 +26,7 @@
               <%= will_paginate @products, :previous_label => "<", :next_label => ">", :container => false ,:params => { :q => params[:q] }%>
           </div>
         <%else%>
-          <div class="span3 paging-show"><%="No Search Results Were Found ...!"%></div>
+          <div class="span3 paging-show"><%="No Results Were Found For Your Search Criteria...!"%></div>
         <%end%>
       </div>
     </div>
