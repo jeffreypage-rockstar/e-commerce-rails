@@ -10,7 +10,6 @@
     <div class="controls">
        <%= f.select :user_id,@designers,:selected =>f.object.new_record? ? 1 : @commission.user.present? ? @commission.user_id : 1 %>
      
-       <%=@commission.user%>
        <!-- <input type="text" class="span5 m-wrap" /> -->
        <!-- <div class="pull-right"> Required Fields </div> -->
     </div>
