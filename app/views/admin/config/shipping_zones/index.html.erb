@@ -12,14 +12,22 @@
     <thead>
     <tr class='odd'>
       <th class='column1_header'>Name</th>
-      <th></th>
+      <th class='column1_header'>Edit</th>
+      <th >Delete</th>
     </tr>
     </thead>
 
   <% @shipping_zones.each do |shipping_zone| %>
     <tr class='<%= cycle("odd", "")%>'>
       <td><%= link_to shipping_zone.name, edit_admin_config_shipping_zone_path(shipping_zone) %></td>
-      <td><%= link_to "Edit", edit_admin_config_shipping_zone_path(shipping_zone) %></td>
+      <td>
+        <%= link_to(edit_admin_config_shipping_zone_path(shipping_zone)) do%>
+          <i class="icon-edit icon-center-edit"></i>
+        <%end%>
+      </td>
+      <td><%= link_to("/admin/config/shipping_zones/#{shipping_zone.id}",:method=>"DELETE",:confirm=>"Are you sure you want to delete?") do%>
+        <i class="icon-trash icon-center-trash"></i>
+      <%end%></td>
     </tr>
   <% end %>
   </table>

@@ -142,3 +142,11 @@ function update_discount(price_id) {
 }
 
 
+$(document).on({
+      ajaxStart: function() {        
+        $("#infscr-loading").css("display","block")
+      },
+      ajaxStop: function() {
+        $("#infscr-loading").css("display","none")
+      }
+    });

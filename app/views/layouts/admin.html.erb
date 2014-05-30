@@ -13,12 +13,30 @@
 	<%= javascript_include_tag "admin" %>
 	<%= csrf_meta_tags %>
 	<link rel="shortcut icon" href="favicon.ico" />
+	<script type="text/javascript">
+    $(document).ready(function() {    
+      $('#flash').fadeOut(5000);
+    });
+
+    $(document).on({
+      ajaxStart: function() {        
+        $("#infscr-loading").css("display","block")
+      },
+      ajaxStop: function() {
+        $("#infscr-loading").css("display","none")
+      }
+    });
+  </script>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="fixed-top">
 	<!-- BEGIN HEADER -->
 	<div class="header navbar navbar-inverse navbar-fixed-top">
+		<div id="infscr-loading" style="display:none;" >
+            <%=image_tag "/assets/ajax-loading.gif",:alt=>"Loading...",:id=>"loadimg"%>
+            <div><em>Loading.....</em></div>
+          </div>
 		<!-- BEGIN TOP NAVIGATION BAR -->
 		<div class="navbar-inner">
 			<div class="container-fluid">
@@ -173,6 +191,27 @@
 		});
 	</script>
 	<!-- END JAVASCRIPTS -->
+	<style type="text/css">
+		#infscr-loading{
+  text-align: center;
+  z-index: 100;
+  position: fixed;
+  left: 40%;
+  bottom: 40%;
+  width: 200px;
+  padding: 10px;
+  background: black;
+  filter: alpha(opacity=80);
+  opacity: 0.80;
+  -moz-opacity: 0.80;
+  color: white;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+	</style>
 </body>
 <!-- END BODY -->
 </html>

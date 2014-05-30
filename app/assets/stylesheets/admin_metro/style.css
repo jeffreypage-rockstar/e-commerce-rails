@@ -4914,6 +4914,7 @@ label.showing-records {cursor:default; float:right; margin-right:10px; margin-to
 .edit-form {margin-top:15px;}
 .edit-form label{text-align:left !important; font-size:13px;}
 .edit-form .form-actions {background:none; border:none; padding-left: 181px;padding-top: 0;}
+.edit-form .form-actions {background:none; border:none; padding-left: 170px;padding-top: 0;}
 .edit-form .form-actions .btn {padding-left:35px; padding-right:35px; margin-right:8px;}
 .edit-form .control-group {margin-bottom:10px;}
 .red-star {color:#ff0000;}
