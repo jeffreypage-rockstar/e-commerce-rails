@@ -47,13 +47,13 @@
 												<tr class="">
 													
 													<td><%=variant.name%></td>
-													<td><%=variant.product.name.to_s%></td>
-													<td><%=variant.cost.to_s%></td>
+													<td><%=variant.try(:product).try(:name)%></td>
+													<td><%=variant.try(:cost)%></td>
 													<td><%=variant.price_before_commission.to_s%></td>
-													<td><%=variant.commission.to_s%></td>
-													<td><%=variant.price.to_s%></td>
-													<td><%=variant.discount_percent.to_s%></td>
-													<td><%=variant.price_after_discount.to_s%></td>
+													<td><%=variant.try(:commission)%></td>
+													<td><%=variant.try(:price)%></td>
+													<td><%=variant.try(:discount_percent)%></td>
+													<td><%=variant.price_after_discount%></td>
 												</tr>
 											<%end%>
 										<%else%>

@@ -45,6 +45,14 @@ class Admin::Config::ShippingZonesController < Admin::Config::BaseController
     end
   end
 
+  def destroy
+    @shipping_zone = ShippingZone.find(params[:id])
+    @shipping_zone.destroy
+    respond_to do |format|
+      format.html { redirect_to(admin_config_shipping_zones_url(), :notice => 'Shipping zone was successfully deleted.') }
+    end
+  end
+
   protected
 
   def allowed_params

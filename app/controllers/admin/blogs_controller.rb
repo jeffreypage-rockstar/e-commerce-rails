@@ -89,7 +89,6 @@ class Admin::BlogsController < Admin::BaseController
 	  end
 
 	  def destroy
-	  	render :json => params and return false
 	    if params[:values]
 	      msg = 0
 	      params[:values].each do |ele|
