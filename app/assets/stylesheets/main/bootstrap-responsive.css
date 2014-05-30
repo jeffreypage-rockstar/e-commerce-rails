@@ -133,10 +133,10 @@ a.bot-arrow-prd{left:50% !important; margin-left:-15px !important;}
   .slider-content-container-2 .whitebrd-bg{ margin-top:10px; margin-bottom:15px;}
   .slider-content-container-2 .discount{ font-size:24px; margin:0 auto;}
   .slider-content-container-2 .allsale-item{ font-size:16px;}
-  .bs-example-home .carousel-control-left{ height:24px;background-position: 2px -7px;}
+  /*.bs-example-home .carousel-control-left{ height:24px;background-position: 2px -7px;}
   .bs-example-home .carousel-control-left:hover{background-position: 2px -48px;}
   .bs-example-home .carousel-control-right{ height:24px; background-position:0px -7px;}
-  .bs-example-home .carousel-control-right:hover{background-position:0px -48px;}
+  .bs-example-home .carousel-control-right:hover{background-position:0px -48px;}*/
   .blog-slider .carousel-inner{ height:244px;}
   #slideshow-main{ margin-right:0px !important; width:329px !important;}
    #slideshow-main ul{ width:100% !important;}
@@ -149,6 +149,7 @@ a.bot-arrow-prd{left:50% !important; margin-left:-15px !important;}
    .blog-slider-space .slider-cont .span3 a .play-icon{ height:auto !important; width:auto !important;}
    .dropdown-menu {width: 95px !important; min-width:inherit;}
   /* 20th May 2014 End */
+  .slider-content-container-1{ margin-left:25px;}
 	}
 	
 @media (min-width: 768px) and (max-width: 979px) {
@@ -224,7 +225,7 @@ a.bot-arrow-prd{left:50% !important; margin-left:-15px !important;}
    .blog-slider-space .slider-cont .span3 img{ height:200px !important;}
    .blog-slider-space .slider-cont .span3 a .play-icon{ height:auto !important; width:auto !important;}
    
-   
+    .slider-content-container-1{ margin-left:35px;}
   /* 20th May 2014 End*/
 
 }
@@ -1756,3 +1757,7 @@ height:12px; background-position:0 -23px; left:inherit !important; right:-10px !
  .top-language .last{margin-right:100px !important;}
 }
 
+ @media only screen and (min-width: 1367px) {
+.carousel-control.carousel-control-left.left {left:50%;margin-left: -660px;}
+.carousel-control.carousel-control-right.right {right:50%;margin-right: -660px;}
+}
