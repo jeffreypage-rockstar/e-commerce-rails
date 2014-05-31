@@ -635,3 +635,6 @@ background-position:0 0; margin-left:14px !important;float:left;}
 .notice {color:green;}
 .error {color:red;}
 .highlight{background-color:#B2FF99;}
+.bs-example-home .slider-img-bg img {
+height: auto !important;
+}
