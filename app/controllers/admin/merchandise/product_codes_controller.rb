@@ -121,13 +121,7 @@ class Admin::Merchandise::ProductCodesController < Admin::BaseController
 
   def destroy
     @product_code = ProductCode.find(params[:id])
-    if @product_code.active
-      @product_code.active = false
-    else
-      @product_code.active = true
-    end
-    @product_code.save
-
+    @product_code.destroy
     redirect_to :action => :index
   end
   def update_price
@@ -137,7 +131,7 @@ class Admin::Merchandise::ProductCodesController < Admin::BaseController
     @variant1 = Variant.find_by_id(params[:one])
       @variant2 = Variant.find_by_id(params[:two])
       @variant3 = Variant.find_by_id(params[:three])
-if(@variant1.present?)
+    if(@variant1.present?)
       if @variant1.price_after_discount.present? 
         @val1 = @variant1.price_after_discount
       else

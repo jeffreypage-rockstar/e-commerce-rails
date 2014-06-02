@@ -13,13 +13,15 @@
     </thead>
 
   <% @orders.each do |order| %>
-    <tr class='<%= cycle("odd", "")%>'>
-      <td><%= link_to order.number, admin_history_order_path(order) %></td>
-      <td><%= order.name %></td>
-      <td><%= order.email %></td>
-      <td><%= order.display_completed_at(:us_time) %></td>
-      <td><%= order.has_shipment?.to_s %></td>
-    </tr>
+    <%if order.present?%>
+      <tr class='<%= cycle("odd", "")%>'>
+        <td><%= link_to order.number, admin_history_order_path(order) %></td>
+        <td><%= order.user.try(:name) %></td>
+        <td><%= order.email %></td>
+        <td><%= order.display_completed_at(:us_time) %></td>
+        <td><%= order.has_shipment?.to_s %></td>
+      </tr>
+    <%end%>
   <% end %>
   </table>
 </div>

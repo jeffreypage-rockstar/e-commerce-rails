@@ -22,7 +22,7 @@ class Admin::NewsesController < Admin::BaseController
 	    order_by = "#{field} #{sort}"
 	    @newses = News.paginate(:conditions => keyword, :order => order_by,:per_page=>pagination_rows,:page=>params[:page])
 	    @columns = [["Name","title@string"],["Created At","description@date"],["Updated At","updated_at@date"]]    
-      	@nodes = @newses.select("title").map{|x| x.title[0] if x.title}.uniq
+      	@nodes = News.select("title").map{|x| x.title[0] if x.title}.uniq
 	    
 	  end
 

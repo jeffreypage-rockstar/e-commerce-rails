@@ -63,6 +63,14 @@ class Admin::Config::ShippingRatesController < Admin::Config::BaseController
     end
   end
 
+  def destroy
+    @shipping_rate = ShippingRate.find(params[:id])
+    @shipping_rate.destroy
+    respond_to do |format|
+      format.html { redirect_to(admin_config_shipping_rates_url(), :notice => 'Shipping rate was successfully deleted.') }
+    end
+  end
+
   private
 
   def allowed_params

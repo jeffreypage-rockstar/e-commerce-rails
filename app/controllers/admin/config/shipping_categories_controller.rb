@@ -40,6 +40,15 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
       render :action => "edit"
     end
   end
+  def destroy
+    render :json => params and return false
+    @shipping_category = ShippingCategory.find(params[:id])
+    @shipping_category.destroy
+    respond_to do |format|
+      format.html { redirect_to(admin_config_shipping_categories_url(), :notice => 'Shipping rate was successfully deleted.') }
+    end
+  end
+
 
   # DELETE /admin/merchandise/shipping_categories/1
   #def destroy
