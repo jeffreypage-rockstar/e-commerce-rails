@@ -205,9 +205,9 @@ a.bot-arrow-prd{left:50% !important; margin-left:-15px !important;}
   .slider-content-container {margin-top: 10px;}
   .slider-content-container h1 {font-size: 18px;margin-bottom: 5px;}
   .slider-content-container p {font-size: 14px;line-height: 17px; margin-bottom: 8px;}
-  .slider-content-container {width: 300px;}
+  .slider-content-container {width: 275px;}
   .sliderbtn-getapp{font-size: 15px !important;height: 30px !important;width: 106px !important; margin-top:0px;}
-  .slider-content-container-1{ width:300px; margin-left:20px; margin-top:10px;}
+  .slider-content-container-1{ width:275px; margin-left:20px; margin-top:10px;}
   .slider-content-container-1 h1 {font-size: 18px;margin-bottom: 5px;}
   .slider-content-container-1 p {font-size: 14px;line-height: 17px; margin-bottom: 8px;}
   .slider-content-container-1 .login-btn{ margin-top:10px;}
@@ -1550,7 +1550,7 @@ a.bot-arrow-prd{left:50% !important; margin-left:-15px !important;}
   /*------------- add new style ------------*/
    .navbar .nav{ margin-top:10px;}
    .navbar .nav > li{ margin-right:0px; float:left; width:100%; text-align:left; margin-left:0px !important; padding:0px;}
-   .navbar .nav > li .dropdown-menu{ width:100%; margin:0; padding:0; background:#2CC6C2 !important; clear:both; float:left; min-width:inherit !important;}
+   .navbar .nav > li .dropdown-menu{ width:100% !important; margin:0; padding:0; background:#2CC6C2 !important; clear:both; float:left; min-width:inherit !important;}
    .navbar .nav > li .dropdown-menu .drop-down-hd a{ color:#fff;}
    .drop-down-hd h3{ max-width:72px;}
    .search-top{ position:absolute; top:0px; margin-left:5px;}
