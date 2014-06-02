@@ -38,7 +38,7 @@
           <tr class='<%= cycle("odd", "")%>'>
             <td><%= link_to order.number, edit_admin_fulfillment_order_path(order) %></td>
             <td><%= order.email %></td>
-            <td><%= order.name %></td>
+            <td><%= order.user.try(:name) %></td>
             <td><%= order.display_completed_at %></td>
             <td><%= order.shipped.to_s %></td>
           </tr>

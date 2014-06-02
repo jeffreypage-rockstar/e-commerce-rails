@@ -45,6 +45,14 @@ class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
     end
   end
 
+  def destroy
+    @shipping_method = ShippingMethod.find(params[:id])
+    @shipping_method.destroy
+    respond_to do |format|
+      format.html { redirect_to(admin_config_shipping_methods_url(), :notice => 'Shipping method was successfully deleted.') }
+    end
+  end
+
   private
 
   def allowed_params

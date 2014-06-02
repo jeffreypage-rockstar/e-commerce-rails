@@ -35,6 +35,7 @@
       <th class='column1_header' ><%= sortable "title" %></th>
       <%if current_user.admin? || current_user.role?("SuperAdmin")%>
         <th class="text-center">Edit</th>
+        <th class="text-center">Delete</th>
         
       <%end%>
     </tr>
@@ -53,7 +54,9 @@
           <td class="text-center">
             <a href="<%=edit_admin_merchandise_product_code_path(product_code)%>"><i class="icon-edit icon-center-edit"></i></a>
           </td>
-         
+          <td class="text-center">
+            <%=link_to "<i class='icon-trash icon-center-trash'></i>".html_safe,admin_merchandise_product_code_path(product_code),:method => "delete"%>            
+          </td>
         <%end%>
       </tr>
     <% end %>

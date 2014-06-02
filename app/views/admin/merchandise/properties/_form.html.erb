@@ -18,6 +18,12 @@
     <%= text_field_tag "en[display_name]",eng.display_name %>
   </fieldset>
   
+  <div class="control-group">
+    <label class="control-label">Status </label>
+    <div class="controls">
+      <%= form.select :active,[["Active",true],["Inactive",false]]%>
+    </div>
+  </div>  
   
   <%if current_user%>
   	<%=form.hidden_field :user_id ,:value=> current_user.id%>

@@ -39,6 +39,7 @@
       <th><%= sortable "last_name" %></th>
       <th><%= sortable "email" %></th>
       <th>Status</th>
+      <th>Delete</th>
     </tr>
     </thead>
     <% @users.each do |user| %>
@@ -53,6 +54,7 @@
         <td><%= user.last_name %></td>
         <td><%= user.email %></td>
         <td><%= user.state %></td>
+        <td><%= link_to "Delete", admin_user_path(user) ,:method=>"delete"%></td>
       </tr>
     <% end %>
   </table>

@@ -17,6 +17,11 @@ class Property < ActiveRecord::Base
 
   scope :visible, -> {where(active: true)}
 
+  STATES = {    
+    1 => 'Active',
+    0 => 'Inactive'
+  }
+
 
   def full_name
     "#{display_name}: (#{identifing_name})"

@@ -29,7 +29,7 @@
   <label>Select Product1</label>
   <fieldset>
   <%= select_tag :select_product1,
-                     options_for_select(@variants.collect{|c| [c.product.name + "-" +c.name, c.id]}) , {prompt: 'Select Product', :onchange => 'call1(this.value,1,$("#product_code_discount").val(),$("#select_product2").val(),$("#select_product3").val(),$("#select_product4").val())'} %>
+                     options_for_select(@variants.collect{|c| ["#{c.try(:product).try(:name)}-#{c.try(:name)}", c.id]}) , {prompt: 'Select Product', :onchange => 'call1(this.value,1,$("#product_code_discount").val(),$("#select_product2").val(),$("#select_product3").val(),$("#select_product4").val())'} %>
   <%= hidden_field_tag :pr1, 0.0 %>
 
   </fieldset>
@@ -39,7 +39,7 @@
   <label>Select Product2</label>
   <fieldset>
   <%= select_tag :select_product2,
-                     options_for_select(@variants.collect{|c| [c.product.name + "-" +c.name, c.id]}) , {prompt: 'Select Product', :onchange => 'call1(this.value,2,$("#product_code_discount").val(),$("#select_product1").val(),$("#select_product3").val(),$("#select_product4").val())'}%>
+                     options_for_select(@variants.collect{|c| ["#{c.try(:product).try(:name)}-#{c.try(:name)}", c.id]}) , {prompt: 'Select Product', :onchange => 'call1(this.value,2,$("#product_code_discount").val(),$("#select_product1").val(),$("#select_product3").val(),$("#select_product4").val())'}%>
   <%= hidden_field_tag :pr2, 0.0 %>
 
   </fieldset>
@@ -49,7 +49,7 @@
   <label>Select Product3</label>
   <fieldset>
   <%= select_tag :select_product3,
-                     options_for_select(@variants.collect{|c| [c.product.name + "-" +c.name, c.id]}) , {prompt: 'Select Product', :onchange => 'call1(this.value,3,$("#product_code_discount").val(),$("#select_product1").val(),$("#select_product2").val(),$("#select_product4").val())'}%>
+                     options_for_select(@variants.collect{|c| ["#{c.try(:product).try(:name)}-#{c.try(:name)}", c.id]}) , {prompt: 'Select Product', :onchange => 'call1(this.value,3,$("#product_code_discount").val(),$("#select_product1").val(),$("#select_product2").val(),$("#select_product4").val())'}%>
   <%= hidden_field_tag :pr3, 0.0 %>
 
   </fieldset>
@@ -59,7 +59,7 @@
   <label>Select Product4</label>
   <fieldset>
   <%= select_tag :select_product4,
-                     options_for_select(@variants.collect{|c| [c.product.name + "-" +c.name, c.id]}), {prompt: 'Select Product', :onchange => 'call1(this.value,4,$("#product_code_discount").val(),$("#select_product1").val(),$("#select_product2").val(),$("#select_product3").val())'}%>
+                     options_for_select(@variants.collect{|c| ["#{c.try(:product).try(:name)}-#{c.try(:name)}", c.id]}), {prompt: 'Select Product', :onchange => 'call1(this.value,4,$("#product_code_discount").val(),$("#select_product1").val(),$("#select_product2").val(),$("#select_product3").val())'}%>
   <%= hidden_field_tag :pr4, 0.0 %>
 
   </fieldset>

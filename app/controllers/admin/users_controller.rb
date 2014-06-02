@@ -77,6 +77,12 @@ class Admin::UsersController < Admin::BaseController
     form_info
   end
 
+  def destroy
+    @user = User.includes(:roles).find(params[:id])
+    @user.destroy
+    redirect_to admin_users_path
+  end
+
   def update
     params[:user][:role_ids] ||= []
     @user = User.includes(:roles).find(params[:id])
