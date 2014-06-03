@@ -591,8 +591,8 @@ a:hover.home-slider-right-arrow {background:url(/assets/main/home-slider-arrow-r
 .bs-example-home item{ position:relative; height:550px;}
 .carousel-inner{ height:550px;}
 .bs-example-home .carousel{ margin-bottom:0px;}
-.bs-example-home .slider-img-bg{ height:550px; width:100%;position:absolute; text-align:center;}
-.bs-example-home .slider-img-bg img{ height:550px;}
+.bs-example-home .slider-img-bg{ height:550px; width:inherit !important;position:absolute; text-align:center;}
+.bs-example-home .slider-img-bg img{height:550px; max-width:inherit;}
 .bs-example-home .carousel-control{ top:50%; margin-top:-11px;}
 .bs-example-home .carousel-control-left{ background:url(/assets/main/home-slider-arrow-left.png) no-repeat; border:0px; width:22px; height:41px; opacity:1; border-radius:0px;}
 .bs-example-home .carousel-control-right{ background:url(/assets/main/home-slider-arrow-right.png) no-repeat; border:0px; width:22px; height:41px; opacity:1; border-radius:0px;}

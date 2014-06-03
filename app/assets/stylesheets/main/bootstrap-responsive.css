@@ -185,7 +185,7 @@ a.bot-arrow-prd{left:50% !important; margin-left:-15px !important;}
 }
 
 @media (max-width: 767px) {
-	.slider-img-bg img{ height:100% !important;}
+	.slider-img-bg img{height:100% !important; width:100%;}
   .hidden-desktop {
     display: inherit !important;
   }
