@@ -33,7 +33,7 @@
             </div>
             <div class="container">
               <div class="slider-content-container<%=index == 0 ? '' : "-#{index}" %>">
-                <%=static_con[index].html_safe%>
+                <%=static_con[index].html_safe if static_con[index].present?%>
               </div>
             </div>
           </div>
