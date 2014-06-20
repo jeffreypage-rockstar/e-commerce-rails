@@ -6,7 +6,12 @@ class CommentsController < ApplicationController
 		@comment = @blog.comments.new(permited_params)
 		if @comment.save
 			redirect_to :back
+		else
+			# render :json => @comment.errors.full_messages and return false
+			flash[:notice] = @comment.errors.full_messages.collect{|x| x}.join('<br/>').html_safe
+			redirect_to :back
 		end
+
 	end
 	
 

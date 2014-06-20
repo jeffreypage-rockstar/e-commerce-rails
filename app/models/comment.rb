@@ -20,5 +20,9 @@ class Comment < ActiveRecord::Base
 
   validates :note,              :presence => true,       :length => { :maximum => 1255 }
   validates :commentable_type,  :presence => true
+  validates :name,  :presence => true
+  validates :subject,  :presence => true
+  validates :email,  :presence => true,
+  			:format   => { :with => CustomValidators::Emails.email_validator }
   #validates :commentable_id,    :presence => true
 end
