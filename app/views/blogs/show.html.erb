@@ -80,8 +80,13 @@
                 <input name="" type="text" placeholder="Enter your E-mail*" class="email-inp-icon">
                 <input name="" type="text" placeholder="Enter your subject*" class="sub-inp-icon">
                 </div> -->
+                <div class="span4">
+                  <%= f.text_field :name,:placeholder=>"Enter your name*",:class=>"user-inp-icon"%>
+                  <%= f.text_field :email,:placeholder=>"Enter your E-mail*",:class=>"email-inp-icon"%>
+                  <%= f.text_field :subject,:placeholder=>"Enter your subject*",:class=>"sub-inp-icon"%>                
+                </div>
                 <div class="span4"><h2>LEAVE A COMMENT</h2>
-                  <%= f.text_area :note ,placeholder: 'Enter your massage' , class: 'edit-icon-textarea'%>
+                  <%= f.text_area :note ,placeholder: 'Enter your message' , class: 'edit-icon-textarea'%>
                   <%=f.hidden_field :created_by,:value=>current_user.id%>
                   <%=f.hidden_field :user_id,:value=>@blog.user_id%>
                 </div>
