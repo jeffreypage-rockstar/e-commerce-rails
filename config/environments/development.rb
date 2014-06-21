@@ -51,12 +51,18 @@ Hadean::Application.configure do
     #Formtastic::SemanticFormBuilder.send(:include, Formtastic::YearPicker)
 
     ActiveMerchant::Billing::Base.mode = :test
+=begin
     ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
       :login      => Settings.paypal.login,
       :password   => Settings.paypal.password,
       :signature  => Settings.paypal.signature
     )
-
+=end
+::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+  :login => "rordev.hb_api1.gmail.com",
+  :password  => "1403273259",
+  :signature => "Aqwyj4hreSm6jTjn1kZkRHQYe3jEANcebP9z9AEHXj14kWvnWFkixN3c"
+)
     #::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
     #  :login    => Settings.authnet.login,
     #  :password => Settings.authnet.password,
