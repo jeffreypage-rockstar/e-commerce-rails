@@ -28,11 +28,11 @@ Hadean::Application.configure do
       !  if you are not using authorize.net go to each file in /config/environments/*.rb and
       !  adjust the following code accordingly...
 
-      ::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
-        :login    => Settings.authnet.login,
-        :password => Settings.authnet.password
-      )
-
+::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+  :login => 'rordev.hb_api1.gmail.com',
+  :password  => '1403273259',
+  :signature => 'Aqwyj4hreSm6jTjn1kZkRHQYe3jEANcebP9z9AEHXj14kWvnWFkixN3c'
+)
       !  This is required for the checkout process to work.
       !
       !  Remove or Adjust this warning in /config/environment.rb for developers on your team

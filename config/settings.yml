@@ -4,11 +4,16 @@ mailer:
   server: mail.example.com
   username: someLOGIN
   password: s0meth1ngs3cr3t
+#paypal:
+#  ip:         api.sandbox.paypal.com
+#  login:      id.email001-developer_api1.gmail.com
+#  password:   1400831155
+#  signature:  AGjv6SW.mTiKxtkm6L9DcSUCUgePAUDQ3L-kTdszkPG8mRfjaRZDYtSu
 paypal:
-  ip:         api.sandbox.paypal.com
-  login:      seller_1229899173_biz_api1.railscasts.com
-  password:   FXWU58S7KXFC6HBE
-  signature:  AGjv6SW.mTiKxtkm6L9DcSUCUgePAUDQ3L-kTdszkPG8mRfjaRZDYtSu
+  ip:         127.0.0.1
+  login:      rordev.hb_api1.gmail.com
+  password:   1403273259
+  signature:  Aqwyj4hreSm6jTjn1kZkRHQYe3jEANcebP9z9AEHXj14kWvnWFkixN3c
 authnet:
   login:      <%= ENV['AUTHNET_LOGIN'] %>
   password:   <%= ENV['AUTHNET_PASSWORD'] %>
