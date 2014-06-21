@@ -181,6 +181,8 @@ a.bot-arrow-prd{left:50% !important; margin-left:-15px !important;}
    .dropdown-menu {width: 95px !important; min-width:inherit;}
    .blog-slider-space .slider-cont .span3 img{ height:123px !important;}
    .blog-slider-space .slider-cont .span3 a .play-icon{ height:auto !important; width:auto !important;}
+   .navbar .nav > li {width:auto !important; clear:both;}
+   .top-nav .dropdown-menu ul li a {display:inline-block;}
     
 }
 
@@ -229,6 +231,8 @@ a.bot-arrow-prd{left:50% !important; margin-left:-15px !important;}
    
     .slider-content-container-1{ margin-left:35px;}
   /* 20th May 2014 End*/
+  .navbar .nav > li {width:auto !important; clear:both;}
+  .top-nav .dropdown-menu ul li a {display:inline-block;}
 
 }
 
