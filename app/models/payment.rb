@@ -22,7 +22,7 @@ class Payment < ActiveRecord::Base
 
   serialize :params
   # this is initialized to an instance of ActiveMerchant::Billing::Base.gateway
-  #cattr_accessor :gateway
+  cattr_accessor :gateway
 
   validates :amount,      :presence => true
   validates :invoice_id,  :presence => true

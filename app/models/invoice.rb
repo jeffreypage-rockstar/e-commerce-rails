@@ -40,7 +40,7 @@ class Invoice < ActiveRecord::Base
   NUMBER_SEED     = 3002001004005
   CHARACTERS_SEED = 20
 
-  state_machine :initial => :pending do
+state_machine :initial => :authorized do
     state :pending
     state :authorized
     state :paid
@@ -78,8 +78,7 @@ class Invoice < ActiveRecord::Base
                   :to  => :canceled
     end
   end
-
-  #  the full shipping address as an array compacted.
+    #  the full shipping address as an array compacted.
   #
   # @param [none]
   # @return [Array]  has ("name", "address1", "address2"(unless nil), "city state zip") or nil
@@ -227,8 +226,9 @@ class Invoice < ActiveRecord::Base
       authorization = Payment.authorize(integer_amount, credit_card, options)
       payments.push(authorization)
       if authorization.success?
-        payment_authorized!
+        #payment_authorized!
         authorize_complete_order
+        return_result = capture_payment({})
       else
         transaction_declined!
       end

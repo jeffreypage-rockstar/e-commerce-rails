@@ -4,19 +4,19 @@ require "active_merchant"
 ActiveMerchant::Billing::Base.mode = :test
 
 gateway = ActiveMerchant::Billing::PaypalGateway.new(
-  :login => "seller_1229899173_biz_api1.railscasts.com",
-  :password => "FXWU58S7KXFC6HBE",
-  :signature => "AGjv6SW.mTiKxtkm6L9DcSUCUgePAUDQ3L-kTdszkPG8mRfjaRZDYtSu"
+  :login => "rordev.hb_api1.gmail.com",
+  :password  => "1403273259",
+  :signature => "Aqwyj4hreSm6jTjn1kZkRHQYe3jEANcebP9z9AEHXj14kWvnWFkixN3c"
 )
 
 credit_card = ActiveMerchant::Billing::CreditCard.new(
   :type               => "visa",
-  :number             => "4024007148673576",
+  :number             => "4032039742910104",
   :verification_value => "123",
-  :month              => 1,
-  :year               => Time.now.year+1,
-  :first_name         => "Ryan",
-  :last_name          => "Bates"
+  :month              => 6,
+  :year               => 2019,
+  :first_name         => "Rordev",
+  :last_name          => "Rordev"
 )
 
 if credit_card.valid?

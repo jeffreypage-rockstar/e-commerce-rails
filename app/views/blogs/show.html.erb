@@ -59,7 +59,7 @@
                      <%end%>
                   </div>
                   <div class="thumb-img-name"><a href="#"><%= comment.author.try(:name) %></a>
-                    <span>4<%=comment.created_at.strftime("%d.%b.%Y")%></span></div>
+                    <span><%=comment.created_at.strftime("%d.%b.%Y")%></span></div>
                   </div>
                   <div class="comment-box">
                     <h3><a href"#" class="reply-link">Reply</a>Mauris mattis molestie</h3>
@@ -74,23 +74,19 @@
              <%if current_user%>
               <%= form_for @comment, :url => blog_comments_path(@blog),:html=>{:id=>"new_blog_comments"} do |f| %>
             
-              <div class="row">
-                <!-- <div class="span4">
-                <input name="" type="text" placeholder="Enter your name*" class="user-inp-icon">
-                <input name="" type="text" placeholder="Enter your E-mail*" class="email-inp-icon">
-                <input name="" type="text" placeholder="Enter your subject*" class="sub-inp-icon">
-                </div> -->
+              <div class="row">                
                 <div class="span4">
-                  <%= f.text_field :name,:placeholder=>"Enter your name*",:class=>"user-inp-icon"%>
-                  <%= f.text_field :email,:placeholder=>"Enter your E-mail*",:class=>"email-inp-icon"%>
-                  <%= f.text_field :subject,:placeholder=>"Enter your subject*",:class=>"sub-inp-icon"%>                
+                  <h2>LEAVE A COMMENT</h2>
+                  <%= f.text_field :name,:placeholder=>"ENTER YOUR NAME*",:class=>"user-inp-icon"%>
+                  <%= f.text_field :email,:placeholder=>"ENTER YOUR E-MAIL*",:class=>"email-inp-icon"%>
+                  <%= f.text_field :subject,:placeholder=>"ENTER YOUR SUBJECT*",:class=>"sub-inp-icon"%>                
                 </div>
-                <div class="span4"><h2>LEAVE A COMMENT</h2>
-                  <%= f.text_area :note ,placeholder: 'Enter your message' , class: 'edit-icon-textarea'%>
+                <div class="span4">
+                  <%= f.text_area :note ,placeholder: 'ENTER YOUR MESSAGE' , class: 'edit-icon-textarea'%>
                   <%=f.hidden_field :created_by,:value=>current_user.id%>
                   <%=f.hidden_field :user_id,:value=>@blog.user_id%>
                 </div>
-                </div>
+              </div>
                 <div class="row">
                 <div class="span4 comment-form-req">
                   <p>Your email address will not be published.<br> 
