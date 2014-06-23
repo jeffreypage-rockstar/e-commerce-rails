@@ -4,8 +4,14 @@ ruby "2.0.0"
 ## Bundle rails:
 gem 'rails', '4.0.2'
 
-gem 'uglifier',     '>= 1.3.0'
-gem 'sass-rails',   '~> 4.0.0'
+
+
+
+  gem 'sass-rails',   '~> 4.0.0'
+  #gem 'coffee-rails', '~> 4.0.0'
+  gem 'uglifier',     '>= 1.3.0'
+
+
 
 gem 'actionpack-page_caching'
 gem "activemerchant", '~> 1.29.3'#, :lib => 'active_merchant'
@@ -19,7 +25,7 @@ gem 'therubyracer'
 gem 'authlogic', github: 'binarylogic/authlogic', ref: 'e4b2990d6282f3f7b50249b4f639631aef68b939'
 #gem 'authlogic',          "~> 3.3.0"
 
-gem "asset_sync"
+# gem "asset_sync"
 gem 'awesome_nested_set', '~> 3.0.0.rc.1'
 
 gem 'aws-sdk'

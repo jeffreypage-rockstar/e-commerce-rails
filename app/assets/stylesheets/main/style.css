@@ -569,7 +569,7 @@ a:hover.home-slider-right-arrow {background:url(/assets/main/home-slider-arrow-r
 #product_detail_box .prd-big-img a img{ max-width:410px;}
 .prd-detail{ padding-top:10px;}
 @media only screen and (min-width : 979px) {
-.social-media-footer li{ float:left; padding: padding: 0 75px;}
+.social-media-footer li{ float:left; padding:0 75px;}
 .social-media-footer li:last-child{ padding-right:75px;}
 
 .navbar{ margin-bottom:0px !important;}

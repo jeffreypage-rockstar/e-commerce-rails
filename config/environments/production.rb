@@ -15,19 +15,20 @@ Hadean::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs
   config.assets.digest = true
 
-  # config.assets.precompile += %w( *.css *.js )
-
+  #config.assets.precompile << '*.js'
+  #config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
   # Add the fonts path
-  config.assets.paths << "#{Rails.root}/app/assets/fonts"
-
+  #config.assets.paths << "#{Rails.root}/app/assets/fonts"
+ 
   # Precompile additional assets
   config.assets.precompile += %w( .svg .eot .woff .ttf )
-  config.assets.precompile += %w( *.js )
+  config.assets.precompile += %w( '*.js','*/*.js','*/*/*.js' )
+  config.assets.precompile += [ 'admin.js','blogs.js']
   config.assets.precompile += [ 'admin.css',
                                 'admin/app.css',
                                 'admin/cart.css',
@@ -59,10 +60,14 @@ Hadean::Application.configure do
                                 'modstyles.css', # in vendor
                                 'scaffold.css' # in vendor
                                 ]
+  config.assets.compile = [ Proc.new { |path| 
+   !File.extname(path).in?(['.js', '.css', '']) 
+  }, /(?:\/|\\|\A)application\.(css|js)$/ ]
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
+  
 
   if ENV['FOG_DIRECTORY'].present?
     # config.action_controller.asset_host = "https://#{ENV['FOG_DIRECTORY']}.s3.amazonaws.com"
@@ -90,7 +95,7 @@ Hadean::Application.configure do
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
-  config.serve_static_assets = true
+  config.serve_static_assets = false
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -122,17 +127,11 @@ Hadean::Application.configure do
     #  :signature  => Settings.paypal.signature
     #)
 
-    ::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
-      :login    => Settings.authnet.login,
-      :password => Settings.authnet.password,
-      :test     => true
-    )
-
-    ::CIM_GATEWAY = ActiveMerchant::Billing::AuthorizeNetCimGateway.new(
-      :login    => Settings.authnet.login,
-      :password => Settings.authnet.password,
-      :test     => true
-    )
+    ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+  :login => "rordev.hb_api1.gmail.com",
+  :password  => "1403273259",
+  :signature => "Aqwyj4hreSm6jTjn1kZkRHQYe3jEANcebP9z9AEHXj14kWvnWFkixN3c"
+)
     #Paperclip::Attachment.default_options[:storage] = :s3
     #::GATEWAY = ActiveMerchant::Billing::BraintreeGateway.new(
     #  :login     => Settings.braintree.login,

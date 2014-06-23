@@ -69,17 +69,38 @@ $(function(){
       slideMargin: 0
     });
   $("#product_prototype_id").click (function(){
-     jQuery.ajax( {
+      if ($("#product_prototype_id").val().toString() == '' ) {
+        //  show all properties...
+$('#product_properties').children().fadeIn();
+    //    jQuery(Hadean.AdminMerchandiseProductForm.productCheckboxesDiv).html('');
+      }
+      else {
+        jQuery.ajax( {
            type : "GET",
-           url : '/admin/merchandise/products'+'/'+$("#product_prototype_id option:selected").first().val()+"/add_properties",
-           data : { product_id : $(this).attr('data-product_id') },
+           url : '/admin/merchandise/products'+'/'+$("#product_prototype_id").val()+"/add_properties",
+           data : { product_id :  $(this).attr('data-product_id')  },
            complete : function(json) {
              // open dialog with html
-             Hadean.AdminMerchandiseProductForm.refreshProductForm(json);
-            // STOP  WAIT INDICATOR...
+            properties = JSON.parse(json.responseText);
+      //alert(properties.property[0])
+      console.log("properties = "+properties)
+      jQuery.each (properties.active, function(p,value) {
+        jQuery('#property_' + value ).fadeIn();
+      });
+
+      jQuery.each (properties.inactive, function(p,value) {
+        propertyId = '#property_' + value;
+        jQuery(propertyId ).hide();
+        jQuery(propertyId + ' input:text')[0].value = '';
+        
+      });
+   
+             
+                        // STOP  WAIT INDICATOR...
            },
            dataType : 'json'
         });
+      }
   });
 
   $('#flash').fadeOut(10000)

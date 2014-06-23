@@ -26,7 +26,6 @@
 //= require jquery.raty.min
 //= require jquery.tinycarousel.min
 
-
 $(function(){ 
   
   $('.carousel').carousel();
