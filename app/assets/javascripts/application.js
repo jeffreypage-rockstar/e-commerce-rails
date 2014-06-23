@@ -68,7 +68,7 @@ $(function(){
       maxSlides: 21,
       slideMargin: 0
     });
-  $("#product_prototype_id").click (function(){
+/*  $("#product_prototype_id").click (function(){
      jQuery.ajax( {
            type : "GET",
            url : '/admin/merchandise/products'+'/'+$("#product_prototype_id option:selected").first().val()+"/add_properties",
@@ -80,7 +80,7 @@ $(function(){
            },
            dataType : 'json'
         });
-  });
+  });*/
 
   $('#flash').fadeOut(10000)
   $('#error_explanation').fadeOut(2000);
