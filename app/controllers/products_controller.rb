@@ -119,7 +119,7 @@ class ProductsController < ApplicationController
       @multi_variant = []
       params[:select_property].each do |k,v|
         if v.present?
-          vp =VariantProperty.find_by_description(v)
+          vp =VariantProperty.find_by_variant_id_and_description(@current_variant.id,v)
           if vp.present?            
             @variant_properties <<  vp
           end
