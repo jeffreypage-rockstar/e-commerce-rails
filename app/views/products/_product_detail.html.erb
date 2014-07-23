@@ -1,7 +1,7 @@
 <div class="span6 moblie-slider">
   <div class="prd-left-list"> 
     <div id="slideshow-carousel" >       
-      <ul id="carousel" class="jcarousel jcarousel-skin-tango">
+      <ul id="carousel">
         <% if @current_variant.present? && @current_variant.image_group.present? %>            
           <% @current_variant.image_group.images.each_with_index do |image,index| %>
             <li class="prd-thumb"><a href="#" rel="p<%=index%>"><%= image_tag(image.photo.url(:large),:width=>135,:height=>175) %></a></li>
@@ -97,17 +97,49 @@
     <% params[:select_property] ||= {} %>         
     <%#= form_tag product_path(@product),:method=>:get ,:id=>"select_property_form",:style=>"float: left;" do%>
     <%=form_tag ("/get_property_product") ,:id=>"select_property_form",:style=>"float: left;",:remote=> true do%>
-      <% @current_variant.properties.each_with_index do |pro,index| %>
-        <%= hidden_field_tag "id",@product.permalink %>
-        <% property_valriants = get_properties_values(pro.variant_properties) %>             
-        <%= select_tag "select_property[#{pro.id}]",options_for_select([["#{pro.display_name}",""]]+property_valriants,:selected=>params[:select_property]["#{pro.id}"].to_s),:class=>"#{index==0 ? 'width-160-select' : ''}",:class=>"product_variant",:onchange=>"$('#select_property_form').submit();" if property_valriants.present? && property_valriants.is_a?(Array) %>            
+      <%#for variant in @product.Variants %>
+      <%= hidden_field_tag "id",@product.permalink %>
+        <%#= hidden_field_tag "select_index" %>
+        <%= hidden_field_tag "total_index", @product.properties.size.to_s %>
+        <%= hidden_field_tag "property_id1", @product.properties.fetch(0).id.to_s%>
+        <%= hidden_field_tag "property_id2" %>
+        <%= hidden_field_tag "select_click",'0' %>
+      <% @product.properties.each_with_index do |pro,index| %>
+        <% @properties = [] %>
+        <% for variant in @product.variants %>
+          <% @property = VariantProperty.find_by_variant_id_and_property_id(variant.id,pro.id) %>
+          <% @properties << [@property.description] %>
+
+          <% @properties = @properties.compact.uniq %>
+
+
+        <%end%>
+        
+        <%#= hidden_field_tag "v_id",@current_variant.id %>
+        <%# property_variant_actual = VariantProperty.none %>
+        <%# property_variant_actual = pro.variant_properties.where('variant_id = ?',@current_variant.id) %>
+        <%# property_valriants = get_properties_values(@properties) %> 
+        <% if index == 0 %>
+        <div id="select_tag_<%=pro.id%>">            
+        <%= select_tag "select_property[#{pro.id}]",options_for_select([[]]+@properties,:selected=>params[:select_property]["#{pro.id}"].to_s),:class=>"#{index==0 ? 'width-160-select' : ''}",:class=>"product_variant",:onchange=>"javascript:change_index('#{pro.id}');$('#select_property_form').submit();" if @properties != [] %>
+      </div>
+      <%else%>
+       <div id="select_tag_<%=pro.id%>">            
+      <% if @select_click.to_s == '1' && @select_click.to_s != ''%>
+        
+        <%= render :partial => 'property_select', :locals =>  {:pro => pro.id, :properties => @properties} %>
+      <%end%>
+        </div>
+
+            <%end%>
       <% end %>    
     <% end %>
+    <div id="qty" style="display:none;">
     <%= form_for  @cart_item,:url  => shopping_cart_items_path(@cart_item),:html => { :id => 'add_to_cart_bag', :class => '',:onsubmit=>"return call_validate()" } do |f| %>
       <% left_quantity = @current_variant.inventory.present? ? @current_variant.inventory.count_on_hand.to_i : 0 %>
       <%= select_tag "cart_item[quantity]",options_for_select([["Quantity",""]]+(1..(left_quantity>10 ? 10 : left_quantity)).to_a),:class=>"right" if left_quantity > 0 %>          
       <%= f.hidden_field :variant_id %>
-  </div>
+  
     <div class="price-bag">
       <span><%= number_to_currency @current_variant.price %></span>
        <% if @current_variant.present? && left_quantity > 0 %>          
@@ -115,6 +147,7 @@
       <% end %>      
     </div>
   <% end %>
+</div>
   <div class="prd-share">
     <div class="bot-blue-line-img"><%= image_tag("/assets/bot-blue-line.gif")%></div>
     <span>Share:</span>
@@ -122,7 +155,18 @@
   </div>
 </div>
 <script type="text/javascript">
-
+function change_index(i)
+{
+  $("#property_id1").val(i.toString());
+      $("#select_click").val('0');
+  //alert($('#property_id1').val());
+}
+function change_index2(i)
+{
+  $("#property_id2").val(i.toString());
+    $("#select_click").val('1');
+  //alert($('#property_id2').val());
+}
     $(document).ready(function () {         
       
       //jCarousel Plugin

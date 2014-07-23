@@ -63,7 +63,7 @@ class ProductsController < ApplicationController
   end
   def brand_products
       @brand = Brand.find(params[:id])
-      @products = Product.paginate(:page => pagination_page, :per_page => pagination_rows).where(["brand_id =?",params[:id]])
+      @products = Product.paginate(:page => pagination_page, :per_page => 8).where(["brand_id =?",params[:id]])
   end
 
   def cat_products
@@ -117,9 +117,14 @@ class ProductsController < ApplicationController
       # *** start ***   
       @variant_properties = []
       @multi_variant = []
+      @select_index = params[:property_id].to_s
+      @total_index = params[:total_index].to_s
+      @desc = params[("select_property_"+@select_index).to_sym]
+      #@current_variant = Variant.find(params[:v_id].to_i)
+=begin
       params[:select_property].each do |k,v|
         if v.present?
-          vp =VariantProperty.find_by_variant_id_and_description(@current_variant.id,v)
+          vp =VariantProperty.find_by_description(v)
           if vp.present?            
             @variant_properties <<  vp
           end
@@ -140,9 +145,12 @@ class ProductsController < ApplicationController
       else
         @current_variant = @variant_properties.last.variant if @variant_properties.present?
       end
+=end
       @current_variant = @product.active_variants[0] if (@product && @product.active_variants.present?) && !@current_variant.present?
       @cart_item.variant_id = @current_variant.id if @current_variant.present?
       # *** end *** 
+         #   render :text => false and return false
+
     else  
       #@cart_item.variant_id = @product.active_variants.first.try(:id) if @product && @product.active_variants.present?    
       @cart_item.variant_id = params[:variant_id].present? ? params[:variant_id] : @product.active_variants.first.try(:id) if @product && @product.active_variants.present?
@@ -154,8 +162,11 @@ class ProductsController < ApplicationController
       else
         @current_variant = @product.active_variants[0] if @product && @product.active_variants.present?
       end
+      #render :text => @product.id.to_s and return false
     end
-    @news = News.where('state = ?',true)    
+    @news = News.where('state = ?',true) 
+    #render :text => @desc and return false
+   
   end
 
   def rock_product    
@@ -186,7 +197,50 @@ class ProductsController < ApplicationController
   end
 
   def get_property_product     
-    show
+    #show
+    @product = Product.active.find_by_permalink(params[:id])    
+    @related_products = RelatedProduct.find_all_by_product_id(@product.id) if @product
+    if current_user
+      @rock_product = ProductRock.find_by_product_id_and_user_id(@product.id,current_user.id) if @product
+    end
+    form_info
+    if params[:select_click].to_s == "0"
+      @property_id = params[:property_id1].to_s
+      @total_index = params[:total_index].to_s
+      @desc = params[:select_property]["#{@property_id}"].to_s
+      #render :text => @desc and return false
+      @variant_properties = VariantProperty.where("property_id = ? and LOWER(description) = ? and variant_id in (?)",@property_id,@desc.downcase,@product.variants.map{|x| x.id})
+      @properties = VariantProperty.where("property_id != ? and variant_id in (?)",@property_id,@variant_properties.map{|x| x.variant_id})
+      @properties2 = @properties
+      @pro = @properties2.first.property_id
+      @properties = []
+      for property in @properties2
+      @properties << [property.description] 
+            end
+      @properties = @properties.compact.uniq
+       @select_click = 0
+   elsif params[:select_click].to_s == "1"
+      @property1=params[:property_id1].to_s
+      @property2 = params[:property_id2].to_s
+      @desc1 = params[:select_property]["#{@property1}"].to_s
+
+      @desc2 = params[:select_property]["#{@property2}"].to_s
+      @variant_properties = VariantProperty.where("property_id = ? and LOWER(description) = ? and variant_id in (?)",@property1,@desc1.downcase,@product.variants.map{|x| x.id})
+      @variant_properties2 = VariantProperty.where("property_id = ? and LOWER(description) = ? and variant_id in (?)",@property2,@desc2.downcase,@variant_properties.map{|x| x.variant_id})
+      @variant_properties1 = VariantProperty.where("property_id = ? and LOWER(description) = ? and variant_id in (?)",@property1.to_i,@desc1.downcase,@product.variants.map{|x| x.id})
+      @properties2 = VariantProperty.where("property_id != ? and variant_id in (?)",@property1.to_i,@variant_properties1.map{|x| x.variant_id})
+      @properties22 = []
+      for property in @properties2
+      @properties22 << [property.description] 
+            end
+      @pro = @properties2.first.property_id
+      @properties22 = @properties22.compact.uniq
+      #render :text => @properties22 and return false
+      @current_variant = Variant.find(@variant_properties2.first.variant_id)
+          @cart_item.variant_id = @current_variant.id
+      @select_click = 1
+
+   end
     respond_to do |format|
        format.js 
     end

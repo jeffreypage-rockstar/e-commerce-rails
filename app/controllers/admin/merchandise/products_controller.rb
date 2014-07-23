@@ -96,10 +96,8 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
       end
       h
     end
-    respond_to do |format|
-      format.html
-      format.json { render :json => @properties_hash.to_json }
-    end
+    
+      render :json => @properties_hash.to_json     
   end
 
   def activate

@@ -1,1 +1,10 @@
+<% if params[:select_click].to_s == '0' %>
+$('#select_tag_<%=@pro%>').html("<%= escape_javascript(render partial: '/products/property_select', :locals => {:pro => @pro, :properties => @properties}) %>");
+$('#select_tag_<%=@pro%>').show();
+<%elsif params[:select_click].to_s == '1'%>
+alert('asfafafasfasdfa=<%=@select_click.to_s%>');
 $('#product_detail_box').html("<%= escape_javascript(render partial: '/products/product_detail') %>");
+$('#select_tag_<%=@pro%>').html("<%= escape_javascript(render partial: '/products/property_select', :locals => {:pro => @pro, :properties => @properties22}) %>");
+$('#select_tag_<%=@pro%>').show();
+$('#qty').show();
+<%end%>

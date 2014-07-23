@@ -1,0 +1,2 @@
+        
+        <%= select_tag "select_property[#{pro}]",options_for_select([[]]+properties,:selected=>params[:select_property]["#{pro}"].to_s),:class=>"",:class=>"product_variant",:onchange=>"javascript:change_index2('#{pro}');$('#select_property_form').submit();" if properties != [] %>

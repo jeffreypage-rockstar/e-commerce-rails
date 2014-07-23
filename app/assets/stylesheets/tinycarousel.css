@@ -31,11 +31,11 @@
     color: #C01313;
 }
 
-.slider-container .slider1 .overview { list-style: none; position: absolute; padding: 0; margin: 0; width: 240px; left: 0 top: 0; }
+.slider-container .slider1 .overview { list-style: none; position: absolute; padding: 0; margin: 0; width: 240px; left: 0; top: 0; }
 .slider-container .slider1 .overview li{ float: left; margin: 0 30px 0 0;height: 410px; width: 270px; position:relative;}
 
 @media (max-width:1024px){
- .slider-container .slider1 .overview li{ width: 228px; margin-right:10px; height:height:360px;}
+ .slider-container .slider1 .overview li{ width: 228px; margin-right:10px; height:360px;}
  .slider-container .slider1 .viewport{height:415px;}
  .slider-container .super-hot-tab li{ width:236px;}
 }
