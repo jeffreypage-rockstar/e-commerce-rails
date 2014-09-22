@@ -64,12 +64,14 @@ gem 'rmagick',    :require => 'RMagick'
 gem 'rake', '~> 10.1'
 
 # gem 'resque', require: 'resque/server'
-
+gem 'seed_dump'
 gem 'state_machine', '~> 1.2.0'
 #gem 'sunspot_solr', '~> 2.0.0'
 #gem 'sunspot_rails', '~> 2.0.0'
 gem 'will_paginate', '~> 3.0.4'
 gem 'zurb-foundation', '~> 4.3.2'
+
+gem 'capistrano', '~> 3.2.0'
 
 
 group :production do
@@ -88,6 +90,11 @@ group :development do
   gem "binding_of_caller", '~> 0.7.2'
   gem 'debugger'#, '~> 1.6.1'
   gem "rails-erd"
+
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails-collection' # Adds some db related commands to cap, like seed
 
   # YARD AND REDCLOTH are for generating yardocs
   gem 'yard'

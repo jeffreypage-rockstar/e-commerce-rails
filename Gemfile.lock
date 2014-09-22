@@ -75,6 +75,21 @@ GEM
     buftok (0.2.0)
     builder (3.1.4)
     cancan (1.6.10)
+    capistrano (3.2.1)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (~> 1.3)
+    capistrano-bundler (1.1.3)
+      capistrano (~> 3.1)
+      sshkit (~> 1.2)
+    capistrano-rails (1.1.2)
+      capistrano (~> 3.1)
+      capistrano-bundler (~> 1.1)
+    capistrano-rails-collection (0.0.3)
+      capistrano-rails (~> 1.1.0)
+    capistrano-rvm (0.1.1)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
     capybara (1.1.4)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -92,6 +107,7 @@ GEM
       orm_adapter (~> 0.5.0)
     cocaine (0.4.0)
     coderay (1.1.0)
+    colorize (0.7.3)
     columnize (0.8.9)
     compass (0.12.6)
       chunky_png (~> 1.2)
@@ -175,6 +191,9 @@ GEM
     multipart-post (2.0.0)
     mysql2 (0.3.16)
     naught (1.0.0)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.9.1)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
     oauth2 (0.8.1)
@@ -267,6 +286,9 @@ GEM
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
+    seed_dump (3.2.0)
+      activerecord (~> 4)
+      activesupport (~> 4)
     selenium-webdriver (2.41.0)
       childprocess (>= 0.5.0)
       multi_json (~> 1.0)
@@ -283,6 +305,10 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     sqlite3 (1.3.9)
+    sshkit (1.5.1)
+      colorize
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
     state_machine (1.2.0)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
@@ -337,6 +363,11 @@ DEPENDENCIES
   binding_of_caller (~> 0.7.2)
   bluecloth (~> 2.2.0)
   cancan (~> 1.6.8)
+  capistrano (~> 3.2.0)
+  capistrano-bundler
+  capistrano-rails
+  capistrano-rails-collection
+  capistrano-rvm
   capybara (~> 1.1)
   chronic
   ckeditor
@@ -378,6 +409,7 @@ DEPENDENCIES
   rspec-rails (~> 2.12.2)
   rspec-rails-mocha
   sass-rails (~> 4.0.0)
+  seed_dump
   sqlite3
   state_machine (~> 1.2.0)
   therubyracer
